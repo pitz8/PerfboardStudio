@@ -1,0 +1,129 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "ads1115-module",
+  "name": "ADS1115",
+  "subtitle": "4-channel 16-bit ADC, I2C",
+  "category": "ic",
+  "tags": [
+    "adc",
+    "i2c",
+    "16-bit",
+    "analog",
+    "converter",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 10,
+    "rows": 6
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VDD",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "SCL",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "SDA",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "ADDR",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "ALRT",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "A0",
+      "type": "analog"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "name": "A1",
+      "type": "analog"
+    },
+    {
+      "col": 8,
+      "row": 0,
+      "name": "A2",
+      "type": "analog"
+    },
+    {
+      "col": 9,
+      "row": 0,
+      "name": "A3",
+      "type": "analog"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 9.9,
+    "h": 5.9,
+    "rx": 0.16,
+    "fill": "#33204d",
+    "stroke": "#1c1029"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 9.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.52,
+      "y": 2.5,
+      "w": 3.96,
+      "h": 2.006,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "ADS1115",
+    "size": 0.5,
+    "color": "#e8eef4",
+    "x": 4.5,
+    "y": 5.15
+  }
+}

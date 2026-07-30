@@ -1,0 +1,94 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "slide-switch-dpdt",
+  "name": "Slide switch DPDT",
+  "subtitle": "6-pin, 2.54 mm",
+  "category": "connector",
+  "tags": [
+    "switch",
+    "dpdt",
+    "slide"
+  ],
+  "designator": "SW",
+  "footprint": {
+    "cols": 3,
+    "rows": 2
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1A",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "COM A",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "2A",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "1B",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 1,
+      "name": "COM B",
+      "number": 5,
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 1,
+      "name": "2B",
+      "number": 6,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.4,
+    "y": -1.5,
+    "w": 2.8,
+    "h": 2.9,
+    "rx": 0.08,
+    "fill": "#23272e",
+    "stroke": "#0e1116"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": 0.2,
+      "y": -1.3,
+      "w": 1.6,
+      "h": 0.6,
+      "fill": "#22262c",
+      "rx": 0.06,
+      "stroke": "#14171a",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.3,
+      "y": -1.25,
+      "w": 0.6,
+      "h": 0.5,
+      "fill": "#c9ced6",
+      "rx": 0.06,
+      "stroke": "#8d949c",
+      "strokeWidth": 0.035
+    }
+  ]
+}

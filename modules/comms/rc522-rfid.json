@@ -1,0 +1,117 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "rc522-rfid",
+  "name": "RC522 RFID",
+  "subtitle": "13.56 MHz MFRC522",
+  "category": "comms",
+  "tags": [
+    "rfid",
+    "nfc",
+    "mfrc522",
+    "spi",
+    "13.56mhz",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 8,
+    "rows": 15
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "SDA",
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "SCK",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "MOSI",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "MISO",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "IRQ",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "RST",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "name": "3V3",
+      "type": "power"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 7.9,
+    "h": 14.9,
+    "rx": 0.16,
+    "fill": "#6b1622",
+    "stroke": "#4a0f18"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 7.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.92,
+      "y": 7,
+      "w": 3.16,
+      "h": 5.066,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "RC522",
+    "size": 0.5,
+    "color": "#e8eef4",
+    "x": 3.5,
+    "y": 14.15
+  }
+}

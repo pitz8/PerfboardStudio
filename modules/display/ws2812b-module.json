@@ -1,0 +1,116 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "ws2812b-module",
+  "name": "WS2812B NeoPixel",
+  "subtitle": "addressable RGB LED",
+  "category": "display",
+  "tags": [
+    "ws2812b",
+    "neopixel",
+    "rgb",
+    "addressable"
+  ],
+  "designator": "D",
+  "footprint": {
+    "cols": 4,
+    "rows": 3
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VCC",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "DIN",
+      "number": 2,
+      "type": "in"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "DOUT",
+      "number": 3,
+      "type": "out"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "GND",
+      "number": 4,
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.4,
+    "y": -0.4,
+    "w": 4.8,
+    "h": 2.8,
+    "rx": 0.14,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 3.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.9,
+      "y": 0.9,
+      "w": 1.8,
+      "h": 1.2,
+      "fill": "#f0f2f5",
+      "rx": 0.1,
+      "stroke": "#b8bec6",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": 1.8,
+      "cy": 1.5,
+      "r": 0.42,
+      "fill": "#3a3f47"
+    },
+    {
+      "type": "circle",
+      "cx": 1.62,
+      "cy": 1.36,
+      "r": 0.14,
+      "fill": "#d84040"
+    },
+    {
+      "type": "circle",
+      "cx": 1.98,
+      "cy": 1.36,
+      "r": 0.14,
+      "fill": "#40d868"
+    },
+    {
+      "type": "circle",
+      "cx": 1.8,
+      "cy": 1.66,
+      "r": 0.14,
+      "fill": "#4070d8"
+    }
+  ],
+  "label": {
+    "text": "WS2812B",
+    "x": 1.8,
+    "y": 2.2,
+    "size": 0.3,
+    "color": "#e8eef4"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "heatsink-to220",
+  "name": "Heatsink TO-220",
+  "subtitle": "clip-on, 25 mm",
+  "category": "misc",
+  "tags": [
+    "heatsink",
+    "cooling",
+    "thermal",
+    "to-220"
+  ],
+  "designator": "HS",
+  "footprint": {
+    "cols": 4,
+    "rows": 4
+  },
+  "pins": [],
+  "body": {
+    "x": -0.3,
+    "y": -0.3,
+    "w": 4.0,
+    "h": 4.0,
+    "rx": 0.08,
+    "fill": "#8c949d",
+    "stroke": "#5c6269"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.15,
+      "y": -0.15,
+      "w": 3.7,
+      "h": 0.34,
+      "fill": "#6f767e",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": -0.15,
+      "y": 0.6,
+      "w": 3.7,
+      "h": 0.34,
+      "fill": "#6f767e",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": -0.15,
+      "y": 1.35,
+      "w": 3.7,
+      "h": 0.34,
+      "fill": "#6f767e",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": -0.15,
+      "y": 2.1,
+      "w": 3.7,
+      "h": 0.34,
+      "fill": "#6f767e",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": -0.15,
+      "y": 2.85,
+      "w": 3.7,
+      "h": 0.34,
+      "fill": "#6f767e",
+      "rx": 0.04
+    }
+  ]
+}

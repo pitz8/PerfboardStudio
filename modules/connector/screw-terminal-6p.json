@@ -1,0 +1,187 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "screw-terminal-6p",
+  "name": "Screw terminal 6-way",
+  "subtitle": "5.08 mm pitch",
+  "category": "connector",
+  "tags": [
+    "terminal",
+    "screw",
+    "connector",
+    "6-way"
+  ],
+  "designator": "J",
+  "footprint": {
+    "cols": 11,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "3",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "4",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 8,
+      "row": 0,
+      "name": "5",
+      "number": 5,
+      "type": "signal"
+    },
+    {
+      "col": 10,
+      "row": 0,
+      "name": "6",
+      "number": 6,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.7,
+    "y": -1.5,
+    "w": 11.4,
+    "h": 2.5,
+    "rx": 0.1,
+    "fill": "#2c7a45",
+    "stroke": "#1c5230"
+  },
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 0,
+      "cy": -0.85,
+      "r": 0.42,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 2,
+      "cy": -0.85,
+      "r": 0.42,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 4,
+      "cy": -0.85,
+      "r": 0.42,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 6,
+      "cy": -0.85,
+      "r": 0.42,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 8,
+      "cy": -0.85,
+      "r": 0.42,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 10,
+      "cy": -0.85,
+      "r": 0.42,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "line",
+      "x1": -0.28,
+      "y1": -0.85,
+      "x2": 0.28,
+      "y2": -0.85,
+      "stroke": "#5c6269",
+      "strokeWidth": 0.09,
+      "linecap": "butt"
+    },
+    {
+      "type": "line",
+      "x1": 1.72,
+      "y1": -0.85,
+      "x2": 2.28,
+      "y2": -0.85,
+      "stroke": "#5c6269",
+      "strokeWidth": 0.09,
+      "linecap": "butt"
+    },
+    {
+      "type": "line",
+      "x1": 3.72,
+      "y1": -0.85,
+      "x2": 4.28,
+      "y2": -0.85,
+      "stroke": "#5c6269",
+      "strokeWidth": 0.09,
+      "linecap": "butt"
+    },
+    {
+      "type": "line",
+      "x1": 5.72,
+      "y1": -0.85,
+      "x2": 6.28,
+      "y2": -0.85,
+      "stroke": "#5c6269",
+      "strokeWidth": 0.09,
+      "linecap": "butt"
+    },
+    {
+      "type": "line",
+      "x1": 7.72,
+      "y1": -0.85,
+      "x2": 8.28,
+      "y2": -0.85,
+      "stroke": "#5c6269",
+      "strokeWidth": 0.09,
+      "linecap": "butt"
+    },
+    {
+      "type": "line",
+      "x1": 9.72,
+      "y1": -0.85,
+      "x2": 10.28,
+      "y2": -0.85,
+      "stroke": "#5c6269",
+      "strokeWidth": 0.09,
+      "linecap": "butt"
+    }
+  ]
+}

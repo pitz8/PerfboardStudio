@@ -1,0 +1,98 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "mcp4725-module",
+  "name": "MCP4725",
+  "subtitle": "12-bit DAC, I2C",
+  "category": "ic",
+  "tags": [
+    "dac",
+    "i2c",
+    "12-bit",
+    "analog",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 5,
+    "rows": 6
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "OUT",
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "SCL",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "SDA",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 4.9,
+    "h": 5.9,
+    "rx": 0.16,
+    "fill": "#33204d",
+    "stroke": "#1c1029"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 4.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.02,
+      "y": 2.5,
+      "w": 1.96,
+      "h": 2.006,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "MCP4725",
+    "size": 0.34,
+    "color": "#e8eef4",
+    "x": 2,
+    "y": 5.15
+  }
+}

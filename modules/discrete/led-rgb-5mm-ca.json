@@ -1,0 +1,127 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "led-rgb-5mm-ca",
+  "name": "RGB LED 5 mm (CA)",
+  "subtitle": "common anode",
+  "category": "discrete",
+  "tags": [
+    "led",
+    "rgb",
+    "common anode",
+    "5mm"
+  ],
+  "designator": "D",
+  "footprint": {
+    "cols": 4,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "R",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "A",
+      "number": 2,
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "G",
+      "number": 3,
+      "type": "gnd"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "B",
+      "number": 4,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 1.5,
+      "y2": -0.1,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 1.5,
+      "y2": -0.1,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 1.5,
+      "y2": -0.1,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 0,
+      "x2": 1.5,
+      "y2": -0.1,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 1.5,
+      "cy": -0.55,
+      "r": 0.55,
+      "fill": "#dfe5ec",
+      "stroke": "#a8aeb6",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 1.28,
+      "cy": -0.72,
+      "r": 0.19,
+      "fill": "#e02b25"
+    },
+    {
+      "type": "circle",
+      "cx": 1.72,
+      "cy": -0.72,
+      "r": 0.19,
+      "fill": "#2fbf4e"
+    },
+    {
+      "type": "circle",
+      "cx": 1.5,
+      "cy": -0.36,
+      "r": 0.19,
+      "fill": "#2b7fe0"
+    }
+  ],
+  "label": {
+    "text": "RGB+",
+    "x": 1.5,
+    "y": 0.44,
+    "size": 0.28,
+    "color": "#9fb0c0"
+  }
+}

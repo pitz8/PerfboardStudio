@@ -1,0 +1,258 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "header-1x15-male",
+  "name": "Header 1×15 male",
+  "subtitle": "2.54 mm pin header",
+  "category": "connector",
+  "tags": [
+    "header",
+    "connector",
+    "male",
+    "1x15"
+  ],
+  "designator": "J",
+  "footprint": {
+    "cols": 1,
+    "rows": 15
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "3",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "4",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "5",
+      "number": 5,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "6",
+      "number": 6,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "7",
+      "number": 7,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "8",
+      "number": 8,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "9",
+      "number": 9,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 9,
+      "name": "10",
+      "number": 10,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 10,
+      "name": "11",
+      "number": 11,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 11,
+      "name": "12",
+      "number": 12,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 12,
+      "name": "13",
+      "number": 13,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 13,
+      "name": "14",
+      "number": 14,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 14,
+      "name": "15",
+      "number": 15,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.36,
+      "y": -0.36,
+      "w": 0.72,
+      "h": 14.72,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0e1116",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": -0.12,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 0.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 1.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 2.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 3.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 4.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 5.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 6.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 7.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 8.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 9.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 10.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 11.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 12.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 13.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    }
+  ]
+}

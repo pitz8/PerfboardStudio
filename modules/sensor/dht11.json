@@ -1,0 +1,102 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "dht11",
+  "name": "DHT11",
+  "subtitle": "temperature + humidity",
+  "category": "sensor",
+  "tags": [
+    "temperature",
+    "humidity",
+    "1-wire",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 4,
+    "rows": 6
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "DATA",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "NC",
+      "type": "nc"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 3.9,
+    "h": 5.9,
+    "rx": 0.16,
+    "fill": "#2e6fb7",
+    "stroke": "#1b4477"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 3.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.72,
+      "y": 2.5,
+      "w": 1.56,
+      "h": 2.006,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 0.1,
+      "y": 1.2,
+      "w": 2.8,
+      "h": 3,
+      "fill": "#3f86d6",
+      "rx": 0.12,
+      "stroke": "#255a97",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "DHT11",
+    "size": 0.34,
+    "color": "#e8eef4",
+    "x": 1.5,
+    "y": 5.15
+  }
+}

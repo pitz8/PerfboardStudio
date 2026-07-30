@@ -1,0 +1,153 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "lora-ra-02",
+  "name": "LoRa RA-02",
+  "subtitle": "SX1278, 433 MHz",
+  "category": "comms",
+  "tags": [
+    "lora",
+    "sx1278",
+    "433mhz",
+    "spi",
+    "wireless",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 14,
+    "rows": 10
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "3V3",
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "RST",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "DIO0",
+      "type": "io"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "DIO1",
+      "type": "io"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "DIO2",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "DIO3",
+      "type": "io"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "name": "DIO4",
+      "type": "io"
+    },
+    {
+      "col": 8,
+      "row": 0,
+      "name": "DIO5",
+      "type": "io"
+    },
+    {
+      "col": 9,
+      "row": 0,
+      "name": "MISO",
+      "type": "signal"
+    },
+    {
+      "col": 10,
+      "row": 0,
+      "name": "MOSI",
+      "type": "signal"
+    },
+    {
+      "col": 11,
+      "row": 0,
+      "name": "SCK",
+      "type": "signal"
+    },
+    {
+      "col": 12,
+      "row": 0,
+      "name": "NSS",
+      "type": "signal"
+    },
+    {
+      "col": 13,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 13.9,
+    "h": 9.9,
+    "rx": 0.16,
+    "fill": "#1a1d22",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 13.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 3.72,
+      "y": 4.5,
+      "w": 5.56,
+      "h": 3.366,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "RA-02",
+    "size": 0.5,
+    "color": "#e8eef4",
+    "x": 6.5,
+    "y": 9.15
+  }
+}

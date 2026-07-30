@@ -1,0 +1,123 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "ds3231-module",
+  "name": "DS3231 RTC",
+  "subtitle": "precision I2C clock",
+  "category": "sensor",
+  "tags": [
+    "rtc",
+    "clock",
+    "i2c",
+    "eeprom",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 15,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "32K",
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "SQW",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "SCL",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "SDA",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 14.9,
+    "h": 7.9,
+    "rx": 0.16,
+    "fill": "#123a63",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 5.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 4.02,
+      "y": 3.5,
+      "w": 5.96,
+      "h": 2.686,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "circle",
+      "cx": 9,
+      "cy": 4.5,
+      "r": 2.6,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.08
+    },
+    {
+      "type": "text",
+      "x": 9,
+      "y": 4.5,
+      "text": "CR2032",
+      "size": 0.4,
+      "color": "#5c6269",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ],
+  "label": {
+    "text": "DS3231",
+    "size": 0.5,
+    "color": "#e8eef4",
+    "x": 7,
+    "y": 7.15
+  }
+}

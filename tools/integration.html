@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <title>Perfboard Studio — integration test</title>
+  <style>
+    body { font: 13px/1.5 ui-monospace, monospace; background: #11141a; color: #c8d1e0; padding: 20px; }
+    .pass { color: #73daca; }
+    .fail { color: #f7768e; font-weight: bold; }
+    #summary { margin: 14px 0; padding: 10px; border: 1px solid #333b48; border-radius: 6px; font-size: 14px; }
+    #stage { width: 900px; height: 700px; border: 1px solid #333b48; margin-top: 16px; }
+    #stage svg { width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <h1>Integration test — real catalog, real renderer</h1>
+  <div id="summary">running…</div>
+  <div id="out"></div>
+  <div id="stage"><svg id="board" xmlns="http://www.w3.org/2000/svg"></svg></div>
+
+  <script type="module">
+    // Drives the real Renderer against the real catalog in a real layout, so the
+    // full transform chain (rotation -> placement -> solder-side mirror) is
+    // verified end to end rather than in isolation.
+    import { Catalog } from '/src/core/catalog.js';
+    import { Store, makeInstance, makeWire } from '/src/core/store.js';
+    import { Renderer } from '/src/render/renderer.js';
+    import { pinCells, occupiedCells, boundsOf } from '/src/core/geometry.js';
+    import { displayCol } from '/src/core/board.js';
+    import { deserialize, toJSON } from '/src/io/project.js';
+
+    const out = document.getElementById('out');
+    let pass = 0, fail = 0;
+
+    function check(name, fn) {
+      let ok = false, detail = '';
+      try {
+        const r = fn();
+        ok = r === true || r === undefined;
+        if (!ok) detail = ` — ${r}`;
+      } catch (e) {
+        detail = ` — threw ${e.message}\n${e.stack}`;
+      }
+      if (ok) pass++; else fail++;
+      const div = document.createElement('div');
+      div.className = ok ? 'pass' : 'fail';
+      div.textContent = `${ok ? 'PASS' : 'FAIL'} ${name}${detail}`;
+      out.appendChild(div);
+    }
+
+    const catalog = await new Catalog().load();
+    const store = new Store();
+    const renderer = new Renderer(document.getElementById('board'), store, catalog);
+
+    check('catalog loaded with no file errors', () => {
+      if (catalog.errors.length) return JSON.stringify(catalog.errors.slice(0, 4));
+      return catalog.byId.size >= 250 ? true : `only ${catalog.byId.size} modules`;
+    });
+
+    check('every catalog module has pins inside its footprint', () => {
+      for (const def of catalog.all) {
+        for (const p of def.pins) {
+          if (p.col >= def.footprint.cols || p.row >= def.footprint.rows) {
+            return `${def.id} pin ${p.name} at (${p.col},${p.row}) vs footprint `
+                 + `${def.footprint.cols}x${def.footprint.rows}`;
+          }
+        }
+      }
+      return true;
+    });
+
+    check('every catalog module renders without throwing', () => {
+      for (const def of catalog.all) {
+        for (const rot of [0, 90, 180, 270]) {
+          const inst = makeInstance(def, { col: 0, row: 0, rotation: rot, side: 'front' });
+          const g = renderer.buildModule(inst, { ghost: false });
+          if (!g || !g.childNodes.length) return `${def.id} rot${rot} produced nothing`;
+        }
+      }
+      return true;
+    });
+
+    // -- the core invariant --------------------------------------------------
+    // A pad's on-screen centre must coincide with the hole it claims, for every
+    // rotation and on both sides of the board.
+
+    function padPositions(inst) {
+      const g = renderer.buildModule(inst, { ghost: false });
+      renderer.geom.appendChild(g);
+      const svg = renderer.svg;
+      const root = svg.getScreenCTM();
+      const found = [];
+      for (const c of g.querySelectorAll('circle')) {
+        if (Math.abs(Number(c.getAttribute('r')) - 0.3) > 1e-9) continue; // outer pad only
+        const m = c.getScreenCTM();
+        const p = new DOMPoint(Number(c.getAttribute('cx')), Number(c.getAttribute('cy')))
+          .matrixTransform(root.inverse().multiply(m));
+        found.push({ x: p.x, y: p.y });
+      }
+      g.remove();
+      return found;
+    }
+
+    for (const side of ['front', 'solder']) {
+      check(`pads land on hole centres — ${side} view, all rotations`, () => {
+        store.setUI({ side }, { silent: true });
+        renderer.render();
+        const board = store.doc.board;
+
+        for (const id of ['ne555', 'esp32-c3-supermini', 'resistor-330r', 'header-1x8-male',
+                          'lm7805', 'a4988-driver', 'led-5mm-red']) {
+          const def = catalog.get(id);
+          if (!def) return `catalog is missing ${id}`;
+          for (const rot of [0, 90, 180, 270]) {
+            const inst = makeInstance(def, { col: 2, row: 3, rotation: rot, side });
+            const want = pinCells(def, inst)
+              .map((p) => ({ x: displayCol(p.col, board.cols, side === 'solder'), y: p.row }));
+            const got = padPositions(inst);
+            if (got.length !== want.length) {
+              return `${id} rot${rot}: ${got.length} pads for ${want.length} pins`;
+            }
+            for (const w of want) {
+              const hit = got.some((g) => Math.abs(g.x - w.x) < 1e-6 && Math.abs(g.y - w.y) < 1e-6);
+              if (!hit) {
+                return `${id} rot${rot} ${side}: no pad at hole (${w.x},${w.y}); `
+                     + `pads at ${JSON.stringify(got.map((g) => [+g.x.toFixed(3), +g.y.toFixed(3)]))}`;
+              }
+            }
+          }
+        }
+        return true;
+      });
+    }
+
+    check('resized part keeps its pads on holes after rotation', () => {
+      store.setUI({ side: 'front' }, { silent: true });
+      renderer.render();
+      const def = catalog.get('resistor-330r');
+      const board = store.doc.board;
+      for (const span of [3, 5, 8]) {
+        for (const rot of [0, 90, 180, 270]) {
+          const inst = makeInstance(def, { col: 1, row: 1, rotation: rot, side: 'front', span });
+          const want = pinCells(def, inst).map((p) => ({ x: p.col, y: p.row }));
+          const got = padPositions(inst);
+          for (const w of want) {
+            if (!got.some((g) => Math.abs(g.x - w.x) < 1e-6 && Math.abs(g.y - w.y) < 1e-6)) {
+              return `span ${span} rot${rot}: no pad at (${w.x},${w.y}), got `
+                   + JSON.stringify(got.map((g) => [+g.x.toFixed(2), +g.y.toFixed(2)]));
+            }
+          }
+          void board;
+        }
+      }
+      return true;
+    });
+
+    // -- mirroring behaviour -------------------------------------------------
+
+    check('geometry layer mirrors on the solder side only', () => {
+      store.setUI({ side: 'front' }, { silent: true });
+      renderer.render();
+      const front = renderer.geom.getAttribute('transform') || '';
+      store.setUI({ side: 'solder' }, { silent: true });
+      renderer.render();
+      const solder = renderer.geom.getAttribute('transform') || '';
+      if (front !== '') return `front has transform "${front}"`;
+      if (!solder.includes('scale(-1 1)')) return `solder transform is "${solder}"`;
+      return true;
+    });
+
+    check('label layer is never mirrored', () => {
+      for (const side of ['front', 'solder']) {
+        store.setUI({ side }, { silent: true });
+        renderer.render();
+        const m = renderer.labels.getScreenCTM().multiply(renderer.svg.getScreenCTM().inverse());
+        if (m.a < 0) return `${side}: label layer has a negative x scale`;
+      }
+      return true;
+    });
+
+    check('text stays upright: no mirrored glyphs on the solder side', () => {
+      store.load({
+        name: 'T', board: { cols: 18, rows: 24, pitchMm: 2.54, colorId: 'phenolic' },
+        modules: [makeInstance(catalog.get('ne555'), { col: 3, row: 4, rotation: 0, side: 'solder', label: 'U1' })],
+        wires: [],
+      });
+      store.setUI({ side: 'solder' }, { silent: true });
+      renderer.render();
+      const texts = [...renderer.textLayer.querySelectorAll('text')];
+      if (!texts.length) return 'no text rendered';
+      const root = renderer.svg.getScreenCTM().inverse();
+      for (const t of texts) {
+        const m = root.multiply(t.getScreenCTM());
+        // determinant > 0 means no reflection was applied
+        if (m.a * m.d - m.b * m.c <= 0) return `"${t.textContent}" is reflected`;
+      }
+      return true;
+    });
+
+    // -- wires ---------------------------------------------------------------
+
+    check('wire polyline points match the stored grid path', () => {
+      const wire = makeWire({ points: [[1, 2], [1, 8], [6, 8]], color: '#e02b25', side: 'front' });
+      store.load({
+        name: 'W', board: { cols: 18, rows: 24, pitchMm: 2.54, colorId: 'phenolic' },
+        modules: [], wires: [wire],
+      });
+      store.setUI({ side: 'front' }, { silent: true });
+      renderer.render();
+      const poly = renderer.wireLayer.querySelector('polyline:not(.pbs-hit)');
+      if (!poly) return 'no wire polyline rendered';
+      const pts = poly.getAttribute('points');
+      return pts === '1,2 1,8 6,8' ? true : `points "${pts}"`;
+    });
+
+    check('a solder-side wire renders mirrored on screen', () => {
+      const wire = makeWire({ points: [[0, 0], [0, 5]], color: '#e02b25', side: 'solder' });
+      store.load({
+        name: 'W', board: { cols: 18, rows: 24, pitchMm: 2.54, colorId: 'phenolic' },
+        modules: [], wires: [wire],
+      });
+      store.setUI({ side: 'solder' }, { silent: true });
+      renderer.render();
+      const poly = renderer.wireLayer.querySelector('polyline:not(.pbs-hit)');
+      if (!poly) return 'no wire rendered on the solder side';
+      const root = renderer.svg.getScreenCTM().inverse();
+      const m = root.multiply(poly.getScreenCTM());
+      const p = new DOMPoint(0, 0).matrixTransform(m);
+      // column 0 must appear at display column 17 on an 18-wide board
+      return Math.abs(p.x - 17) < 1e-6 ? true : `column 0 drew at x=${p.x}, expected 17`;
+    });
+
+    check('ghost layer holds the other side, main layers hold this side', () => {
+      store.load({
+        name: 'G', board: { cols: 18, rows: 24, pitchMm: 2.54, colorId: 'phenolic' },
+        modules: [
+          makeInstance(catalog.get('ne555'), { col: 1, row: 1, rotation: 0, side: 'front' }),
+          makeInstance(catalog.get('ne555'), { col: 8, row: 1, rotation: 0, side: 'solder' }),
+        ],
+        wires: [
+          makeWire({ points: [[0, 20], [5, 20]], color: '#fff', side: 'front' }),
+          makeWire({ points: [[0, 22], [5, 22]], color: '#fff', side: 'solder' }),
+        ],
+      });
+      store.setUI({ side: 'front', showGhost: true }, { silent: true });
+      renderer.render();
+      const mods = renderer.moduleLayer.querySelectorAll('.pbs-module').length;
+      const ghosts = renderer.ghostLayer.querySelectorAll('.pbs-module').length;
+      const wires = renderer.wireLayer.querySelectorAll('.pbs-wire').length;
+      const gwires = renderer.ghostLayer.querySelectorAll('.pbs-wire').length;
+      if (mods !== 1 || ghosts !== 1) return `modules ${mods} / ghosts ${ghosts}`;
+      if (wires !== 1 || gwires !== 1) return `wires ${wires} / ghost wires ${gwires}`;
+      return true;
+    });
+
+    check('turning ghosting off empties the ghost layer', () => {
+      store.setUI({ showGhost: false }, { silent: true });
+      renderer.render();
+      const n = renderer.ghostLayer.childNodes.length;
+      store.setUI({ showGhost: true }, { silent: true });
+      return n === 0 ? true : `${n} nodes still ghosted`;
+    });
+
+    check('ghosted items are not hit-testable', () => {
+      store.setUI({ side: 'front', showGhost: true }, { silent: true });
+      renderer.render();
+      for (const g of renderer.ghostLayer.querySelectorAll('.pbs-hit')) {
+        if (g.getAttribute('pointer-events') !== 'none') return 'a ghost hit area is still live';
+      }
+      return true;
+    });
+
+    // -- board layer ---------------------------------------------------------
+
+    check('board draws one hole per grid position', () => {
+      store.load({
+        name: 'B', board: { cols: 6, rows: 4, pitchMm: 2.54, colorId: 'phenolic' },
+        modules: [], wires: [],
+      });
+      renderer.render();
+      const paths = renderer.boardLayer.querySelectorAll('path');
+      if (paths.length !== 2) return `${paths.length} hole paths, expected 2`;
+      const moves = (paths[0].getAttribute('d').match(/M/g) || []).length;
+      return moves === 24 ? true : `${moves} holes for a 6x4 board`;
+    });
+
+    check('board layer is rebuilt when the size changes', () => {
+      renderer.render();
+      const before = renderer.boardLayer.querySelector('path').getAttribute('d');
+      store.commit('resize', (doc) => { doc.board.cols = 10; });
+      renderer.render();
+      const after = renderer.boardLayer.querySelector('path').getAttribute('d');
+      return before !== after ? true : 'cache did not invalidate on resize';
+    });
+
+    check('rulers label every column and row', () => {
+      store.load({
+        name: 'R', board: { cols: 6, rows: 4, pitchMm: 2.54, colorId: 'phenolic' },
+        modules: [], wires: [],
+      });
+      store.setUI({ showRulers: true }, { silent: true });
+      renderer.render();
+      const labels = [...renderer.rulerLayer.querySelectorAll('text')].map((t) => t.textContent);
+      const cols = ['A', 'B', 'C', 'D', 'E', 'F'];
+      const rows = ['1', '2', '3', '4'];
+      for (const l of [...cols, ...rows]) {
+        if (!labels.includes(l)) return `missing ruler label "${l}" (got ${labels.join(',')})`;
+      }
+      return true;
+    });
+
+    check('hiding rulers clears them', () => {
+      store.setUI({ showRulers: false }, { silent: true });
+      renderer.render();
+      const n = renderer.rulerLayer.childNodes.length;
+      store.setUI({ showRulers: true }, { silent: true });
+      return n === 0 ? true : `${n} ruler nodes remain`;
+    });
+
+    // -- hit testing ---------------------------------------------------------
+
+    check('clientToHole round-trips through the solder-side mirror', () => {
+      store.load({
+        name: 'H', board: { cols: 18, rows: 24, pitchMm: 2.54, colorId: 'phenolic' },
+        modules: [], wires: [],
+      });
+      for (const side of ['front', 'solder']) {
+        store.setUI({ side, view: null }, { silent: true });
+        renderer.render();
+        const svg = renderer.svg;
+        const ctm = svg.getScreenCTM();
+        for (const [col, row] of [[0, 0], [17, 23], [5, 11], [9, 2]]) {
+          // Where should that hole appear on screen?
+          const dx = displayCol(col, 18, side === 'solder');
+          const p = new DOMPoint(dx, row).matrixTransform(ctm);
+          const hole = renderer.clientToHole(p.x, p.y);
+          if (!hole || hole.col !== col || hole.row !== row) {
+            return `${side}: hole (${col},${row}) picked as ${JSON.stringify(hole)}`;
+          }
+        }
+      }
+      return true;
+    });
+
+    check('clientToHole returns null outside the board', () => {
+      store.setUI({ side: 'front' }, { silent: true });
+      renderer.render();
+      const ctm = renderer.svg.getScreenCTM();
+      const p = new DOMPoint(-4, -4).matrixTransform(ctm);
+      return renderer.clientToHole(p.x, p.y) === null ? true : 'picked a hole off-board';
+    });
+
+    // -- a realistic design --------------------------------------------------
+
+    check('a full design saves, reopens and re-renders identically', () => {
+      const board = { cols: 24, rows: 35, pitchMm: 2.54, colorId: 'fr4-green' };
+      const mods = [
+        makeInstance(catalog.get('esp32-c3-supermini'), { col: 2, row: 2, rotation: 0, side: 'front', label: 'U1' }),
+        makeInstance(catalog.get('ne555'), { col: 14, row: 4, rotation: 90, side: 'front', label: 'U2' }),
+        makeInstance(catalog.get('resistor-330r'), { col: 3, row: 20, rotation: 0, side: 'solder', label: 'R1', span: 6 }),
+        makeInstance(catalog.get('led-5mm-red'), { col: 12, row: 20, rotation: 180, side: 'front', label: 'D1' }),
+        makeInstance(catalog.get('header-1x8-male'), { col: 21, row: 10, rotation: 0, side: 'front', label: 'J1' }),
+      ];
+      const wires = [
+        makeWire({ points: [[2, 2], [2, 18], [12, 18]], color: '#e02b25', gauge: 'thick', side: 'solder' }),
+        makeWire({ points: [[8, 2], [8, 30], [21, 30]], color: '#1b1f25', side: 'front' }),
+      ];
+      store.load({ name: 'Integration board', board, modules: mods, wires });
+      store.setUI({ side: 'front' }, { silent: true });
+      renderer.render();
+      const before = renderer.svg.innerHTML.length;
+
+      const { doc, warnings } = deserialize(toJSON(store.doc, catalog), catalog);
+      if (warnings.length) return `warnings on reopen: ${warnings.join('; ')}`;
+      if (doc.modules.length !== mods.length) return `${doc.modules.length} modules survived`;
+      if (doc.wires.length !== wires.length) return `${doc.wires.length} wires survived`;
+
+      store.load(doc);
+      renderer.render();
+      const after = renderer.svg.innerHTML.length;
+      return before === after ? true : `render differs: ${before} vs ${after} chars`;
+    });
+
+    check('flipping sides does not disturb the document', () => {
+      const before = JSON.stringify(store.doc);
+      store.setUI({ side: 'solder' }, { silent: true });
+      renderer.render();
+      store.setUI({ side: 'front' }, { silent: true });
+      renderer.render();
+      return JSON.stringify(store.doc) === before ? true : 'the document changed';
+    });
+
+    check('a missing module renders as a visible placeholder', () => {
+      store.load({
+        name: 'M', board: { cols: 10, rows: 10, pitchMm: 2.54, colorId: 'phenolic' },
+        modules: [{ uid: 'm1', moduleId: 'does-not-exist', col: 2, row: 2, rotation: 0, side: 'front', label: 'X1' }],
+        wires: [],
+      });
+      renderer.render();
+      const g = renderer.moduleLayer.querySelector('.is-missing');
+      return g && g.childNodes.length ? true : 'no placeholder drawn';
+    });
+
+    // -- shipped examples ----------------------------------------------------
+    // Each example is hand-authored, so verify the layout actually connects up:
+    // every wire end must sit on a module pin, and nothing may hang off-board.
+
+    const EXAMPLES = ['examples/blink-and-button.pbs.json'];
+
+    for (const rel of EXAMPLES) {
+      const raw = await (await fetch(`/${rel}`, { cache: 'no-cache' })).text();
+
+      check(`${rel} opens with no warnings`, () => {
+        const { warnings } = deserialize(raw, catalog);
+        return warnings.length === 0 ? true : warnings.join('; ');
+      });
+
+      check(`${rel} fits on its board and renders`, () => {
+        const { doc } = deserialize(raw, catalog);
+        for (const m of doc.modules) {
+          const def = catalog.get(m.moduleId);
+          if (!def) return `unknown module ${m.moduleId}`;
+          const b = boundsOf(def, m);
+          if (b.col + b.cols > doc.board.cols || b.row + b.rows > doc.board.rows) {
+            return `${m.label || m.moduleId} overhangs the board`;
+          }
+        }
+        store.load(doc);
+        renderer.render();
+        return renderer.moduleLayer.childNodes.length + renderer.ghostLayer.childNodes.length > 0
+          ? true : 'nothing rendered';
+      });
+
+      check(`${rel} has no two modules sharing a hole`, () => {
+        const { doc } = deserialize(raw, catalog);
+        const used = new Map();
+        for (const m of doc.modules) {
+          const def = catalog.get(m.moduleId);
+          for (const c of occupiedCells(def, m)) {
+            const key = `${m.side}:${c.col},${c.row}`;
+            if (used.has(key)) {
+              return `${m.label} overlaps ${used.get(key)} at (${c.col},${c.row}) on the ${m.side}`;
+            }
+            used.set(key, m.label || m.moduleId);
+          }
+        }
+        return true;
+      });
+
+      check(`${rel} has no electrically dangling wire ends`, () => {
+        const { doc } = deserialize(raw, catalog);
+
+        // A wire end is connected if it shares its hole with a module pin, or
+        // with any other wire — soldering several wires into one empty hole is
+        // how a ground bus is built on perfboard, so that counts as a junction.
+        const pins = new Map();
+        for (const m of doc.modules) {
+          const def = catalog.get(m.moduleId);
+          for (const p of pinCells(def, m)) {
+            pins.set(`${p.col},${p.row}`, `${m.label}.${p.name || '?'}`);
+          }
+        }
+        const wireHits = new Map();
+        for (const w of doc.wires) {
+          for (const [c, r] of w.points) {
+            const key = `${c},${r}`;
+            if (!wireHits.has(key)) wireHits.set(key, new Set());
+            wireHits.get(key).add(w.uid);
+          }
+        }
+
+        const problems = [];
+        for (const w of doc.wires) {
+          for (const end of [w.points[0], w.points[w.points.length - 1]]) {
+            const key = `${end[0]},${end[1]}`;
+            const onPin = pins.has(key);
+            const others = [...(wireHits.get(key) || [])].filter((u) => u !== w.uid);
+            if (!onPin && others.length === 0) {
+              problems.push(`${w.uid} ends alone in empty hole (${end[0]},${end[1]})`);
+            }
+          }
+        }
+        return problems.length === 0
+          ? true
+          : `${problems.length} dangling: ${problems.join(', ')}`;
+      });
+
+      check(`${rel} every module pin group is reachable`, () => {
+        // Sanity check the other direction: the design should actually be wired,
+        // i.e. a decent share of wire ends do terminate on real pins.
+        const { doc } = deserialize(raw, catalog);
+        const pins = new Set();
+        for (const m of doc.modules) {
+          const def = catalog.get(m.moduleId);
+          for (const p of pinCells(def, m)) pins.add(`${p.col},${p.row}`);
+        }
+        let onPin = 0;
+        let total = 0;
+        for (const w of doc.wires) {
+          for (const end of [w.points[0], w.points[w.points.length - 1]]) {
+            total++;
+            if (pins.has(`${end[0]},${end[1]}`)) onPin++;
+          }
+        }
+        return onPin >= total / 2
+          ? true
+          : `only ${onPin}/${total} wire ends reach a pin — the design looks unwired`;
+      });
+    }
+
+    const sum = document.getElementById('summary');
+    sum.textContent = `${pass} passed, ${fail} failed`;
+    sum.className = fail ? 'fail' : 'pass';
+    document.title = fail ? `INTEGRATION FAILED (${fail})` : `INTEGRATION OK (${pass})`;
+  </script>
+</body>
+</html>

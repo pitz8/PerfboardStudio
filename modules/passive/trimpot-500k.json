@@ -1,0 +1,111 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "trimpot-500k",
+  "name": "Trimmer 500kΩ",
+  "subtitle": "3386 style, top adjust",
+  "category": "passive",
+  "tags": [
+    "potentiometer",
+    "trimmer",
+    "variable",
+    "500k"
+  ],
+  "designator": "RV",
+  "footprint": {
+    "cols": 3,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "W",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "3",
+      "number": 3,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.35,
+    "y": -1.4,
+    "w": 2.7,
+    "h": 1.05,
+    "rx": 0.08,
+    "fill": "#2f6bb5",
+    "stroke": "#1c4478"
+  },
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0,
+      "y2": -0.35,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 1,
+      "y2": -0.35,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 2,
+      "y2": -0.35,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": -0.88,
+      "r": 0.34,
+      "fill": "#e8e2c8",
+      "stroke": "#a89f7c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "line",
+      "x1": 0.76,
+      "y1": -0.88,
+      "x2": 1.24,
+      "y2": -0.88,
+      "stroke": "#5c5540",
+      "strokeWidth": 0.09,
+      "linecap": "butt"
+    },
+    {
+      "type": "text",
+      "x": 1,
+      "y": -1.62,
+      "text": "500k",
+      "size": 0.3,
+      "color": "#9fb0c0",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ]
+}

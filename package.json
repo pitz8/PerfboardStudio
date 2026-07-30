@@ -1,0 +1,28 @@
+{
+  "name": "perfboard-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Browser-based perfboard layout designer: place modules, route wiring, flip between component and solder side, save designs as JSON.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "perfboard",
+    "stripboard",
+    "electronics",
+    "prototyping",
+    "pcb",
+    "layout",
+    "svg"
+  ],
+  "scripts": {
+    "dev": "python -m http.server 5173",
+    "dev:node": "npx --yes serve@14 -l 5173 .",
+    "catalog": "python tools/generate_catalog.py",
+    "catalog:index": "python tools/generate_catalog.py --index",
+    "validate": "python tools/validate_catalog.py",
+    "test": "python tools/validate_catalog.py && python tools/run_browser_tests.py",
+    "test:browser": "python tools/run_browser_tests.py"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

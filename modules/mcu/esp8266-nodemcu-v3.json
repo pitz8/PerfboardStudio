@@ -1,0 +1,270 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "esp8266-nodemcu-v3",
+  "name": "NodeMCU V3",
+  "subtitle": "ESP8266 LoLin",
+  "category": "mcu",
+  "tags": [
+    "esp8266",
+    "nodemcu",
+    "wifi",
+    "lolin",
+    "board"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 12,
+    "rows": 15
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "A0",
+      "type": "analog"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "RSV",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "RSV",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "SD3",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "SD2",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "SD1",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "CMD",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "SD0",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "CLK",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 9,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 10,
+      "name": "3V3",
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 11,
+      "name": "EN",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 12,
+      "name": "RST",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 13,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 14,
+      "name": "VIN",
+      "type": "power"
+    },
+    {
+      "col": 11,
+      "row": 0,
+      "name": "D0",
+      "type": "io"
+    },
+    {
+      "col": 11,
+      "row": 1,
+      "name": "D1",
+      "type": "io"
+    },
+    {
+      "col": 11,
+      "row": 2,
+      "name": "D2",
+      "type": "io"
+    },
+    {
+      "col": 11,
+      "row": 3,
+      "name": "D3",
+      "type": "io"
+    },
+    {
+      "col": 11,
+      "row": 4,
+      "name": "D4",
+      "type": "io"
+    },
+    {
+      "col": 11,
+      "row": 5,
+      "name": "3V3",
+      "type": "power"
+    },
+    {
+      "col": 11,
+      "row": 6,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 11,
+      "row": 7,
+      "name": "D5",
+      "type": "io"
+    },
+    {
+      "col": 11,
+      "row": 8,
+      "name": "D6",
+      "type": "io"
+    },
+    {
+      "col": 11,
+      "row": 9,
+      "name": "D7",
+      "type": "io"
+    },
+    {
+      "col": 11,
+      "row": 10,
+      "name": "D8",
+      "type": "io"
+    },
+    {
+      "col": 11,
+      "row": 11,
+      "name": "RX",
+      "type": "signal"
+    },
+    {
+      "col": 11,
+      "row": 12,
+      "name": "TX",
+      "type": "signal"
+    },
+    {
+      "col": 11,
+      "row": 13,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 11,
+      "row": 14,
+      "name": "3V3",
+      "type": "power"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 11.9,
+    "h": 14.9,
+    "rx": 0.18,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 14.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 10.68,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 14.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.8,
+      "y": 0.5,
+      "w": 9.4,
+      "h": 5.662,
+      "fill": "#9aa2ab",
+      "rx": 0.1,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 5.08,
+      "y": -0.79,
+      "w": 0.84,
+      "h": 0.44,
+      "fill": "#b9c0c8",
+      "rx": 0.07,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "NodeMCU",
+    "x": 5.5,
+    "y": 11.172,
+    "size": 0.36,
+    "color": "#e8eef4"
+  }
+}

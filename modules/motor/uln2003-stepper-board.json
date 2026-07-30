@@ -1,0 +1,104 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "uln2003-stepper-board",
+  "name": "ULN2003 stepper board",
+  "subtitle": "28BYJ-48 driver",
+  "category": "motor",
+  "tags": [
+    "stepper",
+    "uln2003",
+    "28byj-48",
+    "driver",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 13,
+    "rows": 11
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "IN1",
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "IN2",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "IN3",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "IN4",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 12.9,
+    "h": 10.9,
+    "rx": 0.16,
+    "fill": "#12503c",
+    "stroke": "#0a3527"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 5.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 3.42,
+      "y": 5,
+      "w": 5.16,
+      "h": 3.706,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "ULN2003",
+    "size": 0.55,
+    "color": "#e8eef4",
+    "x": 6,
+    "y": 10.15
+  }
+}

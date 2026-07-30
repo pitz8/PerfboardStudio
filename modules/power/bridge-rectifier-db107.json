@@ -1,0 +1,109 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "bridge-rectifier-db107",
+  "name": "Bridge rectifier DB107",
+  "subtitle": "1 A, 1000 V",
+  "category": "power",
+  "tags": [
+    "rectifier",
+    "bridge",
+    "diode",
+    "ac"
+  ],
+  "designator": "BR",
+  "footprint": {
+    "cols": 4,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "AC",
+      "number": 1,
+      "type": "in"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "AC",
+      "number": 3,
+      "type": "in"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "+",
+      "number": 4,
+      "type": "power"
+    }
+  ],
+  "body": {
+    "x": -0.4,
+    "y": -1.5,
+    "w": 3.8,
+    "h": 1.1,
+    "rx": 0.1,
+    "fill": "#23272e",
+    "stroke": "#0e1116"
+  },
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0,
+      "y2": -0.4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.11,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 1,
+      "y2": -0.4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.11,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 2,
+      "y2": -0.4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.11,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 0,
+      "x2": 3,
+      "y2": -0.4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.11,
+      "linecap": "round"
+    },
+    {
+      "type": "text",
+      "x": 1.5,
+      "y": -0.95,
+      "text": "DB107",
+      "size": 0.32,
+      "color": "#c9d2dc",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ]
+}

@@ -1,0 +1,326 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "l293d",
+  "name": "L293D",
+  "subtitle": "Dual H-bridge",
+  "category": "motor",
+  "tags": [
+    "motor",
+    "h-bridge",
+    "driver",
+    "dip-16",
+    "through-hole"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 4,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "EN1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "IN1",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "OUT1",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "GND",
+      "number": 4,
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "GND",
+      "number": 5,
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "OUT2",
+      "number": 6,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "IN2",
+      "number": 7,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "VS",
+      "number": 8,
+      "type": "power"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "VSS",
+      "number": 16,
+      "type": "gnd"
+    },
+    {
+      "col": 3,
+      "row": 1,
+      "name": "IN4",
+      "number": 15,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 2,
+      "name": "OUT4",
+      "number": 14,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 3,
+      "name": "GND",
+      "number": 13,
+      "type": "gnd"
+    },
+    {
+      "col": 3,
+      "row": 4,
+      "name": "GND",
+      "number": 12,
+      "type": "gnd"
+    },
+    {
+      "col": 3,
+      "row": 5,
+      "name": "OUT3",
+      "number": 11,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 6,
+      "name": "IN3",
+      "number": 10,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 7,
+      "name": "EN2",
+      "number": 9,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": 0.25,
+    "y": -0.36,
+    "w": 2.5,
+    "h": 7.72,
+    "rx": 0.1,
+    "fill": "#1f242b",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.25,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 0,
+      "x2": 2.75,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 1,
+      "x2": 0.25,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 1,
+      "x2": 2.75,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 2,
+      "x2": 0.25,
+      "y2": 2,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 2,
+      "x2": 2.75,
+      "y2": 2,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 3,
+      "x2": 0.25,
+      "y2": 3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 3,
+      "x2": 2.75,
+      "y2": 3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 4,
+      "x2": 0.25,
+      "y2": 4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 4,
+      "x2": 2.75,
+      "y2": 4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 5,
+      "x2": 0.25,
+      "y2": 5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 5,
+      "x2": 2.75,
+      "y2": 5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 6,
+      "x2": 0.25,
+      "y2": 6,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 6,
+      "x2": 2.75,
+      "y2": 6,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 7,
+      "x2": 0.25,
+      "y2": 7,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 7,
+      "x2": 2.75,
+      "y2": 7,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 1.5,
+      "cy": -0.34,
+      "r": 0.19,
+      "fill": "#0b0e12"
+    },
+    {
+      "type": "circle",
+      "cx": 0.53,
+      "cy": 0,
+      "r": 0.09,
+      "fill": "#c9d2dc"
+    }
+  ],
+  "label": {
+    "text": "L293D",
+    "x": 1.5,
+    "y": 3.5,
+    "size": 0.42,
+    "color": "#c9d2dc",
+    "rotate": 90
+  }
+}

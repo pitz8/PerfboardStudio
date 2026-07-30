@@ -1,0 +1,326 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "74hc595",
+  "name": "74HC595",
+  "subtitle": "8-bit shift register",
+  "category": "ic",
+  "tags": [
+    "shift register",
+    "logic",
+    "serial",
+    "dip-16",
+    "through-hole"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 4,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "Q1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "Q2",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "Q3",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "Q4",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "Q5",
+      "number": 5,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "Q6",
+      "number": 6,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "Q7",
+      "number": 7,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "GND",
+      "number": 8,
+      "type": "gnd"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "VCC",
+      "number": 16,
+      "type": "power"
+    },
+    {
+      "col": 3,
+      "row": 1,
+      "name": "Q0",
+      "number": 15,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 2,
+      "name": "DS",
+      "number": 14,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 3,
+      "name": "OE",
+      "number": 13,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 4,
+      "name": "STCP",
+      "number": 12,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 5,
+      "name": "SHCP",
+      "number": 11,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 6,
+      "name": "MR",
+      "number": 10,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 7,
+      "name": "Q7S",
+      "number": 9,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": 0.25,
+    "y": -0.36,
+    "w": 2.5,
+    "h": 7.72,
+    "rx": 0.1,
+    "fill": "#1f242b",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.25,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 0,
+      "x2": 2.75,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 1,
+      "x2": 0.25,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 1,
+      "x2": 2.75,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 2,
+      "x2": 0.25,
+      "y2": 2,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 2,
+      "x2": 2.75,
+      "y2": 2,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 3,
+      "x2": 0.25,
+      "y2": 3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 3,
+      "x2": 2.75,
+      "y2": 3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 4,
+      "x2": 0.25,
+      "y2": 4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 4,
+      "x2": 2.75,
+      "y2": 4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 5,
+      "x2": 0.25,
+      "y2": 5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 5,
+      "x2": 2.75,
+      "y2": 5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 6,
+      "x2": 0.25,
+      "y2": 6,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 6,
+      "x2": 2.75,
+      "y2": 6,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 7,
+      "x2": 0.25,
+      "y2": 7,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 7,
+      "x2": 2.75,
+      "y2": 7,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 1.5,
+      "cy": -0.34,
+      "r": 0.19,
+      "fill": "#0b0e12"
+    },
+    {
+      "type": "circle",
+      "cx": 0.53,
+      "cy": 0,
+      "r": 0.09,
+      "fill": "#c9d2dc"
+    }
+  ],
+  "label": {
+    "text": "74HC595",
+    "x": 1.5,
+    "y": 3.5,
+    "size": 0.42,
+    "color": "#c9d2dc",
+    "rotate": 90
+  }
+}

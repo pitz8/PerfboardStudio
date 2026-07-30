@@ -1,0 +1,174 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "xiao-esp32c3",
+  "name": "Seeed XIAO ESP32-C3",
+  "subtitle": "thumbnail-sized",
+  "category": "mcu",
+  "tags": [
+    "seeed",
+    "xiao",
+    "esp32",
+    "c3",
+    "board"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 6,
+    "rows": 7
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "D0/A0",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "D1/A1",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "D2/A2",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "D3/A3",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "D4/SDA",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "D5/SCL",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "D6/TX",
+      "type": "io"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "5V",
+      "type": "power"
+    },
+    {
+      "col": 5,
+      "row": 1,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 5,
+      "row": 2,
+      "name": "3V3",
+      "type": "power"
+    },
+    {
+      "col": 5,
+      "row": 3,
+      "name": "D10/MOSI",
+      "type": "io"
+    },
+    {
+      "col": 5,
+      "row": 4,
+      "name": "D9/MISO",
+      "type": "io"
+    },
+    {
+      "col": 5,
+      "row": 5,
+      "name": "D8/SCK",
+      "type": "io"
+    },
+    {
+      "col": 5,
+      "row": 6,
+      "name": "D7/RX",
+      "type": "io"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 5.9,
+    "h": 6.9,
+    "rx": 0.18,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 6.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 4.68,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 6.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.8,
+      "y": 0.5,
+      "w": 3.4,
+      "h": 2.622,
+      "fill": "#9aa2ab",
+      "rx": 0.1,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.08,
+      "y": -0.79,
+      "w": 0.84,
+      "h": 0.44,
+      "fill": "#b9c0c8",
+      "rx": 0.07,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "XIAO",
+    "x": 2.5,
+    "y": 4.932,
+    "size": 0.36,
+    "color": "#e8eef4"
+  }
+}

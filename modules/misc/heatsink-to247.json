@@ -1,0 +1,94 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "heatsink-to247",
+  "name": "Heatsink TO-247",
+  "subtitle": "finned, 40 mm",
+  "category": "misc",
+  "tags": [
+    "heatsink",
+    "cooling",
+    "thermal",
+    "to-247",
+    "to-3p"
+  ],
+  "designator": "HS",
+  "footprint": {
+    "cols": 7,
+    "rows": 6
+  },
+  "pins": [],
+  "body": {
+    "x": -0.3,
+    "y": -0.3,
+    "w": 7.0,
+    "h": 6.0,
+    "rx": 0.08,
+    "fill": "#8c949d",
+    "stroke": "#5c6269"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.15,
+      "y": -0.15,
+      "w": 6.7,
+      "h": 0.4,
+      "fill": "#6f767e",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": -0.15,
+      "y": 0.67,
+      "w": 6.7,
+      "h": 0.4,
+      "fill": "#6f767e",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": -0.15,
+      "y": 1.49,
+      "w": 6.7,
+      "h": 0.4,
+      "fill": "#6f767e",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": -0.15,
+      "y": 2.31,
+      "w": 6.7,
+      "h": 0.4,
+      "fill": "#6f767e",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": -0.15,
+      "y": 3.13,
+      "w": 6.7,
+      "h": 0.4,
+      "fill": "#6f767e",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": -0.15,
+      "y": 3.95,
+      "w": 6.7,
+      "h": 0.4,
+      "fill": "#6f767e",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": -0.15,
+      "y": 4.77,
+      "w": 6.7,
+      "h": 0.4,
+      "fill": "#6f767e",
+      "rx": 0.04
+    }
+  ]
+}

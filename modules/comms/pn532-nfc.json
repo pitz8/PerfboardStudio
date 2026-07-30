@@ -1,0 +1,106 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "pn532-nfc",
+  "name": "PN532 NFC",
+  "subtitle": "13.56 MHz NFC / RFID, I2C / SPI",
+  "category": "comms",
+  "tags": [
+    "nfc",
+    "rfid",
+    "pn532",
+    "i2c",
+    "spi",
+    "13.56mhz",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 17,
+    "rows": 17
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "SDA",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "SCL",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "IRQ",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "RSTO",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 16.9,
+    "h": 16.9,
+    "rx": 0.16,
+    "fill": "#6b1622",
+    "stroke": "#4a0f18"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 5.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 4.62,
+      "y": 8,
+      "w": 6.76,
+      "h": 5.746,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "PN532",
+    "size": 0.7,
+    "color": "#e8eef4",
+    "x": 8,
+    "y": 16.15
+  }
+}

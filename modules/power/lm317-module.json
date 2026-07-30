@@ -1,0 +1,92 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "lm317-module",
+  "name": "LM317 module",
+  "subtitle": "adjustable linear, 1.5 A",
+  "category": "power",
+  "tags": [
+    "regulator",
+    "linear",
+    "adjustable",
+    "module",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 12,
+    "rows": 10
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "IN+",
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "IN-",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "OUT-",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "OUT+",
+      "type": "power"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 11.9,
+    "h": 9.9,
+    "rx": 0.16,
+    "fill": "#12503c",
+    "stroke": "#0a3527"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 3.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 3.12,
+      "y": 4.5,
+      "w": 4.76,
+      "h": 3.366,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "LM317",
+    "size": 0.5,
+    "color": "#e8eef4",
+    "x": 5.5,
+    "y": 9.15
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "//": "Gives module JSON files autocomplete and inline validation from the schema.",
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "/modules/*/*.json"
+      ],
+      "url": "./modules/_schema/module.schema.json"
+    }
+  ],
+  "files.exclude": {
+    "**/__pycache__": true
+  },
+  "search.exclude": {
+    "modules/*/*.json": true
+  },
+  "files.eol": "\n",
+  "editor.formatOnSave": false,
+  "[json]": {
+    "editor.tabSize": 2
+  }
+}

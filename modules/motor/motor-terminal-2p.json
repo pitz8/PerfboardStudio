@@ -1,0 +1,73 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "motor-terminal-2p",
+  "name": "DC motor terminal",
+  "subtitle": "2-way screw terminal",
+  "category": "motor",
+  "tags": [
+    "motor",
+    "terminal",
+    "dc",
+    "connector"
+  ],
+  "designator": "M",
+  "footprint": {
+    "cols": 3,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "M+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "M-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.7,
+    "y": -1.5,
+    "w": 3.4,
+    "h": 2.5,
+    "rx": 0.1,
+    "fill": "#1f5fa8",
+    "stroke": "#123f75"
+  },
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 0,
+      "cy": -0.85,
+      "r": 0.42,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 2,
+      "cy": -0.85,
+      "r": 0.42,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "text",
+      "x": 1,
+      "y": 0.55,
+      "text": "M",
+      "size": 0.4,
+      "color": "#e8eef4",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ]
+}

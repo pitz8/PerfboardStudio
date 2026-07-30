@@ -1,0 +1,87 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "1n5408",
+  "name": "1N5408",
+  "subtitle": "rectifier, 3 A / 1000 V",
+  "category": "discrete",
+  "tags": [
+    "rectifier",
+    "power",
+    "diode",
+    "axial"
+  ],
+  "designator": "D",
+  "footprint": {
+    "cols": 4,
+    "rows": 1
+  },
+  "resize": {
+    "axis": "cols",
+    "min": 2,
+    "max": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "A",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "K",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.66,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2.34,
+      "y1": 0,
+      "x2": 3,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": 0.62,
+      "y": -0.21,
+      "w": 1.76,
+      "h": 0.42,
+      "fill": "#3a2a22",
+      "rx": 0.08,
+      "stroke": "#231914",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.16,
+      "y": -0.19,
+      "w": 0.12,
+      "h": 0.38,
+      "fill": "#d8d8d8"
+    }
+  ],
+  "label": {
+    "text": "1N5408",
+    "x": 1.5,
+    "y": -0.5,
+    "size": 0.26,
+    "color": "#9fb0c0"
+  }
+}

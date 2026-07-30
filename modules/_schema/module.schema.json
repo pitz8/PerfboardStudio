@@ -1,0 +1,150 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://perfboard-studio/module.schema.json",
+  "title": "Perfboard Studio module definition",
+  "description": "A single component or module that can be placed on the perfboard. All geometry is expressed in HOLE UNITS: 1 unit = one hole pitch (2.54 mm by default). The origin (0,0) is the module's anchor hole, which is the hole that sits under pin 1.",
+  "type": "object",
+  "required": ["id", "name", "category", "footprint"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": {
+      "type": "string",
+      "description": "Unique, stable identifier. Saved designs reference this. Never change it once published.",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "name": { "type": "string", "description": "Display name shown in the palette." },
+    "subtitle": { "type": "string", "description": "Short qualifier, e.g. 'Timer IC' or '1/4 W axial'." },
+    "category": {
+      "type": "string",
+      "description": "Must match a category id declared in modules/index.json."
+    },
+    "tags": {
+      "type": "array",
+      "description": "Free-text keywords used by the palette search box.",
+      "items": { "type": "string" }
+    },
+    "datasheet": { "type": "string", "description": "Optional reference URL." },
+    "designator": {
+      "type": "string",
+      "description": "Reference-designator prefix used for auto-naming placed instances (R, C, U, Q, D, J, SW...).",
+      "default": "U"
+    },
+    "footprint": {
+      "type": "object",
+      "description": "The rectangle of holes the module occupies.",
+      "required": ["cols", "rows"],
+      "additionalProperties": false,
+      "properties": {
+        "cols": { "type": "integer", "minimum": 1, "description": "Holes spanned horizontally." },
+        "rows": { "type": "integer", "minimum": 1, "description": "Holes spanned vertically." }
+      }
+    },
+    "resize": {
+      "type": "object",
+      "description": "Makes the module stretchable along one axis (pin headers, axial parts, jumpers).",
+      "required": ["axis", "min", "max"],
+      "additionalProperties": false,
+      "properties": {
+        "axis": { "enum": ["cols", "rows"] },
+        "min": { "type": "integer", "minimum": 1 },
+        "max": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "pins": {
+      "type": "array",
+      "description": "Electrical pins. Each pin sits exactly on the hole at (col,row). The renderer draws a copper pad for every pin automatically.",
+      "items": {
+        "type": "object",
+        "required": ["col", "row"],
+        "additionalProperties": false,
+        "properties": {
+          "col": { "type": "integer", "minimum": 0 },
+          "row": { "type": "integer", "minimum": 0 },
+          "name": { "type": "string", "description": "Pin label, e.g. 'GND', 'GPIO4', '+'." },
+          "number": { "type": ["integer", "string"], "description": "Physical pin number." },
+          "type": {
+            "enum": ["power", "gnd", "io", "analog", "in", "out", "signal", "nc"],
+            "default": "signal",
+            "description": "Used for pad tinting and for the pin tooltip."
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "object",
+      "description": "Convenience shorthand for the main outline. Drawn before `shapes`. Omit it if you draw everything yourself.",
+      "additionalProperties": false,
+      "properties": {
+        "x": { "type": "number", "default": 0 },
+        "y": { "type": "number", "default": 0 },
+        "w": { "type": "number" },
+        "h": { "type": "number" },
+        "rx": { "type": "number", "default": 0.12, "description": "Corner radius in hole units." },
+        "fill": { "type": "string" },
+        "stroke": { "type": "string" },
+        "strokeWidth": { "type": "number", "default": 0.04 },
+        "opacity": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "shapes": {
+      "type": "array",
+      "description": "Declarative artwork, drawn in order on top of `body`.",
+      "items": { "$ref": "#/definitions/shape" }
+    },
+    "label": {
+      "type": "object",
+      "description": "Text drawn last, on top of everything. Defaults to centred on the footprint.",
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string" },
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "size": { "type": "number", "default": 0.4, "description": "Cap height in hole units." },
+        "color": { "type": "string", "default": "#e6edf3" },
+        "weight": { "type": ["string", "number"], "default": 600 },
+        "rotate": { "type": "number", "default": 0, "description": "Degrees, clockwise." },
+        "anchor": { "enum": ["start", "middle", "end"], "default": "middle" }
+      }
+    }
+  },
+  "definitions": {
+    "shape": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "enum": ["rect", "circle", "ellipse", "line", "polygon", "path", "text"] },
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "w": { "type": "number" },
+        "h": { "type": "number" },
+        "rx": { "type": "number" },
+        "ry": { "type": "number" },
+        "cx": { "type": "number" },
+        "cy": { "type": "number" },
+        "r": { "type": "number" },
+        "x1": { "type": "number" },
+        "y1": { "type": "number" },
+        "x2": { "type": "number" },
+        "y2": { "type": "number" },
+        "points": {
+          "type": "array",
+          "items": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 }
+        },
+        "d": { "type": "string", "description": "SVG path data, in hole units." },
+        "text": { "type": "string" },
+        "size": { "type": "number" },
+        "anchor": { "enum": ["start", "middle", "end"] },
+        "weight": { "type": ["string", "number"] },
+        "rotate": { "type": "number" },
+        "color": { "type": "string", "description": "Text colour (text shapes only)." },
+        "fill": { "type": "string" },
+        "stroke": { "type": "string" },
+        "strokeWidth": { "type": "number" },
+        "linecap": { "enum": ["butt", "round", "square"] },
+        "opacity": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

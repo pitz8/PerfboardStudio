@@ -1,0 +1,83 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "cap-cer-68pf",
+  "name": "Cap 68pF",
+  "subtitle": "ceramic disc",
+  "category": "passive",
+  "tags": [
+    "capacitor",
+    "ceramic",
+    "non-polarised",
+    "68pF",
+    "68"
+  ],
+  "designator": "C",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.1,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.1,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": -0.36,
+      "r": 0.44,
+      "fill": "#4a7fbf",
+      "stroke": "#2f5c92",
+      "strokeWidth": 0.04
+    },
+    {
+      "type": "text",
+      "x": 0.5,
+      "y": -0.36,
+      "text": "68",
+      "size": 0.26,
+      "color": "#dce6f2",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ],
+  "label": {
+    "text": "68pF",
+    "x": 0.5,
+    "y": 0.44,
+    "size": 0.28,
+    "color": "#9fb0c0"
+  }
+}

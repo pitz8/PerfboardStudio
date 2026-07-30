@@ -1,0 +1,105 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "tp4056-module",
+  "name": "TP4056 charger",
+  "subtitle": "1-cell Li-ion / LiPo",
+  "category": "power",
+  "tags": [
+    "charger",
+    "lithium",
+    "lipo",
+    "18650",
+    "battery",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 10,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "IN+",
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "IN-",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "BAT+",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "BAT-",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "OUT+",
+      "type": "power"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "OUT-",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 9.9,
+    "h": 7.9,
+    "rx": 0.16,
+    "fill": "#123a63",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 5.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.52,
+      "y": 3.5,
+      "w": 3.96,
+      "h": 2.686,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "TP4056",
+    "size": 0.34,
+    "color": "#e8eef4",
+    "x": 4.5,
+    "y": 7.15
+  }
+}

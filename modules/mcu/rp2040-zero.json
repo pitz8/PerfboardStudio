@@ -1,0 +1,199 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "rp2040-zero",
+  "name": "Waveshare RP2040-Zero",
+  "subtitle": "thumb-sized RP2040, USB-C",
+  "category": "mcu",
+  "tags": [
+    "raspberry",
+    "rp2040",
+    "waveshare",
+    "zero",
+    "usb-c",
+    "board"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 7,
+    "rows": 9
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "5V",
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "3V3",
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "GP29",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "GP28",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "GP27",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "GP26",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "GP15",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "GP14",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "GP0",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 1,
+      "name": "GP1",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 2,
+      "name": "GP2",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 3,
+      "name": "GP3",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 4,
+      "name": "GP4",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 5,
+      "name": "GP5",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 6,
+      "name": "GP6",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 7,
+      "name": "GP7",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 8,
+      "name": "GP8",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 6.9,
+    "h": 8.9,
+    "rx": 0.18,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 8.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 5.68,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 8.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.8,
+      "y": 0.5,
+      "w": 4.4,
+      "h": 3.382,
+      "fill": "#9aa2ab",
+      "rx": 0.1,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.58,
+      "y": -0.79,
+      "w": 0.84,
+      "h": 0.44,
+      "fill": "#b9c0c8",
+      "rx": 0.07,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "RP2040-ZERO",
+    "x": 3,
+    "y": 6.492,
+    "size": 0.36,
+    "color": "#e8eef4"
+  }
+}

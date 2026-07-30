@@ -1,0 +1,45 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "test-point",
+  "name": "Test point",
+  "subtitle": "probe pad",
+  "category": "misc",
+  "tags": [
+    "test",
+    "probe",
+    "pad",
+    "debug"
+  ],
+  "designator": "TP",
+  "footprint": {
+    "cols": 1,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "TP",
+      "number": 1,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 0,
+      "cy": 0,
+      "r": 0.42,
+      "fill": "none",
+      "stroke": "#c4763a",
+      "strokeWidth": 0.12
+    },
+    {
+      "type": "circle",
+      "cx": 0,
+      "cy": 0,
+      "r": 0.16,
+      "fill": "#c4763a"
+    }
+  ]
+}

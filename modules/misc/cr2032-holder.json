@@ -1,0 +1,78 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "cr2032-holder",
+  "name": "CR2032 holder",
+  "subtitle": "20 mm coin cell",
+  "category": "misc",
+  "tags": [
+    "battery",
+    "cr2032",
+    "coin cell",
+    "holder"
+  ],
+  "designator": "BT",
+  "footprint": {
+    "cols": 9,
+    "rows": 5
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "-",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    },
+    {
+      "col": 8,
+      "row": 2,
+      "name": "+",
+      "number": 3,
+      "type": "power"
+    }
+  ],
+  "body": {
+    "x": -0.5,
+    "y": -0.5,
+    "w": 9.5,
+    "h": 5.5,
+    "rx": 0.14,
+    "fill": "#22262c",
+    "stroke": "#0e1116"
+  },
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 4,
+      "cy": 2,
+      "r": 3.9,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.08
+    },
+    {
+      "type": "circle",
+      "cx": 4,
+      "cy": 2,
+      "r": 3.2,
+      "fill": "#dfe4ea"
+    },
+    {
+      "type": "text",
+      "x": 4,
+      "y": 2,
+      "text": "CR2032",
+      "size": 0.62,
+      "color": "#5c6269",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ]
+}

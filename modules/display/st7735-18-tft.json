@@ -1,0 +1,128 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "st7735-18-tft",
+  "name": "TFT 1.8\" ST7735",
+  "subtitle": "160×128 SPI colour",
+  "category": "display",
+  "tags": [
+    "tft",
+    "st7735",
+    "spi",
+    "colour",
+    "display",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 14,
+    "rows": 17
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "SCK",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "SDA",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "RST",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "DC",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "CS",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "name": "BL",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 13.9,
+    "h": 16.9,
+    "rx": 0.16,
+    "fill": "#1a1d22",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 7.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 3.72,
+      "y": 8,
+      "w": 5.56,
+      "h": 5.746,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 1.2,
+      "y": 2.6,
+      "w": 11.6,
+      "h": 11,
+      "fill": "#0a0d12",
+      "rx": 0.12,
+      "stroke": "#2a3038",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "ST7735",
+    "size": 0.5,
+    "color": "#e8eef4",
+    "x": 6.5,
+    "y": 16.15
+  }
+}

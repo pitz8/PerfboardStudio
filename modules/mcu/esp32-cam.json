@@ -1,0 +1,199 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "esp32-cam",
+  "name": "ESP32-CAM",
+  "subtitle": "AI-Thinker, OV2640 camera",
+  "category": "mcu",
+  "tags": [
+    "esp32",
+    "camera",
+    "ov2640",
+    "ai-thinker",
+    "wifi",
+    "video",
+    "board"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 10,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "5V",
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "GPIO12",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "GPIO13",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "GPIO15",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "GPIO14",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "GPIO2",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "GPIO4",
+      "type": "io"
+    },
+    {
+      "col": 9,
+      "row": 0,
+      "name": "3V3",
+      "type": "power"
+    },
+    {
+      "col": 9,
+      "row": 1,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 9,
+      "row": 2,
+      "name": "GPIO16",
+      "type": "io"
+    },
+    {
+      "col": 9,
+      "row": 3,
+      "name": "GPIO0",
+      "type": "io"
+    },
+    {
+      "col": 9,
+      "row": 4,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 9,
+      "row": 5,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 9,
+      "row": 6,
+      "name": "U0R",
+      "type": "signal"
+    },
+    {
+      "col": 9,
+      "row": 7,
+      "name": "U0T",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 9.9,
+    "h": 7.9,
+    "rx": 0.18,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 7.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 8.68,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 7.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.8,
+      "y": 0.5,
+      "w": 7.4,
+      "h": 3.002,
+      "fill": "#9aa2ab",
+      "rx": 0.1,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 1.6,
+      "y": -0.2,
+      "w": 6.8,
+      "h": 1.1,
+      "fill": "#3a4048",
+      "rx": 0.08,
+      "stroke": "#22262c",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.2,
+      "y": 5.4,
+      "w": 7.6,
+      "h": 1.9,
+      "fill": "#2f343b",
+      "rx": 0.1,
+      "stroke": "#14171a",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "ESP32-CAM",
+    "x": 4.5,
+    "y": 5.712,
+    "size": 0.36,
+    "color": "#e8eef4"
+  }
+}

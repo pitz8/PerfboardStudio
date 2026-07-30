@@ -1,0 +1,103 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "servo-header",
+  "name": "Servo header",
+  "subtitle": "3-pin RC servo",
+  "category": "motor",
+  "tags": [
+    "servo",
+    "rc",
+    "pwm",
+    "connector"
+  ],
+  "designator": "J",
+  "footprint": {
+    "cols": 1,
+    "rows": 3
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "SIG",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "VCC",
+      "number": 2,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "GND",
+      "number": 3,
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.36,
+    "y": -0.36,
+    "w": 0.72,
+    "h": 2.72,
+    "rx": 0.08,
+    "fill": "#23272e",
+    "stroke": "#0e1116"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": -0.12,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 0.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": -0.12,
+      "y": 1.88,
+      "w": 0.24,
+      "h": 0.24,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": 0.42,
+      "y": -0.3,
+      "w": 0.2,
+      "h": 0.6,
+      "fill": "#e8c72c",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": 0.42,
+      "y": 0.7,
+      "w": 0.2,
+      "h": 0.6,
+      "fill": "#d84040",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": 0.42,
+      "y": 1.7,
+      "w": 0.2,
+      "h": 0.6,
+      "fill": "#3a3f47",
+      "rx": 0.04
+    }
+  ]
+}

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Perfboard Studio — self test</title>
+  <style>
+    body { font: 13px/1.5 ui-monospace, monospace; background: #11141a; color: #c8d1e0; padding: 20px; }
+    .pass { color: #73daca; }
+    .fail { color: #f7768e; font-weight: bold; }
+    h1 { font-size: 16px; }
+    #summary { margin: 14px 0; padding: 10px; border: 1px solid #333b48; border-radius: 6px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1>Perfboard Studio self test</h1>
+  <div id="summary">running…</div>
+  <div id="out"></div>
+
+  <script type="module">
+    // Exercises the pure logic of the app in a real browser, so the modules are
+    // parsed and executed exactly as they are in production.
+    import {
+      footprintOf, rotatePoint, moduleTransform, occupiedCells, pinCells,
+      boundsOf, rotatedSize, normalizeRotation, clampToBoard, resolveInstance,
+      overlaps, distToPolyline, fitsOnBoard,
+    } from '../src/core/geometry.js';
+    import { Store, makeInstance, makeWire, WIRE_COLORS } from '../src/core/store.js';
+    import { Catalog, normalizeDef } from '../src/core/catalog.js';
+    import { colLabel, colIndex, holeName, displayCol, boardExtent, defaultBoard } from '../src/core/board.js';
+    import { serialize, deserialize, toJSON, filenameFor } from '../src/io/project.js';
+    import { buildBom } from '../src/io/export.js';
+    import { modulePreview, artworkBounds } from '../src/render/preview.js';
+    import { shapeElement, collectText, bodyShape, padElements } from '../src/render/shapes.js';
+
+    const out = document.getElementById('out');
+    let pass = 0, fail = 0;
+
+    function check(name, fn) {
+      let ok = false, detail = '';
+      try {
+        const r = fn();
+        ok = r === true || r === undefined;
+        if (!ok) detail = ` — ${r}`;
+      } catch (e) {
+        detail = ` — threw ${e.message}`;
+      }
+      if (ok) pass++; else fail++;
+      const div = document.createElement('div');
+      div.className = ok ? 'pass' : 'fail';
+      div.textContent = `${ok ? 'PASS' : 'FAIL'} ${name}${detail}`;
+      out.appendChild(div);
+    }
+
+    const eq = (a, b, msg = '') => {
+      const sa = JSON.stringify(a), sb = JSON.stringify(b);
+      return sa === sb ? true : `${msg} expected ${sb}, got ${sa}`;
+    };
+
+    // -- board labels --------------------------------------------------------
+    check('colLabel A/Z/AA/AB', () => eq(
+      [colLabel(0), colLabel(25), colLabel(26), colLabel(27), colLabel(51), colLabel(52)],
+      ['A', 'Z', 'AA', 'AB', 'AZ', 'BA']));
+    check('colIndex round-trips 0..200', () => {
+      for (let i = 0; i < 200; i++) if (colIndex(colLabel(i)) !== i) return `broke at ${i}`;
+      return true;
+    });
+    check('colIndex rejects junk', () => eq([colIndex('3'), colIndex('A1'), colIndex('')], [-1, -1, -1]));
+    check('holeName is column-letter + 1-based row', () => eq(holeName(2, 5), 'C6'));
+    check('displayCol mirrors only when asked', () => eq(
+      [displayCol(0, 18, false), displayCol(0, 18, true), displayCol(17, 18, true)], [0, 17, 0]));
+    check('displayCol is its own inverse', () => {
+      for (let c = 0; c < 18; c++) if (displayCol(displayCol(c, 18, true), 18, true) !== c) return `broke at ${c}`;
+      return true;
+    });
+    check('boardExtent covers the grid plus rulers', () => {
+      const e = boardExtent({ cols: 18, rows: 24 });
+      return e.x < 0 && e.y < 0 && e.w > 17 && e.h > 23 ? true : JSON.stringify(e);
+    });
+
+    // -- rotation ------------------------------------------------------------
+    check('normalizeRotation folds to 0/90/180/270', () => eq(
+      [0, 90, 180, 270, 360, 450, -90, -450, 89].map(normalizeRotation),
+      [0, 90, 180, 270, 0, 90, 270, 270, 90]));
+
+    check('rotatedSize swaps on odd quarter turns', () => eq(
+      [rotatedSize(2, 5, 0), rotatedSize(2, 5, 90), rotatedSize(2, 5, 180), rotatedSize(2, 5, 270)],
+      [{ w: 2, h: 5 }, { w: 5, h: 2 }, { w: 2, h: 5 }, { w: 5, h: 2 }]));
+
+    check('four 90° rotations are the identity', () => {
+      for (const [cols, rows] of [[2, 5], [4, 4], [1, 7], [3, 6]]) {
+        for (let x = 0; x < cols; x++) for (let y = 0; y < rows; y++) {
+          let p = { x, y }, c = cols, r = rows;
+          for (let i = 0; i < 4; i++) { p = rotatePoint(p.x, p.y, c, r, 90); [c, r] = [r, c]; }
+          if (p.x !== x || p.y !== y) return `(${x},${y}) in ${cols}x${rows} -> (${p.x},${p.y})`;
+        }
+      }
+      return true;
+    });
+
+    // The SVG transform and rotatePoint must agree or pads drift off their holes.
+    check('moduleTransform matches rotatePoint for every cell', () => {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      document.body.appendChild(svg);
+      try {
+        for (const [cols, rows] of [[1, 1], [2, 5], [4, 4], [3, 7], [6, 2]]) {
+          for (const rot of [0, 90, 180, 270]) {
+            for (const [col, row] of [[0, 0], [3, 5]]) {
+              const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+              g.setAttribute('transform', moduleTransform({ col, row, rotation: rot }, cols, rows));
+              svg.appendChild(g);
+              const m = g.transform.baseVal.consolidate().matrix;
+              for (let x = 0; x < cols; x++) for (let y = 0; y < rows; y++) {
+                const want = rotatePoint(x, y, cols, rows, rot);
+                const gx = m.a * x + m.c * y + m.e;
+                const gy = m.b * x + m.d * y + m.f;
+                if (Math.abs(gx - (want.x + col)) > 1e-9 || Math.abs(gy - (want.y + row)) > 1e-9) {
+                  return `${cols}x${rows} rot${rot} at (${col},${row}) cell (${x},${y}): `
+                       + `transform=(${gx},${gy}) rotatePoint=(${want.x + col},${want.y + row})`;
+                }
+              }
+              g.remove();
+            }
+          }
+        }
+        return true;
+      } finally { svg.remove(); }
+    });
+
+    // -- occupancy -----------------------------------------------------------
+    const dip8 = normalizeDef({
+      id: 'test-dip8', name: 'Test DIP-8', category: 'ic',
+      footprint: { cols: 4, rows: 4 },
+      pins: [
+        { col: 0, row: 0, name: 'GND', type: 'gnd' }, { col: 0, row: 1, name: 'T' },
+        { col: 0, row: 2, name: 'O' }, { col: 0, row: 3, name: 'R' },
+        { col: 3, row: 0, name: 'VCC', type: 'power' }, { col: 3, row: 1, name: 'D' },
+        { col: 3, row: 2, name: 'H' }, { col: 3, row: 3, name: 'C' },
+      ],
+      body: { x: 0.25, y: -0.36, w: 2.5, h: 3.72, fill: '#1f242b' },
+    }, 'test');
+
+    check('occupiedCells covers cols*rows holes with no repeats', () => {
+      for (const rot of [0, 90, 180, 270]) {
+        const cells = occupiedCells(dip8, { col: 2, row: 3, rotation: rot });
+        if (cells.length !== 16) return `rot${rot} gave ${cells.length}`;
+        const uniq = new Set(cells.map((c) => `${c.col},${c.row}`));
+        if (uniq.size !== 16) return `rot${rot} has duplicate cells`;
+      }
+      return true;
+    });
+
+    check('occupiedCells stays inside boundsOf', () => {
+      for (const rot of [0, 90, 180, 270]) {
+        const inst = { col: 2, row: 3, rotation: rot };
+        const b = boundsOf(dip8, inst);
+        for (const c of occupiedCells(dip8, inst)) {
+          if (c.col < b.col || c.col >= b.col + b.cols || c.row < b.row || c.row >= b.row + b.rows) {
+            return `rot${rot} cell (${c.col},${c.row}) outside ${JSON.stringify(b)}`;
+          }
+        }
+      }
+      return true;
+    });
+
+    check('pins land on occupied holes', () => {
+      for (const rot of [0, 90, 180, 270]) {
+        const inst = { col: 1, row: 2, rotation: rot };
+        const cells = new Set(occupiedCells(dip8, inst).map((c) => `${c.col},${c.row}`));
+        for (const p of pinCells(dip8, inst)) {
+          if (!cells.has(`${p.col},${p.row}`)) return `rot${rot} pin ${p.name} at (${p.col},${p.row}) off-footprint`;
+        }
+      }
+      return true;
+    });
+
+    check('pin names survive rotation', () => {
+      const names = (rot) => pinCells(dip8, { col: 0, row: 0, rotation: rot }).map((p) => p.name).sort();
+      return eq(names(90), names(0));
+    });
+
+    check('clampToBoard keeps the footprint on the board', () => {
+      const board = { cols: 10, rows: 10 };
+      for (const rot of [0, 90, 180, 270]) {
+        for (const [col, row] of [[-5, -5], [50, 50], [8, 9], [0, 0]]) {
+          const inst = { col, row, rotation: rot };
+          const at = clampToBoard(board, dip8, inst);
+          const clamped = { ...inst, ...at };
+          if (!fitsOnBoard(board, dip8, clamped)) {
+            return `rot${rot} from (${col},${row}) clamped to (${at.col},${at.row}) still off-board`;
+          }
+        }
+      }
+      return true;
+    });
+
+    // -- resize --------------------------------------------------------------
+    const resistor = normalizeDef({
+      id: 'test-res', name: 'Test resistor', category: 'passive',
+      footprint: { cols: 4, rows: 1 },
+      resize: { axis: 'cols', min: 3, max: 12 },
+      pins: [{ col: 0, row: 0, name: '1' }, { col: 3, row: 0, name: '2' }],
+      shapes: [{ type: 'rect', x: 0.75, y: -0.26, w: 1.5, h: 0.52, fill: '#d8c49b' }],
+    }, 'test');
+
+    check('resize stretches footprint and pins together', () => {
+      for (const span of [3, 4, 6, 9, 12]) {
+        const r = resolveInstance(resistor, { span });
+        if (r.cols !== span) return `span ${span} gave cols ${r.cols}`;
+        const last = r.pins[r.pins.length - 1];
+        if (last.col !== span - 1) return `span ${span}: end pin at col ${last.col}, expected ${span - 1}`;
+        if (r.pins[0].col !== 0) return `span ${span}: first pin moved to ${r.pins[0].col}`;
+      }
+      return true;
+    });
+
+    check('resize clamps to the declared range', () => {
+      return eq([resolveInstance(resistor, { span: 1 }).cols, resolveInstance(resistor, { span: 99 }).cols],
+        [3, 12]);
+    });
+
+    check('resize artwork scale matches the span ratio', () => {
+      const r = resolveInstance(resistor, { span: 7 });
+      const want = 6 / 3;
+      return Math.abs(r.scaleX - want) < 1e-9 ? true : `scaleX ${r.scaleX}, expected ${want}`;
+    });
+
+    check('footprintOf ignores span when the def is not resizable', () => {
+      return eq(footprintOf(dip8, { span: 20 }), { cols: 4, rows: 4 });
+    });
+
+    check('resized pins rotate onto occupied holes', () => {
+      const inst = { col: 0, row: 0, rotation: 90, span: 8 };
+      const cells = new Set(occupiedCells(resistor, inst).map((c) => `${c.col},${c.row}`));
+      for (const p of pinCells(resistor, inst)) {
+        if (!cells.has(`${p.col},${p.row}`)) return `pin at (${p.col},${p.row}) off-footprint`;
+      }
+      return true;
+    });
+
+    // -- overlap / hit testing -----------------------------------------------
+    check('overlaps ignores parts on different sides', () => {
+      const a = { col: 0, row: 0, rotation: 0, side: 'front' };
+      const b = { col: 0, row: 0, rotation: 0, side: 'solder' };
+      return overlaps(dip8, a, dip8, b) === false ? true : 'reported an overlap across sides';
+    });
+    check('overlaps detects a real collision', () => {
+      const a = { col: 0, row: 0, rotation: 0, side: 'front' };
+      const b = { col: 2, row: 2, rotation: 0, side: 'front' };
+      const c = { col: 9, row: 9, rotation: 0, side: 'front' };
+      return overlaps(dip8, a, dip8, b) === true && overlaps(dip8, a, dip8, c) === false
+        ? true : 'collision detection wrong';
+    });
+    check('distToPolyline measures perpendicular distance', () => {
+      const d = distToPolyline(2, 1, [[0, 0], [4, 0]]);
+      return Math.abs(d - 1) < 1e-9 ? true : `got ${d}`;
+    });
+    check('distToPolyline clamps past the ends', () => {
+      const d = distToPolyline(-3, 0, [[0, 0], [4, 0]]);
+      return Math.abs(d - 3) < 1e-9 ? true : `got ${d}`;
+    });
+
+    // -- catalog normalisation ----------------------------------------------
+    check('normalizeDef rejects incomplete definitions', () => {
+      const bad = [
+        null, {}, { id: 'a' }, { id: 'a', name: 'A' },
+        { id: 'a', name: 'A', category: 'x' },
+        { id: 'a', name: 'A', category: 'x', footprint: {} },
+        { id: 'a', name: 'A', category: 'x', footprint: { cols: 0, rows: 3 } },
+        { id: 'a', name: 'A', category: 'x', footprint: { cols: 'q', rows: 3 } },
+      ];
+      for (const [i, b] of bad.entries()) if (normalizeDef(b, 't') !== null) return `case ${i} accepted`;
+      return true;
+    });
+    check('normalizeDef drops pins with bad coordinates', () => {
+      const d = normalizeDef({
+        id: 'a', name: 'A', category: 'x', footprint: { cols: 2, rows: 2 },
+        pins: [{ col: 0, row: 0 }, { col: -1, row: 0 }, { row: 1 }, null, { col: 1, row: 1 }],
+      }, 't');
+      return d.pins.length === 2 ? true : `kept ${d.pins.length} pins`;
+    });
+    check('normalizeDef drops a malformed resize block', () => {
+      const d = normalizeDef({
+        id: 'a', name: 'A', category: 'x', footprint: { cols: 2, rows: 2 },
+        resize: { axis: 'sideways', min: 1, max: 4 },
+      }, 't');
+      return d.resize === undefined ? true : 'kept the bad resize';
+    });
+    check('normalizeDef builds a lowercase search haystack', () => {
+      const d = normalizeDef({
+        id: 'ne555', name: 'NE555', subtitle: 'Timer', category: 'ic', tags: ['Oscillator'],
+        footprint: { cols: 4, rows: 4 },
+      }, 't');
+      return d._search.includes('oscillator') && d._search.includes('ne555') ? true : d._search;
+    });
+
+    // -- store ---------------------------------------------------------------
+    check('commit / undo / redo restores state exactly', () => {
+      const s = new Store();
+      const before = JSON.stringify(s.doc);
+      s.commit('add', (doc) => { doc.modules.push({ uid: 'm1', moduleId: 'x', col: 1, row: 1, rotation: 0, side: 'front' }); });
+      if (s.doc.modules.length !== 1) return 'commit did not apply';
+      if (!s.canUndo) return 'canUndo false after commit';
+      s.undo();
+      if (JSON.stringify(s.doc) !== before) return 'undo did not restore';
+      s.redo();
+      if (s.doc.modules.length !== 1) return 'redo did not reapply';
+      return true;
+    });
+    check('commit returning false records no history', () => {
+      const s = new Store();
+      const r = s.commit('noop', () => false);
+      return r === false && !s.canUndo ? true : 'a declined mutator still pushed history';
+    });
+    check('mutating the draft never touches the previous doc', () => {
+      const s = new Store();
+      s.commit('a', (doc) => { doc.modules.push({ uid: 'm1', col: 0, row: 0 }); });
+      const snapshot = s.doc;
+      s.commit('b', (doc) => { doc.modules[0].col = 9; });
+      return snapshot.modules[0].col === 0 ? true : 'undo history shares mutable objects';
+    });
+    check('a new commit clears the redo stack', () => {
+      const s = new Store();
+      s.commit('a', (doc) => { doc.modules.push({ uid: '1' }); });
+      s.undo();
+      if (!s.canRedo) return 'no redo available';
+      s.commit('b', (doc) => { doc.modules.push({ uid: '2' }); });
+      return !s.canRedo ? true : 'redo survived a new commit';
+    });
+    check('nextDesignator skips numbers already in use', () => {
+      const s = new Store();
+      s.doc.modules = [{ label: 'R1' }, { label: 'R3' }, { label: 'C1' }];
+      return eq([s.nextDesignator({ designator: 'R' }), s.nextDesignator({ designator: 'C' }),
+        s.nextDesignator({ designator: 'U' })], ['R2', 'C2', 'U1']);
+    });
+    check('setUI reports whether anything changed', () => {
+      const s = new Store();
+      return s.setUI({ tool: 'wire' }) === true && s.setUI({ tool: 'wire' }) === false
+        ? true : 'setUI change detection wrong';
+    });
+    check('subscribers fire on commit', () => {
+      const s = new Store();
+      let n = 0;
+      s.subscribe(() => n++);
+      s.commit('a', (doc) => { doc.name = 'x'; });
+      return n === 1 ? true : `${n} notifications`;
+    });
+    check('makeInstance seeds span only for resizable parts', () => {
+      const a = makeInstance(resistor, { col: 0, row: 0 });
+      const b = makeInstance(dip8, { col: 0, row: 0 });
+      return a.span === 4 && b.span === undefined ? true : `${a.span} / ${b.span}`;
+    });
+    check('makeWire copies its points', () => {
+      const pts = [[0, 0], [1, 1]];
+      const w = makeWire({ points: pts, color: '#fff' });
+      pts[0][0] = 99;
+      return w.points[0][0] === 0 ? true : 'wire aliased the caller array';
+    });
+
+    // -- save / open round trip ---------------------------------------------
+    const cat = new Catalog();
+    cat.categories = [{ id: 'ic', name: 'ICs', color: '#fff' }, { id: 'passive', name: 'Passives', color: '#fff' }];
+    cat.register(dip8);
+    cat.register(resistor);
+
+    check('serialize embeds only the definitions in use', () => {
+      const doc = {
+        name: 'T', board: defaultBoard(),
+        modules: [{ uid: 'm1', moduleId: 'test-dip8', col: 1, row: 1, rotation: 90, side: 'front', label: 'U1' }],
+        wires: [],
+      };
+      const s = serialize(doc, cat);
+      return eq(Object.keys(s.moduleDefs), ['test-dip8']);
+    });
+
+    check('serialize strips the catalog internals', () => {
+      const doc = {
+        name: 'T', board: defaultBoard(),
+        modules: [{ uid: 'm1', moduleId: 'test-dip8', col: 0, row: 0, rotation: 0, side: 'front' }],
+        wires: [],
+      };
+      const d = serialize(doc, cat).moduleDefs['test-dip8'];
+      return d._search === undefined && d._source === undefined ? true : 'leaked private fields';
+    });
+
+    check('the board carries no derived preset field', () => {
+      const b = defaultBoard();
+      return b.presetId === undefined ? true : 'defaultBoard still stores presetId';
+    });
+
+    check('save -> open round-trips the document', () => {
+      const doc = {
+        name: 'Round trip',
+        board: { cols: 20, rows: 30, pitchMm: 2.54, colorId: 'fr4-green' },
+        modules: [
+          { uid: 'm1', moduleId: 'test-dip8', col: 1, row: 1, rotation: 90, side: 'front', label: 'U1' },
+          { uid: 'm2', moduleId: 'test-res', col: 4, row: 8, rotation: 0, side: 'solder', label: 'R1', span: 6 },
+        ],
+        wires: [
+          { uid: 'w1', points: [[0, 0], [0, 5], [7, 5]], color: '#e02b25', gauge: 'thick', side: 'solder', label: null },
+        ],
+      };
+      const { doc: back, warnings } = deserialize(toJSON(doc, cat), cat);
+      if (warnings.length) return `warnings: ${warnings.join('; ')}`;
+      if (back.name !== doc.name) return 'name lost';
+      if (eq(back.board, doc.board) !== true) return `board: ${JSON.stringify(back.board)}`;
+      if (eq(back.modules, doc.modules) !== true) return `modules: ${JSON.stringify(back.modules)}`;
+      if (eq(back.wires, doc.wires) !== true) return `wires: ${JSON.stringify(back.wires)}`;
+      return true;
+    });
+
+    check('open rejects a foreign file', () => {
+      try { deserialize('{"format":"kicad","version":1}', cat); return 'accepted it'; }
+      catch (e) { return e.message.includes('Unrecognised') ? true : e.message; }
+    });
+    check('open rejects invalid JSON with a clear message', () => {
+      try { deserialize('{not json', cat); return 'accepted it'; }
+      catch (e) { return e.message.includes('Not valid JSON') ? true : e.message; }
+    });
+    check('open clamps out-of-range coordinates instead of throwing', () => {
+      const { doc, warnings } = deserialize(JSON.stringify({
+        format: 'perfboard-studio', version: 1, name: 'X',
+        board: { cols: 10, rows: 10, colorId: 'phenolic', pitchMm: 2.54 },
+        modules: [{ uid: 'm1', moduleId: 'test-dip8', col: 999, row: -4, rotation: 45, side: 'nonsense' }],
+        wires: [{ uid: 'w1', points: [[0, 0], [999, 999]], color: 'notacolour', gauge: 'huge', side: 'front' }],
+        moduleDefs: {},
+      }), cat);
+      const m = doc.modules[0], w = doc.wires[0];
+      if (m.col !== 9 || m.row !== 0) return `module clamped to (${m.col},${m.row})`;
+      if (m.rotation !== 90) return `rotation became ${m.rotation}`;
+      if (m.side !== 'front') return `side became ${m.side}`;
+      if (w.points[1][0] !== 9 || w.points[1][1] !== 9) return `wire clamped to ${JSON.stringify(w.points[1])}`;
+      if (w.color !== '#e02b25') return `colour became ${w.color}`;
+      if (w.gauge !== 'normal') return `gauge became ${w.gauge}`;
+      return warnings.length > 0 ? true : 'clamping produced no warnings';
+    });
+    check('open drops degenerate wires and says so', () => {
+      const { doc, warnings } = deserialize(JSON.stringify({
+        format: 'perfboard-studio', version: 1,
+        board: { cols: 10, rows: 10 },
+        modules: [], wires: [{ uid: 'w1', points: [[1, 1]] }], moduleDefs: {},
+      }), cat);
+      return doc.wires.length === 0 && warnings.some((w) => w.includes('fewer than two'))
+        ? true : `${doc.wires.length} wires, warnings ${JSON.stringify(warnings)}`;
+    });
+    check('open registers definitions the catalog is missing', () => {
+      const fresh = new Catalog();
+      fresh.categories = [{ id: 'ic', name: 'ICs', color: '#fff' }];
+      const { doc, warnings } = deserialize(JSON.stringify({
+        format: 'perfboard-studio', version: 1,
+        board: { cols: 10, rows: 10 },
+        modules: [{ uid: 'm1', moduleId: 'test-dip8', col: 0, row: 0, rotation: 0, side: 'front' }],
+        wires: [],
+        moduleDefs: { 'test-dip8': dip8 },
+      }), fresh);
+      return fresh.get('test-dip8') && doc.modules.length === 1
+        && warnings.some((w) => w.includes('came from the file'))
+        ? true : 'embedded definition not adopted';
+    });
+    check('open keeps a placeholder for a genuinely unknown module', () => {
+      const fresh = new Catalog();
+      fresh.categories = [];
+      const { doc, warnings } = deserialize(JSON.stringify({
+        format: 'perfboard-studio', version: 1,
+        board: { cols: 10, rows: 10 },
+        modules: [{ uid: 'm1', moduleId: 'ghost-part', col: 0, row: 0, rotation: 0, side: 'front' }],
+        wires: [], moduleDefs: {},
+      }), fresh);
+      return doc.modules.length === 1 && warnings.some((w) => w.includes('not in the catalog'))
+        ? true : 'unknown module handling wrong';
+    });
+    check('open de-duplicates repeated uids', () => {
+      const { doc } = deserialize(JSON.stringify({
+        format: 'perfboard-studio', version: 1,
+        board: { cols: 10, rows: 10 },
+        modules: [
+          { uid: 'dup', moduleId: 'test-dip8', col: 0, row: 0, rotation: 0, side: 'front' },
+          { uid: 'dup', moduleId: 'test-dip8', col: 5, row: 5, rotation: 0, side: 'front' },
+        ],
+        wires: [], moduleDefs: {},
+      }), cat);
+      return doc.modules[0].uid !== doc.modules[1].uid ? true : 'uids still collide';
+    });
+    check('filenameFor sanitises the design name', () => eq(
+      [filenameFor({ name: 'My Board v2!' }), filenameFor({ name: '  ' }), filenameFor({ name: '///' })],
+      ['My-Board-v2.pbs.json', 'design.pbs.json', 'design.pbs.json']));
+
+    // -- BOM -----------------------------------------------------------------
+    check('BOM groups by part and counts references', () => {
+      const doc = {
+        name: 'B', board: defaultBoard(),
+        modules: [
+          { uid: '1', moduleId: 'test-res', label: 'R1', col: 0, row: 0, side: 'front' },
+          { uid: '2', moduleId: 'test-res', label: 'R2', col: 0, row: 2, side: 'front' },
+          { uid: '3', moduleId: 'test-dip8', label: 'U1', col: 0, row: 4, side: 'front' },
+        ],
+        wires: [{ uid: 'w', points: [[0, 0], [1, 1]], side: 'solder', color: '#fff', gauge: 'normal' }],
+      };
+      const bom = buildBom(doc, cat);
+      return bom.includes('2\tR1 R2\tTest resistor') && bom.includes('1\tU1\tTest DIP-8')
+        ? true : bom;
+    });
+
+    // -- shapes / preview ----------------------------------------------------
+    check('shapeElement builds the right SVG tags', () => {
+      const cases = [
+        [{ type: 'rect', x: 0, y: 0, w: 1, h: 1, fill: '#fff' }, 'rect'],
+        [{ type: 'circle', cx: 0, cy: 0, r: 1, fill: '#fff' }, 'circle'],
+        [{ type: 'ellipse', cx: 0, cy: 0, rx: 1, ry: 2, fill: '#fff' }, 'ellipse'],
+        [{ type: 'line', x1: 0, y1: 0, x2: 1, y2: 1, stroke: '#fff' }, 'line'],
+        [{ type: 'polygon', points: [[0, 0], [1, 0], [1, 1]], fill: '#fff' }, 'polygon'],
+        [{ type: 'path', d: 'M0 0 L1 1', stroke: '#fff' }, 'path'],
+      ];
+      for (const [s, tag] of cases) {
+        const e = shapeElement(s);
+        if (!e || e.tagName !== tag) return `${s.type} -> ${e && e.tagName}`;
+      }
+      return true;
+    });
+    check('shapeElement refuses text and unknown types', () => {
+      return shapeElement({ type: 'text', text: 'x' }) === null
+        && shapeElement({ type: 'wormhole' }) === null
+        && shapeElement(null) === null ? true : 'accepted something it should not';
+    });
+    check('shapeElement tolerates missing numbers', () => {
+      const e = shapeElement({ type: 'rect', fill: '#fff' });
+      return e && e.getAttribute('width') === '0' ? true : 'did not default to 0';
+    });
+    check('collectText returns shape text then the label', () => {
+      const def = {
+        shapes: [{ type: 'text', x: 1, y: 1, text: 'inner' }, { type: 'rect', x: 0, y: 0, w: 1, h: 1 }],
+        label: { text: 'outer' },
+        footprint: { cols: 3, rows: 3 },
+      };
+      const t = collectText(def, def.footprint);
+      return eq(t.map((x) => x.text), ['inner', 'outer']);
+    });
+    check('collectText centres a label with no coordinates', () => {
+      const def = { shapes: [], label: { text: 'L' }, footprint: { cols: 5, rows: 3 } };
+      const t = collectText(def, def.footprint)[0];
+      return t.x === 2 && t.y === 1 ? true : `(${t.x},${t.y})`;
+    });
+    check('collectText skips empty label text', () => {
+      const def = { shapes: [], label: { text: '' }, footprint: { cols: 2, rows: 2 } };
+      return collectText(def, def.footprint).length === 0 ? true : 'emitted an empty label';
+    });
+    check('bodyShape falls back to the footprint size', () => {
+      const s = bodyShape({ body: { fill: '#fff' } }, { cols: 5, rows: 3 });
+      return s.w === 4 && s.h === 2 ? true : `${s.w}x${s.h}`;
+    });
+    check('padElements draws pad, tint ring and drill', () => {
+      return padElements({ col: 1, row: 2, type: 'power' }).length === 3 ? true : 'wrong element count';
+    });
+    check('artworkBounds grows to cover overhanging artwork', () => {
+      const def = {
+        footprint: { cols: 3, rows: 1 },
+        shapes: [{ type: 'rect', x: -0.5, y: -1.98, w: 3, h: 0.4 }],
+      };
+      const b = artworkBounds(def, 0);
+      return b.y <= -1.98 && b.h >= 1.98 ? true : JSON.stringify(b);
+    });
+    check('modulePreview produces a framed svg', () => {
+      const svg = modulePreview(dip8, { width: 40, height: 40 });
+      return svg.tagName === 'svg' && svg.getAttribute('viewBox') && svg.childNodes.length > 0
+        ? true : 'preview malformed';
+    });
+
+    // -- summary -------------------------------------------------------------
+    const sum = document.getElementById('summary');
+    sum.textContent = `${pass} passed, ${fail} failed`;
+    sum.className = fail ? 'fail' : 'pass';
+    sum.dataset.result = fail ? 'FAILED' : 'OK';
+    document.title = fail ? `SELFTEST FAILED (${fail})` : `SELFTEST OK (${pass})`;
+  </script>
+</body>
+</html>

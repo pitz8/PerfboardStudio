@@ -1,0 +1,284 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "esp32-s2-mini",
+  "name": "Lolin S2 Mini",
+  "subtitle": "ESP32-S2, USB-C",
+  "category": "mcu",
+  "tags": [
+    "esp32",
+    "s2",
+    "lolin",
+    "wemos",
+    "usb-c",
+    "wifi",
+    "board"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 7,
+    "rows": 16
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "GPIO0",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "GPIO1",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "GPIO2",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "GPIO3",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "GPIO4",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "GPIO5",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "GPIO6",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "GPIO7",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 9,
+      "name": "GPIO8",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 10,
+      "name": "GPIO9",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 11,
+      "name": "GPIO10",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 12,
+      "name": "GPIO11",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 13,
+      "name": "GPIO12",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 14,
+      "name": "GPIO13",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 15,
+      "name": "GPIO14",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "3V3",
+      "type": "power"
+    },
+    {
+      "col": 6,
+      "row": 1,
+      "name": "RST",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 2,
+      "name": "GPIO40",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 3,
+      "name": "GPIO39",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 4,
+      "name": "GPIO38",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 5,
+      "name": "GPIO37",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 6,
+      "name": "GPIO36",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 7,
+      "name": "GPIO35",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 8,
+      "name": "GPIO34",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 9,
+      "name": "GPIO33",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 10,
+      "name": "GPIO21",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 11,
+      "name": "GPIO18",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 12,
+      "name": "GPIO17",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 13,
+      "name": "GPIO16",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 14,
+      "name": "GPIO15",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 15,
+      "name": "5V",
+      "type": "power"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 6.9,
+    "h": 15.9,
+    "rx": 0.18,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 15.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 5.68,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 15.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.8,
+      "y": 0.5,
+      "w": 4.4,
+      "h": 6.042,
+      "fill": "#9aa2ab",
+      "rx": 0.1,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.58,
+      "y": -0.79,
+      "w": 0.84,
+      "h": 0.44,
+      "fill": "#b9c0c8",
+      "rx": 0.07,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "S2 MINI",
+    "x": 3,
+    "y": 11.952,
+    "size": 0.36,
+    "color": "#e8eef4"
+  }
+}

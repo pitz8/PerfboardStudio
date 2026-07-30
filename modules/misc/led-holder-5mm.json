@@ -1,0 +1,75 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "led-holder-5mm",
+  "name": "LED holder 5 mm",
+  "subtitle": "chrome bezel, panel",
+  "category": "misc",
+  "tags": [
+    "led",
+    "holder",
+    "bezel",
+    "panel",
+    "5mm"
+  ],
+  "designator": "H",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "A",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "K",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": 0,
+      "r": 1.15,
+      "fill": "#9aa2ab",
+      "stroke": "#6f767e",
+      "strokeWidth": 0.08
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": 0,
+      "r": 0.62,
+      "fill": "#14171a",
+      "stroke": "#3a4048",
+      "strokeWidth": 0.05
+    }
+  ]
+}

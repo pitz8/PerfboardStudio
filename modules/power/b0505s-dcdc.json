@@ -1,0 +1,107 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "b0505s-dcdc",
+  "name": "B0505S-1W",
+  "subtitle": "isolated 5 V → 5 V, 1 W",
+  "category": "power",
+  "tags": [
+    "dc-dc",
+    "isolated",
+    "converter",
+    "5v",
+    "1w"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 4,
+    "rows": 2
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "-VIN",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "+VIN",
+      "number": 2,
+      "type": "power"
+    },
+    {
+      "col": 3,
+      "row": 1,
+      "name": "-VOUT",
+      "number": 3,
+      "type": "gnd"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "+VOUT",
+      "number": 4,
+      "type": "power"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 4.4,
+    "h": 1.9,
+    "rx": 0.1,
+    "fill": "#23272e",
+    "stroke": "#0e1116"
+  },
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.4,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 1,
+      "x2": 0.4,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 0,
+      "x2": 2.6,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 1,
+      "x2": 2.6,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    }
+  ],
+  "label": {
+    "text": "B0505S",
+    "x": 1.5,
+    "y": 0.5,
+    "size": 0.36,
+    "color": "#c9d2dc"
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "tmc2208",
+  "name": "TMC2208",
+  "subtitle": "silent stepper driver, 1.2 A",
+  "category": "motor",
+  "tags": [
+    "stepper",
+    "trinamic",
+    "silent",
+    "stealthchop",
+    "3d printer",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 8,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "EN",
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "MS1",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "MS2",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "MS3",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "RST",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "SLP",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "STEP",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "name": "DIR",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 7.9,
+    "h": 7.9,
+    "rx": 0.16,
+    "fill": "#6b1622",
+    "stroke": "#4a0f18"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 7.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.92,
+      "y": 3.5,
+      "w": 3.16,
+      "h": 2.686,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 2.2,
+      "y": 2.4,
+      "w": 3.2,
+      "h": 3.2,
+      "fill": "#1f242b",
+      "rx": 0.1,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "TMC2208",
+    "size": 0.45,
+    "color": "#e8eef4",
+    "x": 3.5,
+    "y": 7.15
+  }
+}

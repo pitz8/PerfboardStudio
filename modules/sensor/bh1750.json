@@ -1,0 +1,99 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "bh1750",
+  "name": "BH1750",
+  "subtitle": "digital lux meter, I2C",
+  "category": "sensor",
+  "tags": [
+    "light",
+    "lux",
+    "ambient",
+    "i2c",
+    "rohm",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 5,
+    "rows": 5
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "SCL",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "SDA",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "ADDR",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 4.9,
+    "h": 4.9,
+    "rx": 0.16,
+    "fill": "#33204d",
+    "stroke": "#1c1029"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 4.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.02,
+      "y": 2,
+      "w": 1.96,
+      "h": 1.666,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "BH1750",
+    "size": 0.34,
+    "color": "#e8eef4",
+    "x": 2,
+    "y": 4.15
+  }
+}

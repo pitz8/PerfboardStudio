@@ -1,0 +1,85 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "cap-mlcc-10nf",
+  "name": "Cap 10nF",
+  "subtitle": "multilayer ceramic",
+  "category": "passive",
+  "tags": [
+    "capacitor",
+    "ceramic",
+    "non-polarised",
+    "10nF",
+    "103"
+  ],
+  "designator": "C",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.1,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.1,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": 0.16,
+      "y": -0.72,
+      "w": 0.68,
+      "h": 0.62,
+      "fill": "#b98a5a",
+      "rx": 0.1,
+      "stroke": "#8b6540",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "text",
+      "x": 0.5,
+      "y": -0.41,
+      "text": "103",
+      "size": 0.24,
+      "color": "#3a2a18",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ],
+  "label": {
+    "text": "10nF",
+    "x": 0.5,
+    "y": 0.44,
+    "size": 0.28,
+    "color": "#9fb0c0"
+  }
+}

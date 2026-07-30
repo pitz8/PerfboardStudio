@@ -1,0 +1,102 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "hlk-pm01",
+  "name": "HLK-PM01",
+  "subtitle": "230 V AC → 5 V DC, 3 W",
+  "category": "power",
+  "tags": [
+    "ac-dc",
+    "mains",
+    "psu",
+    "5v",
+    "hi-link",
+    "isolated"
+  ],
+  "designator": "PS",
+  "footprint": {
+    "cols": 13,
+    "rows": 4
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "AC-L",
+      "number": 1,
+      "type": "in"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "AC-N",
+      "number": 2,
+      "type": "in"
+    },
+    {
+      "col": 12,
+      "row": 3,
+      "name": "-VO",
+      "number": 3,
+      "type": "gnd"
+    },
+    {
+      "col": 12,
+      "row": 0,
+      "name": "+VO",
+      "number": 4,
+      "type": "power"
+    }
+  ],
+  "body": {
+    "x": -0.6,
+    "y": -0.6,
+    "w": 14.2,
+    "h": 4.2,
+    "rx": 0.12,
+    "fill": "#e9edf1",
+    "stroke": "#a9b0b8"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": 0.4,
+      "y": 0.4,
+      "w": 11.2,
+      "h": 2.2,
+      "fill": "#dfe4ea",
+      "rx": 0.08,
+      "stroke": "#a9b0b8",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "text",
+      "x": 6,
+      "y": 1.5,
+      "text": "HLK-PM01",
+      "size": 0.62,
+      "color": "#3a3f47",
+      "anchor": "middle",
+      "weight": 600
+    },
+    {
+      "type": "text",
+      "x": 1.6,
+      "y": 2.9,
+      "text": "AC IN",
+      "size": 0.36,
+      "color": "#8f2020",
+      "anchor": "middle",
+      "weight": 600
+    },
+    {
+      "type": "text",
+      "x": 10.6,
+      "y": 2.9,
+      "text": "5V DC",
+      "size": 0.36,
+      "color": "#1c4478",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ]
+}

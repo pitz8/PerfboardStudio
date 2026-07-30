@@ -1,0 +1,83 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "speaker-8ohm",
+  "name": "Speaker 8 Ω",
+  "subtitle": "0.5 W, 28 mm",
+  "category": "misc",
+  "tags": [
+    "speaker",
+    "audio",
+    "8ohm",
+    "loudspeaker"
+  ],
+  "designator": "LS",
+  "footprint": {
+    "cols": 6,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "-",
+      "number": 2,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 2.5,
+      "cy": -2,
+      "r": 5.2,
+      "fill": "#2f343b",
+      "stroke": "#1a1d22",
+      "strokeWidth": 0.08
+    },
+    {
+      "type": "circle",
+      "cx": 2.5,
+      "cy": -2,
+      "r": 3.6,
+      "fill": "#22262c",
+      "stroke": "#14171a",
+      "strokeWidth": 0.06
+    },
+    {
+      "type": "circle",
+      "cx": 2.5,
+      "cy": -2,
+      "r": 1.4,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.6,
+      "y2": -0.6,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 5,
+      "y1": 0,
+      "x2": 4.4,
+      "y2": -0.6,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    }
+  ]
+}

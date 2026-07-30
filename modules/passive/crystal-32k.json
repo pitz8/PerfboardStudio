@@ -1,0 +1,74 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "crystal-32k",
+  "name": "Crystal 32.768 kHz",
+  "subtitle": "cylindrical, RTC",
+  "category": "passive",
+  "tags": [
+    "crystal",
+    "rtc",
+    "32768",
+    "clock"
+  ],
+  "designator": "Y",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.15,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.15,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": 0.32,
+      "y": -1.35,
+      "w": 0.36,
+      "h": 1.15,
+      "fill": "#b3bac2",
+      "rx": 0.18,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "32k",
+    "x": 0.5,
+    "y": 0.42,
+    "size": 0.26,
+    "color": "#9fb0c0"
+  }
+}

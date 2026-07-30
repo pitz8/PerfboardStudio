@@ -1,0 +1,112 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "lora-e32-433",
+  "name": "Ebyte E32-433T",
+  "subtitle": "SX1278 UART LoRa, 1 W",
+  "category": "comms",
+  "tags": [
+    "lora",
+    "sx1278",
+    "433mhz",
+    "uart",
+    "long range",
+    "ebyte",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 8,
+    "rows": 17
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "M0",
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "M1",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "RXD",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "TXD",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "AUX",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 7.9,
+    "h": 16.9,
+    "rx": 0.16,
+    "fill": "#1a1d22",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 6.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.92,
+      "y": 8,
+      "w": 3.16,
+      "h": 5.746,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "E32-433T",
+    "size": 0.42,
+    "color": "#e8eef4",
+    "x": 3.5,
+    "y": 16.15
+  }
+}

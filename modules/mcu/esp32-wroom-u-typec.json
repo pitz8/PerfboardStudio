@@ -1,0 +1,366 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "esp32-wroom-u-typec",
+  "name": "ESP32-WROOM-32U USB-C",
+  "subtitle": "38-pin, 19 per side, U.FL antenna",
+  "category": "mcu",
+  "tags": [
+    "esp32",
+    "wroom",
+    "wroom-32u",
+    "usb-c",
+    "type-c",
+    "38-pin",
+    "19-pin",
+    "ipex",
+    "u.fl",
+    "external antenna",
+    "espressif",
+    "wifi",
+    "ble",
+    "board"
+  ],
+  "designator": "U",
+  "datasheet": "https://www.espressif.com/en/products/modules/esp32",
+  "footprint": {
+    "cols": 11,
+    "rows": 19
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "3V3",
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "EN",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "GPIO36",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "GPIO39",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "GPIO34",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "GPIO35",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "GPIO32",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "GPIO33",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "GPIO25",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 9,
+      "name": "GPIO26",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 10,
+      "name": "GPIO27",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 11,
+      "name": "GPIO14",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 12,
+      "name": "GPIO12",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 13,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 14,
+      "name": "GPIO13",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 15,
+      "name": "SD2",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 16,
+      "name": "SD3",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 17,
+      "name": "CMD",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 18,
+      "name": "5V",
+      "type": "power"
+    },
+    {
+      "col": 10,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 10,
+      "row": 1,
+      "name": "GPIO23",
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 2,
+      "name": "GPIO22",
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 3,
+      "name": "TX0",
+      "type": "signal"
+    },
+    {
+      "col": 10,
+      "row": 4,
+      "name": "RX0",
+      "type": "signal"
+    },
+    {
+      "col": 10,
+      "row": 5,
+      "name": "GPIO21",
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 6,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 10,
+      "row": 7,
+      "name": "GPIO19",
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 8,
+      "name": "GPIO18",
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 9,
+      "name": "GPIO5",
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 10,
+      "name": "GPIO17",
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 11,
+      "name": "GPIO16",
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 12,
+      "name": "GPIO4",
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 13,
+      "name": "GPIO0",
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 14,
+      "name": "GPIO2",
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 15,
+      "name": "GPIO15",
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 16,
+      "name": "SD1",
+      "type": "signal"
+    },
+    {
+      "col": 10,
+      "row": 17,
+      "name": "SD0",
+      "type": "signal"
+    },
+    {
+      "col": 10,
+      "row": 18,
+      "name": "CLK",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 10.9,
+    "h": 18.9,
+    "rx": 0.18,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 18.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 9.68,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 18.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.8,
+      "y": 0.5,
+      "w": 8.4,
+      "h": 7.182,
+      "fill": "#9aa2ab",
+      "rx": 0.1,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 4.25,
+      "y": 18.02,
+      "w": 1.5,
+      "h": 0.52,
+      "fill": "#b9c0c8",
+      "rx": 0.26,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": 8.7,
+      "cy": 8.7,
+      "r": 0.52,
+      "fill": "#9aa2ab",
+      "stroke": "#6f767e",
+      "strokeWidth": 0.06
+    },
+    {
+      "type": "circle",
+      "cx": 8.7,
+      "cy": 8.7,
+      "r": 0.2,
+      "fill": "#c9a227"
+    },
+    {
+      "type": "rect",
+      "x": 0.45,
+      "y": 17.1,
+      "w": 0.9,
+      "h": 0.9,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#3a4048",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 8.65,
+      "y": 17.1,
+      "w": 0.9,
+      "h": 0.9,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#3a4048",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "WROOM-32U",
+    "x": 5,
+    "y": 14.292,
+    "size": 0.36,
+    "color": "#e8eef4"
+  }
+}

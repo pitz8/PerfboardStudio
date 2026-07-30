@@ -1,0 +1,86 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "cap-elec-330uf-25v",
+  "name": "Cap 330µF 25 V",
+  "subtitle": "electrolytic, radial",
+  "category": "passive",
+  "tags": [
+    "capacitor",
+    "electrolytic",
+    "polarised",
+    "330µF"
+  ],
+  "designator": "C",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": 0,
+      "r": 1.5,
+      "fill": "#1d3163",
+      "stroke": "#101c3a",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "path",
+      "d": "M 0.5 -1.5 A 1.5 1.5 0 0 1 0.5 1.5 Z",
+      "fill": "#c3cad4"
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": 0,
+      "r": 0.93,
+      "fill": "#1d3163",
+      "stroke": "#101c3a",
+      "strokeWidth": 0.03
+    },
+    {
+      "type": "line",
+      "x1": -0.13,
+      "y1": 0,
+      "x2": 1.13,
+      "y2": 0,
+      "stroke": "#101c3a",
+      "strokeWidth": 0.06,
+      "linecap": "round"
+    },
+    {
+      "type": "text",
+      "x": -0.13,
+      "y": -0.51,
+      "text": "−",
+      "size": 0.34,
+      "color": "#1d3163",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ],
+  "label": {
+    "text": "330µF",
+    "x": 0.5,
+    "y": 1.86,
+    "size": 0.3,
+    "color": "#9fb0c0"
+  }
+}

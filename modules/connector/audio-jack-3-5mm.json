@@ -1,0 +1,85 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "audio-jack-3-5mm",
+  "name": "Audio jack 3.5 mm",
+  "subtitle": "stereo, PCB mount",
+  "category": "connector",
+  "tags": [
+    "audio",
+    "jack",
+    "3.5mm",
+    "stereo",
+    "trs"
+  ],
+  "designator": "J",
+  "footprint": {
+    "cols": 5,
+    "rows": 3
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "T",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "R",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 1,
+      "name": "S",
+      "number": 3,
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.6,
+    "y": -0.6,
+    "w": 6.2,
+    "h": 3.4,
+    "rx": 0.12,
+    "fill": "#23272e",
+    "stroke": "#0e1116"
+  },
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 0.6,
+      "cy": 1,
+      "r": 0.85,
+      "fill": "#14171a",
+      "stroke": "#3a4048",
+      "strokeWidth": 0.06
+    },
+    {
+      "type": "circle",
+      "cx": 0.6,
+      "cy": 1,
+      "r": 0.34,
+      "fill": "#5c6269"
+    },
+    {
+      "type": "rect",
+      "x": 1.8,
+      "y": 0.1,
+      "w": 3.4,
+      "h": 1.8,
+      "fill": "#2f343b",
+      "rx": 0.08
+    }
+  ],
+  "label": {
+    "text": "3.5",
+    "x": 3.4,
+    "y": 1.1,
+    "size": 0.36,
+    "color": "#e8eef4"
+  }
+}

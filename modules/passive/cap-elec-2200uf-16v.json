@@ -1,0 +1,86 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "cap-elec-2200uf-16v",
+  "name": "Cap 2200µF 16 V",
+  "subtitle": "electrolytic, radial",
+  "category": "passive",
+  "tags": [
+    "capacitor",
+    "electrolytic",
+    "polarised",
+    "2200µF"
+  ],
+  "designator": "C",
+  "footprint": {
+    "cols": 3,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": 0,
+      "r": 2.5,
+      "fill": "#1d3163",
+      "stroke": "#101c3a",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "path",
+      "d": "M 1 -2.5 A 2.5 2.5 0 0 1 1 2.5 Z",
+      "fill": "#c3cad4"
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": 0,
+      "r": 1.55,
+      "fill": "#1d3163",
+      "stroke": "#101c3a",
+      "strokeWidth": 0.03
+    },
+    {
+      "type": "line",
+      "x1": -0.05,
+      "y1": 0,
+      "x2": 2.05,
+      "y2": 0,
+      "stroke": "#101c3a",
+      "strokeWidth": 0.06,
+      "linecap": "round"
+    },
+    {
+      "type": "text",
+      "x": -0.05,
+      "y": -0.85,
+      "text": "−",
+      "size": 0.34,
+      "color": "#1d3163",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ],
+  "label": {
+    "text": "2200µF",
+    "x": 1,
+    "y": 2.86,
+    "size": 0.3,
+    "color": "#9fb0c0"
+  }
+}

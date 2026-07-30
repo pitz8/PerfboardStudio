@@ -1,0 +1,103 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "dht22",
+  "name": "DHT22 / AM2302",
+  "subtitle": "temperature + humidity",
+  "category": "sensor",
+  "tags": [
+    "temperature",
+    "humidity",
+    "am2302",
+    "1-wire",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 5,
+    "rows": 7
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "DATA",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "NC",
+      "type": "nc"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 4.9,
+    "h": 6.9,
+    "rx": 0.16,
+    "fill": "#dfe4ea",
+    "stroke": "#a9b0b8"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 3.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.02,
+      "y": 3,
+      "w": 1.96,
+      "h": 2.346,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 0.2,
+      "y": 1.4,
+      "w": 3.6,
+      "h": 3.8,
+      "fill": "#eef1f5",
+      "rx": 0.12,
+      "stroke": "#b6bcc4",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "DHT22",
+    "size": 0.4,
+    "color": "#e8eef4",
+    "x": 2,
+    "y": 6.15
+  }
+}

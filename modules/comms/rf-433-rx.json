@@ -1,0 +1,92 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "rf-433-rx",
+  "name": "433 MHz RX",
+  "subtitle": "ASK receiver",
+  "category": "comms",
+  "tags": [
+    "433mhz",
+    "rf",
+    "receiver",
+    "ask",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 12,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "DATA",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "DATA",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 11.9,
+    "h": 7.9,
+    "rx": 0.16,
+    "fill": "#12503c",
+    "stroke": "#0a3527"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 3.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 3.12,
+      "y": 3.5,
+      "w": 4.76,
+      "h": 2.686,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "433 RX",
+    "size": 0.5,
+    "color": "#e8eef4",
+    "x": 5.5,
+    "y": 7.15
+  }
+}

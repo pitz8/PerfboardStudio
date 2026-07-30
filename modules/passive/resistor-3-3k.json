@@ -1,0 +1,111 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "resistor-3-3k",
+  "name": "Resistor 3.3kΩ",
+  "subtitle": "1/4 W axial",
+  "category": "passive",
+  "tags": [
+    "resistor",
+    "axial",
+    "3.3kohm",
+    "1/4 W"
+  ],
+  "designator": "R",
+  "footprint": {
+    "cols": 4,
+    "rows": 1
+  },
+  "resize": {
+    "axis": "cols",
+    "min": 3,
+    "max": 12
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.79,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2.21,
+      "y1": 0,
+      "x2": 3,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": 0.75,
+      "y": -0.26,
+      "w": 1.5,
+      "h": 0.52,
+      "fill": "#d8c49b",
+      "rx": 0.16,
+      "stroke": "#a8916a",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.91,
+      "y": -0.24,
+      "w": 0.11,
+      "h": 0.48,
+      "fill": "#e07b27"
+    },
+    {
+      "type": "rect",
+      "x": 1.095,
+      "y": -0.24,
+      "w": 0.11,
+      "h": 0.48,
+      "fill": "#e07b27"
+    },
+    {
+      "type": "rect",
+      "x": 1.28,
+      "y": -0.24,
+      "w": 0.11,
+      "h": 0.48,
+      "fill": "#cf2b28"
+    },
+    {
+      "type": "rect",
+      "x": 1.98,
+      "y": -0.24,
+      "w": 0.11,
+      "h": 0.48,
+      "fill": "#c9a227"
+    }
+  ],
+  "label": {
+    "text": "3.3kΩ",
+    "x": 1.5,
+    "y": -0.55,
+    "size": 0.3,
+    "color": "#9fb0c0"
+  }
+}

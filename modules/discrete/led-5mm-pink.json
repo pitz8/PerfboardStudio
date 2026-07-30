@@ -1,0 +1,97 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "led-5mm-pink",
+  "name": "LED 5 mm Pink",
+  "subtitle": "through-hole indicator",
+  "category": "discrete",
+  "tags": [
+    "led",
+    "diode",
+    "pink",
+    "5mm"
+  ],
+  "designator": "D",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "A",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "K",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": 0,
+      "r": 0.52,
+      "fill": "#ef7fb0",
+      "stroke": "#8f4c6a",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": 0,
+      "r": 0.312,
+      "fill": "#f5accc"
+    },
+    {
+      "type": "circle",
+      "cx": 0.3544,
+      "cy": -0.1456,
+      "r": 0.104,
+      "fill": "#ffffff",
+      "opacity": 0.75
+    },
+    {
+      "type": "line",
+      "x1": 0.9472,
+      "y1": -0.26,
+      "x2": 0.9472,
+      "y2": 0.26,
+      "stroke": "#8f4c6a",
+      "strokeWidth": 0.09,
+      "linecap": "butt"
+    }
+  ],
+  "label": {
+    "text": "Pink",
+    "x": 0.5,
+    "y": 0.86,
+    "size": 0.26,
+    "color": "#9fb0c0"
+  }
+}

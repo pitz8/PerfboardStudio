@@ -1,0 +1,111 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "mcp2515-module",
+  "name": "MCP2515 CAN",
+  "subtitle": "CAN bus + TJA1050",
+  "category": "comms",
+  "tags": [
+    "can",
+    "mcp2515",
+    "spi",
+    "bus",
+    "automotive",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 12,
+    "rows": 12
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "CS",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "SO",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "SI",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "SCK",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "INT",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 11.9,
+    "h": 11.9,
+    "rx": 0.16,
+    "fill": "#123a63",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 6.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 3.12,
+      "y": 5.5,
+      "w": 4.76,
+      "h": 4.046,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "MCP2515",
+    "size": 0.5,
+    "color": "#e8eef4",
+    "x": 5.5,
+    "y": 11.15
+  }
+}

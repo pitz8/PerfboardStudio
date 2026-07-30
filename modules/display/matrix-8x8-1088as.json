@@ -1,0 +1,591 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "matrix-8x8-1088as",
+  "name": "LED matrix 8x8 (1088AS)",
+  "subtitle": "bare 16-pin dot matrix",
+  "category": "display",
+  "tags": [
+    "led matrix",
+    "8x8",
+    "1088as",
+    "dot matrix"
+  ],
+  "designator": "DS",
+  "footprint": {
+    "cols": 12,
+    "rows": 12
+  },
+  "pins": [
+    {
+      "col": 2,
+      "row": 0,
+      "name": "16",
+      "number": 16,
+      "type": "io"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "15",
+      "number": 15,
+      "type": "io"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "14",
+      "number": 14,
+      "type": "io"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "13",
+      "number": 13,
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "12",
+      "number": 12,
+      "type": "io"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "name": "11",
+      "number": 11,
+      "type": "io"
+    },
+    {
+      "col": 8,
+      "row": 0,
+      "name": "10",
+      "number": 10,
+      "type": "io"
+    },
+    {
+      "col": 9,
+      "row": 0,
+      "name": "9",
+      "number": 9,
+      "type": "io"
+    },
+    {
+      "col": 2,
+      "row": 11,
+      "name": "1",
+      "number": 1,
+      "type": "io"
+    },
+    {
+      "col": 3,
+      "row": 11,
+      "name": "2",
+      "number": 2,
+      "type": "io"
+    },
+    {
+      "col": 4,
+      "row": 11,
+      "name": "3",
+      "number": 3,
+      "type": "io"
+    },
+    {
+      "col": 5,
+      "row": 11,
+      "name": "4",
+      "number": 4,
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 11,
+      "name": "5",
+      "number": 5,
+      "type": "io"
+    },
+    {
+      "col": 7,
+      "row": 11,
+      "name": "6",
+      "number": 6,
+      "type": "io"
+    },
+    {
+      "col": 8,
+      "row": 11,
+      "name": "7",
+      "number": 7,
+      "type": "io"
+    },
+    {
+      "col": 9,
+      "row": 11,
+      "name": "8",
+      "number": 8,
+      "type": "io"
+    }
+  ],
+  "body": {
+    "x": -0.5,
+    "y": -0.5,
+    "w": 12.0,
+    "h": 12.0,
+    "rx": 0.1,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 1.9,
+      "cy": 1.9,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 3,
+      "cy": 1.9,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 4.1,
+      "cy": 1.9,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 5.2,
+      "cy": 1.9,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 6.3,
+      "cy": 1.9,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 7.4,
+      "cy": 1.9,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 8.5,
+      "cy": 1.9,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 9.6,
+      "cy": 1.9,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 1.9,
+      "cy": 3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 3,
+      "cy": 3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 4.1,
+      "cy": 3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 5.2,
+      "cy": 3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 6.3,
+      "cy": 3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 7.4,
+      "cy": 3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 8.5,
+      "cy": 3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 9.6,
+      "cy": 3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 1.9,
+      "cy": 4.1,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 3,
+      "cy": 4.1,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 4.1,
+      "cy": 4.1,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 5.2,
+      "cy": 4.1,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 6.3,
+      "cy": 4.1,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 7.4,
+      "cy": 4.1,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 8.5,
+      "cy": 4.1,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 9.6,
+      "cy": 4.1,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 1.9,
+      "cy": 5.2,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 3,
+      "cy": 5.2,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 4.1,
+      "cy": 5.2,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 5.2,
+      "cy": 5.2,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 6.3,
+      "cy": 5.2,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 7.4,
+      "cy": 5.2,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 8.5,
+      "cy": 5.2,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 9.6,
+      "cy": 5.2,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 1.9,
+      "cy": 6.3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 3,
+      "cy": 6.3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 4.1,
+      "cy": 6.3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 5.2,
+      "cy": 6.3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 6.3,
+      "cy": 6.3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 7.4,
+      "cy": 6.3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 8.5,
+      "cy": 6.3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 9.6,
+      "cy": 6.3,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 1.9,
+      "cy": 7.4,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 3,
+      "cy": 7.4,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 4.1,
+      "cy": 7.4,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 5.2,
+      "cy": 7.4,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 6.3,
+      "cy": 7.4,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 7.4,
+      "cy": 7.4,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 8.5,
+      "cy": 7.4,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 9.6,
+      "cy": 7.4,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 1.9,
+      "cy": 8.5,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 3,
+      "cy": 8.5,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 4.1,
+      "cy": 8.5,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 5.2,
+      "cy": 8.5,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 6.3,
+      "cy": 8.5,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 7.4,
+      "cy": 8.5,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 8.5,
+      "cy": 8.5,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 9.6,
+      "cy": 8.5,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 1.9,
+      "cy": 9.6,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 3,
+      "cy": 9.6,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 4.1,
+      "cy": 9.6,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 5.2,
+      "cy": 9.6,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 6.3,
+      "cy": 9.6,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 7.4,
+      "cy": 9.6,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 8.5,
+      "cy": 9.6,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 9.6,
+      "cy": 9.6,
+      "r": 0.34,
+      "fill": "#5c1a1a"
+    }
+  ]
+}

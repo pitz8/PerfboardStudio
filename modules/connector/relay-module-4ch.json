@@ -1,0 +1,149 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "relay-module-4ch",
+  "name": "Relay module 4-ch",
+  "subtitle": "opto-isolated, 5 V",
+  "category": "connector",
+  "tags": [
+    "relay",
+    "module",
+    "opto",
+    "5v",
+    "4-channel",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 30,
+    "rows": 20
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "IN1",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "IN2",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "IN3",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "IN4",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 29.9,
+    "h": 19.9,
+    "rx": 0.16,
+    "fill": "#123a63",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 5.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 8.52,
+      "y": 9.5,
+      "w": 11.96,
+      "h": 6.766,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 3,
+      "y": 7,
+      "w": 4.2,
+      "h": 5.6,
+      "fill": "#1c4f96",
+      "rx": 0.1,
+      "stroke": "#0f3468",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 8,
+      "y": 7,
+      "w": 4.2,
+      "h": 5.6,
+      "fill": "#1c4f96",
+      "rx": 0.1,
+      "stroke": "#0f3468",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 13,
+      "y": 7,
+      "w": 4.2,
+      "h": 5.6,
+      "fill": "#1c4f96",
+      "rx": 0.1,
+      "stroke": "#0f3468",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 18,
+      "y": 7,
+      "w": 4.2,
+      "h": 5.6,
+      "fill": "#1c4f96",
+      "rx": 0.1,
+      "stroke": "#0f3468",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "RELAY 4CH",
+    "size": 0.6,
+    "color": "#e8eef4",
+    "x": 14.5,
+    "y": 19.15
+  }
+}

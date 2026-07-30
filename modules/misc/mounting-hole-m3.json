@@ -1,0 +1,40 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "mounting-hole-m3",
+  "name": "Mounting hole M3",
+  "subtitle": "3.2 mm clearance",
+  "category": "misc",
+  "tags": [
+    "mechanical",
+    "hole",
+    "m3",
+    "screw",
+    "mount"
+  ],
+  "designator": "H",
+  "footprint": {
+    "cols": 2,
+    "rows": 2
+  },
+  "pins": [],
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": 0.5,
+      "r": 0.95,
+      "fill": "none",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.1
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": 0.5,
+      "r": 0.63,
+      "fill": "#0b0e12",
+      "stroke": "#5c6269",
+      "strokeWidth": 0.06
+    }
+  ]
+}

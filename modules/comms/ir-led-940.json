@@ -1,0 +1,89 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "ir-led-940",
+  "name": "IR LED 940 nm",
+  "subtitle": "5 mm emitter",
+  "category": "comms",
+  "tags": [
+    "infrared",
+    "led",
+    "emitter",
+    "940nm"
+  ],
+  "designator": "D",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "A",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "K",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": 0,
+      "r": 0.52,
+      "fill": "#2b3a6b",
+      "stroke": "#16204a",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": 0,
+      "r": 0.3,
+      "fill": "#4257a0"
+    },
+    {
+      "type": "line",
+      "x1": 0.95,
+      "y1": -0.26,
+      "x2": 0.95,
+      "y2": 0.26,
+      "stroke": "#16204a",
+      "strokeWidth": 0.09,
+      "linecap": "butt"
+    }
+  ],
+  "label": {
+    "text": "IR",
+    "x": 0.5,
+    "y": 0.44,
+    "size": 0.28,
+    "color": "#9fb0c0"
+  }
+}

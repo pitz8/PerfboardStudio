@@ -1,0 +1,87 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "cap-tant-1uf",
+  "name": "Cap 1µF tantalum",
+  "subtitle": "bead, 35 V, polarised",
+  "category": "passive",
+  "tags": [
+    "capacitor",
+    "tantalum",
+    "polarised",
+    "1uf"
+  ],
+  "designator": "C",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.15,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.15,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "path",
+      "d": "M 0.5 -1.5 A 0.62 0.62 0 0 1 0.5 -0.26 Z",
+      "fill": "#d8a63a",
+      "stroke": "#a87c20",
+      "strokeWidth": 0.04
+    },
+    {
+      "type": "path",
+      "d": "M 0.5 -1.5 A 0.62 0.62 0 0 0 0.5 -0.26 Z",
+      "fill": "#e8bb56",
+      "stroke": "#a87c20",
+      "strokeWidth": 0.04
+    },
+    {
+      "type": "text",
+      "x": 0.24,
+      "y": -0.78,
+      "text": "+",
+      "size": 0.34,
+      "color": "#5c4410",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ],
+  "label": {
+    "text": "1µF",
+    "x": 0.5,
+    "y": 0.44,
+    "size": 0.28,
+    "color": "#9fb0c0"
+  }
+}

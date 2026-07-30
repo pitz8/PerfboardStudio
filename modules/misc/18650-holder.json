@@ -1,0 +1,80 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "18650-holder",
+  "name": "18650 holder",
+  "subtitle": "single-cell, PCB mount",
+  "category": "misc",
+  "tags": [
+    "battery",
+    "18650",
+    "lithium",
+    "holder"
+  ],
+  "designator": "BT",
+  "footprint": {
+    "cols": 26,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "+",
+      "number": 2,
+      "type": "power"
+    },
+    {
+      "col": 25,
+      "row": 0,
+      "name": "-",
+      "number": 3,
+      "type": "gnd"
+    },
+    {
+      "col": 25,
+      "row": 7,
+      "name": "-",
+      "number": 4,
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.6,
+    "y": -0.6,
+    "w": 27.2,
+    "h": 9.2,
+    "rx": 0.2,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": 1,
+      "y": 0.6,
+      "w": 24,
+      "h": 6,
+      "fill": "#2f343b",
+      "rx": 2.8,
+      "stroke": "#14171a",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "text",
+      "x": 13,
+      "y": 3.6,
+      "text": "18650",
+      "size": 1.6,
+      "color": "#6b737b",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ]
+}

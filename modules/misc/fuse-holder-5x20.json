@@ -1,0 +1,86 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "fuse-holder-5x20",
+  "name": "Fuse holder 5×20",
+  "subtitle": "PCB clips",
+  "category": "misc",
+  "tags": [
+    "fuse",
+    "protection",
+    "holder"
+  ],
+  "designator": "F",
+  "footprint": {
+    "cols": 9,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 8,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "rect",
+      "x": 0.5,
+      "y": -0.9,
+      "w": 7,
+      "h": 1.8,
+      "fill": "#d8cfae",
+      "rx": 0.85,
+      "stroke": "#a89f7c",
+      "strokeWidth": 0.035,
+      "opacity": 0.85
+    },
+    {
+      "type": "rect",
+      "x": 0.3,
+      "y": -0.7,
+      "w": 1.2,
+      "h": 1.4,
+      "fill": "#b9c0c8",
+      "rx": 0.1,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 6.5,
+      "y": -0.7,
+      "w": 1.2,
+      "h": 1.4,
+      "fill": "#b9c0c8",
+      "rx": 0.1,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "line",
+      "x1": 1.5,
+      "y1": 0,
+      "x2": 6.5,
+      "y2": 0,
+      "stroke": "#8d949c",
+      "strokeWidth": 0.07,
+      "linecap": "round"
+    }
+  ],
+  "label": {
+    "text": "FUSE",
+    "x": 4.0,
+    "y": -1.2,
+    "size": 0.32,
+    "color": "#9fb0c0"
+  }
+}

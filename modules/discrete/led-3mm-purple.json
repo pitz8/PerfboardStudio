@@ -1,0 +1,97 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "led-3mm-purple",
+  "name": "LED 3 mm Purple",
+  "subtitle": "through-hole indicator",
+  "category": "discrete",
+  "tags": [
+    "led",
+    "diode",
+    "purple",
+    "3mm"
+  ],
+  "designator": "D",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "A",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "K",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": 0,
+      "r": 0.36,
+      "fill": "#9d5cd8",
+      "stroke": "#5e3782",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": 0,
+      "r": 0.216,
+      "fill": "#bf95e6"
+    },
+    {
+      "type": "circle",
+      "cx": 0.3992,
+      "cy": -0.1008,
+      "r": 0.072,
+      "fill": "#ffffff",
+      "opacity": 0.75
+    },
+    {
+      "type": "line",
+      "x1": 0.8096,
+      "y1": -0.18,
+      "x2": 0.8096,
+      "y2": 0.18,
+      "stroke": "#5e3782",
+      "strokeWidth": 0.09,
+      "linecap": "butt"
+    }
+  ],
+  "label": {
+    "text": "Purple",
+    "x": 0.5,
+    "y": 0.7,
+    "size": 0.26,
+    "color": "#9fb0c0"
+  }
+}

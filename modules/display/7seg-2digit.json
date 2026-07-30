@@ -1,0 +1,242 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "7seg-2digit",
+  "name": "7-segment, 2 digits",
+  "subtitle": "5241AS, 0.56 in common cathode",
+  "category": "display",
+  "tags": [
+    "7-segment",
+    "led",
+    "digits",
+    "5241as",
+    "display"
+  ],
+  "designator": "DS",
+  "footprint": {
+    "cols": 5,
+    "rows": 7
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 6,
+      "name": "E",
+      "number": 1,
+      "type": "io"
+    },
+    {
+      "col": 1,
+      "row": 6,
+      "name": "D",
+      "number": 2,
+      "type": "io"
+    },
+    {
+      "col": 2,
+      "row": 6,
+      "name": "DP",
+      "number": 3,
+      "type": "io"
+    },
+    {
+      "col": 3,
+      "row": 6,
+      "name": "C",
+      "number": 4,
+      "type": "io"
+    },
+    {
+      "col": 4,
+      "row": 6,
+      "name": "G",
+      "number": 5,
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 0,
+      "name": "CC1",
+      "number": 10,
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "F",
+      "number": 9,
+      "type": "io"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "A",
+      "number": 8,
+      "type": "io"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "CC2",
+      "number": 7,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "B",
+      "number": 6,
+      "type": "io"
+    }
+  ],
+  "body": {
+    "x": -0.9,
+    "y": -0.5,
+    "w": 6.8,
+    "h": 7.0,
+    "rx": 0.1,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.06,
+      "y": 1.1,
+      "w": 2.4,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 2.34,
+      "y": 1.24,
+      "w": 0.28,
+      "h": 1.8,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 2.34,
+      "y": 3.18,
+      "w": 0.28,
+      "h": 1.8,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": -0.06,
+      "y": 4.98,
+      "w": 2.4,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": -0.2,
+      "y": 3.18,
+      "w": 0.28,
+      "h": 1.8,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": -0.2,
+      "y": 1.24,
+      "w": 0.28,
+      "h": 1.8,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": -0.06,
+      "y": 3.04,
+      "w": 2.4,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "circle",
+      "cx": 3.2,
+      "cy": 4.98,
+      "r": 0.2,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "rect",
+      "x": 3.04,
+      "y": 1.1,
+      "w": 2.4,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 5.44,
+      "y": 1.24,
+      "w": 0.28,
+      "h": 1.8,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 5.44,
+      "y": 3.18,
+      "w": 0.28,
+      "h": 1.8,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 3.04,
+      "y": 4.98,
+      "w": 2.4,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 2.9,
+      "y": 3.18,
+      "w": 0.28,
+      "h": 1.8,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 2.9,
+      "y": 1.24,
+      "w": 0.28,
+      "h": 1.8,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 3.04,
+      "y": 3.04,
+      "w": 2.4,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "circle",
+      "cx": 6.3,
+      "cy": 4.98,
+      "r": 0.2,
+      "fill": "#5c1a1a"
+    }
+  ]
+}

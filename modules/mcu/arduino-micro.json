@@ -1,0 +1,307 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "arduino-micro",
+  "name": "Arduino Micro",
+  "subtitle": "ATmega32U4, native USB",
+  "category": "mcu",
+  "tags": [
+    "arduino",
+    "micro",
+    "atmega32u4",
+    "hid",
+    "usb",
+    "board"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 7,
+    "rows": 18
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "D1/TX",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "D0/RX",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "RST",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "D2",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "D3",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "D4",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "D5",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "D6",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 9,
+      "name": "D7",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 10,
+      "name": "D8",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 11,
+      "name": "D9",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 12,
+      "name": "D10",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 13,
+      "name": "D11",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 14,
+      "name": "D12",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 15,
+      "name": "D13",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 16,
+      "name": "3V3",
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 17,
+      "name": "AREF",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "5V",
+      "type": "power"
+    },
+    {
+      "col": 6,
+      "row": 1,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 6,
+      "row": 2,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 6,
+      "row": 3,
+      "name": "VIN",
+      "type": "power"
+    },
+    {
+      "col": 6,
+      "row": 4,
+      "name": "A0",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 5,
+      "name": "A1",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 6,
+      "name": "A2",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 7,
+      "name": "A3",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 8,
+      "name": "A4",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 9,
+      "name": "A5",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 10,
+      "name": "SCK",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 11,
+      "name": "MOSI",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 12,
+      "name": "MISO",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 13,
+      "name": "RST",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 14,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 6,
+      "row": 15,
+      "name": "D14",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 16,
+      "name": "D15",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 17,
+      "name": "D16",
+      "type": "io"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 6.9,
+    "h": 17.9,
+    "rx": 0.18,
+    "fill": "#123a63",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 17.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 5.68,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 17.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.8,
+      "y": 0.5,
+      "w": 4.4,
+      "h": 6.802,
+      "fill": "#9aa2ab",
+      "rx": 0.1,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.58,
+      "y": -0.79,
+      "w": 0.84,
+      "h": 0.44,
+      "fill": "#b9c0c8",
+      "rx": 0.07,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "MICRO",
+    "x": 3,
+    "y": 13.512,
+    "size": 0.36,
+    "color": "#e8eef4"
+  }
+}

@@ -1,0 +1,411 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "7seg-4digit",
+  "name": "7-segment, 4 digits",
+  "subtitle": "3461AS, multiplexed common cathode",
+  "category": "display",
+  "tags": [
+    "7-segment",
+    "led",
+    "digits",
+    "3461as",
+    "multiplexed",
+    "display"
+  ],
+  "designator": "DS",
+  "footprint": {
+    "cols": 6,
+    "rows": 7
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 6,
+      "name": "E",
+      "number": 1,
+      "type": "io"
+    },
+    {
+      "col": 1,
+      "row": 6,
+      "name": "D",
+      "number": 2,
+      "type": "io"
+    },
+    {
+      "col": 2,
+      "row": 6,
+      "name": "DP",
+      "number": 3,
+      "type": "io"
+    },
+    {
+      "col": 3,
+      "row": 6,
+      "name": "C",
+      "number": 4,
+      "type": "io"
+    },
+    {
+      "col": 4,
+      "row": 6,
+      "name": "G",
+      "number": 5,
+      "type": "io"
+    },
+    {
+      "col": 5,
+      "row": 6,
+      "name": "D4",
+      "number": 6,
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 0,
+      "name": "D1",
+      "number": 12,
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "A",
+      "number": 11,
+      "type": "io"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "F",
+      "number": 10,
+      "type": "io"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "D2",
+      "number": 9,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "D3",
+      "number": 8,
+      "type": "gnd"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "B",
+      "number": 7,
+      "type": "io"
+    }
+  ],
+  "body": {
+    "x": -2.9,
+    "y": -0.5,
+    "w": 11.8,
+    "h": 7.0,
+    "rx": 0.1,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -2.16,
+      "y": 1.1,
+      "w": 1.7,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": -0.46,
+      "y": 1.24,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": -0.46,
+      "y": 3.08,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": -2.16,
+      "y": 4.78,
+      "w": 1.7,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": -2.3,
+      "y": 3.08,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": -2.3,
+      "y": 1.24,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": -2.16,
+      "y": 2.94,
+      "w": 1.7,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "circle",
+      "cx": 0.4,
+      "cy": 4.78,
+      "r": 0.2,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "rect",
+      "x": 0.24,
+      "y": 1.1,
+      "w": 1.7,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 1.94,
+      "y": 1.24,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 1.94,
+      "y": 3.08,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 0.24,
+      "y": 4.78,
+      "w": 1.7,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 0.1,
+      "y": 3.08,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 0.1,
+      "y": 1.24,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 0.24,
+      "y": 2.94,
+      "w": 1.7,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "circle",
+      "cx": 2.8,
+      "cy": 4.78,
+      "r": 0.2,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "rect",
+      "x": 3.54,
+      "y": 1.1,
+      "w": 1.7,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 5.24,
+      "y": 1.24,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 5.24,
+      "y": 3.08,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 3.54,
+      "y": 4.78,
+      "w": 1.7,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 3.4,
+      "y": 3.08,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 3.4,
+      "y": 1.24,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 3.54,
+      "y": 2.94,
+      "w": 1.7,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "circle",
+      "cx": 6.1,
+      "cy": 4.78,
+      "r": 0.2,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "rect",
+      "x": 5.94,
+      "y": 1.1,
+      "w": 1.7,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 7.64,
+      "y": 1.24,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 7.64,
+      "y": 3.08,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 5.94,
+      "y": 4.78,
+      "w": 1.7,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 5.8,
+      "y": 3.08,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 5.8,
+      "y": 1.24,
+      "w": 0.28,
+      "h": 1.7,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "rect",
+      "x": 5.94,
+      "y": 2.94,
+      "w": 1.7,
+      "h": 0.28,
+      "fill": "#5c1a1a",
+      "rx": 0.14
+    },
+    {
+      "type": "circle",
+      "cx": 8.5,
+      "cy": 4.78,
+      "r": 0.2,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 2.9,
+      "cy": 2.2,
+      "r": 0.18,
+      "fill": "#5c1a1a"
+    },
+    {
+      "type": "circle",
+      "cx": 2.9,
+      "cy": 3.6,
+      "r": 0.18,
+      "fill": "#5c1a1a"
+    }
+  ]
+}

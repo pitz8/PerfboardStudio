@@ -1,0 +1,182 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "tm1638-module",
+  "name": "TM1638 key + display",
+  "subtitle": "8 digits, 8 keys, 8 LEDs",
+  "category": "display",
+  "tags": [
+    "7-segment",
+    "keypad",
+    "tm1638",
+    "display",
+    "keys",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 20,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "STB",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "CLK",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "DIO",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 19.9,
+    "h": 7.9,
+    "rx": 0.16,
+    "fill": "#12503c",
+    "stroke": "#0a3527"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 4.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 5.52,
+      "y": 3.5,
+      "w": 7.96,
+      "h": 2.686,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 1,
+      "y": 1.4,
+      "w": 17.4,
+      "h": 2.4,
+      "fill": "#14171a",
+      "rx": 0.1,
+      "stroke": "#2a3038",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": 1.8,
+      "cy": 5.6,
+      "r": 0.6,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 4,
+      "cy": 5.6,
+      "r": 0.6,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 6.2,
+      "cy": 5.6,
+      "r": 0.6,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 8.4,
+      "cy": 5.6,
+      "r": 0.6,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 10.6,
+      "cy": 5.6,
+      "r": 0.6,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 12.8,
+      "cy": 5.6,
+      "r": 0.6,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 15,
+      "cy": 5.6,
+      "r": 0.6,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 17.2,
+      "cy": 5.6,
+      "r": 0.6,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.05
+    }
+  ],
+  "label": {
+    "text": "TM1638",
+    "size": 0.55,
+    "color": "#e8eef4",
+    "x": 9.5,
+    "y": 7.15
+  }
+}

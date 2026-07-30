@@ -1,0 +1,190 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "esp32-c6-supermini",
+  "name": "ESP32-C6 SuperMini",
+  "subtitle": "Wi-Fi 6, BLE 5, Zigbee",
+  "category": "mcu",
+  "tags": [
+    "esp32",
+    "c6",
+    "wifi6",
+    "zigbee",
+    "thread",
+    "ble",
+    "espressif",
+    "riscv",
+    "board"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 7,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "5V",
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "3V3",
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "GPIO0",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "GPIO1",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "GPIO2",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "GPIO3",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "GPIO4",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "GPIO5",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 1,
+      "name": "GPIO6",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 2,
+      "name": "GPIO7",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 3,
+      "name": "GPIO8",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 4,
+      "name": "GPIO9",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 5,
+      "name": "GPIO21",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 6,
+      "name": "GPIO22",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 7,
+      "name": "GPIO23",
+      "type": "io"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 6.9,
+    "h": 7.9,
+    "rx": 0.18,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 7.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 5.68,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 7.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.8,
+      "y": 0.5,
+      "w": 4.4,
+      "h": 3.002,
+      "fill": "#9aa2ab",
+      "rx": 0.1,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.58,
+      "y": -0.79,
+      "w": 0.84,
+      "h": 0.44,
+      "fill": "#b9c0c8",
+      "rx": 0.07,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "ESP32-C6",
+    "x": 3,
+    "y": 5.712,
+    "size": 0.36,
+    "color": "#e8eef4"
+  }
+}

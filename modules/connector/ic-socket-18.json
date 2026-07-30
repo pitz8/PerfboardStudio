@@ -1,0 +1,356 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "ic-socket-18",
+  "name": "IC socket DIP-18",
+  "subtitle": "0.3 in, 18 contacts",
+  "category": "connector",
+  "tags": [
+    "socket",
+    "dip",
+    "dip-18",
+    "ic",
+    "through-hole"
+  ],
+  "designator": "XU",
+  "footprint": {
+    "cols": 4,
+    "rows": 9
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "18",
+      "number": 18,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 1,
+      "name": "17",
+      "number": 17,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "3",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 2,
+      "name": "16",
+      "number": 16,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "4",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 3,
+      "name": "15",
+      "number": 15,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "5",
+      "number": 5,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 4,
+      "name": "14",
+      "number": 14,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "6",
+      "number": 6,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 5,
+      "name": "13",
+      "number": 13,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "7",
+      "number": 7,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 6,
+      "name": "12",
+      "number": 12,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "8",
+      "number": 8,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 7,
+      "name": "11",
+      "number": 11,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "9",
+      "number": 9,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 8,
+      "name": "10",
+      "number": 10,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.42,
+      "y": -0.42,
+      "w": 3.84,
+      "h": 8.84,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0e1116",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.3,
+      "y": -0.24,
+      "w": 2.4,
+      "h": 8.48,
+      "fill": "#0c0f13",
+      "rx": 0.06
+    },
+    {
+      "type": "rect",
+      "x": -0.19,
+      "y": -0.19,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": 2.81,
+      "y": -0.19,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": -0.19,
+      "y": 0.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": 2.81,
+      "y": 0.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": -0.19,
+      "y": 1.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": 2.81,
+      "y": 1.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": -0.19,
+      "y": 2.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": 2.81,
+      "y": 2.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": -0.19,
+      "y": 3.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": 2.81,
+      "y": 3.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": -0.19,
+      "y": 4.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": 2.81,
+      "y": 4.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": -0.19,
+      "y": 5.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": 2.81,
+      "y": 5.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": -0.19,
+      "y": 6.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": 2.81,
+      "y": 6.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": -0.19,
+      "y": 7.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "rect",
+      "x": 2.81,
+      "y": 7.81,
+      "w": 0.38,
+      "h": 0.38,
+      "fill": "#14171a",
+      "stroke": "#c9a227",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 1.5,
+      "cy": -0.42,
+      "r": 0.2,
+      "fill": "#3a4048"
+    }
+  ]
+}

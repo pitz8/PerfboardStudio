@@ -1,0 +1,257 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "teensy-40",
+  "name": "Teensy 4.0",
+  "subtitle": "600 MHz Cortex-M7",
+  "category": "mcu",
+  "tags": [
+    "teensy",
+    "pjrc",
+    "imxrt1062",
+    "board"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 7,
+    "rows": 14
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "D0/RX1",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "D1/TX1",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "D2",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "D3",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "D4",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "D5",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "D6",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "D7",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 9,
+      "name": "D8",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 10,
+      "name": "D9",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 11,
+      "name": "D10",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 12,
+      "name": "D11",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 13,
+      "name": "D12",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "VIN",
+      "type": "power"
+    },
+    {
+      "col": 6,
+      "row": 1,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 6,
+      "row": 2,
+      "name": "3V3",
+      "type": "power"
+    },
+    {
+      "col": 6,
+      "row": 3,
+      "name": "A9",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 4,
+      "name": "A8",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 5,
+      "name": "A7",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 6,
+      "name": "A6",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 7,
+      "name": "A5",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 8,
+      "name": "A4",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 9,
+      "name": "A3",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 10,
+      "name": "A2",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 11,
+      "name": "A1",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 12,
+      "name": "A0",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 13,
+      "name": "D13",
+      "type": "io"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 6.9,
+    "h": 13.9,
+    "rx": 0.18,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 13.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 5.68,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 13.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.8,
+      "y": 0.5,
+      "w": 4.4,
+      "h": 5.282,
+      "fill": "#9aa2ab",
+      "rx": 0.1,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.58,
+      "y": -0.79,
+      "w": 0.84,
+      "h": 0.44,
+      "fill": "#b9c0c8",
+      "rx": 0.07,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "TEENSY 4.0",
+    "x": 3,
+    "y": 10.392,
+    "size": 0.36,
+    "color": "#e8eef4"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "i2c-lcd-backpack",
+  "name": "I2C LCD backpack",
+  "subtitle": "PCF8574 adapter",
+  "category": "display",
+  "tags": [
+    "i2c",
+    "lcd",
+    "pcf8574",
+    "backpack",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 6,
+    "rows": 5
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "SDA",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "SCL",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 5.9,
+    "h": 4.9,
+    "rx": 0.16,
+    "fill": "#12503c",
+    "stroke": "#0a3527"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 3.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.32,
+      "y": 2,
+      "w": 2.36,
+      "h": 1.666,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "I2C LCD",
+    "size": 0.34,
+    "color": "#e8eef4",
+    "x": 2.5,
+    "y": 4.15
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "ldr-5mm",
+  "name": "LDR 5 mm",
+  "subtitle": "photoresistor GL5528",
+  "category": "sensor",
+  "tags": [
+    "ldr",
+    "light",
+    "photoresistor",
+    "analog"
+  ],
+  "designator": "R",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.1,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.1,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": -0.4,
+      "r": 0.52,
+      "fill": "#e8b96a",
+      "stroke": "#a8813c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "path",
+      "d": "M -0.02 -0.4 m 0.12 0 q 0.16 -0.22 0.32 0 q 0.16 0.22 0.32 0 q 0.16 -0.22 0.32 0",
+      "stroke": "#5c4520",
+      "strokeWidth": 0.07
+    }
+  ],
+  "label": {
+    "text": "LDR",
+    "x": 0.5,
+    "y": 0.42,
+    "size": 0.28,
+    "color": "#9fb0c0"
+  }
+}

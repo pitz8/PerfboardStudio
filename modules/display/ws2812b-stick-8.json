@@ -1,0 +1,175 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "ws2812b-stick-8",
+  "name": "WS2812B stick, 8 LED",
+  "subtitle": "addressable RGB bar",
+  "category": "display",
+  "tags": [
+    "ws2812b",
+    "neopixel",
+    "rgb",
+    "addressable",
+    "strip",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 20,
+    "rows": 4
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "5V",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "DIN",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 19.9,
+    "h": 3.9,
+    "rx": 0.16,
+    "fill": "#1a1d22",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 2.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 5.52,
+      "y": 1.5,
+      "w": 7.96,
+      "h": 1.326,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 2,
+      "y": 1.2,
+      "w": 1.5,
+      "h": 1.5,
+      "fill": "#f0f2f5",
+      "rx": 0.1,
+      "stroke": "#b8bec6",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 4.2,
+      "y": 1.2,
+      "w": 1.5,
+      "h": 1.5,
+      "fill": "#f0f2f5",
+      "rx": 0.1,
+      "stroke": "#b8bec6",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 6.4,
+      "y": 1.2,
+      "w": 1.5,
+      "h": 1.5,
+      "fill": "#f0f2f5",
+      "rx": 0.1,
+      "stroke": "#b8bec6",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 8.6,
+      "y": 1.2,
+      "w": 1.5,
+      "h": 1.5,
+      "fill": "#f0f2f5",
+      "rx": 0.1,
+      "stroke": "#b8bec6",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 10.8,
+      "y": 1.2,
+      "w": 1.5,
+      "h": 1.5,
+      "fill": "#f0f2f5",
+      "rx": 0.1,
+      "stroke": "#b8bec6",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 13,
+      "y": 1.2,
+      "w": 1.5,
+      "h": 1.5,
+      "fill": "#f0f2f5",
+      "rx": 0.1,
+      "stroke": "#b8bec6",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 15.2,
+      "y": 1.2,
+      "w": 1.5,
+      "h": 1.5,
+      "fill": "#f0f2f5",
+      "rx": 0.1,
+      "stroke": "#b8bec6",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 17.4,
+      "y": 1.2,
+      "w": 1.5,
+      "h": 1.5,
+      "fill": "#f0f2f5",
+      "rx": 0.1,
+      "stroke": "#b8bec6",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "8 x WS2812B",
+    "size": 0.45,
+    "color": "#e8eef4",
+    "x": 9.5,
+    "y": 3.15
+  }
+}

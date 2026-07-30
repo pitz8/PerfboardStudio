@@ -1,0 +1,330 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "rpi-pico-2",
+  "name": "Raspberry Pi Pico 2",
+  "subtitle": "RP2350, dual Cortex-M33",
+  "category": "mcu",
+  "tags": [
+    "raspberry",
+    "rp2350",
+    "pico",
+    "pico2",
+    "board"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 8,
+    "rows": 20
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GP0",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "GP1",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "GP2",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "GP3",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "GP4",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "GP5",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "GP6",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 9,
+      "name": "GP7",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 10,
+      "name": "GP8",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 11,
+      "name": "GP9",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 12,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 13,
+      "name": "GP10",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 14,
+      "name": "GP11",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 15,
+      "name": "GP12",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 16,
+      "name": "GP13",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 17,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 18,
+      "name": "GP14",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 19,
+      "name": "GP15",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "name": "VBUS",
+      "type": "power"
+    },
+    {
+      "col": 7,
+      "row": 1,
+      "name": "VSYS",
+      "type": "power"
+    },
+    {
+      "col": 7,
+      "row": 2,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 7,
+      "row": 3,
+      "name": "3V3EN",
+      "type": "power"
+    },
+    {
+      "col": 7,
+      "row": 4,
+      "name": "3V3",
+      "type": "power"
+    },
+    {
+      "col": 7,
+      "row": 5,
+      "name": "ADCREF",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 6,
+      "name": "GP28",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 7,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 7,
+      "row": 8,
+      "name": "GP27",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 9,
+      "name": "GP26",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 10,
+      "name": "RUN",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 11,
+      "name": "GP22",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 12,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 7,
+      "row": 13,
+      "name": "GP21",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 14,
+      "name": "GP20",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 15,
+      "name": "GP19",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 16,
+      "name": "GP18",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 17,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 7,
+      "row": 18,
+      "name": "GP17",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 19,
+      "name": "GP16",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 7.9,
+    "h": 19.9,
+    "rx": 0.18,
+    "fill": "#1a5c3a",
+    "stroke": "#0d3a23"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 19.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 6.68,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 19.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.8,
+      "y": 0.5,
+      "w": 5.4,
+      "h": 7.562,
+      "fill": "#9aa2ab",
+      "rx": 0.1,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 3.08,
+      "y": -0.79,
+      "w": 0.84,
+      "h": 0.44,
+      "fill": "#b9c0c8",
+      "rx": 0.07,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "PICO 2",
+    "x": 3.5,
+    "y": 15.072,
+    "size": 0.36,
+    "color": "#e8eef4"
+  }
+}

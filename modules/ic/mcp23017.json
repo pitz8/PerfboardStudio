@@ -1,0 +1,530 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "mcp23017",
+  "name": "MCP23017",
+  "subtitle": "I2C 16-bit I/O expander",
+  "category": "ic",
+  "tags": [
+    "i2c",
+    "gpio",
+    "expander",
+    "dip-28",
+    "through-hole"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 4,
+    "rows": 14
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GPB0",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "GPB1",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "GPB2",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "GPB3",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "GPB4",
+      "number": 5,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "GPB5",
+      "number": 6,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "GPB6",
+      "number": 7,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "GPB7",
+      "number": 8,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "VDD",
+      "number": 9,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 9,
+      "name": "VSS",
+      "number": 10,
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 10,
+      "name": "NC",
+      "number": 11,
+      "type": "nc"
+    },
+    {
+      "col": 0,
+      "row": 11,
+      "name": "SCL",
+      "number": 12,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 12,
+      "name": "SDA",
+      "number": 13,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 13,
+      "name": "NC",
+      "number": 14,
+      "type": "nc"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "GPA7",
+      "number": 28,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 1,
+      "name": "GPA6",
+      "number": 27,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 2,
+      "name": "GPA5",
+      "number": 26,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 3,
+      "name": "GPA4",
+      "number": 25,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 4,
+      "name": "GPA3",
+      "number": 24,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 5,
+      "name": "GPA2",
+      "number": 23,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 6,
+      "name": "GPA1",
+      "number": 22,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 7,
+      "name": "GPA0",
+      "number": 21,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 8,
+      "name": "INTA",
+      "number": 20,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 9,
+      "name": "INTB",
+      "number": 19,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 10,
+      "name": "RST",
+      "number": 18,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 11,
+      "name": "A2",
+      "number": 17,
+      "type": "analog"
+    },
+    {
+      "col": 3,
+      "row": 12,
+      "name": "A1",
+      "number": 16,
+      "type": "analog"
+    },
+    {
+      "col": 3,
+      "row": 13,
+      "name": "A0",
+      "number": 15,
+      "type": "analog"
+    }
+  ],
+  "body": {
+    "x": 0.25,
+    "y": -0.36,
+    "w": 2.5,
+    "h": 13.72,
+    "rx": 0.1,
+    "fill": "#1f242b",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.25,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 0,
+      "x2": 2.75,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 1,
+      "x2": 0.25,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 1,
+      "x2": 2.75,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 2,
+      "x2": 0.25,
+      "y2": 2,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 2,
+      "x2": 2.75,
+      "y2": 2,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 3,
+      "x2": 0.25,
+      "y2": 3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 3,
+      "x2": 2.75,
+      "y2": 3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 4,
+      "x2": 0.25,
+      "y2": 4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 4,
+      "x2": 2.75,
+      "y2": 4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 5,
+      "x2": 0.25,
+      "y2": 5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 5,
+      "x2": 2.75,
+      "y2": 5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 6,
+      "x2": 0.25,
+      "y2": 6,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 6,
+      "x2": 2.75,
+      "y2": 6,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 7,
+      "x2": 0.25,
+      "y2": 7,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 7,
+      "x2": 2.75,
+      "y2": 7,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 8,
+      "x2": 0.25,
+      "y2": 8,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 8,
+      "x2": 2.75,
+      "y2": 8,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 9,
+      "x2": 0.25,
+      "y2": 9,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 9,
+      "x2": 2.75,
+      "y2": 9,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 10,
+      "x2": 0.25,
+      "y2": 10,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 10,
+      "x2": 2.75,
+      "y2": 10,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 11,
+      "x2": 0.25,
+      "y2": 11,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 11,
+      "x2": 2.75,
+      "y2": 11,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 12,
+      "x2": 0.25,
+      "y2": 12,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 12,
+      "x2": 2.75,
+      "y2": 12,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 13,
+      "x2": 0.25,
+      "y2": 13,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 13,
+      "x2": 2.75,
+      "y2": 13,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 1.5,
+      "cy": -0.34,
+      "r": 0.19,
+      "fill": "#0b0e12"
+    },
+    {
+      "type": "circle",
+      "cx": 0.53,
+      "cy": 0,
+      "r": 0.09,
+      "fill": "#c9d2dc"
+    }
+  ],
+  "label": {
+    "text": "MCP23017",
+    "x": 1.5,
+    "y": 6.5,
+    "size": 0.42,
+    "color": "#c9d2dc",
+    "rotate": 90
+  }
+}

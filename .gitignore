@@ -1,0 +1,33 @@
+# dependencies (there are none, but keep the guard)
+node_modules/
+
+# build / deploy
+.vercel/
+dist/
+.cache/
+
+# editors
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# python (the catalog tooling)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# local designs — keep your own work out of the repo
+*.pbs.json
+!examples/*.pbs.json
+
+# logs
+*.log
+npm-debug.log*

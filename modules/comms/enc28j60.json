@@ -1,0 +1,116 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "enc28j60",
+  "name": "ENC28J60",
+  "subtitle": "10 Mbit Ethernet, SPI",
+  "category": "comms",
+  "tags": [
+    "ethernet",
+    "enc28j60",
+    "spi",
+    "network",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 14,
+    "rows": 16
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "MOSI",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "MISO",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "SCK",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "CS",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "RST",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "name": "INT",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 13.9,
+    "h": 15.9,
+    "rx": 0.16,
+    "fill": "#12503c",
+    "stroke": "#0a3527"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 7.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 3.72,
+      "y": 7.5,
+      "w": 5.56,
+      "h": 5.406,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "ENC28J60",
+    "size": 0.55,
+    "color": "#e8eef4",
+    "x": 6.5,
+    "y": 15.15
+  }
+}

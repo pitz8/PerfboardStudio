@@ -1,0 +1,152 @@
+{
+  "format": "perfboard-studio",
+  "version": 1,
+  "generator": "Perfboard Studio",
+  "savedAt": "2026-07-30T09:00:00.000Z",
+  "name": "Blink and button",
+  "board": {
+    "cols": 18,
+    "rows": 24,
+    "pitchMm": 2.54,
+    "colorId": "phenolic"
+  },
+  "modules": [
+    {
+      "uid": "m-power",
+      "moduleId": "header-1x2-male",
+      "col": 1,
+      "row": 1,
+      "rotation": 0,
+      "side": "front",
+      "label": "J1"
+    },
+    {
+      "uid": "m-mcu",
+      "moduleId": "esp32-c3-supermini",
+      "col": 5,
+      "row": 2,
+      "rotation": 0,
+      "side": "front",
+      "label": "U1"
+    },
+    {
+      "uid": "m-led",
+      "moduleId": "led-5mm-red",
+      "col": 3,
+      "row": 14,
+      "rotation": 0,
+      "side": "front",
+      "label": "D1"
+    },
+    {
+      "uid": "m-res",
+      "moduleId": "resistor-330r",
+      "col": 3,
+      "row": 16,
+      "rotation": 0,
+      "side": "front",
+      "label": "R1"
+    },
+    {
+      "uid": "m-btn",
+      "moduleId": "tact-switch-6mm",
+      "col": 13,
+      "row": 14,
+      "rotation": 0,
+      "side": "front",
+      "label": "SW1"
+    },
+    {
+      "uid": "m-decoup",
+      "moduleId": "cap-cer-100nf",
+      "col": 8,
+      "row": 12,
+      "rotation": 0,
+      "side": "solder",
+      "label": "C1"
+    }
+  ],
+  "wires": [
+    {
+      "uid": "w-5v",
+      "points": [[1, 1], [5, 1], [5, 2]],
+      "color": "#e02b25",
+      "gauge": "normal",
+      "side": "solder",
+      "label": null
+    },
+    {
+      "uid": "w-gnd-in",
+      "points": [[1, 2], [2, 2], [2, 3], [5, 3]],
+      "color": "#1b1f25",
+      "gauge": "normal",
+      "side": "solder",
+      "label": null
+    },
+    {
+      "uid": "w-gnd-rail",
+      "points": [[2, 3], [2, 20], [8, 20]],
+      "color": "#1b1f25",
+      "gauge": "thick",
+      "side": "solder",
+      "label": null
+    },
+    {
+      "uid": "w-led-drive",
+      "points": [[5, 7], [3, 7], [3, 14]],
+      "color": "#2b7fe0",
+      "gauge": "normal",
+      "side": "solder",
+      "label": null
+    },
+    {
+      "uid": "w-led-res",
+      "points": [[4, 14], [4, 16], [3, 16]],
+      "color": "#e8c72c",
+      "gauge": "normal",
+      "side": "solder",
+      "label": null
+    },
+    {
+      "uid": "w-res-gnd",
+      "points": [[6, 16], [6, 20], [8, 20]],
+      "color": "#1b1f25",
+      "gauge": "normal",
+      "side": "solder",
+      "label": null
+    },
+    {
+      "uid": "w-btn-sig",
+      "points": [[11, 4], [13, 4], [13, 14]],
+      "color": "#2fbf4e",
+      "gauge": "normal",
+      "side": "solder",
+      "label": null
+    },
+    {
+      "uid": "w-btn-gnd",
+      "points": [[15, 15], [15, 20], [8, 20]],
+      "color": "#1b1f25",
+      "gauge": "normal",
+      "side": "solder",
+      "label": null
+    },
+    {
+      "uid": "w-cap-vcc",
+      "points": [[8, 12], [8, 4], [5, 4]],
+      "color": "#e88227",
+      "gauge": "thin",
+      "side": "solder",
+      "label": null
+    },
+    {
+      "uid": "w-cap-gnd",
+      "points": [[9, 12], [9, 20], [8, 20]],
+      "color": "#1b1f25",
+      "gauge": "thin",
+      "side": "solder",
+      "label": null
+    }
+  ],
+  "moduleDefs": {}
+}

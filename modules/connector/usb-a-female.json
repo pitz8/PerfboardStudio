@@ -1,0 +1,113 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "usb-a-female",
+  "name": "USB-A female",
+  "subtitle": "host / power socket",
+  "category": "connector",
+  "tags": [
+    "usb",
+    "usb-a",
+    "host",
+    "socket",
+    "power",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 6,
+    "rows": 6
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VBUS",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "DM",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "DP",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 5.9,
+    "h": 5.9,
+    "rx": 0.16,
+    "fill": "#9aa2ab",
+    "stroke": "#6f767e"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 3.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.32,
+      "y": 2.5,
+      "w": 2.36,
+      "h": 2.006,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 0.6,
+      "y": 1.8,
+      "w": 3.8,
+      "h": 3.2,
+      "fill": "#c9ced6",
+      "rx": 0.08,
+      "stroke": "#8d949c",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.1,
+      "y": 2.4,
+      "w": 2.8,
+      "h": 1.2,
+      "fill": "#e9edf1",
+      "rx": 0.04
+    }
+  ],
+  "label": {
+    "text": "USB-A",
+    "size": 0.34,
+    "color": "#e8eef4",
+    "x": 2.5,
+    "y": 5.15
+  }
+}

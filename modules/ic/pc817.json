@@ -1,0 +1,121 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "pc817",
+  "name": "PC817",
+  "subtitle": "Optocoupler",
+  "category": "ic",
+  "tags": [
+    "optocoupler",
+    "isolation",
+    "dip-4",
+    "through-hole"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 4,
+    "rows": 2
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "A",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "K",
+      "number": 2,
+      "type": "gnd"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "C",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 1,
+      "name": "E",
+      "number": 3,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": 0.25,
+    "y": -0.36,
+    "w": 2.5,
+    "h": 1.72,
+    "rx": 0.1,
+    "fill": "#1f242b",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.25,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 0,
+      "x2": 2.75,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 1,
+      "x2": 0.25,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 1,
+      "x2": 2.75,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 1.5,
+      "cy": -0.34,
+      "r": 0.19,
+      "fill": "#0b0e12"
+    },
+    {
+      "type": "circle",
+      "cx": 0.53,
+      "cy": 0,
+      "r": 0.09,
+      "fill": "#c9d2dc"
+    }
+  ],
+  "label": {
+    "text": "817",
+    "x": 1.5,
+    "y": 0.5,
+    "size": 0.42,
+    "color": "#c9d2dc",
+    "rotate": 90
+  }
+}

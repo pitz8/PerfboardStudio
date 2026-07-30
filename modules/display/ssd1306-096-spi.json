@@ -1,0 +1,121 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "ssd1306-096-spi",
+  "name": "OLED 0.96\" SPI",
+  "subtitle": "SSD1306, 7-pin",
+  "category": "display",
+  "tags": [
+    "oled",
+    "ssd1306",
+    "spi",
+    "display",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 11,
+    "rows": 10
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "D0/SCK",
+      "type": "io"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "D1/MOSI",
+      "type": "io"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "RES",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "DC",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "CS",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 10.9,
+    "h": 9.9,
+    "rx": 0.16,
+    "fill": "#123a63",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 6.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.82,
+      "y": 4.5,
+      "w": 4.36,
+      "h": 3.366,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 1,
+      "y": 2.2,
+      "w": 8,
+      "h": 5,
+      "fill": "#0a0d12",
+      "rx": 0.12,
+      "stroke": "#2a3038",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "OLED SPI",
+    "size": 0.45,
+    "color": "#e8eef4",
+    "x": 5,
+    "y": 9.15
+  }
+}

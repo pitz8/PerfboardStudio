@@ -1,0 +1,83 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "relay-srd-05vdc",
+  "name": "Relay SRD-05VDC",
+  "subtitle": "5 V SPDT, 10 A",
+  "category": "connector",
+  "tags": [
+    "relay",
+    "spdt",
+    "5v",
+    "songle",
+    "switch"
+  ],
+  "designator": "K",
+  "footprint": {
+    "cols": 5,
+    "rows": 4
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "COIL+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "COIL-",
+      "number": 2,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "NC",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 1,
+      "name": "COM",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 3,
+      "name": "NO",
+      "number": 5,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.5,
+    "y": -0.5,
+    "w": 6.0,
+    "h": 4.6,
+    "rx": 0.1,
+    "fill": "#1c4f96",
+    "stroke": "#0f3468"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.35,
+      "y": -0.35,
+      "w": 5.7,
+      "h": 4.3,
+      "fill": "#2359a8",
+      "rx": 0.08
+    }
+  ],
+  "label": {
+    "text": "SRD-05VDC",
+    "x": 2.5,
+    "y": 1.7,
+    "size": 0.42,
+    "color": "#e8eef4"
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "arduino-pro-mini",
+  "name": "Arduino Pro Mini",
+  "subtitle": "ATmega328P, 5 V / 16 MHz",
+  "category": "mcu",
+  "tags": [
+    "arduino",
+    "pro mini",
+    "atmega328p",
+    "avr",
+    "board"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 7,
+    "rows": 12
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "TXO",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "RXI",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "RST",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "D2",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "D3",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "D4",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "D5",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "D6",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 9,
+      "name": "D7",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 10,
+      "name": "D8",
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 11,
+      "name": "D9",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "RAW",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 1,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 6,
+      "row": 2,
+      "name": "RST",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 3,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 6,
+      "row": 4,
+      "name": "A3",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 5,
+      "name": "A2",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 6,
+      "name": "A1",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 7,
+      "name": "A0",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 8,
+      "name": "D13",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 9,
+      "name": "D12",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 10,
+      "name": "D11",
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 11,
+      "name": "D10",
+      "type": "io"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 6.9,
+    "h": 11.9,
+    "rx": 0.18,
+    "fill": "#123a63",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 11.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 5.68,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 11.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.8,
+      "y": 0.5,
+      "w": 4.4,
+      "h": 4.522,
+      "fill": "#9aa2ab",
+      "rx": 0.1,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "PRO MINI",
+    "x": 3,
+    "y": 8.832,
+    "size": 0.36,
+    "color": "#e8eef4"
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "pcf8574",
+  "name": "PCF8574",
+  "subtitle": "I2C 8-bit I/O expander",
+  "category": "ic",
+  "tags": [
+    "i2c",
+    "gpio",
+    "expander",
+    "dip-16",
+    "through-hole"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 4,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "A0",
+      "number": 1,
+      "type": "analog"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "A1",
+      "number": 2,
+      "type": "analog"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "A2",
+      "number": 3,
+      "type": "analog"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "P0",
+      "number": 4,
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "P1",
+      "number": 5,
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "P2",
+      "number": 6,
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "P3",
+      "number": 7,
+      "type": "io"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "GND",
+      "number": 8,
+      "type": "gnd"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "VDD",
+      "number": 16,
+      "type": "power"
+    },
+    {
+      "col": 3,
+      "row": 1,
+      "name": "SDA",
+      "number": 15,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 2,
+      "name": "SCL",
+      "number": 14,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 3,
+      "name": "INT",
+      "number": 13,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 4,
+      "name": "P7",
+      "number": 12,
+      "type": "io"
+    },
+    {
+      "col": 3,
+      "row": 5,
+      "name": "P6",
+      "number": 11,
+      "type": "io"
+    },
+    {
+      "col": 3,
+      "row": 6,
+      "name": "P5",
+      "number": 10,
+      "type": "io"
+    },
+    {
+      "col": 3,
+      "row": 7,
+      "name": "P4",
+      "number": 9,
+      "type": "io"
+    }
+  ],
+  "body": {
+    "x": 0.25,
+    "y": -0.36,
+    "w": 2.5,
+    "h": 7.72,
+    "rx": 0.1,
+    "fill": "#1f242b",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.25,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 0,
+      "x2": 2.75,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 1,
+      "x2": 0.25,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 1,
+      "x2": 2.75,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 2,
+      "x2": 0.25,
+      "y2": 2,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 2,
+      "x2": 2.75,
+      "y2": 2,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 3,
+      "x2": 0.25,
+      "y2": 3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 3,
+      "x2": 2.75,
+      "y2": 3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 4,
+      "x2": 0.25,
+      "y2": 4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 4,
+      "x2": 2.75,
+      "y2": 4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 5,
+      "x2": 0.25,
+      "y2": 5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 5,
+      "x2": 2.75,
+      "y2": 5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 6,
+      "x2": 0.25,
+      "y2": 6,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 6,
+      "x2": 2.75,
+      "y2": 6,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 7,
+      "x2": 0.25,
+      "y2": 7,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 7,
+      "x2": 2.75,
+      "y2": 7,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 1.5,
+      "cy": -0.34,
+      "r": 0.19,
+      "fill": "#0b0e12"
+    },
+    {
+      "type": "circle",
+      "cx": 0.53,
+      "cy": 0,
+      "r": 0.09,
+      "fill": "#c9d2dc"
+    }
+  ],
+  "label": {
+    "text": "PCF8574",
+    "x": 1.5,
+    "y": 3.5,
+    "size": 0.42,
+    "color": "#c9d2dc",
+    "rotate": 90
+  }
+}

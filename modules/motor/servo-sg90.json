@@ -1,0 +1,117 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "servo-sg90",
+  "name": "Servo SG90",
+  "subtitle": "9 g micro servo, 3-wire",
+  "category": "motor",
+  "tags": [
+    "servo",
+    "sg90",
+    "rc",
+    "pwm",
+    "micro"
+  ],
+  "designator": "M",
+  "footprint": {
+    "cols": 3,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GND",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "VCC",
+      "number": 2,
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "SIG",
+      "number": 3,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.5,
+    "y": -9.0,
+    "w": 4.6,
+    "h": 8.4,
+    "rx": 0.14,
+    "fill": "#2f6bb5",
+    "stroke": "#1c4478"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -2.2,
+      "y": -7.4,
+      "w": 8.4,
+      "h": 1.4,
+      "fill": "#2f6bb5",
+      "rx": 0.1,
+      "stroke": "#1c4478",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": 1.2,
+      "cy": -8.2,
+      "r": 1.4,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.06
+    },
+    {
+      "type": "circle",
+      "cx": 1.2,
+      "cy": -8.2,
+      "r": 0.5,
+      "fill": "#c9ced6"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0,
+      "y2": -0.6,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.12,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 1,
+      "y2": -0.6,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.12,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 2,
+      "y2": -0.6,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.12,
+      "linecap": "round"
+    }
+  ],
+  "label": {
+    "text": "SG90",
+    "x": 1.8,
+    "y": -3.4,
+    "size": 0.5,
+    "color": "#e8eef4"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "bts7960-module",
+  "name": "BTS7960 module",
+  "subtitle": "half-bridge, 43 A",
+  "category": "motor",
+  "tags": [
+    "h-bridge",
+    "high current",
+    "bts7960",
+    "driver",
+    "43a",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 20,
+    "rows": 16
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "RPWM",
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "LPWM",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "R_EN",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "L_EN",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "R_IS",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "L_IS",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 19.9,
+    "h": 15.9,
+    "rx": 0.16,
+    "fill": "#6b1622",
+    "stroke": "#4a0f18"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 7.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 5.52,
+      "y": 7.5,
+      "w": 7.96,
+      "h": 5.406,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "BTS7960",
+    "size": 0.7,
+    "color": "#e8eef4",
+    "x": 9.5,
+    "y": 15.15
+  }
+}

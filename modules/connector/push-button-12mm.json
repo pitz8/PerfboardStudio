@@ -1,0 +1,77 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "push-button-12mm",
+  "name": "Push button 12 mm",
+  "subtitle": "panel, 4-pin",
+  "category": "connector",
+  "tags": [
+    "switch",
+    "button",
+    "panel",
+    "12mm"
+  ],
+  "designator": "SW",
+  "footprint": {
+    "cols": 5,
+    "rows": 3
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1A",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "2A",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "1B",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 2,
+      "name": "2B",
+      "number": 4,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.4,
+    "y": -0.4,
+    "w": 4.8,
+    "h": 2.8,
+    "rx": 0.1,
+    "fill": "#23272e",
+    "stroke": "#0e1116"
+  },
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 2,
+      "cy": 1,
+      "r": 1.45,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.06
+    },
+    {
+      "type": "circle",
+      "cx": 2,
+      "cy": 1,
+      "r": 1.05,
+      "fill": "#d84040",
+      "stroke": "#8f2020",
+      "strokeWidth": 0.05
+    }
+  ]
+}

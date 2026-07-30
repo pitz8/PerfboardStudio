@@ -1,0 +1,88 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "zener-3v3",
+  "name": "Zener 3V3",
+  "subtitle": "500 mW BZX55",
+  "category": "discrete",
+  "tags": [
+    "zener",
+    "reference",
+    "clamp",
+    "diode",
+    "axial"
+  ],
+  "designator": "D",
+  "footprint": {
+    "cols": 3,
+    "rows": 1
+  },
+  "resize": {
+    "axis": "cols",
+    "min": 2,
+    "max": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "A",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "K",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.66,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1.34,
+      "y1": 0,
+      "x2": 2,
+      "y2": 0,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": 0.62,
+      "y": -0.21,
+      "w": 0.76,
+      "h": 0.42,
+      "fill": "#2f4a6b",
+      "rx": 0.08,
+      "stroke": "#1c2c40",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.16,
+      "y": -0.19,
+      "w": 0.12,
+      "h": 0.38,
+      "fill": "#111417"
+    }
+  ],
+  "label": {
+    "text": "Zener",
+    "x": 1,
+    "y": -0.5,
+    "size": 0.26,
+    "color": "#9fb0c0"
+  }
+}

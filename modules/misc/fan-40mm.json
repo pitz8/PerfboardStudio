@@ -1,0 +1,100 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "fan-40mm",
+  "name": "Fan 40 mm",
+  "subtitle": "12 V DC, 2-wire",
+  "category": "misc",
+  "tags": [
+    "fan",
+    "cooling",
+    "40mm",
+    "12v",
+    "airflow"
+  ],
+  "designator": "FAN",
+  "footprint": {
+    "cols": 16,
+    "rows": 16
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 15,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.5,
+    "y": -0.5,
+    "w": 16.0,
+    "h": 16.0,
+    "rx": 0.6,
+    "fill": "#22262c",
+    "stroke": "#0e1116"
+  },
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 7.5,
+      "cy": 7.5,
+      "r": 7.2,
+      "fill": "#1a1d22",
+      "stroke": "#3a4048",
+      "strokeWidth": 0.1
+    },
+    {
+      "type": "circle",
+      "cx": 7.5,
+      "cy": 7.5,
+      "r": 2.2,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.08
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": 1,
+      "r": 0.75,
+      "fill": "none",
+      "stroke": "#5c6269",
+      "strokeWidth": 0.14
+    },
+    {
+      "type": "circle",
+      "cx": 14,
+      "cy": 1,
+      "r": 0.75,
+      "fill": "none",
+      "stroke": "#5c6269",
+      "strokeWidth": 0.14
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": 14,
+      "r": 0.75,
+      "fill": "none",
+      "stroke": "#5c6269",
+      "strokeWidth": 0.14
+    },
+    {
+      "type": "circle",
+      "cx": 14,
+      "cy": 14,
+      "r": 0.75,
+      "fill": "none",
+      "stroke": "#5c6269",
+      "strokeWidth": 0.14
+    }
+  ]
+}

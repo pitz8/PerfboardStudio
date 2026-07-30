@@ -1,0 +1,463 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "dip-switch-8p",
+  "name": "DIP switch 8-way",
+  "subtitle": "16-pin, 0.3 in",
+  "category": "connector",
+  "tags": [
+    "switch",
+    "dip",
+    "config",
+    "8-way"
+  ],
+  "designator": "SW",
+  "footprint": {
+    "cols": 4,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "3",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "4",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "5",
+      "number": 5,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "6",
+      "number": 6,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "7",
+      "number": 7,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "8",
+      "number": 8,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "16",
+      "number": 16,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 1,
+      "name": "15",
+      "number": 15,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 2,
+      "name": "14",
+      "number": 14,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 3,
+      "name": "13",
+      "number": 13,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 4,
+      "name": "12",
+      "number": 12,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 5,
+      "name": "11",
+      "number": 11,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 6,
+      "name": "10",
+      "number": 10,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 7,
+      "name": "9",
+      "number": 9,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": 0.25,
+    "y": -0.4,
+    "w": 2.5,
+    "h": 7.8,
+    "rx": 0.08,
+    "fill": "#c9ced6",
+    "stroke": "#8d949c"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": 0.9,
+      "y": -0.28,
+      "w": 1.2,
+      "h": 0.56,
+      "fill": "#e8402c",
+      "rx": 0.05,
+      "stroke": "#a8281c",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.9,
+      "y": 0.72,
+      "w": 1.2,
+      "h": 0.56,
+      "fill": "#e8402c",
+      "rx": 0.05,
+      "stroke": "#a8281c",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.9,
+      "y": 1.72,
+      "w": 1.2,
+      "h": 0.56,
+      "fill": "#e8402c",
+      "rx": 0.05,
+      "stroke": "#a8281c",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.9,
+      "y": 2.72,
+      "w": 1.2,
+      "h": 0.56,
+      "fill": "#e8402c",
+      "rx": 0.05,
+      "stroke": "#a8281c",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.9,
+      "y": 3.72,
+      "w": 1.2,
+      "h": 0.56,
+      "fill": "#e8402c",
+      "rx": 0.05,
+      "stroke": "#a8281c",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.9,
+      "y": 4.72,
+      "w": 1.2,
+      "h": 0.56,
+      "fill": "#e8402c",
+      "rx": 0.05,
+      "stroke": "#a8281c",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.9,
+      "y": 5.72,
+      "w": 1.2,
+      "h": 0.56,
+      "fill": "#e8402c",
+      "rx": 0.05,
+      "stroke": "#a8281c",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.9,
+      "y": 6.72,
+      "w": 1.2,
+      "h": 0.56,
+      "fill": "#e8402c",
+      "rx": 0.05,
+      "stroke": "#a8281c",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.95,
+      "y": -0.24,
+      "w": 0.5,
+      "h": 0.48,
+      "fill": "#f4f6f8",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": 0.95,
+      "y": 0.76,
+      "w": 0.5,
+      "h": 0.48,
+      "fill": "#f4f6f8",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": 0.95,
+      "y": 1.76,
+      "w": 0.5,
+      "h": 0.48,
+      "fill": "#f4f6f8",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": 0.95,
+      "y": 2.76,
+      "w": 0.5,
+      "h": 0.48,
+      "fill": "#f4f6f8",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": 0.95,
+      "y": 3.76,
+      "w": 0.5,
+      "h": 0.48,
+      "fill": "#f4f6f8",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": 0.95,
+      "y": 4.76,
+      "w": 0.5,
+      "h": 0.48,
+      "fill": "#f4f6f8",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": 0.95,
+      "y": 5.76,
+      "w": 0.5,
+      "h": 0.48,
+      "fill": "#f4f6f8",
+      "rx": 0.04
+    },
+    {
+      "type": "rect",
+      "x": 0.95,
+      "y": 6.76,
+      "w": 0.5,
+      "h": 0.48,
+      "fill": "#f4f6f8",
+      "rx": 0.04
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.25,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 1,
+      "x2": 0.25,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 2,
+      "x2": 0.25,
+      "y2": 2,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 3,
+      "x2": 0.25,
+      "y2": 3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 4,
+      "x2": 0.25,
+      "y2": 4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 5,
+      "x2": 0.25,
+      "y2": 5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 6,
+      "x2": 0.25,
+      "y2": 6,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 7,
+      "x2": 0.25,
+      "y2": 7,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 0,
+      "x2": 2.75,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 1,
+      "x2": 2.75,
+      "y2": 1,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 2,
+      "x2": 2.75,
+      "y2": 2,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 3,
+      "x2": 2.75,
+      "y2": 3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 4,
+      "x2": 2.75,
+      "y2": 4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 5,
+      "x2": 2.75,
+      "y2": 5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 6,
+      "x2": 2.75,
+      "y2": 6,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 7,
+      "x2": 2.75,
+      "y2": 7,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    }
+  ]
+}

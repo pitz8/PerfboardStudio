@@ -1,0 +1,64 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "battery-clip-9v",
+  "name": "9 V battery clip",
+  "subtitle": "wire pads",
+  "category": "misc",
+  "tags": [
+    "battery",
+    "9v",
+    "pp3",
+    "clip"
+  ],
+  "designator": "BT",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 0,
+      "cy": 0,
+      "r": 0.34,
+      "fill": "#d84040",
+      "stroke": "#8f2020",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": 0,
+      "r": 0.34,
+      "fill": "#3a3f47",
+      "stroke": "#14171a",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "text",
+      "x": 0.5,
+      "y": -0.7,
+      "text": "9V",
+      "size": 0.32,
+      "color": "#9fb0c0",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "toggle-switch-dpdt",
+  "name": "Toggle switch DPDT",
+  "subtitle": "panel mount, 6-pin",
+  "category": "connector",
+  "tags": [
+    "switch",
+    "toggle",
+    "dpdt",
+    "panel"
+  ],
+  "designator": "SW",
+  "footprint": {
+    "cols": 3,
+    "rows": 2
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1A",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "COM A",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "2A",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "1B",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 1,
+      "name": "COM B",
+      "number": 5,
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 1,
+      "name": "2B",
+      "number": 6,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.4,
+      "y": -1.5,
+      "w": 2.8,
+      "h": 1.2,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0e1116",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": -1.9,
+      "r": 0.6,
+      "fill": "#b9c0c8",
+      "stroke": "#7f868e",
+      "strokeWidth": 0.06
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": -1.9,
+      "x2": 1.5,
+      "y2": -2.95,
+      "stroke": "#c9ced6",
+      "strokeWidth": 0.24,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0,
+      "y2": -0.3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 1,
+      "y2": -0.3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 2,
+      "y2": -0.3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 1,
+      "x2": 0,
+      "y2": -0.3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 1,
+      "x2": 1,
+      "y2": -0.3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 1,
+      "x2": 2,
+      "y2": -0.3,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    }
+  ]
+}

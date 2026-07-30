@@ -1,0 +1,43 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "note-label",
+  "name": "Note / text label",
+  "subtitle": "annotation, resizable",
+  "category": "misc",
+  "tags": [
+    "note",
+    "label",
+    "text",
+    "annotation",
+    "documentation"
+  ],
+  "designator": "NOTE",
+  "footprint": {
+    "cols": 6,
+    "rows": 2
+  },
+  "resize": {
+    "axis": "cols",
+    "min": 2,
+    "max": 40
+  },
+  "pins": [],
+  "body": {
+    "x": -0.3,
+    "y": -0.3,
+    "w": 5.6,
+    "h": 1.6,
+    "rx": 0.12,
+    "fill": "#1f2733",
+    "stroke": "#3d5a80",
+    "opacity": 0.9
+  },
+  "shapes": [],
+  "label": {
+    "text": "note",
+    "x": 2.5,
+    "y": 0.5,
+    "size": 0.6,
+    "color": "#9dc1e8"
+  }
+}

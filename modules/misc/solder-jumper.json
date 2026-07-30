@@ -1,0 +1,51 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "solder-jumper",
+  "name": "Solder jumper",
+  "subtitle": "resizable bridge",
+  "category": "misc",
+  "tags": [
+    "jumper",
+    "bridge",
+    "link",
+    "solder"
+  ],
+  "designator": "JP",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "resize": {
+    "axis": "cols",
+    "min": 2,
+    "max": 20
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 1,
+      "y2": 0,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.3,
+      "linecap": "round"
+    }
+  ]
+}

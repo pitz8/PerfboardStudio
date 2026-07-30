@@ -1,0 +1,123 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "nrf24l01",
+  "name": "nRF24L01+",
+  "subtitle": "2.4 GHz transceiver",
+  "category": "comms",
+  "tags": [
+    "nrf24",
+    "2.4ghz",
+    "spi",
+    "wireless",
+    "radio"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 2,
+    "rows": 4
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GND",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "VCC",
+      "number": 2,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "CE",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 1,
+      "name": "CSN",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "SCK",
+      "number": 5,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 2,
+      "name": "MOSI",
+      "number": 6,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "MISO",
+      "number": 7,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 3,
+      "name": "IRQ",
+      "number": 8,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.5,
+    "y": -0.5,
+    "w": 8.5,
+    "h": 4.0,
+    "rx": 0.14,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 1.64,
+      "h": 3.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.2,
+      "y": 0.2,
+      "w": 3.2,
+      "h": 2.6,
+      "fill": "#9aa2ab",
+      "rx": 0.08,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "path",
+      "d": "M 6.0 2.8 L 7.6 2.8 L 7.6 0.2 L 6.4 0.2 L 6.4 1.2 L 7.2 1.2",
+      "stroke": "#c4763a",
+      "strokeWidth": 0.16
+    }
+  ],
+  "label": {
+    "text": "nRF24L01+",
+    "x": 4.0,
+    "y": 3.2,
+    "size": 0.34,
+    "color": "#e8eef4"
+  }
+}

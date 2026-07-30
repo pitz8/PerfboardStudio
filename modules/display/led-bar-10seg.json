@@ -1,0 +1,262 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "led-bar-10seg",
+  "name": "LED bar graph, 10 segment",
+  "subtitle": "20-pin, 0.4 in rows",
+  "category": "display",
+  "tags": [
+    "bar graph",
+    "led",
+    "level",
+    "vu",
+    "display"
+  ],
+  "designator": "DS",
+  "footprint": {
+    "cols": 5,
+    "rows": 10
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "A1",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "A2",
+      "number": 2,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "A3",
+      "number": 3,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "A4",
+      "number": 4,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "A5",
+      "number": 5,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "A6",
+      "number": 6,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "A7",
+      "number": 7,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "A8",
+      "number": 8,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "A9",
+      "number": 9,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 9,
+      "name": "A10",
+      "number": 10,
+      "type": "power"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "K1",
+      "number": 20,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 1,
+      "name": "K2",
+      "number": 19,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 2,
+      "name": "K3",
+      "number": 18,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 3,
+      "name": "K4",
+      "number": 17,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 4,
+      "name": "K5",
+      "number": 16,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 5,
+      "name": "K6",
+      "number": 15,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 6,
+      "name": "K7",
+      "number": 14,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 7,
+      "name": "K8",
+      "number": 13,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 8,
+      "name": "K9",
+      "number": 12,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 9,
+      "name": "K10",
+      "number": 11,
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.3,
+    "y": -0.5,
+    "w": 4.6,
+    "h": 10.0,
+    "rx": 0.1,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": 0.6,
+      "y": -0.22,
+      "w": 2.8,
+      "h": 0.44,
+      "fill": "#1a4a2a",
+      "rx": 0.08
+    },
+    {
+      "type": "rect",
+      "x": 0.6,
+      "y": 0.78,
+      "w": 2.8,
+      "h": 0.44,
+      "fill": "#1a4a2a",
+      "rx": 0.08
+    },
+    {
+      "type": "rect",
+      "x": 0.6,
+      "y": 1.78,
+      "w": 2.8,
+      "h": 0.44,
+      "fill": "#1a4a2a",
+      "rx": 0.08
+    },
+    {
+      "type": "rect",
+      "x": 0.6,
+      "y": 2.78,
+      "w": 2.8,
+      "h": 0.44,
+      "fill": "#5c1a1a",
+      "rx": 0.08
+    },
+    {
+      "type": "rect",
+      "x": 0.6,
+      "y": 3.78,
+      "w": 2.8,
+      "h": 0.44,
+      "fill": "#5c1a1a",
+      "rx": 0.08
+    },
+    {
+      "type": "rect",
+      "x": 0.6,
+      "y": 4.78,
+      "w": 2.8,
+      "h": 0.44,
+      "fill": "#5c1a1a",
+      "rx": 0.08
+    },
+    {
+      "type": "rect",
+      "x": 0.6,
+      "y": 5.78,
+      "w": 2.8,
+      "h": 0.44,
+      "fill": "#5c1a1a",
+      "rx": 0.08
+    },
+    {
+      "type": "rect",
+      "x": 0.6,
+      "y": 6.78,
+      "w": 2.8,
+      "h": 0.44,
+      "fill": "#5c1a1a",
+      "rx": 0.08
+    },
+    {
+      "type": "rect",
+      "x": 0.6,
+      "y": 7.78,
+      "w": 2.8,
+      "h": 0.44,
+      "fill": "#5c1a1a",
+      "rx": 0.08
+    },
+    {
+      "type": "rect",
+      "x": 0.6,
+      "y": 8.78,
+      "w": 2.8,
+      "h": 0.44,
+      "fill": "#5c1a1a",
+      "rx": 0.08
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "crystal-4mhz",
+  "name": "Crystal 4 MHz",
+  "subtitle": "HC-49S low profile",
+  "category": "passive",
+  "tags": [
+    "crystal",
+    "oscillator",
+    "clock",
+    "4.000"
+  ],
+  "designator": "Y",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0,
+      "y2": -0.4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 1,
+      "y2": -0.4,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": -0.45,
+      "y": -1.45,
+      "w": 1.9,
+      "h": 1.05,
+      "fill": "#b3bac2",
+      "rx": 0.45,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "text",
+      "x": 0.5,
+      "y": -0.92,
+      "text": "4.000",
+      "size": 0.26,
+      "color": "#3a3f47",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ]
+}

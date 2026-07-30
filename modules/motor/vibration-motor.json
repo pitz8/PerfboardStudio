@@ -1,0 +1,81 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "vibration-motor",
+  "name": "Vibration motor",
+  "subtitle": "10 mm coin, 2-wire",
+  "category": "motor",
+  "tags": [
+    "motor",
+    "vibration",
+    "haptic",
+    "coin"
+  ],
+  "designator": "M",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.3,
+      "stroke": "#d84040",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.3,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": -2.1,
+      "r": 1.95,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.08
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": -2.1,
+      "r": 0.7,
+      "fill": "#8d949c",
+      "stroke": "#5c6269",
+      "strokeWidth": 0.05
+    }
+  ],
+  "label": {
+    "text": "VIB M",
+    "x": 0.5,
+    "y": 0.44,
+    "size": 0.28,
+    "color": "#9fb0c0"
+  }
+}

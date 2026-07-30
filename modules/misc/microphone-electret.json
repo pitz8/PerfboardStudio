@@ -1,0 +1,86 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "microphone-electret",
+  "name": "Electret microphone",
+  "subtitle": "9.7 mm capsule",
+  "category": "misc",
+  "tags": [
+    "microphone",
+    "electret",
+    "audio",
+    "capsule"
+  ],
+  "designator": "MK",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.2,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.2,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": -2.1,
+      "r": 1.9,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.08
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": -2.1,
+      "r": 1.5,
+      "fill": "#3a3f47"
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": -2.1,
+      "r": 0.5,
+      "fill": "#1a1d22"
+    }
+  ],
+  "label": {
+    "text": "MIC",
+    "x": 0.5,
+    "y": 0.44,
+    "size": 0.28,
+    "color": "#9fb0c0"
+  }
+}

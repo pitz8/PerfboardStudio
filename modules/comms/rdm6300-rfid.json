@@ -1,0 +1,105 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "rdm6300-rfid",
+  "name": "RDM6300 RFID",
+  "subtitle": "125 kHz EM4100 reader",
+  "category": "comms",
+  "tags": [
+    "rfid",
+    "125khz",
+    "em4100",
+    "uart",
+    "reader",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 17,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "ANT1",
+      "type": "analog"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "ANT2",
+      "type": "analog"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "5V",
+      "type": "power"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "TX",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "RX",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 16.9,
+    "h": 7.9,
+    "rx": 0.16,
+    "fill": "#1a1d22",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 5.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 4.62,
+      "y": 3.5,
+      "w": 6.76,
+      "h": 2.686,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "RDM6300",
+    "size": 0.55,
+    "color": "#e8eef4",
+    "x": 8,
+    "y": 7.15
+  }
+}

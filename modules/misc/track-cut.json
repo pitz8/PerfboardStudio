@@ -1,0 +1,51 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "track-cut",
+  "name": "Track cut",
+  "subtitle": "stripboard break marker",
+  "category": "misc",
+  "tags": [
+    "stripboard",
+    "cut",
+    "break",
+    "veroboard",
+    "track"
+  ],
+  "designator": "X",
+  "footprint": {
+    "cols": 1,
+    "rows": 1
+  },
+  "pins": [],
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 0,
+      "cy": 0,
+      "r": 0.44,
+      "fill": "none",
+      "stroke": "#e04a3a",
+      "strokeWidth": 0.12
+    },
+    {
+      "type": "line",
+      "x1": -0.3,
+      "y1": -0.3,
+      "x2": 0.3,
+      "y2": 0.3,
+      "stroke": "#e04a3a",
+      "strokeWidth": 0.12,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0.3,
+      "y1": -0.3,
+      "x2": -0.3,
+      "y2": 0.3,
+      "stroke": "#e04a3a",
+      "strokeWidth": 0.12,
+      "linecap": "round"
+    }
+  ]
+}

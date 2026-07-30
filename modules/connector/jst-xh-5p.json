@@ -1,0 +1,127 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "jst-xh-5p",
+  "name": "JST-XH 5-pin",
+  "subtitle": "2.5 mm keyed header",
+  "category": "connector",
+  "tags": [
+    "jst",
+    "xh",
+    "connector",
+    "5-pin"
+  ],
+  "designator": "J",
+  "footprint": {
+    "cols": 5,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "3",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "4",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "5",
+      "number": 5,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -1.2,
+    "w": 4.9,
+    "h": 1.9,
+    "rx": 0.08,
+    "fill": "#e9edf1",
+    "stroke": "#a9b0b8"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.3,
+      "y": -1.05,
+      "w": 4.6,
+      "h": 0.7,
+      "fill": "#d5dae0",
+      "rx": 0.06,
+      "stroke": "#a9b0b8",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0,
+      "y2": -0.5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 1,
+      "y2": -0.5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 2,
+      "y2": -0.5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 0,
+      "x2": 3,
+      "y2": -0.5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 4,
+      "y1": 0,
+      "x2": 4,
+      "y2": -0.5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    }
+  ]
+}

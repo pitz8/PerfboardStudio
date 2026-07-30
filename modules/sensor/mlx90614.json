@@ -1,0 +1,108 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "mlx90614",
+  "name": "MLX90614",
+  "subtitle": "non-contact IR thermometer, I2C",
+  "category": "sensor",
+  "tags": [
+    "temperature",
+    "infrared",
+    "i2c",
+    "contactless",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 6,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VIN",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "SCL",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "SDA",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 5.9,
+    "h": 7.9,
+    "rx": 0.16,
+    "fill": "#33204d",
+    "stroke": "#1c1029"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 3.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.32,
+      "y": 3.5,
+      "w": 2.36,
+      "h": 2.686,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "circle",
+      "cx": 2.5,
+      "cy": 4.5,
+      "r": 1.1,
+      "fill": "#9aa2ab",
+      "stroke": "#6f767e",
+      "strokeWidth": 0.06
+    },
+    {
+      "type": "circle",
+      "cx": 2.5,
+      "cy": 4.5,
+      "r": 0.55,
+      "fill": "#14171a"
+    }
+  ],
+  "label": {
+    "text": "MLX90614",
+    "size": 0.42,
+    "color": "#e8eef4",
+    "x": 2.5,
+    "y": 7.15
+  }
+}

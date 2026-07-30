@@ -1,0 +1,127 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "stepper-28byj48-conn",
+  "name": "28BYJ-48 connector",
+  "subtitle": "5-wire unipolar stepper header",
+  "category": "motor",
+  "tags": [
+    "stepper",
+    "28byj-48",
+    "unipolar",
+    "connector"
+  ],
+  "designator": "J",
+  "footprint": {
+    "cols": 5,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "COM",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "A",
+      "number": 2,
+      "type": "out"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "B",
+      "number": 3,
+      "type": "out"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "C",
+      "number": 4,
+      "type": "out"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "D",
+      "number": 5,
+      "type": "out"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -1.2,
+    "w": 4.9,
+    "h": 1.9,
+    "rx": 0.08,
+    "fill": "#e9edf1",
+    "stroke": "#a9b0b8"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.3,
+      "y": -1.05,
+      "w": 4.6,
+      "h": 0.7,
+      "fill": "#d5dae0",
+      "rx": 0.06,
+      "stroke": "#a9b0b8",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0,
+      "y2": -0.5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 1,
+      "y2": -0.5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 2,
+      "y2": -0.5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 0,
+      "x2": 3,
+      "y2": -0.5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 4,
+      "y1": 0,
+      "x2": 4,
+      "y2": -0.5,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    }
+  ]
+}

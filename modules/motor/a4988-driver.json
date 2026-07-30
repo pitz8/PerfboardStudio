@@ -1,0 +1,182 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "a4988-driver",
+  "name": "A4988 stepper driver",
+  "subtitle": "Pololu-style carrier",
+  "category": "motor",
+  "tags": [
+    "stepper",
+    "a4988",
+    "driver",
+    "motor",
+    "pololu"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 2,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "ENABLE",
+      "number": 1,
+      "type": "in"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "VMOT",
+      "number": 16,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "MS1",
+      "number": 2,
+      "type": "in"
+    },
+    {
+      "col": 1,
+      "row": 1,
+      "name": "GND",
+      "number": 15,
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "MS2",
+      "number": 3,
+      "type": "in"
+    },
+    {
+      "col": 1,
+      "row": 2,
+      "name": "2B",
+      "number": 14,
+      "type": "out"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "MS3",
+      "number": 4,
+      "type": "in"
+    },
+    {
+      "col": 1,
+      "row": 3,
+      "name": "2A",
+      "number": 13,
+      "type": "out"
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "name": "RESET",
+      "number": 5,
+      "type": "in"
+    },
+    {
+      "col": 1,
+      "row": 4,
+      "name": "1A",
+      "number": 12,
+      "type": "out"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "SLEEP",
+      "number": 6,
+      "type": "in"
+    },
+    {
+      "col": 1,
+      "row": 5,
+      "name": "1B",
+      "number": 11,
+      "type": "out"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "STEP",
+      "number": 7,
+      "type": "in"
+    },
+    {
+      "col": 1,
+      "row": 6,
+      "name": "VDD",
+      "number": 10,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 7,
+      "name": "DIR",
+      "number": 8,
+      "type": "in"
+    },
+    {
+      "col": 1,
+      "row": 7,
+      "name": "GND",
+      "number": 9,
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.5,
+    "y": -0.5,
+    "w": 6.0,
+    "h": 8.0,
+    "rx": 0.14,
+    "fill": "#12503c",
+    "stroke": "#0a3527"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 1.64,
+      "h": 7.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.4,
+      "y": 2.6,
+      "w": 2.4,
+      "h": 2.4,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": 3.6,
+      "cy": 0.9,
+      "r": 0.5,
+      "fill": "#2f6bb5",
+      "stroke": "#1c4478",
+      "strokeWidth": 0.05
+    }
+  ],
+  "label": {
+    "text": "A4988",
+    "x": 3.6,
+    "y": 6.6,
+    "size": 0.4,
+    "color": "#e8eef4"
+  }
+}

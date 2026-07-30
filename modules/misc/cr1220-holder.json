@@ -1,0 +1,79 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "cr1220-holder",
+  "name": "CR1220 holder",
+  "subtitle": "12 mm coin cell",
+  "category": "misc",
+  "tags": [
+    "battery",
+    "cr1220",
+    "coin cell",
+    "holder",
+    "rtc"
+  ],
+  "designator": "BT",
+  "footprint": {
+    "cols": 6,
+    "rows": 4
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "-",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    },
+    {
+      "col": 5,
+      "row": 1,
+      "name": "+",
+      "number": 3,
+      "type": "power"
+    }
+  ],
+  "body": {
+    "x": -0.5,
+    "y": -0.5,
+    "w": 6.5,
+    "h": 4.5,
+    "rx": 0.12,
+    "fill": "#22262c",
+    "stroke": "#0e1116"
+  },
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 2.6,
+      "cy": 1.5,
+      "r": 2.35,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.07
+    },
+    {
+      "type": "circle",
+      "cx": 2.6,
+      "cy": 1.5,
+      "r": 1.9,
+      "fill": "#dfe4ea"
+    },
+    {
+      "type": "text",
+      "x": 2.6,
+      "y": 1.5,
+      "text": "1220",
+      "size": 0.5,
+      "color": "#5c6269",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ]
+}

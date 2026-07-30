@@ -1,0 +1,57 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "keepout-area",
+  "name": "Keep-out area",
+  "subtitle": "reserved space, resizable",
+  "category": "misc",
+  "tags": [
+    "keepout",
+    "reserved",
+    "clearance",
+    "area",
+    "mechanical"
+  ],
+  "designator": "KO",
+  "footprint": {
+    "cols": 4,
+    "rows": 4
+  },
+  "resize": {
+    "axis": "cols",
+    "min": 2,
+    "max": 40
+  },
+  "pins": [],
+  "body": {
+    "x": -0.3,
+    "y": -0.3,
+    "w": 3.6,
+    "h": 3.6,
+    "rx": 0.08,
+    "fill": "#3a2020",
+    "stroke": "#8f4040",
+    "opacity": 0.55
+  },
+  "shapes": [
+    {
+      "type": "line",
+      "x1": -0.3,
+      "y1": -0.3,
+      "x2": 3.3,
+      "y2": 3.3,
+      "stroke": "#8f4040",
+      "strokeWidth": 0.08,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3.3,
+      "y1": -0.3,
+      "x2": -0.3,
+      "y2": 3.3,
+      "stroke": "#8f4040",
+      "strokeWidth": 0.08,
+      "linecap": "round"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "tact-switch-6mm",
+  "name": "Tactile switch 6 mm",
+  "subtitle": "4-pin momentary",
+  "category": "connector",
+  "tags": [
+    "switch",
+    "button",
+    "tactile",
+    "momentary"
+  ],
+  "designator": "SW",
+  "footprint": {
+    "cols": 3,
+    "rows": 2
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1A",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "2A",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "1B",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 1,
+      "name": "2B",
+      "number": 4,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.25,
+    "y": -0.6,
+    "w": 2.5,
+    "h": 2.2,
+    "rx": 0.08,
+    "fill": "#23272e",
+    "stroke": "#0e1116"
+  },
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": 0.5,
+      "r": 0.62,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": 0.5,
+      "r": 0.42,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.04
+    }
+  ]
+}

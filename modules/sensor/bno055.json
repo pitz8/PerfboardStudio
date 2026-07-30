@@ -1,0 +1,129 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "bno055",
+  "name": "BNO055",
+  "subtitle": "9-axis IMU with fusion",
+  "category": "sensor",
+  "tags": [
+    "imu",
+    "fusion",
+    "orientation",
+    "quaternion",
+    "bosch",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 10,
+    "rows": 7
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VIN",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "3VO",
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "SDA",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "SCL",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "RST",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "INT",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "name": "ADR",
+      "type": "signal"
+    },
+    {
+      "col": 8,
+      "row": 0,
+      "name": "PS0",
+      "type": "io"
+    },
+    {
+      "col": 9,
+      "row": 0,
+      "name": "PS1",
+      "type": "io"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 9.9,
+    "h": 6.9,
+    "rx": 0.16,
+    "fill": "#1a1d22",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 9.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.52,
+      "y": 3,
+      "w": 3.96,
+      "h": 2.346,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "BNO055",
+    "size": 0.5,
+    "color": "#e8eef4",
+    "x": 4.5,
+    "y": 6.15
+  }
+}

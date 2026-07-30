@@ -1,0 +1,109 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "micro-usb-breakout",
+  "name": "Micro-USB breakout",
+  "subtitle": "5-pin",
+  "category": "connector",
+  "tags": [
+    "usb",
+    "micro",
+    "power",
+    "breakout",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 5,
+    "rows": 5
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VBUS",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "DM",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "DP",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "ID",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 4.9,
+    "h": 4.9,
+    "rx": 0.16,
+    "fill": "#1a1d22",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 4.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.02,
+      "y": 2,
+      "w": 1.96,
+      "h": 1.666,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 0.5,
+      "y": 3.2,
+      "w": 3,
+      "h": 0.8,
+      "fill": "#b9c0c8",
+      "rx": 0.1,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "µUSB",
+    "size": 0.34,
+    "color": "#e8eef4",
+    "x": 2,
+    "y": 4.15
+  }
+}

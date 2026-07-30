@@ -1,0 +1,143 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "tm1637-4digit",
+  "name": "TM1637 4-digit",
+  "subtitle": "7-segment display module",
+  "category": "display",
+  "tags": [
+    "7-segment",
+    "display",
+    "tm1637",
+    "digits",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 17,
+    "rows": 8
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "DIO",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "CLK",
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 16.9,
+    "h": 7.9,
+    "rx": 0.16,
+    "fill": "#1a1d22",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 3.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 4.62,
+      "y": 3.5,
+      "w": 6.76,
+      "h": 2.686,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 1.5,
+      "y": 2,
+      "w": 14,
+      "h": 4.5,
+      "fill": "#14171a",
+      "rx": 0.12,
+      "stroke": "#2a3038",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "text",
+      "x": 3.4,
+      "y": 4.3,
+      "text": "8",
+      "size": 1.5,
+      "color": "#5c1a1a",
+      "anchor": "middle",
+      "weight": 600
+    },
+    {
+      "type": "text",
+      "x": 6.6,
+      "y": 4.3,
+      "text": "8",
+      "size": 1.5,
+      "color": "#5c1a1a",
+      "anchor": "middle",
+      "weight": 600
+    },
+    {
+      "type": "text",
+      "x": 9.8,
+      "y": 4.3,
+      "text": "8",
+      "size": 1.5,
+      "color": "#5c1a1a",
+      "anchor": "middle",
+      "weight": 600
+    },
+    {
+      "type": "text",
+      "x": 13,
+      "y": 4.3,
+      "text": "8",
+      "size": 1.5,
+      "color": "#5c1a1a",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ],
+  "label": {
+    "text": "TM1637",
+    "size": 0.55,
+    "color": "#e8eef4",
+    "x": 8,
+    "y": 7.15
+  }
+}

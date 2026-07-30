@@ -1,0 +1,88 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "buzzer-passive-12mm",
+  "name": "Buzzer passive 12 mm",
+  "subtitle": "needs a drive signal",
+  "category": "misc",
+  "tags": [
+    "buzzer",
+    "sound",
+    "passive",
+    "tone"
+  ],
+  "designator": "BZ",
+  "footprint": {
+    "cols": 3,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 1,
+      "y2": -0.2,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 1,
+      "y2": -0.2,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": -0.9,
+      "r": 2.3,
+      "fill": "#1f2429",
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.06
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": -0.9,
+      "r": 1.5,
+      "fill": "#2a3038"
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": -0.9,
+      "r": 0.32,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.04
+    }
+  ],
+  "label": {
+    "text": "PASSIVE",
+    "x": 1.0,
+    "y": 0.6,
+    "size": 0.3,
+    "color": "#9fb0c0"
+  }
+}

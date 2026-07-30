@@ -1,0 +1,123 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "pcf8591-module",
+  "name": "PCF8591",
+  "subtitle": "4-ch ADC + 1-ch DAC, I2C",
+  "category": "ic",
+  "tags": [
+    "adc",
+    "dac",
+    "i2c",
+    "8-bit",
+    "analog",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 12,
+    "rows": 9
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "AOUT",
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "AIN0",
+      "type": "analog"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "AIN1",
+      "type": "analog"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "AIN2",
+      "type": "analog"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "AIN3",
+      "type": "analog"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "SCL",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "SDA",
+      "type": "signal"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 8,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 11.9,
+    "h": 8.9,
+    "rx": 0.16,
+    "fill": "#123a63",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 8.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 3.12,
+      "y": 4,
+      "w": 4.76,
+      "h": 3.026,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "PCF8591",
+    "size": 0.5,
+    "color": "#e8eef4",
+    "x": 5.5,
+    "y": 8.15
+  }
+}

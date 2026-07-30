@@ -1,0 +1,122 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "esp-01s",
+  "name": "ESP-01S",
+  "subtitle": "ESP8266 serial Wi-Fi",
+  "category": "comms",
+  "tags": [
+    "esp8266",
+    "esp-01",
+    "wifi",
+    "uart"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 2,
+    "rows": 4
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GND",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "TX",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "GPIO2",
+      "number": 3,
+      "type": "io"
+    },
+    {
+      "col": 1,
+      "row": 1,
+      "name": "CH_PD",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "GPIO0",
+      "number": 5,
+      "type": "io"
+    },
+    {
+      "col": 1,
+      "row": 2,
+      "name": "RST",
+      "number": 6,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "RX",
+      "number": 7,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 3,
+      "name": "VCC",
+      "number": 8,
+      "type": "power"
+    }
+  ],
+  "body": {
+    "x": -0.5,
+    "y": -0.5,
+    "w": 5.5,
+    "h": 4.0,
+    "rx": 0.14,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 1.64,
+      "h": 3.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2,
+      "y": 0.3,
+      "w": 1.6,
+      "h": 2.4,
+      "fill": "#9aa2ab",
+      "rx": 0.08,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "path",
+      "d": "M 4.2 2.6 L 4.2 0.4 L 4.9 0.4",
+      "stroke": "#c4763a",
+      "strokeWidth": 0.16
+    }
+  ],
+  "label": {
+    "text": "ESP-01S",
+    "x": 2.2,
+    "y": 3.2,
+    "size": 0.32,
+    "color": "#e8eef4"
+  }
+}

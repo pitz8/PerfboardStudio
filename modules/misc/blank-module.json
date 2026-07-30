@@ -1,0 +1,41 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "blank-module",
+  "name": "Blank module",
+  "subtitle": "generic placeholder, resizable",
+  "category": "misc",
+  "tags": [
+    "blank",
+    "generic",
+    "custom",
+    "placeholder"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 4,
+    "rows": 4
+  },
+  "resize": {
+    "axis": "cols",
+    "min": 1,
+    "max": 40
+  },
+  "pins": [],
+  "body": {
+    "x": -0.4,
+    "y": -0.4,
+    "w": 4.8,
+    "h": 4.8,
+    "rx": 0.14,
+    "fill": "#2a3038",
+    "stroke": "#4a525c"
+  },
+  "shapes": [],
+  "label": {
+    "text": "?",
+    "x": 1.5,
+    "y": 1.5,
+    "size": 1.2,
+    "color": "#7f868e"
+  }
+}

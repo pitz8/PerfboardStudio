@@ -1,0 +1,84 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "ptc-fuse-500ma",
+  "name": "PTC resettable fuse 500 mA",
+  "subtitle": "polyfuse, radial",
+  "category": "passive",
+  "tags": [
+    "fuse",
+    "ptc",
+    "polyfuse",
+    "resettable",
+    "protection"
+  ],
+  "designator": "F",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.2,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -0.2,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "ellipse",
+      "cx": 0.5,
+      "cy": -0.9,
+      "rx": 0.72,
+      "ry": 0.55,
+      "fill": "#e8c72c",
+      "stroke": "#a89020",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "text",
+      "x": 0.5,
+      "y": -0.82,
+      "text": "050",
+      "size": 0.3,
+      "color": "#5c4410",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ],
+  "label": {
+    "text": "PTC",
+    "x": 0.5,
+    "y": 0.44,
+    "size": 0.26,
+    "color": "#9fb0c0"
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "nrf24l01-pa-lna",
+  "name": "nRF24L01+ PA/LNA",
+  "subtitle": "2.4 GHz, +20 dBm, SMA antenna",
+  "category": "comms",
+  "tags": [
+    "nrf24",
+    "nrf24l01",
+    "pa",
+    "lna",
+    "2.4ghz",
+    "spi",
+    "wireless",
+    "radio",
+    "long range",
+    "sma"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 2,
+    "rows": 4
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GND",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "VCC",
+      "number": 2,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "CE",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 1,
+      "name": "CSN",
+      "number": 4,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "SCK",
+      "number": 5,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 2,
+      "name": "MOSI",
+      "number": 6,
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "MISO",
+      "number": 7,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 3,
+      "name": "IRQ",
+      "number": 8,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.5,
+    "y": -1.1,
+    "w": 16.5,
+    "h": 5.7,
+    "rx": 0.16,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 1.64,
+      "h": 3.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.2,
+      "y": -0.8,
+      "w": 9,
+      "h": 5.1,
+      "fill": "#9aa2ab",
+      "rx": 0.1,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.6,
+      "y": -0.45,
+      "w": 3.6,
+      "h": 4.4,
+      "fill": "#8d949c",
+      "rx": 0.06,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 12,
+      "y": 0.4,
+      "w": 2.3,
+      "h": 2.4,
+      "fill": "#b9c0c8",
+      "rx": 0.18,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": 13.15,
+      "cy": 1.6,
+      "r": 0.85,
+      "fill": "#c9a227",
+      "stroke": "#8a6f1a",
+      "strokeWidth": 0.06
+    },
+    {
+      "type": "circle",
+      "cx": 13.15,
+      "cy": 1.6,
+      "r": 0.24,
+      "fill": "#e8e2c8"
+    },
+    {
+      "type": "rect",
+      "x": 14.3,
+      "y": 1.15,
+      "w": 1.6,
+      "h": 0.9,
+      "fill": "#9aa2ab",
+      "rx": 0.1,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "nRF24L01+ PA/LNA",
+    "x": 6.7,
+    "y": 4.05,
+    "size": 0.42,
+    "color": "#e8eef4"
+  }
+}

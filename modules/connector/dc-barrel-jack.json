@@ -1,0 +1,84 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "dc-barrel-jack",
+  "name": "DC barrel jack",
+  "subtitle": "5.5 × 2.1 mm, PCB mount",
+  "category": "connector",
+  "tags": [
+    "power",
+    "dc",
+    "jack",
+    "barrel"
+  ],
+  "designator": "J",
+  "footprint": {
+    "cols": 4,
+    "rows": 3
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "SLEEVE",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "TIP",
+      "number": 2,
+      "type": "power"
+    },
+    {
+      "col": 3,
+      "row": 2,
+      "name": "SW",
+      "number": 3,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.6,
+    "y": -0.7,
+    "w": 5.2,
+    "h": 3.4,
+    "rx": 0.12,
+    "fill": "#23272e",
+    "stroke": "#0e1116"
+  },
+  "shapes": [
+    {
+      "type": "circle",
+      "cx": 1.4,
+      "cy": 1,
+      "r": 1,
+      "fill": "#14171a",
+      "stroke": "#3a4048",
+      "strokeWidth": 0.06
+    },
+    {
+      "type": "circle",
+      "cx": 1.4,
+      "cy": 1,
+      "r": 0.34,
+      "fill": "#8d949c"
+    },
+    {
+      "type": "rect",
+      "x": -0.5,
+      "y": -0.6,
+      "w": 5,
+      "h": 0.5,
+      "fill": "#2f343b",
+      "rx": 0.06
+    }
+  ],
+  "label": {
+    "text": "DC",
+    "x": 3.4,
+    "y": 1.1,
+    "size": 0.34,
+    "color": "#e8eef4"
+  }
+}

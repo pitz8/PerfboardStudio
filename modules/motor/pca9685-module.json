@@ -1,0 +1,160 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "pca9685-module",
+  "name": "PCA9685 servo driver",
+  "subtitle": "16-channel PWM, I2C",
+  "category": "motor",
+  "tags": [
+    "servo",
+    "pwm",
+    "i2c",
+    "16-channel",
+    "pca9685",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 24,
+    "rows": 10
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "OE",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "SCL",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "SDA",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "V+",
+      "type": "power"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 23.9,
+    "h": 9.9,
+    "rx": 0.16,
+    "fill": "#12503c",
+    "stroke": "#0a3527"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 5.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 6.72,
+      "y": 4.5,
+      "w": 9.56,
+      "h": 3.366,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 2,
+      "y": 5,
+      "w": 3,
+      "h": 4,
+      "fill": "#23272e",
+      "rx": 0.06,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 6,
+      "y": 5,
+      "w": 3,
+      "h": 4,
+      "fill": "#23272e",
+      "rx": 0.06,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 10,
+      "y": 5,
+      "w": 3,
+      "h": 4,
+      "fill": "#23272e",
+      "rx": 0.06,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 14,
+      "y": 5,
+      "w": 3,
+      "h": 4,
+      "fill": "#23272e",
+      "rx": 0.06,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 18,
+      "y": 5,
+      "w": 3,
+      "h": 4,
+      "fill": "#23272e",
+      "rx": 0.06,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "PCA9685",
+    "size": 0.6,
+    "color": "#e8eef4",
+    "x": 11.5,
+    "y": 9.15
+  }
+}

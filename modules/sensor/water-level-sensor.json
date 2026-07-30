@@ -1,0 +1,98 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "water-level-sensor",
+  "name": "Water level sensor",
+  "subtitle": "resistive depth strip",
+  "category": "sensor",
+  "tags": [
+    "water",
+    "level",
+    "depth",
+    "analog",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 4,
+    "rows": 16
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "S",
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "+",
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "-",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 3.9,
+    "h": 15.9,
+    "rx": 0.16,
+    "fill": "#123a63",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 2.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.72,
+      "y": 7.5,
+      "w": 1.56,
+      "h": 5.406,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 0.4,
+      "y": 4,
+      "w": 2.2,
+      "h": 11,
+      "fill": "#c9a227",
+      "rx": 0.1,
+      "stroke": "#8a6f1a",
+      "strokeWidth": 0.035,
+      "opacity": 0.85
+    }
+  ],
+  "label": {
+    "text": "LEVEL",
+    "size": 0.5,
+    "color": "#e8eef4",
+    "x": 1.5,
+    "y": 15.15
+  }
+}

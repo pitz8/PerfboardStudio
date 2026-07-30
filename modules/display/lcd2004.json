@@ -1,0 +1,186 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "lcd2004",
+  "name": "LCD 20×4",
+  "subtitle": "HD44780 character LCD",
+  "category": "display",
+  "tags": [
+    "lcd",
+    "hd44780",
+    "character",
+    "2004",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 38,
+    "rows": 23
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VSS",
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "VDD",
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "V0",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "RS",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "RW",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "E",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "D0",
+      "type": "io"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "name": "D1",
+      "type": "io"
+    },
+    {
+      "col": 8,
+      "row": 0,
+      "name": "D2",
+      "type": "io"
+    },
+    {
+      "col": 9,
+      "row": 0,
+      "name": "D3",
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 0,
+      "name": "D4",
+      "type": "io"
+    },
+    {
+      "col": 11,
+      "row": 0,
+      "name": "D5",
+      "type": "io"
+    },
+    {
+      "col": 12,
+      "row": 0,
+      "name": "D6",
+      "type": "io"
+    },
+    {
+      "col": 13,
+      "row": 0,
+      "name": "D7",
+      "type": "io"
+    },
+    {
+      "col": 14,
+      "row": 0,
+      "name": "A",
+      "type": "power"
+    },
+    {
+      "col": 15,
+      "row": 0,
+      "name": "K",
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 37.9,
+    "h": 22.9,
+    "rx": 0.16,
+    "fill": "#12503c",
+    "stroke": "#0a3527"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 15.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 10.92,
+      "y": 11,
+      "w": 15.16,
+      "h": 7.786,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    },
+    {
+      "type": "rect",
+      "x": 3,
+      "y": 5,
+      "w": 32,
+      "h": 13,
+      "fill": "#2f6b4f",
+      "rx": 0.15,
+      "stroke": "#1d4433",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 4.5,
+      "y": 6.2,
+      "w": 29,
+      "h": 10.6,
+      "fill": "#5fbf8f",
+      "rx": 0.1,
+      "stroke": "#3d8f68",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "LCD 2004",
+    "size": 0.8,
+    "color": "#e8eef4",
+    "x": 18.5,
+    "y": 22.15
+  }
+}
