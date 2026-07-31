@@ -1,0 +1,137 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "motor-nema17",
+  "name": "NEMA 17 stepper",
+  "subtitle": "bipolar, 1.8°, 4 wires",
+  "category": "motor",
+  "tags": [
+    "stepper",
+    "nema17",
+    "bipolar",
+    "3d printer",
+    "cnc",
+    "motor"
+  ],
+  "designator": "M",
+  "footprint": {
+    "cols": 4,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "A+",
+      "number": 1,
+      "type": "out"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "A-",
+      "number": 2,
+      "type": "out"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "B+",
+      "number": 3,
+      "type": "out"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "B-",
+      "number": 4,
+      "type": "out"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 1.2,
+      "y2": -1,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 1.3,
+      "y2": -1,
+      "stroke": "#2fbf4e",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 1.7,
+      "y2": -1,
+      "stroke": "#d84040",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 0,
+      "x2": 1.8,
+      "y2": -1,
+      "stroke": "#2b7fe0",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": -1.9,
+      "y": -18,
+      "w": 6.8,
+      "h": 17,
+      "fill": "#5c6269",
+      "rx": 0.3,
+      "stroke": "#3a4048",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": -1.5,
+      "y": -17.6,
+      "w": 6,
+      "h": 16.2,
+      "fill": "#7f868e",
+      "rx": 0.2
+    },
+    {
+      "type": "circle",
+      "cx": 1.5,
+      "cy": -9.5,
+      "r": 2.6,
+      "fill": "#3a4048",
+      "stroke": "#22262c",
+      "strokeWidth": 0.08
+    },
+    {
+      "type": "circle",
+      "cx": 1.5,
+      "cy": -9.5,
+      "r": 0.7,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.06
+    }
+  ],
+  "label": {
+    "text": "NEMA 17",
+    "x": 1.5,
+    "y": 0.5,
+    "size": 0.34,
+    "color": "#9fb0c0"
+  }
+}

@@ -1,0 +1,378 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "rpi-zero-2w",
+  "name": "Raspberry Pi Zero 2 W",
+  "subtitle": "RP3A0, 40-pin GPIO",
+  "category": "mcu",
+  "tags": [
+    "rpi",
+    "zero",
+    "rp3a0",
+    "wifi",
+    "small",
+    "raspberry pi",
+    "sbc",
+    "linux",
+    "gpio"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 26,
+    "rows": 12
+  },
+  "pins": [
+    {
+      "col": 2,
+      "row": 0,
+      "name": "3V3",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 1,
+      "name": "5V",
+      "number": 2,
+      "type": "power"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "GPIO2",
+      "number": 3,
+      "type": "io"
+    },
+    {
+      "col": 3,
+      "row": 1,
+      "name": "5V",
+      "number": 4,
+      "type": "power"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "GPIO3",
+      "number": 5,
+      "type": "io"
+    },
+    {
+      "col": 4,
+      "row": 1,
+      "name": "GND",
+      "number": 6,
+      "type": "gnd"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "GPIO4",
+      "number": 7,
+      "type": "io"
+    },
+    {
+      "col": 5,
+      "row": 1,
+      "name": "GPIO14",
+      "number": 8,
+      "type": "io"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "GND",
+      "number": 9,
+      "type": "gnd"
+    },
+    {
+      "col": 6,
+      "row": 1,
+      "name": "GPIO15",
+      "number": 10,
+      "type": "io"
+    },
+    {
+      "col": 7,
+      "row": 0,
+      "name": "GPIO17",
+      "number": 11,
+      "type": "io"
+    },
+    {
+      "col": 7,
+      "row": 1,
+      "name": "GPIO18",
+      "number": 12,
+      "type": "io"
+    },
+    {
+      "col": 8,
+      "row": 0,
+      "name": "GPIO27",
+      "number": 13,
+      "type": "io"
+    },
+    {
+      "col": 8,
+      "row": 1,
+      "name": "GND",
+      "number": 14,
+      "type": "gnd"
+    },
+    {
+      "col": 9,
+      "row": 0,
+      "name": "GPIO22",
+      "number": 15,
+      "type": "io"
+    },
+    {
+      "col": 9,
+      "row": 1,
+      "name": "GPIO23",
+      "number": 16,
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 0,
+      "name": "3V3",
+      "number": 17,
+      "type": "power"
+    },
+    {
+      "col": 10,
+      "row": 1,
+      "name": "GPIO24",
+      "number": 18,
+      "type": "io"
+    },
+    {
+      "col": 11,
+      "row": 0,
+      "name": "GPIO10",
+      "number": 19,
+      "type": "io"
+    },
+    {
+      "col": 11,
+      "row": 1,
+      "name": "GND",
+      "number": 20,
+      "type": "gnd"
+    },
+    {
+      "col": 12,
+      "row": 0,
+      "name": "GPIO9",
+      "number": 21,
+      "type": "io"
+    },
+    {
+      "col": 12,
+      "row": 1,
+      "name": "GPIO25",
+      "number": 22,
+      "type": "io"
+    },
+    {
+      "col": 13,
+      "row": 0,
+      "name": "GPIO11",
+      "number": 23,
+      "type": "io"
+    },
+    {
+      "col": 13,
+      "row": 1,
+      "name": "GPIO8",
+      "number": 24,
+      "type": "io"
+    },
+    {
+      "col": 14,
+      "row": 0,
+      "name": "GND",
+      "number": 25,
+      "type": "gnd"
+    },
+    {
+      "col": 14,
+      "row": 1,
+      "name": "GPIO7",
+      "number": 26,
+      "type": "io"
+    },
+    {
+      "col": 15,
+      "row": 0,
+      "name": "ID_SD",
+      "number": 27,
+      "type": "signal"
+    },
+    {
+      "col": 15,
+      "row": 1,
+      "name": "ID_SC",
+      "number": 28,
+      "type": "signal"
+    },
+    {
+      "col": 16,
+      "row": 0,
+      "name": "GPIO5",
+      "number": 29,
+      "type": "io"
+    },
+    {
+      "col": 16,
+      "row": 1,
+      "name": "GND",
+      "number": 30,
+      "type": "gnd"
+    },
+    {
+      "col": 17,
+      "row": 0,
+      "name": "GPIO6",
+      "number": 31,
+      "type": "io"
+    },
+    {
+      "col": 17,
+      "row": 1,
+      "name": "GPIO12",
+      "number": 32,
+      "type": "io"
+    },
+    {
+      "col": 18,
+      "row": 0,
+      "name": "GPIO13",
+      "number": 33,
+      "type": "io"
+    },
+    {
+      "col": 18,
+      "row": 1,
+      "name": "GND",
+      "number": 34,
+      "type": "gnd"
+    },
+    {
+      "col": 19,
+      "row": 0,
+      "name": "GPIO19",
+      "number": 35,
+      "type": "io"
+    },
+    {
+      "col": 19,
+      "row": 1,
+      "name": "GPIO16",
+      "number": 36,
+      "type": "io"
+    },
+    {
+      "col": 20,
+      "row": 0,
+      "name": "GPIO26",
+      "number": 37,
+      "type": "io"
+    },
+    {
+      "col": 20,
+      "row": 1,
+      "name": "GPIO20",
+      "number": 38,
+      "type": "io"
+    },
+    {
+      "col": 21,
+      "row": 0,
+      "name": "GND",
+      "number": 39,
+      "type": "gnd"
+    },
+    {
+      "col": 21,
+      "row": 1,
+      "name": "GPIO21",
+      "number": 40,
+      "type": "io"
+    }
+  ],
+  "body": {
+    "x": -0.7,
+    "y": -0.7,
+    "w": 26.4,
+    "h": 12.4,
+    "rx": 0.9,
+    "fill": "#12503c",
+    "stroke": "#0a3527"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": 1.65,
+      "y": -0.35,
+      "w": 19.7,
+      "h": 1.7,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 8.84,
+      "y": 5.04,
+      "w": 5.72,
+      "h": 2.64,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 9,
+      "y": 9.6,
+      "w": 1.6,
+      "h": 1.4,
+      "fill": "#23272e",
+      "rx": 0.1,
+      "stroke": "#3a4048",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 13,
+      "y": 9.6,
+      "w": 1.6,
+      "h": 1.4,
+      "fill": "#23272e",
+      "rx": 0.1,
+      "stroke": "#3a4048",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 17,
+      "y": 9.6,
+      "w": 1.6,
+      "h": 1.4,
+      "fill": "#23272e",
+      "rx": 0.1,
+      "stroke": "#3a4048",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "Pi Zero 2 W",
+    "x": 12.5,
+    "y": 9.36,
+    "size": 0.7,
+    "color": "#e8eef4"
+  }
+}

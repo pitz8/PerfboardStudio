@@ -17,9 +17,16 @@ import { installShortcuts, shortcutTable } from './ui/shortcuts.js';
 import { deserialize, filenameFor, toJSON } from './io/project.js';
 import { buildBom, exportPng, exportSvg } from './io/export.js';
 import { makeInstance } from './core/store.js';
-import { clampToBoard } from './core/geometry.js';
+import { clampBoardToArea, clampToArea } from './core/geometry.js';
 
 const AUTOSAVE_KEY = 'pbs.autosave';
+
+/**
+ * State changes that fire continuously while the pointer is down. The board
+ * still redraws for these; the inspector does not, because rebuilding its
+ * inputs mid-gesture would drop the control being dragged.
+ */
+const LIVE_REASONS = new Set(['hover', 'drag', 'opacity']);
 
 async function boot() {
   const loading = qs('#loading');
@@ -130,9 +137,10 @@ class App {
     this.toolbar.sync();
     this.palette.syncActive();
 
-    // The inspector rebuilds its inputs, so avoid doing it mid-drag or on every
-    // mouse move — that would steal focus and thrash the DOM.
-    if (reason !== 'hover' && reason !== 'drag') this.inspector.render();
+    // The inspector rebuilds its inputs, so avoid doing it mid-drag, on every
+    // mouse move, or while its own slider is being dragged — that would steal
+    // focus and thrash the DOM.
+    if (!LIVE_REASONS.has(reason)) this.inspector.render();
     this.status.sync();
 
     if (reason === 'doc' || reason === 'load') this.scheduleAutosave();
@@ -230,6 +238,24 @@ class App {
     const sel = this.store.selected;
     if (!sel) { this.status.say('Nothing selected to duplicate'); return; }
 
+    if (sel.kind === 'board') {
+      const src = sel.item;
+      const copy = {
+        ...structuredClone(src),
+        uid: `b${Date.now().toString(36).slice(-5)}${Math.random().toString(36).slice(2, 6)}`,
+        label: this.store.nextBoardLabel(),
+      };
+      const at = clampBoardToArea(this.store.doc.workspace, {
+        ...copy, col: src.col + 2, row: src.row + 2,
+      });
+      copy.col = at.col;
+      copy.row = at.row;
+      this.store.commit(`Duplicate ${src.label || 'board'}`, (doc) => { doc.boards.push(copy); });
+      this.store.setUI({ selection: { kind: 'board', uid: copy.uid } });
+      this.status.say('Duplicated');
+      return;
+    }
+
     if (sel.kind === 'module') {
       const def = this.catalog.get(sel.item.moduleId);
       if (!def) return;
@@ -241,15 +267,15 @@ class App {
         span: sel.item.span,
         label: this.store.nextDesignator(def),
       });
-      const at = clampToBoard(this.store.doc.board, def, copy);
+      const at = clampToArea(this.store.doc.workspace, def, copy);
       copy.col = at.col;
       copy.row = at.row;
       this.store.commit(`Duplicate ${def.name}`, (doc) => { doc.modules.push(copy); });
       this.store.setUI({ selection: { kind: 'module', uid: copy.uid } });
     } else {
       const src = sel.item;
-      const board = this.store.doc.board;
-      const dy = src.points.every(([, r]) => r + 1 < board.rows) ? 1 : 0;
+      const ws = this.store.doc.workspace;
+      const dy = src.points.every(([, r]) => r + 1 < ws.rows) ? 1 : 0;
       const copy = {
         ...structuredClone(src),
         uid: `w${Date.now().toString(36).slice(-5)}${Math.random().toString(36).slice(2, 6)}`,
@@ -440,7 +466,8 @@ class StatusBar {
     const solder = doc.modules.length - front;
     clear(this.counts);
     this.counts.append(
-      el('span', { text: `${doc.board.cols}×${doc.board.rows}` }),
+      el('span', { text: `${doc.workspace.cols}×${doc.workspace.rows}` }),
+      el('span', { text: `${doc.boards.length} board${doc.boards.length === 1 ? '' : 's'}` }),
       el('span', { text: `${doc.modules.length} modules (${front}F/${solder}S)` }),
       el('span', { text: `${doc.wires.length} wires` }),
       el('span', { class: ui.side === 'solder' ? 'is-solder' : '', text: ui.side === 'solder' ? 'SOLDER SIDE' : 'FRONT' }),

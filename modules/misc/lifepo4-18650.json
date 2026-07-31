@@ -1,0 +1,99 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "lifepo4-18650",
+  "name": "LiFePO4 18650 cell",
+  "subtitle": "3.2 V, flying leads",
+  "category": "misc",
+  "tags": [
+    "lifepo4",
+    "18650",
+    "lithium",
+    "rechargeable",
+    "3.2v",
+    "battery",
+    "cell"
+  ],
+  "designator": "BT",
+  "footprint": {
+    "cols": 5,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "-",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "+",
+      "number": 2,
+      "type": "power"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.72,
+      "y2": 0,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 4,
+      "y1": 0,
+      "x2": 3.28,
+      "y2": 0,
+      "stroke": "#d84040",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": 0.7,
+      "y": -0.65,
+      "w": 2.6,
+      "h": 1.3,
+      "fill": "#e8c72c",
+      "rx": 0.585,
+      "stroke": "#a89020",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.7,
+      "y": -0.65,
+      "w": 0.22,
+      "h": 1.3,
+      "fill": "#8d949c",
+      "rx": 0.05,
+      "stroke": "#a89020",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 3.08,
+      "y": -0.65,
+      "w": 0.22,
+      "h": 1.3,
+      "fill": "#3a3f47",
+      "rx": 0.05,
+      "stroke": "#a89020",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "3.2 V",
+    "x": 2,
+    "y": -0.93,
+    "size": 0.28,
+    "color": "#9fb0c0"
+  }
+}

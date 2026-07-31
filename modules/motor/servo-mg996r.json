@@ -1,0 +1,117 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "servo-mg996r",
+  "name": "Servo MG996R",
+  "subtitle": "metal gear, 10 kg·cm",
+  "category": "motor",
+  "tags": [
+    "servo",
+    "mg996r",
+    "metal gear",
+    "rc",
+    "pwm"
+  ],
+  "designator": "M",
+  "footprint": {
+    "cols": 3,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "GND",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "VCC",
+      "number": 2,
+      "type": "power"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "SIG",
+      "number": 3,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -0.7,
+    "y": -12.0,
+    "w": 5.4,
+    "h": 11.2,
+    "rx": 0.16,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -3,
+      "y": -10.2,
+      "w": 10,
+      "h": 1.8,
+      "fill": "#1a1d22",
+      "rx": 0.12,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": 1.4,
+      "cy": -11,
+      "r": 1.9,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.07
+    },
+    {
+      "type": "circle",
+      "cx": 1.4,
+      "cy": -11,
+      "r": 0.65,
+      "fill": "#c9ced6"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0,
+      "y2": -0.8,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.12,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 1,
+      "y2": -0.8,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.12,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 2,
+      "y2": -0.8,
+      "stroke": "#a8b0b8",
+      "strokeWidth": 0.12,
+      "linecap": "round"
+    }
+  ],
+  "label": {
+    "text": "MG996R",
+    "x": 2.0,
+    "y": -5.0,
+    "size": 0.6,
+    "color": "#e8eef4"
+  }
+}

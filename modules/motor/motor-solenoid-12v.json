@@ -1,0 +1,94 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "motor-solenoid-12v",
+  "name": "Solenoid 12 V",
+  "subtitle": "push-pull actuator",
+  "category": "motor",
+  "tags": [
+    "solenoid",
+    "actuator",
+    "12v",
+    "linear"
+  ],
+  "designator": "L",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -1,
+      "stroke": "#d84040",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.5,
+      "y2": -1,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": -1.4,
+      "y": -5.4,
+      "w": 3.8,
+      "h": 4.4,
+      "fill": "#5c6269",
+      "rx": 0.16,
+      "stroke": "#3a4048",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": -1,
+      "y": -5,
+      "w": 3,
+      "h": 3.6,
+      "fill": "#8d949c",
+      "rx": 0.1
+    },
+    {
+      "type": "rect",
+      "x": 0.2,
+      "y": -7.6,
+      "w": 0.6,
+      "h": 2.4,
+      "fill": "#c9ced6",
+      "rx": 0.1,
+      "stroke": "#8d949c",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "SOL",
+    "x": 0.5,
+    "y": 0.5,
+    "size": 0.3,
+    "color": "#9fb0c0"
+  }
+}

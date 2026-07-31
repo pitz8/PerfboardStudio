@@ -22,9 +22,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from catalog_lib import (  # noqa: E402
-    COL, axial_diode, axial_resistor, breakout, ceramic_cap, circle, col_pins,
-    devboard, dip, electrolytic, ellipse, header, ic_socket, led, line, path,
-    pin, polygon, r4, rect, row_pins, text, to92, to220,
+    COL, axial_diode, axial_resistor, battery_cell, breadboard, breakout,
+    ceramic_cap, circle, col_pins, dc_motor, devboard, dip, electrolytic,
+    ellipse, header, ic_socket, led, line, path, pin, polygon, r4, rect,
+    row_pins, sbc_board, shield_board, text, to92, to220,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -76,6 +77,15 @@ WROOM38_RIGHT = ["GND", "GPIO23", "GPIO22", "TX0", "RX0", "GPIO21", "GND", "GPIO
 # Every Seeed XIAO shares one 2×7 pinout, whatever MCU is on top.
 XIAO_LEFT = ["D0/A0", "D1/A1", "D2/A2", "D3/A3", "D4/SDA", "D5/SCL", "D6/TX"]
 XIAO_RIGHT = ["5V", "GND", "3V3", "D10/MOSI", "D9/MISO", "D8/SCK", "D7/RX"]
+
+# The Arduino Uno / Leonardo shield outline: 27 × 21 holes, headers as
+# (column, name) so the gaps between the four blocks stay explicit.
+UNO_TOP = ([(8 + i, f"D{i}") for i in range(8)]
+           + [(17 + i, n) for i, n in enumerate(
+               ["D8", "D9", "D10", "D11", "D12", "D13", "GND", "AREF", "SDA", "SCL"])])
+UNO_BOTTOM = ([(8 + i, n) for i, n in enumerate(
+                  ["NC", "IOREF", "RESET", "3V3", "5V", "GND", "GND", "VIN"])]
+              + [(17 + i, f"A{i}") for i in range(6)])
 
 
 def build_mcu():
@@ -297,6 +307,106 @@ def build_mcu():
         span=5, pcb=COL["pcb_black"], mark="XIAO M0",
         tags=["seeed", "xiao", "samd21", "seeeduino"],
     ))
+    # -- Arduino shield-outline boards ---------------------------------------
+    add(shield_board(
+        "arduino-uno-r3", "Arduino Uno R3", "ATmega328P, shield outline",
+        cols=27, rows=21, top=UNO_TOP, bottom=UNO_BOTTOM, mark="UNO R3",
+        tags=["arduino", "uno", "atmega328p", "avr", "shield"],
+        datasheet="https://docs.arduino.cc/hardware/uno-rev3",
+    ))
+    add(shield_board(
+        "arduino-leonardo", "Arduino Leonardo", "ATmega32U4, native USB",
+        cols=27, rows=21,
+        top=([(8, "D0/RX"), (9, "D1/TX")] + [(10 + i, f"D{i + 2}") for i in range(6)]
+             + [(17 + i, n) for i, n in enumerate(
+                 ["D8", "D9", "D10", "D11", "D12", "D13", "GND", "AREF", "SDA", "SCL"])]),
+        bottom=UNO_BOTTOM, mark="LEONARDO",
+        tags=["arduino", "leonardo", "atmega32u4", "hid", "shield"],
+    ))
+    add(shield_board(
+        "arduino-uno-r4-wifi", "Arduino Uno R4 WiFi", "RA4M1 + ESP32-S3, USB-C",
+        cols=27, rows=21, top=UNO_TOP, bottom=UNO_BOTTOM, mark="UNO R4 WIFI",
+        pcb=COL["pcb_blue"], tags=["arduino", "uno", "r4", "renesas", "wifi", "shield"],
+    ))
+    add(shield_board(
+        "arduino-mega-2560", "Arduino Mega 2560", "ATmega2560, 54 I/O",
+        cols=40, rows=21,
+        top=(UNO_TOP + [(28 + i, f"D{14 + i}") for i in range(8)]),
+        bottom=([(8 + i, n) for i, n in enumerate(
+                    ["IOREF", "RESET", "3V3", "5V", "GND", "GND", "VIN"])]
+                + [(16 + i, f"A{i}") for i in range(16)]),
+        mark="MEGA 2560",
+        tags=["arduino", "mega", "atmega2560", "shield"],
+        # The 2×18 block at the far end: 5V, D22–D53 in even/odd columns, GND.
+        extra_pins=([(36, 1, "5V"), (37, 1, "5V")]
+                    + [(36, 2 + i, f"D{22 + 2 * i}") for i in range(16)]
+                    + [(37, 2 + i, f"D{23 + 2 * i}") for i in range(16)]
+                    + [(36, 18, "GND"), (37, 18, "GND")]),
+        extra_shapes=[rect(35.68, 0.68, 1.64, 17.64, COL["plastic_black"],
+                           COL["ic_edge"], rx=0.08)],
+    ))
+    add(shield_board(
+        "arduino-due", "Arduino Due", "SAM3X8E, 3.3 V logic",
+        cols=40, rows=21,
+        top=(UNO_TOP + [(28 + i, f"D{14 + i}") for i in range(8)]),
+        bottom=([(8 + i, n) for i, n in enumerate(
+                    ["IOREF", "RESET", "3V3", "5V", "GND", "GND", "VIN"])]
+                + [(16 + i, f"A{i}") for i in range(12)]),
+        mark="DUE", pcb=COL["pcb_blue"],
+        tags=["arduino", "due", "sam3x8e", "arm", "cortex-m3", "shield"],
+    ))
+
+    # -- Raspberry Pi single-board computers ----------------------------------
+    add(sbc_board(
+        "rpi-3b-plus", "Raspberry Pi 3B+", "BCM2837B0, 40-pin GPIO",
+        cols=34, rows=23, mark="Pi 3B+",
+        tags=["rpi", "pi3", "bcm2837", "wifi"],
+        datasheet="https://www.raspberrypi.com/documentation/computers/raspberry-pi.html",
+        extra_shapes=[
+            rect(23.0, 3.0, 4.0, 5.0, COL["steel"], "#6f767e", rx=0.1),   # USB stack
+            rect(23.0, 9.0, 4.0, 5.0, COL["steel"], "#6f767e", rx=0.1),
+            rect(23.0, 15.0, 4.0, 5.4, "#3a4048", "#22262c", rx=0.1),     # Ethernet
+            rect(6.0, 19.5, 2.6, 2.0, COL["plastic_black"], "#3a4048", rx=0.1),
+        ],
+    ))
+    add(sbc_board(
+        "rpi-4b", "Raspberry Pi 4B", "BCM2711, USB-C power, dual micro-HDMI",
+        cols=34, rows=23, mark="Pi 4B",
+        tags=["rpi", "pi4", "bcm2711", "usb-c", "gigabit"],
+        extra_shapes=[
+            rect(23.0, 3.0, 4.0, 5.4, "#3a4048", "#22262c", rx=0.1),      # Ethernet
+            rect(23.0, 9.0, 4.0, 5.0, COL["steel"], "#6f767e", rx=0.1),   # USB stack
+            rect(23.0, 15.0, 4.0, 5.0, COL["steel"], "#6f767e", rx=0.1),
+            rect(4.0, 20.0, 1.6, 1.6, COL["tin"], "#7f868e", rx=0.5),     # USB-C
+            rect(7.0, 20.0, 1.8, 1.4, COL["plastic_black"], "#3a4048", rx=0.1),
+            rect(10.5, 20.0, 1.8, 1.4, COL["plastic_black"], "#3a4048", rx=0.1),
+        ],
+    ))
+    add(sbc_board(
+        "rpi-5", "Raspberry Pi 5", "BCM2712, PCIe, power button",
+        cols=34, rows=23, mark="Pi 5", pcb="#0f4a38",
+        tags=["rpi", "pi5", "bcm2712", "pcie", "usb-c"],
+        extra_shapes=[
+            rect(23.0, 3.0, 4.0, 5.0, COL["steel"], "#6f767e", rx=0.1),
+            rect(23.0, 9.0, 4.0, 5.0, COL["steel"], "#6f767e", rx=0.1),
+            rect(23.0, 15.0, 4.0, 5.4, "#3a4048", "#22262c", rx=0.1),
+            rect(3.4, 20.0, 1.6, 1.6, COL["tin"], "#7f868e", rx=0.5),     # USB-C
+            circle(6.4, 20.8, 0.45, "#d84040", "#8f2020", sw=0.05),       # power button
+            rect(9.0, 20.0, 1.8, 1.4, COL["plastic_black"], "#3a4048", rx=0.1),
+            rect(12.5, 20.0, 1.8, 1.4, COL["plastic_black"], "#3a4048", rx=0.1),
+        ],
+    ))
+    add(sbc_board(
+        "rpi-zero-2w", "Raspberry Pi Zero 2 W", "RP3A0, 40-pin GPIO",
+        cols=26, rows=12, header_col=2, mark="Pi Zero 2 W",
+        tags=["rpi", "zero", "rp3a0", "wifi", "small"],
+        extra_shapes=[
+            rect(9.0, 9.6, 1.6, 1.4, COL["plastic_black"], "#3a4048", rx=0.1),
+            rect(13.0, 9.6, 1.6, 1.4, COL["plastic_black"], "#3a4048", rx=0.1),
+            rect(17.0, 9.6, 1.6, 1.4, COL["plastic_black"], "#3a4048", rx=0.1),
+        ],
+    ))
+
     add(devboard(
         "teensy-41", "Teensy 4.1", "600 MHz, Ethernet + microSD",
         ["GND", "D0/RX1", "D1/TX1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9",
@@ -2256,6 +2366,105 @@ def build_motor():
         "shapes": [rect(-0.3, -1.05, 4.6, 0.7, "#d5dae0", "#a9b0b8", rx=0.06)]
                   + [line(i, 0, i, -0.5, COL["tin"], 0.1) for i in range(5)],
     })
+    # -- the motors themselves ------------------------------------------------
+    add(dc_motor("motor-tt-gearbox", "TT gearmotor", "3–6 V, yellow twin-shaft gearbox",
+                 span=2, body_w=8.0, body_h=5.0, shaft=False,
+                 tags=["dc", "gearmotor", "tt", "robot", "chassis"]))
+    add(dc_motor("motor-n20-gearbox", "N20 gearmotor", "6 V micro metal gearbox",
+                 span=2, body_w=3.4, body_h=5.6,
+                 tags=["dc", "gearmotor", "n20", "micro", "robot"]))
+    add(dc_motor("motor-dc-130", "DC motor 130", "1.5–6 V toy motor",
+                 span=2, body_w=4.4, body_h=3.4,
+                 tags=["dc", "130", "toy", "hobby"]))
+    add(dc_motor("motor-dc-775", "DC motor 775", "12–24 V, high torque",
+                 span=3, body_w=7.0, body_h=8.0,
+                 tags=["dc", "775", "power", "high torque"]))
+    add({
+        "id": "motor-nema17", "name": "NEMA 17 stepper", "subtitle": "bipolar, 1.8°, 4 wires",
+        "category": "motor",
+        "tags": ["stepper", "nema17", "bipolar", "3d printer", "cnc", "motor"],
+        "designator": "M",
+        "footprint": {"cols": 4, "rows": 1},
+        "pins": [pin(0, 0, "A+", 1, "out"), pin(1, 0, "A-", 2, "out"),
+                 pin(2, 0, "B+", 3, "out"), pin(3, 0, "B-", 4, "out")],
+        "shapes": [
+            line(0, 0, 1.2, -1.0, "#1b1f25", 0.09), line(1, 0, 1.3, -1.0, "#2fbf4e", 0.09),
+            line(2, 0, 1.7, -1.0, "#d84040", 0.09), line(3, 0, 1.8, -1.0, "#2b7fe0", 0.09),
+            rect(-1.9, -18.0, 6.8, 17.0, "#5c6269", "#3a4048", rx=0.3),
+            rect(-1.5, -17.6, 6.0, 16.2, "#7f868e", None, rx=0.2),
+            circle(1.5, -9.5, 2.6, "#3a4048", "#22262c", sw=0.08),
+            circle(1.5, -9.5, 0.7, "#c9ced6", "#8d949c", sw=0.06),
+        ],
+        "label": {"text": "NEMA 17", "x": 1.5, "y": 0.5, "size": 0.34, "color": "#9fb0c0"},
+    })
+    add({
+        "id": "motor-28byj48", "name": "28BYJ-48 stepper", "subtitle": "5 V unipolar, geared",
+        "category": "motor",
+        "tags": ["stepper", "28byj-48", "unipolar", "5v", "geared", "motor"],
+        "designator": "M",
+        "footprint": {"cols": 5, "rows": 1},
+        "pins": [pin(0, 0, "COM", 1, "power"), pin(1, 0, "A", 2, "out"),
+                 pin(2, 0, "B", 3, "out"), pin(3, 0, "C", 4, "out"),
+                 pin(4, 0, "D", 5, "out")],
+        "shapes": [
+            *[line(c, 0, 2.0, -1.2, "#8d949c", 0.08) for c in range(5)],
+            circle(2.0, -6.0, 5.5, "#b9c0c8", "#7f868e", sw=0.1),
+            circle(2.0, -6.0, 4.4, "#c9ced6", None),
+            rect(0.6, -1.8, 2.8, 1.4, "#2f6bb5", "#1c4478", rx=0.14),
+            circle(5.0, -6.0, 1.2, "#8d949c", "#5c6269", sw=0.07),
+            circle(5.0, -6.0, 0.45, "#5c6269", None),
+        ],
+        "label": {"text": "28BYJ-48", "x": 2.0, "y": 0.5, "size": 0.34, "color": "#9fb0c0"},
+    })
+    add({
+        "id": "motor-bldc-2205", "name": "BLDC 2205 outrunner", "subtitle": "3-phase, needs an ESC",
+        "category": "motor",
+        "tags": ["brushless", "bldc", "3-phase", "drone", "esc", "motor"],
+        "designator": "M",
+        "footprint": {"cols": 3, "rows": 1},
+        "pins": [pin(0, 0, "U", 1, "out"), pin(1, 0, "V", 2, "out"), pin(2, 0, "W", 3, "out")],
+        "shapes": [
+            line(0, 0, 1.0, -1.2, "#1b1f25", 0.1), line(1, 0, 1.0, -1.2, "#1b1f25", 0.1),
+            line(2, 0, 1.0, -1.2, "#1b1f25", 0.1),
+            circle(1.0, -5.4, 4.2, "#3a3f47", "#22262c", sw=0.1),
+            circle(1.0, -5.4, 3.4, "#5c6269", None),
+            circle(1.0, -5.4, 1.1, "#c9ced6", "#8d949c", sw=0.06),
+            circle(1.0, -5.4, 0.35, "#22262c", None),
+        ],
+        "label": {"text": "BLDC", "x": 1.0, "y": 0.5, "size": 0.32, "color": "#9fb0c0"},
+    })
+    add({
+        "id": "servo-mg996r", "name": "Servo MG996R", "subtitle": "metal gear, 10 kg·cm",
+        "category": "motor", "tags": ["servo", "mg996r", "metal gear", "rc", "pwm"],
+        "designator": "M",
+        "footprint": {"cols": 3, "rows": 1},
+        "pins": [pin(0, 0, "GND", 1, "gnd"), pin(1, 0, "VCC", 2, "power"),
+                 pin(2, 0, "SIG", 3, "signal")],
+        "body": {"x": -0.7, "y": -12.0, "w": 5.4, "h": 11.2, "rx": 0.16,
+                 "fill": "#1a1d22", "stroke": "#0b0e12"},
+        "shapes": [
+            rect(-3.0, -10.2, 10.0, 1.8, "#1a1d22", "#0b0e12", rx=0.12),
+            circle(1.4, -11.0, 1.9, "#3a3f47", "#22262c", sw=0.07),
+            circle(1.4, -11.0, 0.65, "#c9ced6", None),
+            *[line(c, 0, c, -0.8, COL["lead"], 0.12) for c in range(3)],
+        ],
+        "label": {"text": "MG996R", "x": 2.0, "y": -5.0, "size": 0.6, "color": COL["silk"]},
+    })
+    add({
+        "id": "motor-solenoid-12v", "name": "Solenoid 12 V", "subtitle": "push-pull actuator",
+        "category": "motor", "tags": ["solenoid", "actuator", "12v", "linear"],
+        "designator": "L",
+        "footprint": {"cols": 2, "rows": 1},
+        "pins": [pin(0, 0, "1", 1, "power"), pin(1, 0, "2", 2, "gnd")],
+        "shapes": [
+            line(0, 0, 0.5, -1.0, "#d84040", 0.09), line(1, 0, 0.5, -1.0, "#1b1f25", 0.09),
+            rect(-1.4, -5.4, 3.8, 4.4, "#5c6269", "#3a4048", rx=0.16),
+            rect(-1.0, -5.0, 3.0, 3.6, "#8d949c", None, rx=0.1),
+            rect(0.2, -7.6, 0.6, 2.4, "#c9ced6", "#8d949c", rx=0.1),
+        ],
+        "label": {"text": "SOL", "x": 0.5, "y": 0.5, "size": 0.3, "color": "#9fb0c0"},
+    })
+
     add({
         "id": "vibration-motor", "name": "Vibration motor", "subtitle": "10 mm coin, 2-wire",
         "category": "motor", "tags": ["motor", "vibration", "haptic", "coin"],
@@ -2423,6 +2632,15 @@ def build_misc():
         "label": {"text": "?", "x": 1.5, "y": 1.5, "size": 1.2, "color": "#7f868e"},
     })
 
+    # -- solderless breadboards ----------------------------------------------
+    # Sizes are the ones actually sold, named by their tie-point count.
+    add(breadboard("breadboard-830", "Breadboard 830 point", "full size, 63 columns + rails",
+                   strips=63, tags=["830", "full size", "mb-102"]))
+    add(breadboard("breadboard-400", "Breadboard 400 point", "half size, 30 columns + rails",
+                   strips=30, tags=["400", "half size"]))
+    add(breadboard("breadboard-170", "Breadboard 170 point", "mini, 17 columns, no rails",
+                   strips=17, rails=False, tags=["170", "mini", "no rails"]))
+
     # -- power & mechanical --------------------------------------------------
     add({
         "id": "battery-holder-2xaa", "name": "AA holder, 2 cell", "subtitle": "PCB mount, 3 V",
@@ -2561,6 +2779,128 @@ def build_misc():
             rect(0.35, -0.14, 1.3, 0.28, "#e8c72c", "#a89020", rx=0.14),
         ],
         "label": {"text": "LK", "x": 1.0, "y": -0.42, "size": 0.26, "color": "#9fb0c0"},
+    })
+
+    # -- Li-ion / Li-poly cells -----------------------------------------------
+    add(battery_cell("li-ion-18650", "Li-ion 18650 cell", "3.7 V, unprotected, flying leads",
+                     volts="3.7", span=5, diam=1.3, wrap="#2f6b4f", edge="#1d4433",
+                     tags=["li-ion", "18650", "lithium", "rechargeable", "3.7v"]))
+    add(battery_cell("li-ion-18650-protected", "Li-ion 18650 cell (protected)",
+                     "3.7 V, PCB-protected, flying leads",
+                     volts="3.7", span=5, diam=1.3, wrap="#1f5fa8", edge="#123f75",
+                     cap_color="#3a3f47",
+                     tags=["li-ion", "18650", "lithium", "rechargeable", "protected", "3.7v"]))
+    add(battery_cell("li-ion-14500", "Li-ion 14500 cell", "3.7 V, AA-sized, flying leads",
+                     volts="3.7", span=4, diam=0.85, wrap="#2f6b4f", edge="#1d4433",
+                     tags=["li-ion", "14500", "lithium", "rechargeable", "aa-sized", "3.7v"]))
+    add(battery_cell("lifepo4-18650", "LiFePO4 18650 cell", "3.2 V, flying leads",
+                     volts="3.2", span=5, diam=1.3, wrap="#e8c72c", edge="#a89020",
+                     cap_color="#3a3f47",
+                     tags=["lifepo4", "18650", "lithium", "rechargeable", "3.2v"]))
+    add({
+        "id": "lipo-pouch-503035", "name": "LiPo pouch 500 mAh",
+        "subtitle": "3.7 V, JST-PH connector",
+        "category": "misc", "designator": "BT",
+        "tags": ["lipo", "li-poly", "lithium", "rechargeable", "pouch", "jst",
+                 "3.7v", "battery", "cell"],
+        "footprint": {"cols": 8, "rows": 6},
+        "pins": [pin(0, 0, "+", 1, "power"), pin(0, 5, "-", 2, "gnd")],
+        "body": {"x": -0.5, "y": -0.5, "w": 7.0, "h": 6.0, "rx": 0.2,
+                 "fill": "#dfe4ea", "stroke": "#a9b0b8"},
+        "shapes": [
+            rect(-0.3, -0.3, 6.6, 5.6, "#c9ced6", "#8d949c", rx=0.16, opacity=0.6),
+            line(0, 0, 1.6, -1.0, "#d84040", 0.1), line(0, 5, 1.6, 6.0, "#1b1f25", 0.1),
+            rect(1.5, -1.2, 1.0, 0.7, COL["plastic_white"], "#a9b0b8", rx=0.06),
+            text(3.0, 2.45, "3.7 V", size=0.5, color="#5c6269"),
+            text(3.0, 3.15, "500 mAh", size=0.42, color="#5c6269"),
+        ],
+        "label": {"text": "LiPo 500", "x": 3.0, "y": 5.9, "size": 0.32,
+                  "color": "#9fb0c0"},
+    })
+    add({
+        "id": "lipo-pouch-103450", "name": "LiPo pouch 2000 mAh",
+        "subtitle": "3.7 V, JST-PH connector",
+        "category": "misc", "designator": "BT",
+        "tags": ["lipo", "li-poly", "lithium", "rechargeable", "pouch", "jst",
+                 "3.7v", "battery", "cell"],
+        "footprint": {"cols": 14, "rows": 9},
+        "pins": [pin(0, 0, "+", 1, "power"), pin(0, 8, "-", 2, "gnd")],
+        "body": {"x": -0.5, "y": -0.5, "w": 13.0, "h": 9.0, "rx": 0.24,
+                 "fill": "#dfe4ea", "stroke": "#a9b0b8"},
+        "shapes": [
+            rect(-0.3, -0.3, 12.6, 8.6, "#c9ced6", "#8d949c", rx=0.2, opacity=0.6),
+            line(0, 0, 1.8, -1.0, "#d84040", 0.1), line(0, 8, 1.8, 9.0, "#1b1f25", 0.1),
+            rect(1.7, -1.2, 1.0, 0.7, COL["plastic_white"], "#a9b0b8", rx=0.06),
+            text(6.0, 3.85, "3.7 V", size=0.6, color="#5c6269"),
+            text(6.0, 4.75, "2000 mAh", size=0.5, color="#5c6269"),
+        ],
+        "label": {"text": "LiPo 2000", "x": 6.0, "y": 8.9, "size": 0.36,
+                  "color": "#9fb0c0"},
+    })
+
+    # -- other primary and rechargeable cells ---------------------------------
+    add(battery_cell("battery-aaa-1.5v", "AAA battery", "1.5 V alkaline, flying leads",
+                     volts="1.5", span=3, diam=0.7, wrap="#e8c72c", edge="#a89020",
+                     cap_color="#3a3f47", tags=["alkaline", "aaa", "primary", "1.5v"]))
+    add(battery_cell("battery-aa-1.5v", "AA battery", "1.5 V alkaline, flying leads",
+                     volts="1.5", span=4, diam=0.85, wrap="#e8c72c", edge="#a89020",
+                     cap_color="#3a3f47", tags=["alkaline", "aa", "primary", "1.5v"]))
+    add(battery_cell("battery-c-1.5v", "C battery", "1.5 V alkaline, flying leads",
+                     volts="1.5", span=5, diam=1.15, wrap="#e8c72c", edge="#a89020",
+                     cap_color="#3a3f47", tags=["alkaline", "c-cell", "primary", "1.5v"]))
+    add(battery_cell("battery-d-1.5v", "D battery", "1.5 V alkaline, flying leads",
+                     volts="1.5", span=6, diam=1.5, wrap="#e8c72c", edge="#a89020",
+                     cap_color="#3a3f47", tags=["alkaline", "d-cell", "primary", "1.5v"]))
+    add(battery_cell("battery-aa-nimh-1.2v", "AA NiMH battery", "1.2 V rechargeable, flying leads",
+                     volts="1.2", span=4, diam=0.85, wrap="#2c7a45", edge="#1c5230",
+                     cap_color="#3a3f47",
+                     tags=["nimh", "aa", "rechargeable", "1.2v"]))
+    add(battery_cell("battery-cr123a-3v", "CR123A battery", "3 V lithium, flying leads",
+                     volts="3", span=3, diam=1.05, wrap="#7a1d29", edge="#4d0f18",
+                     cap_color="#c9ced6",
+                     tags=["lithium", "cr123a", "primary", "camera", "3v"]))
+    add({
+        "id": "battery-9v-pp3", "name": "9 V battery (PP3)", "subtitle": "alkaline, snap terminals",
+        "category": "misc", "designator": "BT",
+        "tags": ["alkaline", "9v", "pp3", "primary", "battery"],
+        "footprint": {"cols": 4, "rows": 6},
+        "pins": [pin(0, 0, "+", 1, "power"), pin(3, 0, "-", 2, "gnd")],
+        "body": {"x": -0.5, "y": -0.5, "w": 4.0, "h": 6.0, "rx": 0.16,
+                 "fill": "#1c4478", "stroke": "#0e2f52"},
+        "shapes": [
+            rect(-0.3, -0.3, 3.6, 5.6, "#2f6bb5", "#1c4478", rx=0.12),
+            circle(0, 0, 0.34, "#d84040", "#8f2020", sw=0.05),
+            circle(3, 0, 0.34, "#3a3f47", "#14171a", sw=0.05),
+            text(1.5, 2.6, "9V", size=0.9, color="#dfe4ea"),
+        ],
+    })
+
+    # -- holders to match the two new alkaline sizes above ---------------------
+    add({
+        "id": "battery-holder-4xaa", "name": "AA holder, 4 cell", "subtitle": "PCB mount, 6 V",
+        "category": "misc", "tags": ["battery", "aa", "holder", "4 cell", "6v"],
+        "designator": "BT",
+        "footprint": {"cols": 23, "rows": 20},
+        "pins": [pin(0, 0, "+", 1, "power"), pin(0, 19, "-", 2, "gnd")],
+        "body": {"x": -0.6, "y": -0.6, "w": 24.2, "h": 21.2, "rx": 0.2,
+                 "fill": "#1a1d22", "stroke": "#0b0e12"},
+        "shapes": [rect(1.0, 0.6, 20.6, 4.4, "#2f343b", "#14171a", rx=2.1),
+                   rect(1.0, 6.4, 20.6, 4.4, "#2f343b", "#14171a", rx=2.1),
+                   rect(1.0, 12.2, 20.6, 4.4, "#2f343b", "#14171a", rx=2.1),
+                   rect(1.0, 18.0, 20.6, 4.4, "#2f343b", "#14171a", rx=2.1),
+                   text(11.0, 10.5, "4 x AA", size=0.9, color="#6b737b")],
+    })
+    add({
+        "id": "battery-holder-3xaaa", "name": "AAA holder, 3 cell", "subtitle": "PCB mount, 4.5 V",
+        "category": "misc", "tags": ["battery", "aaa", "holder", "3 cell", "4.5v"],
+        "designator": "BT",
+        "footprint": {"cols": 18, "rows": 9},
+        "pins": [pin(0, 0, "+", 1, "power"), pin(0, 8, "-", 2, "gnd")],
+        "body": {"x": -0.6, "y": -0.6, "w": 19.2, "h": 10.2, "rx": 0.2,
+                 "fill": "#1a1d22", "stroke": "#0b0e12"},
+        "shapes": [rect(1.0, 0.6, 16.0, 3.4, "#2f343b", "#14171a", rx=1.6),
+                   rect(1.0, 5.2, 16.0, 3.4, "#2f343b", "#14171a", rx=1.6),
+                   text(9.0, 4.4, "3 x AAA", size=0.7, color="#6b737b")],
     })
 
 

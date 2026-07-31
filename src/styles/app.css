@@ -192,6 +192,57 @@
 .pbs-field-row { display: flex; gap: 8px; }
 .pbs-field-row > .pbs-field { flex: 1 1 0; min-width: 0; }
 
+.pbs-field-label-row { display: flex; justify-content: space-between; gap: 8px; }
+
+/* -- board list ------------------------------------------------------------ */
+
+.pbs-board-list { display: grid; gap: 3px; margin: 0 0 8px; }
+
+.pbs-board-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 5px 7px;
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.pbs-board-row:hover { background: var(--surface-hover); }
+.pbs-board-row.is-active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+.pbs-board-chip {
+  flex: 0 0 12px;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 3px;
+  background: var(--chip, #c99b58);
+}
+.pbs-board-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pbs-board-meta {
+  flex: 0 0 auto;
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+}
+.pbs-field-value {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-strong);
+}
+
 .pbs-note {
   margin: 2px 0 8px;
   font-size: 11px;
@@ -377,6 +428,7 @@
 .pbs-board text { font-family: var(--font); }
 .pbs-module { cursor: move; }
 .pbs-module.is-ghost { cursor: default; }
+.pbs-board { cursor: move; }
 .pbs-wire { cursor: pointer; }
 
 /* -- status bar ------------------------------------------------------------ */

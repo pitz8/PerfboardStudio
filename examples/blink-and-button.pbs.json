@@ -1,21 +1,15 @@
 {
   "format": "perfboard-studio",
-  "version": 1,
+  "version": 2,
   "generator": "Perfboard Studio",
   "savedAt": "2026-07-30T09:00:00.000Z",
-  "name": "Blink and button",
-  "board": {
-    "cols": 18,
-    "rows": 24,
-    "pitchMm": 2.54,
-    "colorId": "phenolic"
-  },
+  "name": "Blink, button and off-board power",
   "modules": [
     {
       "uid": "m-power",
       "moduleId": "header-1x2-male",
-      "col": 1,
-      "row": 1,
+      "col": 4,
+      "row": 5,
       "rotation": 0,
       "side": "front",
       "label": "J1"
@@ -23,8 +17,8 @@
     {
       "uid": "m-mcu",
       "moduleId": "esp32-c3-supermini",
-      "col": 5,
-      "row": 2,
+      "col": 8,
+      "row": 6,
       "rotation": 0,
       "side": "front",
       "label": "U1"
@@ -32,8 +26,8 @@
     {
       "uid": "m-led",
       "moduleId": "led-5mm-red",
-      "col": 3,
-      "row": 14,
+      "col": 6,
+      "row": 18,
       "rotation": 0,
       "side": "front",
       "label": "D1"
@@ -41,8 +35,8 @@
     {
       "uid": "m-res",
       "moduleId": "resistor-330r",
-      "col": 3,
-      "row": 16,
+      "col": 6,
+      "row": 20,
       "rotation": 0,
       "side": "front",
       "label": "R1"
@@ -50,8 +44,8 @@
     {
       "uid": "m-btn",
       "moduleId": "tact-switch-6mm",
-      "col": 13,
-      "row": 14,
+      "col": 16,
+      "row": 18,
       "rotation": 0,
       "side": "front",
       "label": "SW1"
@@ -59,17 +53,57 @@
     {
       "uid": "m-decoup",
       "moduleId": "cap-cer-100nf",
-      "col": 8,
-      "row": 12,
+      "col": 11,
+      "row": 16,
       "rotation": 0,
       "side": "solder",
       "label": "C1"
+    },
+    {
+      "uid": "m-batt",
+      "moduleId": "li-ion-18650-protected",
+      "col": 27,
+      "row": 6,
+      "rotation": 90,
+      "side": "front",
+      "label": "BT1"
+    },
+    {
+      "uid": "m-sw",
+      "moduleId": "slide-switch-spdt",
+      "col": 34,
+      "row": 7,
+      "rotation": 0,
+      "side": "front",
+      "label": "SW2"
+    },
+    {
+      "uid": "m-jack",
+      "moduleId": "jst-ph-2p",
+      "col": 34,
+      "row": 12,
+      "rotation": 0,
+      "side": "front",
+      "label": "J2"
     }
   ],
   "wires": [
     {
       "uid": "w-5v",
-      "points": [[1, 1], [5, 1], [5, 2]],
+      "points": [
+        [
+          4,
+          5
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          6
+        ]
+      ],
       "color": "#e02b25",
       "gauge": "normal",
       "side": "solder",
@@ -77,7 +111,24 @@
     },
     {
       "uid": "w-gnd-in",
-      "points": [[1, 2], [2, 2], [2, 3], [5, 3]],
+      "points": [
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          8,
+          7
+        ]
+      ],
       "color": "#1b1f25",
       "gauge": "normal",
       "side": "solder",
@@ -85,7 +136,20 @@
     },
     {
       "uid": "w-gnd-rail",
-      "points": [[2, 3], [2, 20], [8, 20]],
+      "points": [
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          24
+        ],
+        [
+          11,
+          24
+        ]
+      ],
       "color": "#1b1f25",
       "gauge": "thick",
       "side": "solder",
@@ -93,7 +157,20 @@
     },
     {
       "uid": "w-led-drive",
-      "points": [[5, 7], [3, 7], [3, 14]],
+      "points": [
+        [
+          8,
+          11
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          6,
+          18
+        ]
+      ],
       "color": "#2b7fe0",
       "gauge": "normal",
       "side": "solder",
@@ -101,7 +178,20 @@
     },
     {
       "uid": "w-led-res",
-      "points": [[4, 14], [4, 16], [3, 16]],
+      "points": [
+        [
+          7,
+          18
+        ],
+        [
+          7,
+          20
+        ],
+        [
+          6,
+          20
+        ]
+      ],
       "color": "#e8c72c",
       "gauge": "normal",
       "side": "solder",
@@ -109,7 +199,20 @@
     },
     {
       "uid": "w-res-gnd",
-      "points": [[6, 16], [6, 20], [8, 20]],
+      "points": [
+        [
+          9,
+          20
+        ],
+        [
+          9,
+          24
+        ],
+        [
+          11,
+          24
+        ]
+      ],
       "color": "#1b1f25",
       "gauge": "normal",
       "side": "solder",
@@ -117,7 +220,20 @@
     },
     {
       "uid": "w-btn-sig",
-      "points": [[11, 4], [13, 4], [13, 14]],
+      "points": [
+        [
+          14,
+          8
+        ],
+        [
+          16,
+          8
+        ],
+        [
+          16,
+          18
+        ]
+      ],
       "color": "#2fbf4e",
       "gauge": "normal",
       "side": "solder",
@@ -125,7 +241,20 @@
     },
     {
       "uid": "w-btn-gnd",
-      "points": [[15, 15], [15, 20], [8, 20]],
+      "points": [
+        [
+          18,
+          19
+        ],
+        [
+          18,
+          24
+        ],
+        [
+          11,
+          24
+        ]
+      ],
       "color": "#1b1f25",
       "gauge": "normal",
       "side": "solder",
@@ -133,7 +262,20 @@
     },
     {
       "uid": "w-cap-vcc",
-      "points": [[8, 12], [8, 4], [5, 4]],
+      "points": [
+        [
+          11,
+          16
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          8,
+          8
+        ]
+      ],
       "color": "#e88227",
       "gauge": "thin",
       "side": "solder",
@@ -141,12 +283,1062 @@
     },
     {
       "uid": "w-cap-gnd",
-      "points": [[9, 12], [9, 20], [8, 20]],
+      "points": [
+        [
+          12,
+          16
+        ],
+        [
+          12,
+          24
+        ],
+        [
+          11,
+          24
+        ]
+      ],
       "color": "#1b1f25",
       "gauge": "thin",
       "side": "solder",
       "label": null
+    },
+    {
+      "uid": "w-bp",
+      "points": [
+        [
+          27,
+          10
+        ],
+        [
+          31,
+          10
+        ],
+        [
+          31,
+          7
+        ],
+        [
+          34,
+          7
+        ]
+      ],
+      "color": "#e02b25",
+      "gauge": "normal",
+      "side": "front",
+      "label": null
+    },
+    {
+      "uid": "w-sw",
+      "points": [
+        [
+          36,
+          7
+        ],
+        [
+          38,
+          7
+        ],
+        [
+          38,
+          12
+        ],
+        [
+          35,
+          12
+        ]
+      ],
+      "color": "#e02b25",
+      "gauge": "normal",
+      "side": "front",
+      "label": null
+    },
+    {
+      "uid": "w-bn",
+      "points": [
+        [
+          27,
+          6
+        ],
+        [
+          25,
+          6
+        ],
+        [
+          25,
+          14
+        ],
+        [
+          34,
+          14
+        ],
+        [
+          34,
+          13
+        ]
+      ],
+      "color": "#1b1f25",
+      "gauge": "normal",
+      "side": "front",
+      "label": null
+    },
+    {
+      "uid": "w-jp",
+      "points": [
+        [
+          34,
+          12
+        ],
+        [
+          22,
+          12
+        ],
+        [
+          22,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "color": "#e02b25",
+      "gauge": "normal",
+      "side": "front",
+      "label": null
+    },
+    {
+      "uid": "w-jn",
+      "points": [
+        [
+          34,
+          13
+        ],
+        [
+          23,
+          13
+        ],
+        [
+          23,
+          6
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "color": "#1b1f25",
+      "gauge": "normal",
+      "side": "front",
+      "label": null
     }
   ],
-  "moduleDefs": {}
+  "moduleDefs": {
+    "cap-cer-100nf": {
+      "id": "cap-cer-100nf",
+      "name": "Cap 100nF",
+      "subtitle": "ceramic disc",
+      "category": "passive",
+      "tags": [
+        "capacitor",
+        "ceramic",
+        "non-polarised",
+        "100nF",
+        "104"
+      ],
+      "designator": "C",
+      "footprint": {
+        "cols": 2,
+        "rows": 1
+      },
+      "pins": [
+        {
+          "col": 0,
+          "row": 0,
+          "name": "1",
+          "number": 1,
+          "type": "signal"
+        },
+        {
+          "col": 1,
+          "row": 0,
+          "name": "2",
+          "number": 2,
+          "type": "signal"
+        }
+      ],
+      "shapes": [
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0,
+          "x2": 0.5,
+          "y2": -0.1,
+          "stroke": "#a8b0b8",
+          "strokeWidth": 0.09,
+          "linecap": "round"
+        },
+        {
+          "type": "line",
+          "x1": 1,
+          "y1": 0,
+          "x2": 0.5,
+          "y2": -0.1,
+          "stroke": "#a8b0b8",
+          "strokeWidth": 0.09,
+          "linecap": "round"
+        },
+        {
+          "type": "circle",
+          "cx": 0.5,
+          "cy": -0.36,
+          "r": 0.44,
+          "fill": "#4a7fbf",
+          "stroke": "#2f5c92",
+          "strokeWidth": 0.04
+        },
+        {
+          "type": "text",
+          "x": 0.5,
+          "y": -0.36,
+          "text": "104",
+          "size": 0.26,
+          "color": "#dce6f2",
+          "anchor": "middle",
+          "weight": 600
+        }
+      ],
+      "label": {
+        "text": "100nF",
+        "x": 0.5,
+        "y": 0.44,
+        "size": 0.28,
+        "color": "#9fb0c0"
+      }
+    },
+    "esp32-c3-supermini": {
+      "id": "esp32-c3-supermini",
+      "name": "ESP32-C3 SuperMini",
+      "subtitle": "RISC-V Wi-Fi + BLE",
+      "category": "mcu",
+      "tags": [
+        "esp32",
+        "espressif",
+        "wifi",
+        "ble",
+        "riscv",
+        "board"
+      ],
+      "designator": "U",
+      "datasheet": "https://www.espressif.com/en/products/socs/esp32-c3",
+      "footprint": {
+        "cols": 7,
+        "rows": 8
+      },
+      "pins": [
+        {
+          "col": 0,
+          "row": 0,
+          "name": "5V",
+          "type": "power"
+        },
+        {
+          "col": 0,
+          "row": 1,
+          "name": "GND",
+          "type": "gnd"
+        },
+        {
+          "col": 0,
+          "row": 2,
+          "name": "3V3",
+          "type": "power"
+        },
+        {
+          "col": 0,
+          "row": 3,
+          "name": "GPIO4",
+          "type": "io"
+        },
+        {
+          "col": 0,
+          "row": 4,
+          "name": "GPIO3",
+          "type": "io"
+        },
+        {
+          "col": 0,
+          "row": 5,
+          "name": "GPIO2",
+          "type": "io"
+        },
+        {
+          "col": 0,
+          "row": 6,
+          "name": "GPIO1",
+          "type": "io"
+        },
+        {
+          "col": 0,
+          "row": 7,
+          "name": "GPIO0",
+          "type": "io"
+        },
+        {
+          "col": 6,
+          "row": 0,
+          "name": "GPIO5",
+          "type": "io"
+        },
+        {
+          "col": 6,
+          "row": 1,
+          "name": "GPIO6",
+          "type": "io"
+        },
+        {
+          "col": 6,
+          "row": 2,
+          "name": "GPIO7",
+          "type": "io"
+        },
+        {
+          "col": 6,
+          "row": 3,
+          "name": "GPIO8",
+          "type": "io"
+        },
+        {
+          "col": 6,
+          "row": 4,
+          "name": "GPIO9",
+          "type": "io"
+        },
+        {
+          "col": 6,
+          "row": 5,
+          "name": "GPIO10",
+          "type": "io"
+        },
+        {
+          "col": 6,
+          "row": 6,
+          "name": "GPIO20",
+          "type": "io"
+        },
+        {
+          "col": 6,
+          "row": 7,
+          "name": "GPIO21",
+          "type": "io"
+        }
+      ],
+      "body": {
+        "x": -0.45,
+        "y": -0.45,
+        "w": 6.9,
+        "h": 7.9,
+        "rx": 0.18,
+        "fill": "#1a1d22",
+        "stroke": "#0b0e12"
+      },
+      "shapes": [
+        {
+          "type": "rect",
+          "x": -0.32,
+          "y": -0.32,
+          "w": 0.64,
+          "h": 7.64,
+          "fill": "#23272e",
+          "rx": 0.08,
+          "stroke": "#0b0e12",
+          "strokeWidth": 0.035
+        },
+        {
+          "type": "rect",
+          "x": 5.68,
+          "y": -0.32,
+          "w": 0.64,
+          "h": 7.64,
+          "fill": "#23272e",
+          "rx": 0.08,
+          "stroke": "#0b0e12",
+          "strokeWidth": 0.035
+        },
+        {
+          "type": "rect",
+          "x": 0.8,
+          "y": 0.5,
+          "w": 4.4,
+          "h": 3.002,
+          "fill": "#9aa2ab",
+          "rx": 0.1,
+          "stroke": "#6f767e",
+          "strokeWidth": 0.035
+        },
+        {
+          "type": "rect",
+          "x": 2.58,
+          "y": -0.79,
+          "w": 0.84,
+          "h": 0.44,
+          "fill": "#b9c0c8",
+          "rx": 0.07,
+          "stroke": "#7f868e",
+          "strokeWidth": 0.035
+        },
+        {
+          "type": "circle",
+          "cx": -0.02,
+          "cy": -0.02,
+          "r": 0.1,
+          "fill": "#e8c72c"
+        }
+      ],
+      "label": {
+        "text": "ESP32-C3",
+        "x": 3,
+        "y": 5.712,
+        "size": 0.36,
+        "color": "#e8eef4"
+      }
+    },
+    "header-1x2-male": {
+      "id": "header-1x2-male",
+      "name": "Header 1×2 male",
+      "subtitle": "2.54 mm pin header",
+      "category": "connector",
+      "tags": [
+        "header",
+        "connector",
+        "male",
+        "1x2"
+      ],
+      "designator": "J",
+      "footprint": {
+        "cols": 1,
+        "rows": 2
+      },
+      "pins": [
+        {
+          "col": 0,
+          "row": 0,
+          "name": "1",
+          "number": 1,
+          "type": "signal"
+        },
+        {
+          "col": 0,
+          "row": 1,
+          "name": "2",
+          "number": 2,
+          "type": "signal"
+        }
+      ],
+      "shapes": [
+        {
+          "type": "rect",
+          "x": -0.36,
+          "y": -0.36,
+          "w": 0.72,
+          "h": 1.72,
+          "fill": "#23272e",
+          "rx": 0.08,
+          "stroke": "#0e1116",
+          "strokeWidth": 0.035
+        },
+        {
+          "type": "rect",
+          "x": -0.12,
+          "y": -0.12,
+          "w": 0.24,
+          "h": 0.24,
+          "fill": "#c9a227"
+        },
+        {
+          "type": "rect",
+          "x": -0.12,
+          "y": 0.88,
+          "w": 0.24,
+          "h": 0.24,
+          "fill": "#c9a227"
+        }
+      ]
+    },
+    "jst-ph-2p": {
+      "id": "jst-ph-2p",
+      "name": "JST-PH 2-pin",
+      "subtitle": "2.0 mm LiPo connector",
+      "category": "connector",
+      "tags": [
+        "jst",
+        "ph",
+        "lipo",
+        "battery",
+        "2mm"
+      ],
+      "designator": "J",
+      "footprint": {
+        "cols": 2,
+        "rows": 1
+      },
+      "pins": [
+        {
+          "col": 0,
+          "row": 0,
+          "name": "+",
+          "number": 1,
+          "type": "power"
+        },
+        {
+          "col": 1,
+          "row": 0,
+          "name": "-",
+          "number": 2,
+          "type": "gnd"
+        }
+      ],
+      "body": {
+        "x": -0.4,
+        "y": -1.1,
+        "w": 1.8,
+        "h": 1.7,
+        "rx": 0.08,
+        "fill": "#e9edf1",
+        "stroke": "#a9b0b8"
+      },
+      "shapes": [
+        {
+          "type": "rect",
+          "x": -0.26,
+          "y": -0.95,
+          "w": 1.52,
+          "h": 0.62,
+          "fill": "#d5dae0",
+          "rx": 0.06,
+          "stroke": "#a9b0b8",
+          "strokeWidth": 0.035
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0,
+          "x2": 0,
+          "y2": -0.45,
+          "stroke": "#b9c0c8",
+          "strokeWidth": 0.1,
+          "linecap": "round"
+        },
+        {
+          "type": "line",
+          "x1": 1,
+          "y1": 0,
+          "x2": 1,
+          "y2": -0.45,
+          "stroke": "#b9c0c8",
+          "strokeWidth": 0.1,
+          "linecap": "round"
+        }
+      ]
+    },
+    "led-5mm-red": {
+      "id": "led-5mm-red",
+      "name": "LED 5 mm Red",
+      "subtitle": "through-hole indicator",
+      "category": "discrete",
+      "tags": [
+        "led",
+        "diode",
+        "red",
+        "5mm"
+      ],
+      "designator": "D",
+      "footprint": {
+        "cols": 2,
+        "rows": 1
+      },
+      "pins": [
+        {
+          "col": 0,
+          "row": 0,
+          "name": "A",
+          "number": 1,
+          "type": "power"
+        },
+        {
+          "col": 1,
+          "row": 0,
+          "name": "K",
+          "number": 2,
+          "type": "gnd"
+        }
+      ],
+      "shapes": [
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0,
+          "x2": 0.5,
+          "y2": 0,
+          "stroke": "#a8b0b8",
+          "strokeWidth": 0.1,
+          "linecap": "round"
+        },
+        {
+          "type": "line",
+          "x1": 1,
+          "y1": 0,
+          "x2": 0.5,
+          "y2": 0,
+          "stroke": "#a8b0b8",
+          "strokeWidth": 0.1,
+          "linecap": "round"
+        },
+        {
+          "type": "circle",
+          "cx": 0.5,
+          "cy": 0,
+          "r": 0.52,
+          "fill": "#e02b25",
+          "stroke": "#861a16",
+          "strokeWidth": 0.05
+        },
+        {
+          "type": "circle",
+          "cx": 0.5,
+          "cy": 0,
+          "r": 0.312,
+          "fill": "#eb7571"
+        },
+        {
+          "type": "circle",
+          "cx": 0.3544,
+          "cy": -0.1456,
+          "r": 0.104,
+          "fill": "#ffffff",
+          "opacity": 0.75
+        },
+        {
+          "type": "line",
+          "x1": 0.9472,
+          "y1": -0.26,
+          "x2": 0.9472,
+          "y2": 0.26,
+          "stroke": "#861a16",
+          "strokeWidth": 0.09,
+          "linecap": "butt"
+        }
+      ],
+      "label": {
+        "text": "Red",
+        "x": 0.5,
+        "y": 0.86,
+        "size": 0.26,
+        "color": "#9fb0c0"
+      }
+    },
+    "li-ion-18650-protected": {
+      "id": "li-ion-18650-protected",
+      "name": "Li-ion 18650 cell (protected)",
+      "subtitle": "3.7 V, PCB-protected, flying leads",
+      "category": "misc",
+      "tags": [
+        "li-ion",
+        "18650",
+        "lithium",
+        "rechargeable",
+        "protected",
+        "3.7v",
+        "battery",
+        "cell"
+      ],
+      "designator": "BT",
+      "footprint": {
+        "cols": 5,
+        "rows": 1
+      },
+      "pins": [
+        {
+          "col": 0,
+          "row": 0,
+          "name": "-",
+          "number": 1,
+          "type": "gnd"
+        },
+        {
+          "col": 4,
+          "row": 0,
+          "name": "+",
+          "number": 2,
+          "type": "power"
+        }
+      ],
+      "shapes": [
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0,
+          "x2": 0.72,
+          "y2": 0,
+          "stroke": "#1b1f25",
+          "strokeWidth": 0.09,
+          "linecap": "round"
+        },
+        {
+          "type": "line",
+          "x1": 4,
+          "y1": 0,
+          "x2": 3.28,
+          "y2": 0,
+          "stroke": "#d84040",
+          "strokeWidth": 0.09,
+          "linecap": "round"
+        },
+        {
+          "type": "rect",
+          "x": 0.7,
+          "y": -0.65,
+          "w": 2.6,
+          "h": 1.3,
+          "fill": "#1f5fa8",
+          "rx": 0.585,
+          "stroke": "#123f75",
+          "strokeWidth": 0.035
+        },
+        {
+          "type": "rect",
+          "x": 0.7,
+          "y": -0.65,
+          "w": 0.22,
+          "h": 1.3,
+          "fill": "#8d949c",
+          "rx": 0.05,
+          "stroke": "#123f75",
+          "strokeWidth": 0.035
+        },
+        {
+          "type": "rect",
+          "x": 3.08,
+          "y": -0.65,
+          "w": 0.22,
+          "h": 1.3,
+          "fill": "#3a3f47",
+          "rx": 0.05,
+          "stroke": "#123f75",
+          "strokeWidth": 0.035
+        }
+      ],
+      "label": {
+        "text": "3.7 V",
+        "x": 2,
+        "y": -0.93,
+        "size": 0.28,
+        "color": "#9fb0c0"
+      }
+    },
+    "resistor-330r": {
+      "id": "resistor-330r",
+      "name": "Resistor 330Ω",
+      "subtitle": "1/4 W axial",
+      "category": "passive",
+      "tags": [
+        "resistor",
+        "axial",
+        "330ohm",
+        "1/4 W"
+      ],
+      "designator": "R",
+      "footprint": {
+        "cols": 4,
+        "rows": 1
+      },
+      "resize": {
+        "axis": "cols",
+        "min": 3,
+        "max": 12
+      },
+      "pins": [
+        {
+          "col": 0,
+          "row": 0,
+          "name": "1",
+          "number": 1,
+          "type": "signal"
+        },
+        {
+          "col": 3,
+          "row": 0,
+          "name": "2",
+          "number": 2,
+          "type": "signal"
+        }
+      ],
+      "shapes": [
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0,
+          "x2": 0.79,
+          "y2": 0,
+          "stroke": "#a8b0b8",
+          "strokeWidth": 0.1,
+          "linecap": "round"
+        },
+        {
+          "type": "line",
+          "x1": 2.21,
+          "y1": 0,
+          "x2": 3,
+          "y2": 0,
+          "stroke": "#a8b0b8",
+          "strokeWidth": 0.1,
+          "linecap": "round"
+        },
+        {
+          "type": "rect",
+          "x": 0.75,
+          "y": -0.26,
+          "w": 1.5,
+          "h": 0.52,
+          "fill": "#d8c49b",
+          "rx": 0.16,
+          "stroke": "#a8916a",
+          "strokeWidth": 0.035
+        },
+        {
+          "type": "rect",
+          "x": 0.91,
+          "y": -0.24,
+          "w": 0.11,
+          "h": 0.48,
+          "fill": "#e07b27"
+        },
+        {
+          "type": "rect",
+          "x": 1.095,
+          "y": -0.24,
+          "w": 0.11,
+          "h": 0.48,
+          "fill": "#e07b27"
+        },
+        {
+          "type": "rect",
+          "x": 1.28,
+          "y": -0.24,
+          "w": 0.11,
+          "h": 0.48,
+          "fill": "#6b4a2b"
+        },
+        {
+          "type": "rect",
+          "x": 1.98,
+          "y": -0.24,
+          "w": 0.11,
+          "h": 0.48,
+          "fill": "#c9a227"
+        }
+      ],
+      "label": {
+        "text": "330Ω",
+        "x": 1.5,
+        "y": -0.55,
+        "size": 0.3,
+        "color": "#9fb0c0"
+      }
+    },
+    "slide-switch-spdt": {
+      "id": "slide-switch-spdt",
+      "name": "Slide switch SPDT",
+      "subtitle": "3-pin, 2.54 mm",
+      "category": "connector",
+      "tags": [
+        "switch",
+        "spdt",
+        "slide",
+        "toggle"
+      ],
+      "designator": "SW",
+      "footprint": {
+        "cols": 3,
+        "rows": 1
+      },
+      "pins": [
+        {
+          "col": 0,
+          "row": 0,
+          "name": "1",
+          "number": 1,
+          "type": "signal"
+        },
+        {
+          "col": 1,
+          "row": 0,
+          "name": "COM",
+          "number": 2,
+          "type": "signal"
+        },
+        {
+          "col": 2,
+          "row": 0,
+          "name": "2",
+          "number": 3,
+          "type": "signal"
+        }
+      ],
+      "body": {
+        "x": -0.4,
+        "y": -1.5,
+        "w": 2.8,
+        "h": 1.9,
+        "rx": 0.08,
+        "fill": "#23272e",
+        "stroke": "#0e1116"
+      },
+      "shapes": [
+        {
+          "type": "rect",
+          "x": 0.2,
+          "y": -1.3,
+          "w": 1.6,
+          "h": 0.6,
+          "fill": "#22262c",
+          "rx": 0.06,
+          "stroke": "#14171a",
+          "strokeWidth": 0.035
+        },
+        {
+          "type": "rect",
+          "x": 0.3,
+          "y": -1.25,
+          "w": 0.6,
+          "h": 0.5,
+          "fill": "#c9ced6",
+          "rx": 0.06,
+          "stroke": "#8d949c",
+          "strokeWidth": 0.035
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0,
+          "x2": 0,
+          "y2": -0.35,
+          "stroke": "#b9c0c8",
+          "strokeWidth": 0.1,
+          "linecap": "round"
+        },
+        {
+          "type": "line",
+          "x1": 1,
+          "y1": 0,
+          "x2": 1,
+          "y2": -0.35,
+          "stroke": "#b9c0c8",
+          "strokeWidth": 0.1,
+          "linecap": "round"
+        },
+        {
+          "type": "line",
+          "x1": 2,
+          "y1": 0,
+          "x2": 2,
+          "y2": -0.35,
+          "stroke": "#b9c0c8",
+          "strokeWidth": 0.1,
+          "linecap": "round"
+        }
+      ]
+    },
+    "tact-switch-6mm": {
+      "id": "tact-switch-6mm",
+      "name": "Tactile switch 6 mm",
+      "subtitle": "4-pin momentary",
+      "category": "connector",
+      "tags": [
+        "switch",
+        "button",
+        "tactile",
+        "momentary"
+      ],
+      "designator": "SW",
+      "footprint": {
+        "cols": 3,
+        "rows": 2
+      },
+      "pins": [
+        {
+          "col": 0,
+          "row": 0,
+          "name": "1A",
+          "number": 1,
+          "type": "signal"
+        },
+        {
+          "col": 2,
+          "row": 0,
+          "name": "2A",
+          "number": 2,
+          "type": "signal"
+        },
+        {
+          "col": 0,
+          "row": 1,
+          "name": "1B",
+          "number": 3,
+          "type": "signal"
+        },
+        {
+          "col": 2,
+          "row": 1,
+          "name": "2B",
+          "number": 4,
+          "type": "signal"
+        }
+      ],
+      "body": {
+        "x": -0.25,
+        "y": -0.6,
+        "w": 2.5,
+        "h": 2.2,
+        "rx": 0.08,
+        "fill": "#23272e",
+        "stroke": "#0e1116"
+      },
+      "shapes": [
+        {
+          "type": "circle",
+          "cx": 1,
+          "cy": 0.5,
+          "r": 0.62,
+          "fill": "#3a3f47",
+          "stroke": "#22262c",
+          "strokeWidth": 0.05
+        },
+        {
+          "type": "circle",
+          "cx": 1,
+          "cy": 0.5,
+          "r": 0.42,
+          "fill": "#c9ced6",
+          "stroke": "#8d949c",
+          "strokeWidth": 0.04
+        }
+      ]
+    }
+  },
+  "workspace": {
+    "cols": 44,
+    "rows": 34,
+    "pitchMm": 2.54
+  },
+  "boards": [
+    {
+      "uid": "b-main",
+      "col": 3,
+      "row": 4,
+      "cols": 18,
+      "rows": 24,
+      "colorId": "phenolic",
+      "label": "Main board"
+    }
+  ]
 }

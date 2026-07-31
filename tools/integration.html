@@ -27,8 +27,9 @@
     import { Store, makeInstance, makeWire } from '/src/core/store.js';
     import { Renderer } from '/src/render/renderer.js';
     import { pinCells, occupiedCells, boundsOf } from '/src/core/geometry.js';
-    import { displayCol } from '/src/core/board.js';
+    import { displayCol, deskColor } from '/src/core/board.js';
     import { deserialize, toJSON } from '/src/io/project.js';
+    import { CanvasController } from '/src/ui/canvas.js';
 
     const out = document.getElementById('out');
     let pass = 0, fail = 0;
@@ -106,7 +107,7 @@
       check(`pads land on hole centres — ${side} view, all rotations`, () => {
         store.setUI({ side }, { silent: true });
         renderer.render();
-        const board = store.doc.board;
+        const ws = store.doc.workspace;
 
         for (const id of ['ne555', 'esp32-c3-supermini', 'resistor-330r', 'header-1x8-male',
                           'lm7805', 'a4988-driver', 'led-5mm-red']) {
@@ -115,7 +116,7 @@
           for (const rot of [0, 90, 180, 270]) {
             const inst = makeInstance(def, { col: 2, row: 3, rotation: rot, side });
             const want = pinCells(def, inst)
-              .map((p) => ({ x: displayCol(p.col, board.cols, side === 'solder'), y: p.row }));
+              .map((p) => ({ x: displayCol(p.col, ws.cols, side === 'solder'), y: p.row }));
             const got = padPositions(inst);
             if (got.length !== want.length) {
               return `${id} rot${rot}: ${got.length} pads for ${want.length} pins`;
@@ -137,7 +138,6 @@
       store.setUI({ side: 'front' }, { silent: true });
       renderer.render();
       const def = catalog.get('resistor-330r');
-      const board = store.doc.board;
       for (const span of [3, 5, 8]) {
         for (const rot of [0, 90, 180, 270]) {
           const inst = makeInstance(def, { col: 1, row: 1, rotation: rot, side: 'front', span });
@@ -149,7 +149,6 @@
                    + JSON.stringify(got.map((g) => [+g.x.toFixed(2), +g.y.toFixed(2)]));
             }
           }
-          void board;
         }
       }
       return true;
@@ -181,7 +180,8 @@
 
     check('text stays upright: no mirrored glyphs on the solder side', () => {
       store.load({
-        name: 'T', board: { cols: 18, rows: 24, pitchMm: 2.54, colorId: 'phenolic' },
+        name: 'T', workspace: { cols: 18, rows: 24, pitchMm: 2.54 },
+        boards: [{ uid: 'bT', col: 0, row: 0, cols: 18, rows: 24, colorId: 'phenolic', label: 'T' }],
         modules: [makeInstance(catalog.get('ne555'), { col: 3, row: 4, rotation: 0, side: 'solder', label: 'U1' })],
         wires: [],
       });
@@ -203,7 +203,8 @@
     check('wire polyline points match the stored grid path', () => {
       const wire = makeWire({ points: [[1, 2], [1, 8], [6, 8]], color: '#e02b25', side: 'front' });
       store.load({
-        name: 'W', board: { cols: 18, rows: 24, pitchMm: 2.54, colorId: 'phenolic' },
+        name: 'W', workspace: { cols: 18, rows: 24, pitchMm: 2.54 },
+        boards: [{ uid: 'bW', col: 0, row: 0, cols: 18, rows: 24, colorId: 'phenolic', label: 'W' }],
         modules: [], wires: [wire],
       });
       store.setUI({ side: 'front' }, { silent: true });
@@ -217,7 +218,8 @@
     check('a solder-side wire renders mirrored on screen', () => {
       const wire = makeWire({ points: [[0, 0], [0, 5]], color: '#e02b25', side: 'solder' });
       store.load({
-        name: 'W', board: { cols: 18, rows: 24, pitchMm: 2.54, colorId: 'phenolic' },
+        name: 'W', workspace: { cols: 18, rows: 24, pitchMm: 2.54 },
+        boards: [{ uid: 'bW', col: 0, row: 0, cols: 18, rows: 24, colorId: 'phenolic', label: 'W' }],
         modules: [], wires: [wire],
       });
       store.setUI({ side: 'solder' }, { silent: true });
@@ -233,7 +235,8 @@
 
     check('ghost layer holds the other side, main layers hold this side', () => {
       store.load({
-        name: 'G', board: { cols: 18, rows: 24, pitchMm: 2.54, colorId: 'phenolic' },
+        name: 'G', workspace: { cols: 18, rows: 24, pitchMm: 2.54 },
+        boards: [{ uid: 'bG', col: 0, row: 0, cols: 18, rows: 24, colorId: 'phenolic', label: 'G' }],
         modules: [
           makeInstance(catalog.get('ne555'), { col: 1, row: 1, rotation: 0, side: 'front' }),
           makeInstance(catalog.get('ne555'), { col: 8, row: 1, rotation: 0, side: 'solder' }),
@@ -271,11 +274,72 @@
       return true;
     });
 
+    // -- module opacity ------------------------------------------------------
+
+    check('module opacity fades only the artwork, never wires or pads', () => {
+      // Pads carry their own authored opacity, so the invariant is that the
+      // slider leaves it exactly as it was — not that it is absent.
+      const padOpacity = () => [...renderer.moduleLayer.querySelectorAll('.pbs-module')]
+        .flatMap((m) => [...m.children])
+        .filter((c) => c.tagName === 'circle')
+        .map((c) => c.getAttribute('opacity'))
+        .join('|');
+
+      store.setUI({ side: 'front', showGhost: false, moduleOpacity: 1 }, { silent: true });
+      renderer.render();
+      const solidPads = padOpacity();
+
+      store.setUI({ moduleOpacity: 0.4 }, { silent: true });
+      renderer.render();
+      try {
+        const art = renderer.moduleLayer.querySelector('.pbs-module-art');
+        if (!art) return 'no artwork group';
+        if (Number(art.getAttribute('opacity')) !== 0.4) {
+          return `artwork opacity ${art.getAttribute('opacity')}`;
+        }
+        if (padOpacity() !== solidPads) return 'pad opacity changed with the slider';
+        for (const w of renderer.wireLayer.querySelectorAll('.pbs-wire')) {
+          if (w.getAttribute('opacity') !== null) return 'a wire was faded';
+        }
+        return true;
+      } finally {
+        store.setUI({ moduleOpacity: 1 }, { silent: true });
+        renderer.render();
+      }
+    });
+
+    check('full opacity leaves no opacity attribute behind', () => {
+      store.setUI({ side: 'front', moduleOpacity: 1 }, { silent: true });
+      renderer.render();
+      const art = renderer.moduleLayer.querySelector('.pbs-module-art');
+      if (!art) return 'no artwork group';
+      return art.getAttribute('opacity') === null ? true : 'artwork is fading at 100%';
+    });
+
+    check('module opacity does not move pads', () => {
+      const def = catalog.get('ne555');
+      const inst = makeInstance(def, { col: 3, row: 4, rotation: 90, side: 'front' });
+      store.setUI({ side: 'front', moduleOpacity: 1 }, { silent: true });
+      renderer.render();
+      const solid = padPositions(inst);
+      store.setUI({ moduleOpacity: 0.25 }, { silent: true });
+      renderer.render();
+      const faded = padPositions(inst);
+      store.setUI({ moduleOpacity: 1 }, { silent: true });
+      if (solid.length !== faded.length) return `${solid.length} vs ${faded.length} pads`;
+      for (let i = 0; i < solid.length; i++) {
+        if (Math.abs(solid[i].x - faded[i].x) > 1e-9
+          || Math.abs(solid[i].y - faded[i].y) > 1e-9) return `pad ${i} moved`;
+      }
+      return true;
+    });
+
     // -- board layer ---------------------------------------------------------
 
     check('board draws one hole per grid position', () => {
       store.load({
-        name: 'B', board: { cols: 6, rows: 4, pitchMm: 2.54, colorId: 'phenolic' },
+        name: 'B', workspace: { cols: 6, rows: 4, pitchMm: 2.54 },
+        boards: [{ uid: 'bB', col: 0, row: 0, cols: 6, rows: 4, colorId: 'phenolic', label: 'B' }],
         modules: [], wires: [],
       });
       renderer.render();
@@ -288,7 +352,7 @@
     check('board layer is rebuilt when the size changes', () => {
       renderer.render();
       const before = renderer.boardLayer.querySelector('path').getAttribute('d');
-      store.commit('resize', (doc) => { doc.board.cols = 10; });
+      store.commit('resize', (doc) => { doc.boards[0].cols = 10; });
       renderer.render();
       const after = renderer.boardLayer.querySelector('path').getAttribute('d');
       return before !== after ? true : 'cache did not invalidate on resize';
@@ -296,7 +360,8 @@
 
     check('rulers label every column and row', () => {
       store.load({
-        name: 'R', board: { cols: 6, rows: 4, pitchMm: 2.54, colorId: 'phenolic' },
+        name: 'R', workspace: { cols: 6, rows: 4, pitchMm: 2.54 },
+        boards: [{ uid: 'bR', col: 0, row: 0, cols: 6, rows: 4, colorId: 'phenolic', label: 'R' }],
         modules: [], wires: [],
       });
       store.setUI({ showRulers: true }, { silent: true });
@@ -322,7 +387,8 @@
 
     check('clientToHole round-trips through the solder-side mirror', () => {
       store.load({
-        name: 'H', board: { cols: 18, rows: 24, pitchMm: 2.54, colorId: 'phenolic' },
+        name: 'H', workspace: { cols: 18, rows: 24, pitchMm: 2.54 },
+        boards: [{ uid: 'bH', col: 0, row: 0, cols: 18, rows: 24, colorId: 'phenolic', label: 'H' }],
         modules: [], wires: [],
       });
       for (const side of ['front', 'solder']) {
@@ -351,10 +417,153 @@
       return renderer.clientToHole(p.x, p.y) === null ? true : 'picked a hole off-board';
     });
 
+    // -- workspace with several boards ---------------------------------------
+
+    check('every board on the workspace is drawn at its own offset', () => {
+      store.load({
+        name: 'WS', workspace: { cols: 40, rows: 30, pitchMm: 2.54 },
+        boards: [
+          { uid: 'ba', col: 0, row: 0, cols: 6, rows: 4, colorId: 'phenolic', label: 'A' },
+          { uid: 'bb', col: 20, row: 10, cols: 8, rows: 5, colorId: 'fr4-green', label: 'B' },
+        ],
+        modules: [], wires: [],
+      });
+      store.setUI({ side: 'front' }, { silent: true });
+      renderer.render();
+      const groups = [...renderer.boardLayer.querySelectorAll('.pbs-board')];
+      if (groups.length !== 2) return `${groups.length} boards drawn`;
+      const at = groups.map((g) => g.getAttribute('transform'));
+      if (at[0] !== 'translate(0 0)') return `first board at ${at[0]}`;
+      if (at[1] !== 'translate(20 10)') return `second board at ${at[1]}`;
+      // Each board draws its own holes, not the workspace's.
+      const holes = (g) => (g.querySelector('path').getAttribute('d').match(/M/g) || []).length;
+      if (holes(groups[0]) !== 24) return `${holes(groups[0])} holes on a 6x4 board`;
+      if (holes(groups[1]) !== 40) return `${holes(groups[1])} holes on an 8x5 board`;
+      return true;
+    });
+
+    check('a module off every board still renders and keeps its pads', () => {
+      const def = catalog.get('ne555');
+      // (32, 24) is bare desk in the layout above.
+      const inst = makeInstance(def, { col: 32, row: 24, rotation: 0, side: 'front' });
+      store.commit('place off-board', (doc) => { doc.modules.push(inst); });
+      renderer.render();
+      if (!renderer.moduleLayer.querySelector(`[data-uid="${inst.uid}"]`)) {
+        return 'off-board module was not rendered';
+      }
+      const want = pinCells(def, inst).map((p) => ({ x: p.col, y: p.row }));
+      const got = padPositions(inst);
+      for (const w of want) {
+        if (!got.some((g) => Math.abs(g.x - w.x) < 1e-6 && Math.abs(g.y - w.y) < 1e-6)) {
+          return `no pad at (${w.x},${w.y}) for a part sitting on bare desk`;
+        }
+      }
+      return true;
+    });
+
+    check('a wire can run from a board out to a part beside it', () => {
+      // Board A ends at col 5; the part above sits at col 32. One polyline spans
+      // both, which is the whole point of a shared workspace grid.
+      const wire = makeWire({ points: [[3, 2], [3, 26], [32, 26], [32, 24]], color: '#2fbf4e', side: 'front' });
+      store.commit('link', (doc) => { doc.wires.push(wire); });
+      renderer.render();
+      const node = renderer.wireLayer.querySelector(`[data-uid="${wire.uid}"] polyline`);
+      if (!node) return 'wire not drawn';
+      const pts = node.getAttribute('points');
+      return pts === '3,2 3,26 32,26 32,24' ? true : `points are "${pts}"`;
+    });
+
+    check('the solder mirror is taken about the workspace, not a board', () => {
+      const ws = store.doc.workspace;
+      store.setUI({ side: 'solder' }, { silent: true });
+      renderer.render();
+      const t = renderer.geom.getAttribute('transform');
+      if (t !== `translate(${ws.cols - 1} 0) scale(-1 1)`) return `transform is "${t}"`;
+      // A hole on the far right of the workspace must land on the far left.
+      const ctm = renderer.svg.getScreenCTM();
+      const p = new DOMPoint(0, 5).matrixTransform(ctm);
+      const back = renderer.clientToHole(p.x, p.y);
+      if (!back || back.col !== ws.cols - 1 || back.row !== 5) {
+        return `round trip gave ${JSON.stringify(back)}`;
+      }
+      store.setUI({ side: 'front' }, { silent: true });
+      return true;
+    });
+
+    check('boards are hit-testable but never steal a click from a part on them', () => {
+      store.load({
+        name: 'Pick', workspace: { cols: 20, rows: 20, pitchMm: 2.54 },
+        boards: [{ uid: 'bp', col: 0, row: 0, cols: 12, rows: 12, colorId: 'phenolic', label: 'P' }],
+        modules: [makeInstance(catalog.get('ne555'), { col: 2, row: 2, rotation: 0, side: 'front', label: 'U1' })],
+        wires: [],
+      });
+      renderer.render();
+      const canvas = new CanvasController(renderer, store, catalog);
+      const onModule = canvas.pickAt(2.5, 3);
+      if (onModule?.kind !== 'module') return `over the chip picked ${onModule?.kind}`;
+      const onBoard = canvas.pickAt(9, 9);
+      if (onBoard?.kind !== 'board' || onBoard.uid !== 'bp') return `bare board picked ${JSON.stringify(onBoard)}`;
+      const offBoard = canvas.pickAt(17, 17);
+      if (offBoard !== null) return `bare desk picked ${JSON.stringify(offBoard)}`;
+      return true;
+    });
+
+    check('deleting a board leaves the parts that sat on it', () => {
+      const before = store.doc.modules.length;
+      const canvas = new CanvasController(renderer, store, catalog);
+      canvas.deleteItem({ kind: 'board', uid: 'bp' });
+      if (store.doc.boards.length !== 0) return 'board was not removed';
+      if (store.doc.modules.length !== before) return 'modules were removed with the board';
+      renderer.render();
+      return renderer.moduleLayer.childNodes.length > 0 ? true : 'parts vanished with the board';
+    });
+
+    check('the workspace background follows the chosen preset', () => {
+      store.load({
+        name: 'BG', workspace: { cols: 12, rows: 8, pitchMm: 2.54, colorId: 'paper' },
+        boards: [], modules: [], wires: [],
+      });
+      renderer.render();
+      const rect = renderer.deskLayer.querySelector('rect');
+      const dots = renderer.deskLayer.querySelector('path');
+      const paper = deskColor('paper');
+      if (rect.getAttribute('fill') !== paper.fill) return `desk is ${rect.getAttribute('fill')}`;
+      if (rect.getAttribute('stroke') !== paper.edge) return `edge is ${rect.getAttribute('stroke')}`;
+      if (dots.getAttribute('fill') !== paper.dot) return `dots are ${dots.getAttribute('fill')}`;
+
+      // The desk layer is cached, so a colour change has to bust the cache — the
+      // size is unchanged here, which is exactly the case a size-only key misses.
+      store.commit('recolour', (doc) => { doc.workspace.colorId = 'mat'; });
+      renderer.render();
+      const after = renderer.deskLayer.querySelector('rect').getAttribute('fill');
+      return after === deskColor('mat').fill ? true : `stale cache kept ${after}`;
+    });
+
+    check('selection outlines carry a dark halo so they read on any background', () => {
+      store.load({
+        name: 'Halo', workspace: { cols: 12, rows: 8, pitchMm: 2.54, colorId: 'paper' },
+        boards: [{ uid: 'bh', col: 0, row: 0, cols: 6, rows: 6, colorId: 'fr4-white', label: 'H' }],
+        modules: [], wires: [],
+      });
+      store.setUI({ selection: { kind: 'board', uid: 'bh' } }, { silent: true });
+      renderer.render();
+      const rects = [...renderer.overlayLayer.querySelectorAll('rect.pbs-selection')];
+      if (rects.length !== 2) return `${rects.length} outline layer(s)`;
+      const under = Number(rects[0].getAttribute('stroke-width'));
+      const over = Number(rects[1].getAttribute('stroke-width'));
+      if (!(under > over)) return `halo ${under} is not wider than ${over}`;
+      if (rects[1].getAttribute('stroke') !== '#7dcfff') return 'tinted stroke is not on top';
+      return true;
+    });
+
     // -- a realistic design --------------------------------------------------
 
     check('a full design saves, reopens and re-renders identically', () => {
-      const board = { cols: 24, rows: 35, pitchMm: 2.54, colorId: 'fr4-green' };
+      const workspace = { cols: 30, rows: 40, pitchMm: 2.54 };
+      const boards = [{
+        uid: 'bmain', col: 1, row: 2, cols: 24, rows: 35,
+        colorId: 'fr4-green', label: 'Main',
+      }];
       const mods = [
         makeInstance(catalog.get('esp32-c3-supermini'), { col: 2, row: 2, rotation: 0, side: 'front', label: 'U1' }),
         makeInstance(catalog.get('ne555'), { col: 14, row: 4, rotation: 90, side: 'front', label: 'U2' }),
@@ -366,7 +575,7 @@
         makeWire({ points: [[2, 2], [2, 18], [12, 18]], color: '#e02b25', gauge: 'thick', side: 'solder' }),
         makeWire({ points: [[8, 2], [8, 30], [21, 30]], color: '#1b1f25', side: 'front' }),
       ];
-      store.load({ name: 'Integration board', board, modules: mods, wires });
+      store.load({ name: 'Integration board', workspace, boards, modules: mods, wires });
       store.setUI({ side: 'front' }, { silent: true });
       renderer.render();
       const before = renderer.svg.innerHTML.length;
@@ -393,7 +602,8 @@
 
     check('a missing module renders as a visible placeholder', () => {
       store.load({
-        name: 'M', board: { cols: 10, rows: 10, pitchMm: 2.54, colorId: 'phenolic' },
+        name: 'M', workspace: { cols: 10, rows: 10, pitchMm: 2.54 },
+        boards: [{ uid: 'bM', col: 0, row: 0, cols: 10, rows: 10, colorId: 'phenolic', label: 'M' }],
         modules: [{ uid: 'm1', moduleId: 'does-not-exist', col: 2, row: 2, rotation: 0, side: 'front', label: 'X1' }],
         wires: [],
       });
@@ -416,14 +626,14 @@
         return warnings.length === 0 ? true : warnings.join('; ');
       });
 
-      check(`${rel} fits on its board and renders`, () => {
+      check(`${rel} fits on the workspace and renders`, () => {
         const { doc } = deserialize(raw, catalog);
         for (const m of doc.modules) {
           const def = catalog.get(m.moduleId);
           if (!def) return `unknown module ${m.moduleId}`;
           const b = boundsOf(def, m);
-          if (b.col + b.cols > doc.board.cols || b.row + b.rows > doc.board.rows) {
-            return `${m.label || m.moduleId} overhangs the board`;
+          if (b.col + b.cols > doc.workspace.cols || b.row + b.rows > doc.workspace.rows) {
+            return `${m.label || m.moduleId} overhangs the workspace`;
           }
         }
         store.load(doc);

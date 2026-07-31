@@ -21,12 +21,16 @@
     // parsed and executed exactly as they are in production.
     import {
       footprintOf, rotatePoint, moduleTransform, occupiedCells, pinCells,
-      boundsOf, rotatedSize, normalizeRotation, clampToBoard, resolveInstance,
-      overlaps, distToPolyline, fitsOnBoard,
+      boundsOf, rotatedSize, normalizeRotation, clampToArea, clampBoardToArea,
+      resolveInstance, overlaps, distToPolyline, fitsInArea,
     } from '../src/core/geometry.js';
     import { Store, makeInstance, makeWire, WIRE_COLORS } from '../src/core/store.js';
     import { Catalog, normalizeDef } from '../src/core/catalog.js';
-    import { colLabel, colIndex, holeName, displayCol, boardExtent, defaultBoard } from '../src/core/board.js';
+    import {
+      colLabel, colIndex, holeName, displayCol, workspaceExtent, defaultBoard,
+      defaultWorkspace, makeBoard, boardAt, boardCovers, localHoleName,
+      DESK_COLORS, deskColor,
+    } from '../src/core/board.js';
     import { serialize, deserialize, toJSON, filenameFor } from '../src/io/project.js';
     import { buildBom } from '../src/io/export.js';
     import { modulePreview, artworkBounds } from '../src/render/preview.js';
@@ -72,8 +76,8 @@
       for (let c = 0; c < 18; c++) if (displayCol(displayCol(c, 18, true), 18, true) !== c) return `broke at ${c}`;
       return true;
     });
-    check('boardExtent covers the grid plus rulers', () => {
-      const e = boardExtent({ cols: 18, rows: 24 });
+    check('workspaceExtent covers the grid plus rulers', () => {
+      const e = workspaceExtent({ cols: 18, rows: 24 });
       return e.x < 0 && e.y < 0 && e.w > 17 && e.h > 23 ? true : JSON.stringify(e);
     });
 
@@ -178,15 +182,15 @@
       return eq(names(90), names(0));
     });
 
-    check('clampToBoard keeps the footprint on the board', () => {
+    check('clampToArea keeps the footprint inside the workspace', () => {
       const board = { cols: 10, rows: 10 };
       for (const rot of [0, 90, 180, 270]) {
         for (const [col, row] of [[-5, -5], [50, 50], [8, 9], [0, 0]]) {
           const inst = { col, row, rotation: rot };
-          const at = clampToBoard(board, dip8, inst);
+          const at = clampToArea(board, dip8, inst);
           const clamped = { ...inst, ...at };
-          if (!fitsOnBoard(board, dip8, clamped)) {
-            return `rot${rot} from (${col},${row}) clamped to (${at.col},${at.row}) still off-board`;
+          if (!fitsInArea(board, dip8, clamped)) {
+            return `rot${rot} from (${col},${row}) clamped to (${at.col},${at.row}) still outside`;
           }
         }
       }
@@ -364,7 +368,7 @@
 
     check('serialize embeds only the definitions in use', () => {
       const doc = {
-        name: 'T', board: defaultBoard(),
+        name: 'T', workspace: defaultWorkspace(), boards: [defaultBoard()],
         modules: [{ uid: 'm1', moduleId: 'test-dip8', col: 1, row: 1, rotation: 90, side: 'front', label: 'U1' }],
         wires: [],
       };
@@ -374,7 +378,7 @@
 
     check('serialize strips the catalog internals', () => {
       const doc = {
-        name: 'T', board: defaultBoard(),
+        name: 'T', workspace: defaultWorkspace(), boards: [defaultBoard()],
         modules: [{ uid: 'm1', moduleId: 'test-dip8', col: 0, row: 0, rotation: 0, side: 'front' }],
         wires: [],
       };
@@ -387,10 +391,80 @@
       return b.presetId === undefined ? true : 'defaultBoard still stores presetId';
     });
 
+    check('a v1 single-board file opens as one board at the origin', () => {
+      const v1 = {
+        format: 'perfboard-studio', version: 1, name: 'Legacy',
+        board: { cols: 18, rows: 24, pitchMm: 2.54, colorId: 'fr4-blue' },
+        modules: [{ uid: 'm1', moduleId: 'test-dip8', col: 4, row: 6, rotation: 0, side: 'front' }],
+        wires: [{ uid: 'w1', points: [[0, 0], [17, 23]], color: '#e02b25', gauge: 'normal', side: 'front' }],
+        moduleDefs: {},
+      };
+      const { doc } = deserialize(JSON.stringify(v1), cat);
+      if (doc.boards.length !== 1) return `${doc.boards.length} boards`;
+      const b = doc.boards[0];
+      if (b.col !== 0 || b.row !== 0) return `board moved to (${b.col},${b.row})`;
+      if (b.cols !== 18 || b.rows !== 24) return 'board size changed';
+      if (b.colorId !== 'fr4-blue') return 'board colour lost';
+      if (doc.workspace.cols !== 18 || doc.workspace.rows !== 24) return 'workspace mismatch';
+      // Every stored coordinate must still mean the hole it always meant.
+      if (doc.modules[0].col !== 4 || doc.modules[0].row !== 6) return 'module drifted';
+      if (eq(doc.wires[0].points, [[0, 0], [17, 23]]) !== true) return 'wire drifted';
+      return true;
+    });
+
+    check('clampBoardToArea keeps a board inside the workspace', () => {
+      const ws = { cols: 30, rows: 20 };
+      for (const [col, row] of [[-4, -4], [99, 99], [12, 3]]) {
+        const at = clampBoardToArea(ws, { col, row, cols: 18, rows: 24 });
+        if (at.col < 0 || at.row < 0) return `(${at.col},${at.row}) is negative`;
+        if (at.col + 18 > ws.cols) return `${at.col}+18 overflows ${ws.cols}`;
+        // Taller than the workspace: pinned to the top rather than pushed negative.
+        if (at.row !== 0) return `row ${at.row} for an over-tall board`;
+      }
+      return true;
+    });
+
+    check('boardAt finds the topmost board covering a hole', () => {
+      const a = makeBoard({ col: 0, row: 0, cols: 6, rows: 6, label: 'A' });
+      const b = makeBoard({ col: 4, row: 4, cols: 6, rows: 6, label: 'B' });
+      if (boardAt([a, b], 1, 1) !== a) return 'missed A';
+      if (boardAt([a, b], 5, 5) !== b) return 'overlap should pick the topmost';
+      if (boardAt([a, b], 20, 20) !== null) return 'found a board on bare desk';
+      if (boardCovers(a, 6, 0)) return 'boardCovers is off by one';
+      return true;
+    });
+
+    check('every desk preset carries a fill, an edge and a dot colour', () => {
+      const hex = /^#[0-9a-f]{6}$/i;
+      for (const c of DESK_COLORS) {
+        for (const k of ['fill', 'edge', 'dot']) {
+          if (!hex.test(c[k] || '')) return `${c.id}.${k} is "${c[k]}"`;
+        }
+        // The dot grid is the only thing you aim at on bare workspace, so it has
+        // to differ from the surface it sits on.
+        if (c.dot.toLowerCase() === c.fill.toLowerCase()) return `${c.id} dots are invisible`;
+      }
+      return DESK_COLORS.length >= 4 ? true : 'too few presets to be useful';
+    });
+
+    check('deskColor falls back to the first preset', () => {
+      if (deskColor('graphite') !== DESK_COLORS[0]) return 'lost the default';
+      if (deskColor('nope') !== DESK_COLORS[0]) return 'unknown id did not fall back';
+      if (deskColor(undefined) !== DESK_COLORS[0]) return 'undefined did not fall back';
+      return defaultWorkspace().colorId === DESK_COLORS[0].id ? true : 'default workspace disagrees';
+    });
+
+    check('localHoleName reads a hole in its own board frame', () => {
+      const b = makeBoard({ col: 3, row: 4, cols: 10, rows: 10 });
+      return localHoleName(b, 3, 4) === 'A1' && localHoleName(b, 5, 6) === 'C3'
+        ? true : `${localHoleName(b, 3, 4)} / ${localHoleName(b, 5, 6)}`;
+    });
+
     check('save -> open round-trips the document', () => {
       const doc = {
         name: 'Round trip',
-        board: { cols: 20, rows: 30, pitchMm: 2.54, colorId: 'fr4-green' },
+        workspace: { cols: 40, rows: 40, pitchMm: 2.54, colorId: 'mat' },
+        boards: [{ uid: 'b1', col: 2, row: 3, cols: 20, rows: 30, colorId: 'fr4-green', label: 'Main' }],
         modules: [
           { uid: 'm1', moduleId: 'test-dip8', col: 1, row: 1, rotation: 90, side: 'front', label: 'U1' },
           { uid: 'm2', moduleId: 'test-res', col: 4, row: 8, rotation: 0, side: 'solder', label: 'R1', span: 6 },
@@ -402,10 +476,32 @@
       const { doc: back, warnings } = deserialize(toJSON(doc, cat), cat);
       if (warnings.length) return `warnings: ${warnings.join('; ')}`;
       if (back.name !== doc.name) return 'name lost';
-      if (eq(back.board, doc.board) !== true) return `board: ${JSON.stringify(back.board)}`;
+      if (eq(back.workspace, doc.workspace) !== true) return `workspace: ${JSON.stringify(back.workspace)}`;
+      if (eq(back.boards, doc.boards) !== true) return `boards: ${JSON.stringify(back.boards)}`;
       if (eq(back.modules, doc.modules) !== true) return `modules: ${JSON.stringify(back.modules)}`;
       if (eq(back.wires, doc.wires) !== true) return `wires: ${JSON.stringify(back.wires)}`;
       return true;
+    });
+
+    check('an unknown workspace background falls back quietly', () => {
+      const { doc, warnings } = deserialize(JSON.stringify({
+        format: 'perfboard-studio', version: 2, name: 'X',
+        workspace: { cols: 20, rows: 20, pitchMm: 2.54, colorId: 'chartreuse' },
+        boards: [], modules: [], wires: [], moduleDefs: {},
+      }), cat);
+      if (doc.workspace.colorId !== DESK_COLORS[0].id) return `kept "${doc.workspace.colorId}"`;
+      // Cosmetic, so it must not clutter the open dialog with a warning.
+      return warnings.length ? `warned: ${warnings.join('; ')}` : true;
+    });
+
+    check('a v1 file gets the default background', () => {
+      const { doc } = deserialize(JSON.stringify({
+        format: 'perfboard-studio', version: 1, name: 'Legacy',
+        board: { cols: 12, rows: 12, pitchMm: 2.54, colorId: 'phenolic' },
+        modules: [], wires: [], moduleDefs: {},
+      }), cat);
+      return doc.workspace.colorId === DESK_COLORS[0].id
+        ? true : `got "${doc.workspace.colorId}"`;
     });
 
     check('open rejects a foreign file', () => {
@@ -487,7 +583,7 @@
     // -- BOM -----------------------------------------------------------------
     check('BOM groups by part and counts references', () => {
       const doc = {
-        name: 'B', board: defaultBoard(),
+        name: 'B', workspace: defaultWorkspace(), boards: [defaultBoard()],
         modules: [
           { uid: '1', moduleId: 'test-res', label: 'R1', col: 0, row: 0, side: 'front' },
           { uid: '2', moduleId: 'test-res', label: 'R2', col: 0, row: 2, side: 'front' },

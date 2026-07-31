@@ -1,5 +1,5 @@
 /**
- * SVG renderer for the board.
+ * SVG renderer for the workspace.
  *
  * Layering
  * --------
@@ -12,12 +12,13 @@
  *            computed in JS and written in display coordinates.
  *
  * The board layer is cached because it is the most expensive to build and only
- * depends on the board dimensions, colour and viewed side.
+ * depends on where the boards are, how big they are and what colour they are.
  */
 
 import { svg, clear } from '../util/dom.js';
 import {
-  BOARD_MARGIN, RULER_GUTTER, boardColor, boardExtent, colLabel, rowLabel,
+  BOARD_MARGIN, RULER_GUTTER, boardColor, colLabel, deskColor, rowLabel,
+  workspaceExtent,
 } from '../core/board.js';
 import {
   boundsOf, moduleTransform, normalizeRotation, pinCells, resolveInstance,
@@ -29,6 +30,7 @@ import {
 import { WIRE_GAUGES } from '../core/store.js';
 
 const GHOST_OPACITY = 0.3;
+const MIN_MODULE_OPACITY = 0.1;
 
 export class Renderer {
   /**
@@ -45,6 +47,7 @@ export class Renderer {
     this.geom = svg('g', { id: 'pbs-geom' });
     this.labels = svg('g', { id: 'pbs-labels' });
 
+    this.deskLayer = svg('g', { class: 'layer-desk' });
     this.boardLayer = svg('g', { class: 'layer-board' });
     this.ghostLayer = svg('g', { class: 'layer-ghost' });
     this.wireLayer = svg('g', { class: 'layer-wires' });
@@ -55,20 +58,32 @@ export class Renderer {
     this.textLayer = svg('g', { class: 'layer-text' });
 
     this.geom.append(
-      this.boardLayer, this.ghostLayer, this.wireLayer,
+      this.deskLayer, this.boardLayer, this.ghostLayer, this.wireLayer,
       this.moduleLayer, this.overlayLayer,
     );
     this.labels.append(this.rulerLayer, this.textLayer);
     this.svg.append(this.defs, this.geom, this.labels);
 
+    this._deskCacheKey = null;
     this._boardCacheKey = null;
   }
 
   get mirrored() { return this.store.ui.side === 'solder'; }
 
+  /**
+   * How solid a placed module's artwork should be. Turning this down lets wires
+   * routed underneath show through; pads, designators and pin names are left
+   * alone so the part stays identifiable however faint its body is.
+   */
+  get moduleOpacity() {
+    const v = this.store.ui.moduleOpacity;
+    if (!Number.isFinite(v)) return 1;
+    return Math.min(1, Math.max(MIN_MODULE_OPACITY, v));
+  }
+
   /** Mirror a continuous x coordinate for display when on the solder side. */
   dx(x) {
-    return this.mirrored ? this.store.doc.board.cols - 1 - x : x;
+    return this.mirrored ? this.store.doc.workspace.cols - 1 - x : x;
   }
 
   // -- coordinate conversion -------------------------------------------------
@@ -87,13 +102,13 @@ export class Renderer {
     return { x: this.dx(u.x), y: u.y };
   }
 
-  /** Client point -> nearest hole in grid coordinates, or null if off-board. */
+  /** Client point -> nearest workspace hole, or null if outside the workspace. */
   clientToHole(clientX, clientY, tolerance = 0.55) {
     const g = this.clientToGrid(clientX, clientY);
     const col = Math.round(g.x);
     const row = Math.round(g.y);
-    const board = this.store.doc.board;
-    if (col < 0 || row < 0 || col >= board.cols || row >= board.rows) return null;
+    const ws = this.store.doc.workspace;
+    if (col < 0 || row < 0 || col >= ws.cols || row >= ws.rows) return null;
     if (Math.hypot(g.x - col, g.y - row) > tolerance) return null;
     return { col, row };
   }
@@ -106,9 +121,9 @@ export class Renderer {
     this.svg.setAttribute('viewBox', `${v.x} ${v.y} ${v.w} ${v.h}`);
   }
 
-  /** Frame the whole board, preserving the element's aspect ratio. */
+  /** Frame the whole workspace, preserving the element's aspect ratio. */
   fitView() {
-    const e = boardExtent(this.store.doc.board);
+    const e = workspaceExtent(this.store.doc.workspace);
     const rect = this.svg.getBoundingClientRect();
     const aspect = rect.width > 0 && rect.height > 0 ? rect.width / rect.height : 1;
     let w = e.w;
@@ -158,67 +173,87 @@ export class Renderer {
 
     this.geom.setAttribute(
       'transform',
-      this.mirrored ? `translate(${this.store.doc.board.cols - 1} 0) scale(-1 1)` : '',
+      this.mirrored ? `translate(${this.store.doc.workspace.cols - 1} 0) scale(-1 1)` : '',
     );
 
-    this.renderBoard();
+    this.renderDesk();
+    this.renderBoards();
     this.renderRulers();
     this.renderContent();
   }
 
-  // -- board ----------------------------------------------------------------
+  // -- workspace ------------------------------------------------------------
 
-  renderBoard() {
-    const { board } = this.store.doc;
-    const key = `${board.cols}x${board.rows}:${board.colorId}`;
-    if (key === this._boardCacheKey) return;
-    this._boardCacheKey = key;
+  /**
+   * The bare desk: a faint dot at every workspace hole. Parts placed off a board
+   * still snap to this grid, so it needs to be visible enough to aim at without
+   * competing with the boards drawn on top of it.
+   */
+  renderDesk() {
+    const ws = this.store.doc.workspace;
+    const key = `${ws.cols}x${ws.rows}:${ws.colorId}`;
+    if (key === this._deskCacheKey) return;
+    this._deskCacheKey = key;
 
-    const col = boardColor(board.colorId);
-    clear(this.boardLayer);
-
-    const x = -BOARD_MARGIN;
-    const y = -BOARD_MARGIN;
-    const w = board.cols - 1 + 2 * BOARD_MARGIN;
-    const h = board.rows - 1 + 2 * BOARD_MARGIN;
-
-    this.boardLayer.append(
+    const col = deskColor(ws.colorId);
+    clear(this.deskLayer);
+    this.deskLayer.append(
       svg('rect', {
-        x, y, width: w, height: h, rx: 0.5,
-        fill: col.fill, stroke: col.edge, 'stroke-width': 0.12,
+        class: 'pbs-desk',
+        x: -BOARD_MARGIN, y: -BOARD_MARGIN,
+        width: ws.cols - 1 + 2 * BOARD_MARGIN, height: ws.rows - 1 + 2 * BOARD_MARGIN,
+        rx: 0.4, fill: col.fill, stroke: col.edge, 'stroke-width': 0.08,
       }),
-      svg('path', { d: this.padPath(board, 0.34), fill: col.pad, opacity: 0.9 }),
-      svg('path', { d: this.padPath(board, 0.13), fill: '#0d1014', opacity: 0.85 }),
+      svg('path', { d: holePath(ws.cols, ws.rows, 0.09), fill: col.dot }),
     );
   }
 
-  /** One path containing a filled circle of radius `r` at every hole. */
-  padPath(board, r) {
-    const parts = [];
-    for (let row = 0; row < board.rows; row++) {
-      for (let c = 0; c < board.cols; c++) {
-        parts.push(
-          `M${c - r} ${row}a${r} ${r} 0 1 0 ${2 * r} 0a${r} ${r} 0 1 0 ${-2 * r} 0`,
-        );
-      }
-    }
-    return parts.join('');
+  // -- boards ---------------------------------------------------------------
+
+  renderBoards() {
+    const boards = this.store.doc.boards.map((b) => this.effectiveBoard(b));
+    const key = boards.map((b) => `${b.uid}@${b.col},${b.row}:${b.cols}x${b.rows}:${b.colorId}`)
+      .join('|');
+    if (key === this._boardCacheKey) return;
+    this._boardCacheKey = key;
+
+    clear(this.boardLayer);
+    for (const b of boards) this.boardLayer.append(this.buildBoard(b));
+  }
+
+  buildBoard(board) {
+    const col = boardColor(board.colorId);
+    const g = svg('g', {
+      class: 'pbs-board',
+      'data-uid': board.uid,
+      transform: `translate(${board.col} ${board.row})`,
+    });
+    g.append(
+      svg('rect', {
+        x: -BOARD_MARGIN, y: -BOARD_MARGIN,
+        width: board.cols - 1 + 2 * BOARD_MARGIN, height: board.rows - 1 + 2 * BOARD_MARGIN,
+        rx: 0.5, fill: col.fill, stroke: col.edge, 'stroke-width': 0.12,
+      }),
+      svg('path', { d: holePath(board.cols, board.rows, 0.34), fill: col.pad, opacity: 0.9 }),
+      svg('path', { d: holePath(board.cols, board.rows, 0.13), fill: '#0d1014', opacity: 0.85 }),
+    );
+    return g;
   }
 
   renderRulers() {
     clear(this.rulerLayer);
     if (!this.store.ui.showRulers) return;
-    const { board } = this.store.doc;
+    const ws = this.store.doc.workspace;
     const off = BOARD_MARGIN + RULER_GUTTER * 0.45;
 
-    for (let c = 0; c < board.cols; c++) {
+    for (let c = 0; c < ws.cols; c++) {
       const major = (c + 1) % 5 === 0 || c === 0;
       this.rulerLayer.append(this.text({
         x: this.dx(c), y: -off, text: colLabel(c), size: 0.5,
         color: major ? '#c0caf5' : '#6b7280', weight: major ? 700 : 500,
       }));
     }
-    for (let r = 0; r < board.rows; r++) {
+    for (let r = 0; r < ws.rows; r++) {
       const major = (r + 1) % 5 === 0 || r === 0;
       this.rulerLayer.append(this.text({
         x: this.dx(-off), y: r, text: rowLabel(r), size: 0.5,
@@ -249,10 +284,11 @@ export class Renderer {
       }
     }
 
+    const fade = this.moduleOpacity;
     for (const w of doc.wires) if (near(w)) this.wireLayer.append(this.buildWire(w, false));
     for (const m of modules) {
       if (!near(m)) continue;
-      const g = this.buildModule(m, { ghost: false });
+      const g = this.buildModule(m, { ghost: false, fade });
       if (g) this.moduleLayer.append(g);
     }
 
@@ -270,15 +306,22 @@ export class Renderer {
    */
   effectiveModule(m) {
     const d = this.store.ui.drag;
-    if (d && d.uid === m.uid) return { ...m, col: d.col, row: d.row };
+    if (d && d.kind === 'module' && d.uid === m.uid) return { ...m, col: d.col, row: d.row };
     return m;
+  }
+
+  /** Same, for a board being dragged around the workspace. */
+  effectiveBoard(b) {
+    const d = this.store.ui.drag;
+    if (d && d.kind === 'board' && d.uid === b.uid) return { ...b, col: d.col, row: d.row };
+    return b;
   }
 
   /**
    * Build one placed module. Geometry goes in the (possibly mirrored) group;
    * its text is pushed to the unmirrored label layer at absolute coordinates.
    */
-  buildModule(inst, { ghost }) {
+  buildModule(inst, { ghost, fade = 1 }) {
     const def = this.catalog.get(inst.moduleId);
     if (!def) return this.buildMissingModule(inst, ghost);
 
@@ -292,10 +335,14 @@ export class Renderer {
       opacity: ghost ? GHOST_OPACITY : null,
     });
 
-    // Artwork is authored for the unresized footprint, so stretch it to match.
-    const art = (scaleX !== 1 || scaleY !== 1)
-      ? svg('g', { transform: `scale(${scaleX} ${scaleY})` })
-      : g;
+    // The artwork lives in its own group so `fade` can be a single group opacity
+    // — overlapping shapes then blend once instead of stacking up. Artwork is
+    // authored for the unresized footprint, so stretch it to match.
+    const art = svg('g', {
+      class: 'pbs-module-art',
+      transform: (scaleX !== 1 || scaleY !== 1) ? `scale(${scaleX} ${scaleY})` : null,
+      opacity: fade < 1 ? fade : null,
+    });
 
     const base = def.body ? bodyShape(def, def.footprint) : fallbackShape(def, def.footprint);
     if (base) art.append(shapeElement(base));
@@ -303,9 +350,10 @@ export class Renderer {
       const e = shapeElement(s);
       if (e) art.append(e);
     }
-    if (art !== g) g.append(art);
+    g.append(art);
 
-    // Pads sit on the resolved (already stretched) pin holes, unscaled.
+    // Pads sit on the resolved (already stretched) pin holes, unscaled. They stay
+    // fully opaque: they are what tells you which holes the part actually uses.
     for (const p of resolveInstance(def, inst).pins) {
       for (const e of padElements(p)) g.append(e);
     }
@@ -317,7 +365,7 @@ export class Renderer {
       fill: 'transparent', 'pointer-events': ghost ? 'none' : 'all',
     }));
 
-    if (!ghost) this.emitModuleText(def, inst, fp, scaleX, scaleY);
+    if (!ghost) this.emitModuleText(def, inst, fp, scaleX, scaleY, fade);
     return g;
   }
 
@@ -343,12 +391,15 @@ export class Renderer {
     return g;
   }
 
-  emitModuleText(def, inst, fp, scaleX, scaleY) {
+  emitModuleText(def, inst, fp, scaleX, scaleY, fade = 1) {
     const { ui } = this.store;
     const rot = normalizeRotation(inst.rotation);
     const flip = this.mirrored ? -1 : 1;
 
     if (ui.showLabels) {
+      // Silkscreen is part of the artwork, so it fades with it. The designator
+      // below is ours, not the part's, and stays readable.
+      const silk = (o) => (o == null ? (fade < 1 ? fade : null) : o * fade);
       for (const t of collectText(def, def.footprint)) {
         const local = rotatePoint(t.x * scaleX, t.y * scaleY, fp.cols, fp.rows, rot);
         this.textLayer.append(this.text({
@@ -360,7 +411,7 @@ export class Renderer {
           anchor: t.anchor,
           weight: t.weight,
           rotate: flip * (rot + t.rotate),
-          opacity: t.opacity,
+          opacity: silk(t.opacity),
         }));
       }
       if (inst.label) {
@@ -373,6 +424,7 @@ export class Renderer {
           color: '#ffd479',
           weight: 700,
           className: 'pbs-designator',
+          halo: true,
         }));
       }
     }
@@ -384,6 +436,7 @@ export class Renderer {
           x: this.dx(p.col), y: p.row - 0.42, text: p.name, size: 0.26,
           color: PIN_TEXT[p.type] || '#c0caf5', weight: 600,
           className: 'pbs-pinname',
+          halo: true,
         }));
       }
     }
@@ -448,22 +501,51 @@ export class Renderer {
 
   // -- overlays -------------------------------------------------------------
 
+  /**
+   * Draw an overlay outline so it reads on any backdrop.
+   *
+   * Overlays land on whatever is underneath — a graphite desk, a white one, a tan
+   * board — so no single stroke colour stays legible. A darker, wider copy
+   * underneath gives the tinted stroke its own contrast wherever it ends up.
+   */
+  outline(tag, attrs) {
+    const width = Number(attrs['stroke-width']) || 0.1;
+    this.overlayLayer.append(
+      svg(tag, {
+        ...attrs, stroke: '#0b0e12', 'stroke-width': width * 2.4, opacity: 0.5,
+      }),
+      svg(tag, attrs),
+    );
+  }
+
   renderSelection() {
     const sel = this.store.selected;
     if (!sel) return;
+    if (sel.kind === 'board') {
+      const b = this.effectiveBoard(sel.item);
+      this.outline('rect', {
+        class: 'pbs-selection',
+        x: b.col - BOARD_MARGIN - 0.15, y: b.row - BOARD_MARGIN - 0.15,
+        width: b.cols - 1 + 2 * BOARD_MARGIN + 0.3,
+        height: b.rows - 1 + 2 * BOARD_MARGIN + 0.3,
+        rx: 0.5, fill: 'none', stroke: '#7dcfff', 'stroke-width': 0.12,
+        'stroke-dasharray': '0.6 0.4', 'pointer-events': 'none',
+      });
+      return;
+    }
     if (sel.kind === 'module') {
       const inst = this.effectiveModule(sel.item);
       const def = this.catalog.get(inst.moduleId);
       const b = def
         ? boundsOf(def, inst)
         : { col: inst.col, row: inst.row, cols: 1, rows: 1 };
-      this.overlayLayer.append(svg('rect', {
+      this.outline('rect', {
         class: 'pbs-selection',
         x: b.col - 0.55, y: b.row - 0.55,
         width: b.cols - 1 + 1.1, height: b.rows - 1 + 1.1,
         rx: 0.2, fill: 'none', stroke: '#7dcfff', 'stroke-width': 0.1,
         'stroke-dasharray': '0.45 0.3', 'pointer-events': 'none',
-      }));
+      });
     } else {
       const w = sel.item;
       this.overlayLayer.append(svg('polyline', {
@@ -497,31 +579,41 @@ export class Renderer {
     this.overlayLayer.append(g);
 
     const b = boundsOf(def, inst);
-    const fits = b.col + b.cols <= this.store.doc.board.cols
-      && b.row + b.rows <= this.store.doc.board.rows;
-    this.overlayLayer.append(svg('rect', {
+    const ws = this.store.doc.workspace;
+    const fits = b.col + b.cols <= ws.cols && b.row + b.rows <= ws.rows;
+    this.outline('rect', {
       x: b.col - 0.5, y: b.row - 0.5,
       width: b.cols - 1 + 1, height: b.rows - 1 + 1,
       rx: 0.2, fill: 'none', stroke: fits ? '#73daca' : '#f7768e',
       'stroke-width': 0.1, 'stroke-dasharray': '0.4 0.25', 'pointer-events': 'none',
-    }));
+    });
   }
 
   renderHover() {
     const { ui } = this.store;
     if (!ui.hover || ui.placing) return;
     if (ui.tool !== 'wire' && ui.tool !== 'erase') return;
-    this.overlayLayer.append(svg('circle', {
+    this.outline('circle', {
       cx: ui.hover.col, cy: ui.hover.row, r: 0.44,
       fill: 'none', stroke: ui.tool === 'erase' ? '#f7768e' : '#73daca',
       'stroke-width': 0.1, 'pointer-events': 'none',
-    }));
+    });
   }
 
   // -- text helper ----------------------------------------------------------
 
-  /** A single text node in display coordinates. */
-  text({ x, y, text, size, color, anchor = 'middle', weight = 600, rotate = 0, opacity, className }) {
+  /**
+   * A single text node in display coordinates.
+   *
+   * `halo` draws a dark outline behind the glyphs (`paint-order` puts the stroke
+   * under the fill, so the letterforms keep their weight). Our own overlays —
+   * designators, pin names — can land on a module, a board or bare workspace of
+   * any colour, and a fixed fill alone cannot stay readable across all three.
+   */
+  text({
+    x, y, text, size, color, anchor = 'middle', weight = 600, rotate = 0,
+    opacity, className, halo = false,
+  }) {
     const node = svg('text', {
       x: 0, y: 0,
       'font-size': size,
@@ -535,10 +627,26 @@ export class Renderer {
       'pointer-events': 'none',
       opacity: opacity ?? null,
       class: className || null,
+      stroke: halo ? '#0b0e12' : null,
+      'stroke-width': halo ? size * 0.28 : null,
+      'stroke-opacity': halo ? 0.7 : null,
+      'stroke-linejoin': halo ? 'round' : null,
+      'paint-order': halo ? 'stroke fill' : null,
     });
     node.textContent = text;
     return node;
   }
+}
+
+/** One path containing a filled circle of radius `r` at every hole of a grid. */
+function holePath(cols, rows, r) {
+  const parts = [];
+  for (let row = 0; row < rows; row++) {
+    for (let c = 0; c < cols; c++) {
+      parts.push(`M${c - r} ${row}a${r} ${r} 0 1 0 ${2 * r} 0a${r} ${r} 0 1 0 ${-2 * r} 0`);
+    }
+  }
+  return parts.join('');
 }
 
 const PIN_TEXT = {

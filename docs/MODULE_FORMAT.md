@@ -31,7 +31,7 @@ Artwork is free to spill outside the footprint — a TO-220's body sits well abo
 its three pins, and that is exactly right. Negative coordinates are fine.
 
 Because everything is expressed in pitches, nothing needs to know about pixels
-or zoom levels: the renderer frames the board with an SVG `viewBox`.
+or zoom levels: the renderer frames the workspace with an SVG `viewBox`.
 
 ---
 
@@ -145,10 +145,10 @@ A few conventions that keep the catalog looking consistent:
 ### Why text is special
 
 Text in `shapes` and in `label` is **not** drawn inside the geometry group. The
-solder-side view mirrors the board horizontally so that wiring underneath reads
-correctly — and mirrored text is unreadable. The renderer therefore collects all
-text, computes its absolute position itself, and emits it into a separate
-unmirrored layer.
+solder-side view mirrors the whole workspace horizontally so that wiring
+underneath reads correctly — and mirrored text is unreadable. The renderer
+therefore collects all text, computes its absolute position itself, and emits it
+into a separate unmirrored layer.
 
 The consequence for you as an author: text positions and rotations behave
 exactly as you would expect, and you never need to think about the flip.
@@ -246,4 +246,4 @@ generator no longer claims it.
 - [ ] `designator` set (`R`, `C`, `U`…)
 - [ ] registered and bundled (`python tools/generate_catalog.py --index`)
 - [ ] `python tools/validate_catalog.py` is clean
-- [ ] it looks right in the palette and on the board at all four rotations
+- [ ] it looks right in the palette and on the workspace at all four rotations

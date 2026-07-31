@@ -5,7 +5,7 @@
  * ghosting, labels — is what gets exported, minus the transient overlays.
  */
 
-import { boardExtent } from '../core/board.js';
+import { holeName, workspaceExtent } from '../core/board.js';
 import { downloadText } from '../util/dom.js';
 
 const XMLNS = 'http://www.w3.org/2000/svg';
@@ -19,7 +19,7 @@ function snapshot(renderer, { background = '#11141a', padding = 0.5 } = {}) {
     for (const n of [...clone.querySelectorAll(sel)]) n.remove();
   }
 
-  const e = boardExtent(renderer.store.doc.board);
+  const e = workspaceExtent(renderer.store.doc.workspace);
   const x = e.x - padding;
   const y = e.y - padding;
   const w = e.w + 2 * padding;
@@ -117,7 +117,9 @@ export function buildBom(doc, catalog) {
 
   const lines = [
     `# Bill of materials — ${doc.name}`,
-    `# Board: ${doc.board.cols} × ${doc.board.rows} holes`,
+    `# Workspace: ${doc.workspace.cols} × ${doc.workspace.rows} holes`,
+    ...doc.boards.map((b) => `# Board "${b.label || 'unnamed'}": `
+      + `${b.cols} × ${b.rows} holes at ${holeName(b.col, b.row)}`),
     `# Generated ${new Date().toISOString()}`,
     '',
     'Qty\tRefs\tPart\tDescription\tCategory\tModule id',

@@ -11,7 +11,7 @@
  * renderer is cheap enough to rebuild the layers it needs on each notification.
  */
 
-import { defaultBoard } from './board.js';
+import { defaultBoard, defaultWorkspace } from './board.js';
 import { uid } from '../util/dom.js';
 
 const HISTORY_LIMIT = 100;
@@ -40,7 +40,8 @@ export const WIRE_GAUGES = [
 function emptyDoc() {
   return {
     name: 'Untitled design',
-    board: defaultBoard(),
+    workspace: defaultWorkspace(),
+    boards: [defaultBoard()],
     modules: [],
     wires: [],
   };
@@ -64,6 +65,8 @@ export class Store {
       showLabels: true,
       showPinNames: false,
       showRulers: true,
+      /** 0.1..1 — fades module artwork so wiring underneath stays visible. */
+      moduleOpacity: 1,
       snapWires: true,
       view: null, // { x, y, w, h } in unit space; null = fit on next render
       dirty: false,
@@ -161,12 +164,34 @@ export class Store {
 
   moduleByUid(id) { return this.doc.modules.find((m) => m.uid === id) || null; }
   wireByUid(id) { return this.doc.wires.find((w) => w.uid === id) || null; }
+  boardByUid(id) { return this.doc.boards.find((b) => b.uid === id) || null; }
+
+  itemByPick(sel) {
+    if (!sel) return null;
+    if (sel.kind === 'module') return this.moduleByUid(sel.uid);
+    if (sel.kind === 'wire') return this.wireByUid(sel.uid);
+    if (sel.kind === 'board') return this.boardByUid(sel.uid);
+    return null;
+  }
 
   get selected() {
     const sel = this.ui.selection;
-    if (!sel) return null;
-    const item = sel.kind === 'module' ? this.moduleByUid(sel.uid) : this.wireByUid(sel.uid);
+    const item = this.itemByPick(sel);
     return item ? { kind: sel.kind, item } : null;
+  }
+
+  /** Next free "Board N" name. */
+  nextBoardLabel() {
+    const used = new Set(
+      this.doc.boards
+        .map((b) => b.label)
+        .filter((l) => typeof l === 'string' && l.startsWith('Board '))
+        .map((l) => Number.parseInt(l.slice(6), 10))
+        .filter(Number.isFinite),
+    );
+    let n = 1;
+    while (used.has(n)) n++;
+    return `Board ${n}`;
   }
 
   /**

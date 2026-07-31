@@ -1,15 +1,18 @@
 /**
- * Board presets and coordinate helpers.
+ * The workspace grid, the perfboards placed on it, and coordinate helpers.
  *
  * Coordinate systems
  * ------------------
- *  grid    - integer (col, row) hole indices. col 0 is the leftmost column as
- *            seen from the FRONT of the board; row 0 is the top row.
+ *  grid    - integer (col, row) hole indices on the WORKSPACE, not on any one
+ *            board. col 0 is the leftmost column seen from the FRONT; row 0 is
+ *            the top row. Boards, modules and wires all live in this one space,
+ *            which is what lets a part sit beside a board rather than on it.
  *  display - grid, but mirrored horizontally when viewing the solder side.
  *  unit    - continuous coordinates in hole pitches, same axes as display.
  *
  * Hole names follow the usual perfboard convention: columns get letters
- * (A, B, ... Z, AA, AB, ...) and rows get numbers starting at 1.
+ * (A, B, ... Z, AA, AB, ...) and rows get numbers starting at 1. A hole inside a
+ * board can also be read in that board's own frame — see `localHoleName`.
  */
 
 /** Physical perfboard sizes commonly sold, with their usual hole counts. */
@@ -35,16 +38,41 @@ export const BOARD_COLORS = [
   { id: 'fr4-red', label: 'FR-4 red', fill: '#7a1d29', edge: '#4d0f18', pad: '#c8a45a' },
 ];
 
+/**
+ * Backdrops for the workspace itself. A fixed palette rather than a free colour
+ * picker, because each entry also has to carry a `dot` that stays legible
+ * against its own `fill` — the alignment grid is useless if it disappears.
+ *
+ * The light entries exist for a practical reason: a black wire routed over bare
+ * workspace is invisible on a dark desk.
+ */
+export const DESK_COLORS = [
+  { id: 'graphite', label: 'Graphite', fill: '#161a21', edge: '#242a33', dot: '#39414d' },
+  { id: 'slate', label: 'Slate', fill: '#3c434e', edge: '#4d5663', dot: '#767f8d' },
+  { id: 'steel', label: 'Steel blue', fill: '#26374d', edge: '#33475f', dot: '#5d7695' },
+  { id: 'mat', label: 'Cutting mat', fill: '#2c5849', edge: '#1f4436', dot: '#558b76' },
+  { id: 'kraft', label: 'Kraft paper', fill: '#cfc3ab', edge: '#a99c84', dot: '#8d8168' },
+  { id: 'paper', label: 'White paper', fill: '#eef1f5', edge: '#c2c9d2', dot: '#a2abb6' },
+];
+
 export const MIN_DIM = 2;
 export const MAX_DIM = 120;
 
-/** Margin of bare board around the hole grid, in hole units. */
+/** Bounds for the workspace itself, which has to hold every board. */
+export const MIN_WORKSPACE = 4;
+export const MAX_WORKSPACE = 400;
+
+/** Margin of bare board material around a board's hole grid, in hole units. */
 export const BOARD_MARGIN = 1.0;
-/** Extra room reserved outside the board for the row/column rulers. */
+/** Extra room reserved outside the workspace for the row/column rulers. */
 export const RULER_GUTTER = 1.4;
 
 export function boardColor(id) {
   return BOARD_COLORS.find((c) => c.id === id) || BOARD_COLORS[0];
+}
+
+export function deskColor(id) {
+  return DESK_COLORS.find((c) => c.id === id) || DESK_COLORS[0];
 }
 
 export function presetFor(cols, rows) {
@@ -73,7 +101,7 @@ export function colIndex(label) {
 
 export const rowLabel = (index) => String(index + 1);
 
-/** Human-readable hole name, e.g. (2, 5) -> "C6". */
+/** Human-readable workspace hole name, e.g. (2, 5) -> "C6". */
 export function holeName(col, row) {
   return `${colLabel(col)}${rowLabel(row)}`;
 }
@@ -82,36 +110,81 @@ export function holeName(col, row) {
  * Mirror a column index when the solder side is being viewed.
  * The mapping is its own inverse, so the same call converts either direction.
  */
-export function displayCol(col, boardCols, mirrored) {
-  return mirrored ? boardCols - 1 - col : col;
+export function displayCol(col, workspaceCols, mirrored) {
+  return mirrored ? workspaceCols - 1 - col : col;
 }
 
-export function inBounds(board, col, row) {
-  return col >= 0 && row >= 0 && col < board.cols && row < board.rows;
+/** True when (col,row) is inside any `{cols, rows}` rectangle. */
+export function inBounds(area, col, row) {
+  return col >= 0 && row >= 0 && col < area.cols && row < area.rows;
 }
 
-/** The SVG viewBox that fits the whole board plus its rulers, in unit space. */
-export function boardExtent(board) {
+/** The SVG viewBox that fits the whole workspace plus its rulers, in unit space. */
+export function workspaceExtent(ws) {
   const pad = BOARD_MARGIN + RULER_GUTTER;
   return {
     x: -pad,
     y: -pad,
-    w: board.cols - 1 + 2 * pad,
-    h: board.rows - 1 + 2 * pad,
+    w: ws.cols - 1 + 2 * pad,
+    h: ws.rows - 1 + 2 * pad,
   };
 }
 
 /**
- * A board is described only by its hole counts, pitch and colour. Which preset
- * that corresponds to is derived on demand via `presetFor` rather than stored,
- * so there is no second source of truth to keep in sync.
+ * The workspace is the desk everything sits on: perfboards, modules that are
+ * not on any board (a battery pack, a dev board on a stand-off) and the wiring
+ * that runs between them.
  */
+export function defaultWorkspace() {
+  return { cols: 56, rows: 40, pitchMm: 2.54, colorId: DESK_COLORS[0].id };
+}
+
+let boardSeq = 0;
+
+/**
+ * A perfboard placed on the workspace. Boards carry no `side` of their own:
+ * they are the substrate that both sides are seen through.
+ */
+export function makeBoard({
+  col = 0, row = 0, cols = 18, rows = 24, colorId = 'phenolic', label = null,
+} = {}) {
+  boardSeq += 1;
+  return {
+    uid: `b${Date.now().toString(36).slice(-5)}${boardSeq.toString(36)}`,
+    col,
+    row,
+    cols,
+    rows,
+    colorId,
+    label,
+  };
+}
+
+/** The board a fresh document starts with, sitting a little in from the corner. */
 export function defaultBoard() {
   const p = BOARD_PRESETS.find((x) => x.id === '5x7');
-  return {
-    cols: p.cols,
-    rows: p.rows,
-    pitchMm: 2.54,
-    colorId: 'phenolic',
-  };
+  return makeBoard({ col: 3, row: 4, cols: p.cols, rows: p.rows, label: 'Board 1' });
+}
+
+/** Hole rectangle a board occupies on the workspace. */
+export function boardBounds(b) {
+  return { col: b.col, row: b.row, cols: b.cols, rows: b.rows };
+}
+
+/** True when the workspace hole (col,row) falls inside this board. */
+export function boardCovers(b, col, row) {
+  return col >= b.col && row >= b.row && col < b.col + b.cols && row < b.row + b.rows;
+}
+
+/** The topmost board under a workspace hole, or null when it is bare desk. */
+export function boardAt(boards, col, row) {
+  for (let i = boards.length - 1; i >= 0; i--) {
+    if (boardCovers(boards[i], col, row)) return boards[i];
+  }
+  return null;
+}
+
+/** Hole name in a board's own frame, counted from that board's top-left hole. */
+export function localHoleName(board, col, row) {
+  return holeName(col - board.col, row - board.row);
 }

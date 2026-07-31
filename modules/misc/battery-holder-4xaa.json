@@ -1,0 +1,100 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "battery-holder-4xaa",
+  "name": "AA holder, 4 cell",
+  "subtitle": "PCB mount, 6 V",
+  "category": "misc",
+  "tags": [
+    "battery",
+    "aa",
+    "holder",
+    "4 cell",
+    "6v"
+  ],
+  "designator": "BT",
+  "footprint": {
+    "cols": 23,
+    "rows": 20
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 19,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.6,
+    "y": -0.6,
+    "w": 24.2,
+    "h": 21.2,
+    "rx": 0.2,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": 1,
+      "y": 0.6,
+      "w": 20.6,
+      "h": 4.4,
+      "fill": "#2f343b",
+      "rx": 2.1,
+      "stroke": "#14171a",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1,
+      "y": 6.4,
+      "w": 20.6,
+      "h": 4.4,
+      "fill": "#2f343b",
+      "rx": 2.1,
+      "stroke": "#14171a",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1,
+      "y": 12.2,
+      "w": 20.6,
+      "h": 4.4,
+      "fill": "#2f343b",
+      "rx": 2.1,
+      "stroke": "#14171a",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1,
+      "y": 18,
+      "w": 20.6,
+      "h": 4.4,
+      "fill": "#2f343b",
+      "rx": 2.1,
+      "stroke": "#14171a",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "text",
+      "x": 11,
+      "y": 10.5,
+      "text": "4 x AA",
+      "size": 0.9,
+      "color": "#6b737b",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ]
+}

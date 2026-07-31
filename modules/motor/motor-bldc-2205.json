@@ -1,0 +1,114 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "motor-bldc-2205",
+  "name": "BLDC 2205 outrunner",
+  "subtitle": "3-phase, needs an ESC",
+  "category": "motor",
+  "tags": [
+    "brushless",
+    "bldc",
+    "3-phase",
+    "drone",
+    "esc",
+    "motor"
+  ],
+  "designator": "M",
+  "footprint": {
+    "cols": 3,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "U",
+      "number": 1,
+      "type": "out"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "V",
+      "number": 2,
+      "type": "out"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "W",
+      "number": 3,
+      "type": "out"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 1,
+      "y2": -1.2,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 1,
+      "y2": -1.2,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 1,
+      "y2": -1.2,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": -5.4,
+      "r": 4.2,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.1
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": -5.4,
+      "r": 3.4,
+      "fill": "#5c6269"
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": -5.4,
+      "r": 1.1,
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.06
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": -5.4,
+      "r": 0.35,
+      "fill": "#22262c"
+    }
+  ],
+  "label": {
+    "text": "BLDC",
+    "x": 1.0,
+    "y": 0.5,
+    "size": 0.32,
+    "color": "#9fb0c0"
+  }
+}

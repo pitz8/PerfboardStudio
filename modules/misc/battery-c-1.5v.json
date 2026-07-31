@@ -1,0 +1,98 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "battery-c-1.5v",
+  "name": "C battery",
+  "subtitle": "1.5 V alkaline, flying leads",
+  "category": "misc",
+  "tags": [
+    "alkaline",
+    "c-cell",
+    "primary",
+    "1.5v",
+    "battery",
+    "cell"
+  ],
+  "designator": "BT",
+  "footprint": {
+    "cols": 5,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "-",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "+",
+      "number": 2,
+      "type": "power"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.72,
+      "y2": 0,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 4,
+      "y1": 0,
+      "x2": 3.28,
+      "y2": 0,
+      "stroke": "#d84040",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": 0.7,
+      "y": -0.575,
+      "w": 2.6,
+      "h": 1.15,
+      "fill": "#e8c72c",
+      "rx": 0.5175,
+      "stroke": "#a89020",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.7,
+      "y": -0.575,
+      "w": 0.22,
+      "h": 1.15,
+      "fill": "#8d949c",
+      "rx": 0.05,
+      "stroke": "#a89020",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 3.08,
+      "y": -0.575,
+      "w": 0.22,
+      "h": 1.15,
+      "fill": "#3a3f47",
+      "rx": 0.05,
+      "stroke": "#a89020",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "1.5 V",
+    "x": 2,
+    "y": -0.855,
+    "size": 0.28,
+    "color": "#9fb0c0"
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "arduino-uno-r3",
+  "name": "Arduino Uno R3",
+  "subtitle": "ATmega328P, shield outline",
+  "category": "mcu",
+  "tags": [
+    "arduino",
+    "uno",
+    "atmega328p",
+    "avr",
+    "shield",
+    "board",
+    "shield"
+  ],
+  "designator": "U",
+  "datasheet": "https://docs.arduino.cc/hardware/uno-rev3",
+  "footprint": {
+    "cols": 27,
+    "rows": 21
+  },
+  "pins": [
+    {
+      "col": 8,
+      "row": 1,
+      "name": "D0",
+      "number": 1,
+      "type": "io"
+    },
+    {
+      "col": 9,
+      "row": 1,
+      "name": "D1",
+      "number": 2,
+      "type": "io"
+    },
+    {
+      "col": 10,
+      "row": 1,
+      "name": "D2",
+      "number": 3,
+      "type": "io"
+    },
+    {
+      "col": 11,
+      "row": 1,
+      "name": "D3",
+      "number": 4,
+      "type": "io"
+    },
+    {
+      "col": 12,
+      "row": 1,
+      "name": "D4",
+      "number": 5,
+      "type": "io"
+    },
+    {
+      "col": 13,
+      "row": 1,
+      "name": "D5",
+      "number": 6,
+      "type": "io"
+    },
+    {
+      "col": 14,
+      "row": 1,
+      "name": "D6",
+      "number": 7,
+      "type": "io"
+    },
+    {
+      "col": 15,
+      "row": 1,
+      "name": "D7",
+      "number": 8,
+      "type": "io"
+    },
+    {
+      "col": 17,
+      "row": 1,
+      "name": "D8",
+      "number": 9,
+      "type": "io"
+    },
+    {
+      "col": 18,
+      "row": 1,
+      "name": "D9",
+      "number": 10,
+      "type": "io"
+    },
+    {
+      "col": 19,
+      "row": 1,
+      "name": "D10",
+      "number": 11,
+      "type": "io"
+    },
+    {
+      "col": 20,
+      "row": 1,
+      "name": "D11",
+      "number": 12,
+      "type": "io"
+    },
+    {
+      "col": 21,
+      "row": 1,
+      "name": "D12",
+      "number": 13,
+      "type": "io"
+    },
+    {
+      "col": 22,
+      "row": 1,
+      "name": "D13",
+      "number": 14,
+      "type": "io"
+    },
+    {
+      "col": 23,
+      "row": 1,
+      "name": "GND",
+      "number": 15,
+      "type": "gnd"
+    },
+    {
+      "col": 24,
+      "row": 1,
+      "name": "AREF",
+      "number": 16,
+      "type": "signal"
+    },
+    {
+      "col": 25,
+      "row": 1,
+      "name": "SDA",
+      "number": 17,
+      "type": "signal"
+    },
+    {
+      "col": 26,
+      "row": 1,
+      "name": "SCL",
+      "number": 18,
+      "type": "signal"
+    },
+    {
+      "col": 8,
+      "row": 19,
+      "name": "NC",
+      "number": 19,
+      "type": "nc"
+    },
+    {
+      "col": 9,
+      "row": 19,
+      "name": "IOREF",
+      "number": 20,
+      "type": "signal"
+    },
+    {
+      "col": 10,
+      "row": 19,
+      "name": "RESET",
+      "number": 21,
+      "type": "signal"
+    },
+    {
+      "col": 11,
+      "row": 19,
+      "name": "3V3",
+      "number": 22,
+      "type": "power"
+    },
+    {
+      "col": 12,
+      "row": 19,
+      "name": "5V",
+      "number": 23,
+      "type": "power"
+    },
+    {
+      "col": 13,
+      "row": 19,
+      "name": "GND",
+      "number": 24,
+      "type": "gnd"
+    },
+    {
+      "col": 14,
+      "row": 19,
+      "name": "GND",
+      "number": 25,
+      "type": "gnd"
+    },
+    {
+      "col": 15,
+      "row": 19,
+      "name": "VIN",
+      "number": 26,
+      "type": "power"
+    },
+    {
+      "col": 17,
+      "row": 19,
+      "name": "A0",
+      "number": 27,
+      "type": "analog"
+    },
+    {
+      "col": 18,
+      "row": 19,
+      "name": "A1",
+      "number": 28,
+      "type": "analog"
+    },
+    {
+      "col": 19,
+      "row": 19,
+      "name": "A2",
+      "number": 29,
+      "type": "analog"
+    },
+    {
+      "col": 20,
+      "row": 19,
+      "name": "A3",
+      "number": 30,
+      "type": "analog"
+    },
+    {
+      "col": 21,
+      "row": 19,
+      "name": "A4",
+      "number": 31,
+      "type": "analog"
+    },
+    {
+      "col": 22,
+      "row": 19,
+      "name": "A5",
+      "number": 32,
+      "type": "analog"
+    }
+  ],
+  "body": {
+    "x": -0.6,
+    "y": -0.6,
+    "w": 27.2,
+    "h": 21.2,
+    "rx": 0.5,
+    "fill": "#123a63",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": 7.68,
+      "y": 0.68,
+      "w": 7.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 16.68,
+      "y": 0.68,
+      "w": 9.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 7.68,
+      "y": 18.68,
+      "w": 7.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 16.68,
+      "y": 18.68,
+      "w": 5.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": -1.3,
+      "y": 2.2,
+      "w": 1.9,
+      "h": 3,
+      "fill": "#b9c0c8",
+      "rx": 0.1,
+      "stroke": "#7f868e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": -1.3,
+      "y": 14.6,
+      "w": 1.9,
+      "h": 2.6,
+      "fill": "#23272e",
+      "rx": 0.14,
+      "stroke": "#3a4048",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 8.64,
+      "y": 7.56,
+      "w": 9.18,
+      "h": 5.88,
+      "fill": "#1f242b",
+      "rx": 0.1,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "UNO R3",
+    "x": 13,
+    "y": 15.12,
+    "size": 0.6,
+    "color": "#e8eef4"
+  }
+}

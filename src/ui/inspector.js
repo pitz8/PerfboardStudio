@@ -5,10 +5,11 @@
 
 import { clear, el, on } from '../util/dom.js';
 import {
-  BOARD_COLORS, BOARD_PRESETS, MAX_DIM, MIN_DIM, holeName, presetFor,
+  BOARD_COLORS, BOARD_PRESETS, DESK_COLORS, MAX_DIM, MAX_WORKSPACE, MIN_DIM,
+  MIN_WORKSPACE, deskColor, holeName, makeBoard, presetFor,
 } from '../core/board.js';
 import { WIRE_COLORS, WIRE_GAUGES } from '../core/store.js';
-import { boundsOf, footprintOf, pinCells } from '../core/geometry.js';
+import { boundsOf, clampBoardToArea, footprintOf, pinCells } from '../core/geometry.js';
 import { modulePreview } from '../render/preview.js';
 
 export class Inspector {
@@ -35,37 +36,11 @@ export class Inspector {
     this.renderSelection();
   }
 
-  // -- board -----------------------------------------------------------------
+  // -- workspace -------------------------------------------------------------
 
   renderBoard() {
-    const { board } = this.store.doc;
+    const { workspace, boards } = this.store.doc;
     clear(this.boardBox);
-
-    const preset = el('select', { class: 'pbs-select' });
-    preset.append(el('option', { value: '', text: 'Custom size…' }));
-    for (const p of BOARD_PRESETS) {
-      preset.append(el('option', {
-        value: p.id,
-        text: `${p.label} — ${p.cols} × ${p.rows}`,
-      }));
-    }
-    preset.value = presetFor(board.cols, board.rows)?.id ?? '';
-    on(preset, 'change', () => {
-      const p = BOARD_PRESETS.find((x) => x.id === preset.value);
-      if (p) this.resizeBoard(p.cols, p.rows);
-    });
-
-    const colsInput = numberInput(board.cols, MIN_DIM, MAX_DIM, (v) => this.resizeBoard(v, board.rows));
-    const rowsInput = numberInput(board.rows, MIN_DIM, MAX_DIM, (v) => this.resizeBoard(board.cols, v));
-
-    const colorSelect = el('select', { class: 'pbs-select' });
-    for (const c of BOARD_COLORS) {
-      colorSelect.append(el('option', { value: c.id, text: c.label }));
-    }
-    colorSelect.value = board.colorId;
-    on(colorSelect, 'change', () => {
-      this.store.commit('Change board colour', (doc) => { doc.board.colorId = colorSelect.value; });
-    });
 
     const nameInput = el('input', {
       class: 'pbs-input', type: 'text', value: this.store.doc.name,
@@ -76,45 +51,135 @@ export class Inspector {
       this.store.commit('Rename design', (doc) => { doc.name = v; });
     });
 
+    const colsInput = numberInput(workspace.cols, MIN_WORKSPACE, MAX_WORKSPACE,
+      (v) => this.resizeWorkspace(v, workspace.rows));
+    const rowsInput = numberInput(workspace.rows, MIN_WORKSPACE, MAX_WORKSPACE,
+      (v) => this.resizeWorkspace(workspace.cols, v));
+
+    const addBtn = el('button', {
+      class: 'pbs-btn pbs-btn-wide', type: 'button', text: '＋ Add perfboard',
+    });
+    on(addBtn, 'click', () => this.addBoard());
+
+    const list = el('div', { class: 'pbs-board-list' });
+    for (const b of boards) list.append(this.boardRow(b));
+    if (!boards.length) {
+      list.append(el('p', { class: 'pbs-empty', text: 'No boards — parts sit straight on the workspace.' }));
+    }
+
     this.boardBox.append(
-      heading('Board'),
+      heading('Workspace'),
       field('Design name', nameInput),
-      field('Size preset', preset),
       el('div', { class: 'pbs-field-row' }, [
         field('Columns (A…)', colsInput),
         field('Rows (1…)', rowsInput),
       ]),
-      field('Material', colorSelect),
       el('p', {
         class: 'pbs-note',
-        text: `${board.cols * board.rows} holes · ${board.pitchMm} mm pitch · `
-          + `${mm(board.cols, board.pitchMm)} × ${mm(board.rows, board.pitchMm)} mm grid`,
+        text: `${workspace.cols * workspace.rows} holes · ${workspace.pitchMm} mm pitch · `
+          + `${mm(workspace.cols, workspace.pitchMm)} × ${mm(workspace.rows, workspace.pitchMm)} mm`,
       }),
+      field('Background', this.deskSwatches(workspace.colorId)),
+      el('p', {
+        class: 'pbs-note',
+        text: `${deskColor(workspace.colorId).label}. Lighter backgrounds make dark `
+          + 'wiring off the boards easier to follow.',
+      }),
+      el('div', { class: 'pbs-field-label', text: `Boards (${boards.length})` }),
+      list,
+      addBtn,
     );
   }
 
-  resizeBoard(cols, rows) {
-    const c = clampDim(cols);
-    const r = clampDim(rows);
-    const { board } = this.store.doc;
-    if (c === board.cols && r === board.rows) return;
+  /** Preset backdrops for the workspace grid. */
+  deskSwatches(current) {
+    const row = el('div', { class: 'pbs-swatches' });
+    for (const c of DESK_COLORS) {
+      const b = el('button', {
+        type: 'button',
+        class: `pbs-swatch${c.id === current ? ' is-active' : ''}`,
+        style: `--swatch:${c.fill}`,
+        title: c.label,
+        'aria-label': `Background: ${c.label}`,
+      });
+      on(b, 'click', () => {
+        if (c.id === this.store.doc.workspace.colorId) return;
+        this.store.commit('Change background', (doc) => { doc.workspace.colorId = c.id; });
+      });
+      row.append(b);
+    }
+    return row;
+  }
+
+  /** One clickable row per board, so boards are reachable without hunting. */
+  boardRow(board) {
+    const sel = this.store.ui.selection;
+    const btn = el('button', {
+      class: `pbs-board-row${sel?.kind === 'board' && sel.uid === board.uid ? ' is-active' : ''}`,
+      type: 'button',
+      title: `Select ${board.label || 'board'}`,
+    }, [
+      el('span', { class: 'pbs-board-chip', style: `--chip:${boardFill(board.colorId)}` }),
+      el('span', { class: 'pbs-board-name', text: board.label || 'Board' }),
+      el('span', {
+        class: 'pbs-board-meta',
+        text: `${board.cols}×${board.rows} @ ${holeName(board.col, board.row)}`,
+      }),
+    ]);
+    on(btn, 'click', () => this.store.setUI({ selection: { kind: 'board', uid: board.uid } }));
+    return btn;
+  }
+
+  addBoard() {
+    const { workspace } = this.store.doc;
+    const preset = BOARD_PRESETS.find((p) => p.id === '4x6');
+    const board = makeBoard({
+      cols: preset.cols,
+      rows: preset.rows,
+      label: this.store.nextBoardLabel(),
+    });
+    // Drop it in the first free column band so it does not land on an existing
+    // board; falling back to the origin if the workspace is already full.
+    const used = this.store.doc.boards;
+    let col = 0;
+    while (col + board.cols <= workspace.cols
+      && used.some((b) => col < b.col + b.cols && b.col < col + board.cols)) {
+      col = Math.max(...used.filter((b) => b.col + b.cols > col).map((b) => b.col + b.cols)) + 1;
+    }
+    board.col = col + board.cols <= workspace.cols ? col : 0;
+    const at = clampBoardToArea(workspace, board);
+    board.col = at.col;
+    board.row = at.row;
+
+    this.store.commit(`Add ${board.label}`, (doc) => { doc.boards.push(board); });
+    this.store.setUI({ selection: { kind: 'board', uid: board.uid } });
+    this.onStatus(`Added ${board.label} — drag it into place`);
+  }
+
+  resizeWorkspace(cols, rows) {
+    const c = clampWorkspace(cols);
+    const r = clampWorkspace(rows);
+    const { workspace } = this.store.doc;
+    if (c === workspace.cols && r === workspace.rows) return;
 
     // Warn before shrinking away someone's work rather than silently dropping it.
     const lost = this.itemsOutside(c, r);
-    if (lost.modules || lost.wires) {
+    if (lost.modules || lost.wires || lost.boards) {
       const parts = [];
+      if (lost.boards) parts.push(`${lost.boards} board(s)`);
       if (lost.modules) parts.push(`${lost.modules} module(s)`);
       if (lost.wires) parts.push(`${lost.wires} wire(s)`);
       const ok = window.confirm(
-        `Shrinking to ${c} × ${r} holes leaves ${parts.join(' and ')} off the board.\n\n`
+        `Shrinking to ${c} × ${r} holes leaves ${parts.join(', ')} off the workspace.\n\n`
         + 'They will be removed. Continue?',
       );
       if (!ok) { this.renderBoard(); return; }
     }
 
-    this.store.commit('Resize board', (doc) => {
-      doc.board.cols = c;
-      doc.board.rows = r;
+    this.store.commit('Resize workspace', (doc) => {
+      doc.workspace.cols = c;
+      doc.workspace.rows = r;
+      doc.boards = doc.boards.filter((b) => b.col + b.cols <= c && b.row + b.rows <= r);
       doc.modules = doc.modules.filter((m) => {
         const def = this.catalog.get(m.moduleId);
         const b = def ? boundsOf(def, m) : { col: m.col, row: m.row, cols: 1, rows: 1 };
@@ -128,6 +193,10 @@ export class Inspector {
   itemsOutside(cols, rows) {
     let m = 0;
     let w = 0;
+    let bd = 0;
+    for (const board of this.store.doc.boards) {
+      if (board.col + board.cols > cols || board.row + board.rows > rows) bd++;
+    }
     for (const inst of this.store.doc.modules) {
       const def = this.catalog.get(inst.moduleId);
       const b = def ? boundsOf(def, inst) : { col: inst.col, row: inst.row, cols: 1, rows: 1 };
@@ -136,7 +205,7 @@ export class Inspector {
     for (const wire of this.store.doc.wires) {
       if (wire.points.some(([x, y]) => x >= cols || y >= rows)) w++;
     }
-    return { modules: m, wires: w };
+    return { boards: bd, modules: m, wires: w };
   }
 
   // -- view ------------------------------------------------------------------
@@ -150,6 +219,18 @@ export class Inspector {
       toggle('Pin names', ui.showPinNames, (v) => this.store.setUI({ showPinNames: v })),
       toggle('Show other side (ghosted)', ui.showGhost, (v) => this.store.setUI({ showGhost: v })),
       toggle('Row / column rulers', ui.showRulers, (v) => this.store.setUI({ showRulers: v })),
+      slider(
+        'Module opacity', ui.moduleOpacity,
+        // 'opacity' keeps main.js from rebuilding this panel on every input
+        // event, which would tear the slider out from under the pointer.
+        (v) => this.store.setUI({ moduleOpacity: v }, { reason: 'opacity' }),
+        { min: 0.1, max: 1, step: 0.05 },
+      ),
+      el('p', {
+        class: 'pbs-note',
+        text: 'Fades module bodies so you can follow wires routed underneath. '
+          + 'Pads, designators and pin names stay solid.',
+      }),
     );
   }
 
@@ -161,12 +242,115 @@ export class Inspector {
     if (!sel) {
       this.selBox.append(
         heading('Selection'),
-        el('p', { class: 'pbs-empty', text: 'Nothing selected. Click a module or wire on the board.' }),
+        el('p', {
+          class: 'pbs-empty',
+          text: 'Nothing selected. Click a board, module or wire on the workspace.',
+        }),
       );
       return;
     }
     if (sel.kind === 'module') this.renderModuleProps(sel.item);
+    else if (sel.kind === 'board') this.renderBoardProps(sel.item);
     else this.renderWireProps(sel.item);
+  }
+
+  renderBoardProps(board) {
+    const { workspace } = this.store.doc;
+    this.selBox.append(heading('Perfboard'));
+
+    const nameInput = el('input', {
+      class: 'pbs-input', type: 'text', value: board.label || '',
+      placeholder: 'Board 1', maxlength: '40',
+    });
+    on(nameInput, 'change', () => this.patchBoard(board.uid, 'Rename board', (b) => {
+      b.label = nameInput.value.trim() || null;
+    }));
+
+    const preset = el('select', { class: 'pbs-select' });
+    preset.append(el('option', { value: '', text: 'Custom size…' }));
+    for (const p of BOARD_PRESETS) {
+      preset.append(el('option', { value: p.id, text: `${p.label} — ${p.cols} × ${p.rows}` }));
+    }
+    preset.value = presetFor(board.cols, board.rows)?.id ?? '';
+    on(preset, 'change', () => {
+      const p = BOARD_PRESETS.find((x) => x.id === preset.value);
+      if (p) this.resizeBoard(board.uid, p.cols, p.rows);
+    });
+
+    const colsInput = numberInput(board.cols, MIN_DIM, MAX_DIM,
+      (v) => this.resizeBoard(board.uid, v, board.rows));
+    const rowsInput = numberInput(board.rows, MIN_DIM, MAX_DIM,
+      (v) => this.resizeBoard(board.uid, board.cols, v));
+
+    const colInput = numberInput(board.col, 0, Math.max(0, workspace.cols - board.cols),
+      (v) => this.moveBoard(board.uid, v, board.row));
+    const rowInput = numberInput(board.row, 0, Math.max(0, workspace.rows - board.rows),
+      (v) => this.moveBoard(board.uid, board.col, v));
+
+    const colorSelect = el('select', { class: 'pbs-select' });
+    for (const c of BOARD_COLORS) {
+      colorSelect.append(el('option', { value: c.id, text: c.label }));
+    }
+    colorSelect.value = board.colorId;
+    on(colorSelect, 'change', () => this.patchBoard(board.uid, 'Change board colour', (b) => {
+      b.colorId = colorSelect.value;
+    }));
+
+    const del = el('button', { class: 'pbs-btn pbs-btn-danger pbs-btn-wide', type: 'button', text: 'Delete board' });
+    on(del, 'click', () => this.canvas?.deleteItem({ kind: 'board', uid: board.uid }));
+
+    this.selBox.append(
+      field('Name', nameInput),
+      field('Size preset', preset),
+      el('div', { class: 'pbs-field-row' }, [
+        field('Columns', colsInput),
+        field('Rows', rowsInput),
+      ]),
+      el('div', { class: 'pbs-field-row' }, [
+        field('Column', colInput),
+        field('Row', rowInput),
+      ]),
+      field('Material', colorSelect),
+      el('p', {
+        class: 'pbs-note',
+        text: `Top-left hole at ${holeName(board.col, board.row)} · `
+          + `${mm(board.cols, workspace.pitchMm)} × ${mm(board.rows, workspace.pitchMm)} mm`,
+      }),
+      el('p', {
+        class: 'pbs-note',
+        text: 'Deleting a board leaves the parts and wiring on it where they are.',
+      }),
+      del,
+    );
+  }
+
+  patchBoard(uid, label, mutate) {
+    this.store.commit(label, (doc) => {
+      const b = doc.boards.find((x) => x.uid === uid);
+      if (!b) return false;
+      mutate(b);
+    });
+  }
+
+  resizeBoard(uid, cols, rows) {
+    const c = clampDim(cols);
+    const r = clampDim(rows);
+    this.patchBoard(uid, 'Resize board', (b) => {
+      if (b.cols === c && b.rows === r) return;
+      b.cols = c;
+      b.rows = r;
+      const at = clampBoardToArea(this.store.doc.workspace, b);
+      b.col = at.col;
+      b.row = at.row;
+    });
+  }
+
+  moveBoard(uid, col, row) {
+    this.patchBoard(uid, 'Move board', (b) => {
+      const at = clampBoardToArea(this.store.doc.workspace, { ...b, col, row });
+      b.col = at.col;
+      b.row = at.row;
+    });
   }
 
   renderModuleProps(inst) {
@@ -214,9 +398,9 @@ export class Inspector {
       this.patch('Change side', (m) => { m.side = v; });
     });
 
-    const colInput = numberInput(inst.col, 0, this.store.doc.board.cols - 1,
+    const colInput = numberInput(inst.col, 0, this.store.doc.workspace.cols - 1,
       (v) => this.patch('Move module', (m) => { m.col = v; }));
-    const rowInput = numberInput(inst.row, 0, this.store.doc.board.rows - 1,
+    const rowInput = numberInput(inst.row, 0, this.store.doc.workspace.rows - 1,
       (v) => this.patch('Move module', (m) => { m.row = v; }));
 
     this.selBox.append(
@@ -381,6 +565,32 @@ function toggle(label, checked, onChange) {
   return el('label', { class: 'pbs-toggle' }, [input, el('span', { text: label })]);
 }
 
+/**
+ * Labelled range input with a live percentage readout. `onInput` fires
+ * continuously while dragging, so it must be cheap.
+ */
+function slider(label, value, onInput, { min, max, step }) {
+  const pct = (v) => `${Math.round(v * 100)}%`;
+  const readout = el('span', { class: 'pbs-field-value', text: pct(value) });
+  const input = el('input', {
+    class: 'pbs-range', type: 'range',
+    min: String(min), max: String(max), step: String(step), value: String(value),
+    'aria-label': label,
+  });
+  on(input, 'input', () => {
+    const v = Number(input.value);
+    readout.textContent = pct(v);
+    onInput(v);
+  });
+  return el('label', { class: 'pbs-field' }, [
+    el('span', { class: 'pbs-field-label pbs-field-label-row' }, [
+      el('span', { text: label }),
+      readout,
+    ]),
+    input,
+  ]);
+}
+
 function numberInput(value, min, max, onCommit) {
   const input = el('input', {
     class: 'pbs-input pbs-input-num', type: 'number',
@@ -402,6 +612,16 @@ function clampDim(v) {
   const n = Math.round(Number(v));
   if (!Number.isFinite(n)) return MIN_DIM;
   return Math.min(MAX_DIM, Math.max(MIN_DIM, n));
+}
+
+function clampWorkspace(v) {
+  const n = Math.round(Number(v));
+  if (!Number.isFinite(n)) return MIN_WORKSPACE;
+  return Math.min(MAX_WORKSPACE, Math.max(MIN_WORKSPACE, n));
+}
+
+function boardFill(colorId) {
+  return (BOARD_COLORS.find((c) => c.id === colorId) || BOARD_COLORS[0]).fill;
 }
 
 function mm(holes, pitch) {

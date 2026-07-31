@@ -1,8 +1,9 @@
 # Perfboard Studio
 
-Design perfboard layouts in the browser. Place modules on a configurable hole
-grid, route coloured wires, flip between the component and solder side, and save
-your work as a JSON file you can reopen later.
+Design perfboard layouts in the browser. Lay perfboards out on a shared hole
+grid, place parts on them **or beside them**, route coloured wires between the
+two, flip between the component and solder side, and save your work as a JSON
+file you can reopen later.
 
 No build step, no dependencies, no backend — a static site that deploys to
 Vercel as-is.
@@ -13,18 +14,34 @@ Vercel as-is.
 
 ## Features
 
-- **Configurable board.** Ten physical presets (2×8 cm through 12×18 cm) or any
-  custom grid up to 120 × 120 holes. Columns are lettered `A…Z, AA…`, rows are
-  numbered from 1, so every hole has a name like `F12`.
-- **543 parts out of the box** across 11 categories — dev boards, DIP ICs,
-  regulators, sensors, displays, passives (the whole E12 resistor and capacitor
-  series, with colour bands computed from the value), discretes, connectors and
-  IC sockets, radios, motor drivers.
+- **A workspace, not a single board.** Everything sits on one shared hole grid.
+  Drop as many perfboards on it as the build needs, and put the parts that are
+  *not* on a board — a battery, a dev board on stand-offs, a panel switch —
+  straight onto the workspace beside them. Wires route across the whole thing,
+  so an off-board battery really can be wired to a hole on the perfboard.
+- **Configurable boards.** Ten physical presets (2×8 cm through 12×18 cm) or any
+  custom size up to 120 × 120 holes each, positioned anywhere on a workspace of
+  up to 400 × 400 holes. Columns are lettered `A…Z, AA…`, rows numbered from 1,
+  so every hole has a workspace name like `F12` — and the status bar also reads
+  it in its own board's numbering.
+- **579 parts out of the box** across 11 categories — dev boards (Arduino,
+  Raspberry Pi, ESP32, Pico…), solderless breadboards, DIP ICs, regulators,
+  sensors, displays, passives (the whole E12 resistor and capacitor series, with
+  colour bands computed from the value), discretes, connectors and IC sockets,
+  radios, motors and drivers, batteries.
 - **Front / solder side.** Press <kbd>Tab</kbd> to flip. The solder view mirrors
-  the board so wiring underneath reads correctly, while text stays upright. Parts
-  and wires each live on a side; the other side shows ghosted.
+  the whole workspace so wiring underneath reads correctly, while text stays
+  upright. Parts and wires each live on a side; the other side shows ghosted.
 - **Coloured wiring.** Twelve standard wire colours plus a custom picker, three
   gauges, multi-segment routing along the hole grid.
+- **Module opacity slider.** Fade module bodies to follow wires routed
+  underneath. Pads, designators and pin names stay solid, so the part is still
+  identifiable at any setting.
+- **Six workspace backgrounds.** Graphite through white paper. A black wire on a
+  dark backdrop is invisible, so switching it is the quickest way to see where
+  off-board wiring actually runs. Designators, pin names and selection outlines
+  carry their own contrast, so they stay readable on every one. The choice is
+  saved with the design.
 - **Undo/redo** on everything, plus autosave to `localStorage` so a stray reload
   does not cost you the layout.
 - **Save and open** `.pbs.json` designs. Files embed the definitions they use, so
@@ -35,8 +52,9 @@ Vercel as-is.
 
 ![Solder side](docs/screenshot-solder.png)
 
-*The solder side: rulers reverse (R→A), row numbers move right, solder-side
-wiring shows in full colour and the front-side parts are ghosted.*
+*The solder side: the whole workspace mirrors, so the rulers reverse (AR→A) and
+row numbers move right. Solder-side wiring shows in full colour; the front-side
+parts — including the battery and switch sitting off the board — are ghosted.*
 
 ---
 
@@ -79,8 +97,11 @@ immediately rather than being served from a stale edge cache.
 
 | | |
 |---|---|
-| Place a part | Click it in the left palette, then click a hole. <kbd>R</kbd> rotates, <kbd>Esc</kbd> cancels. |
+| Place a part | Click it in the left palette, then click a hole — on a board or on bare workspace. <kbd>R</kbd> rotates, <kbd>Esc</kbd> cancels. |
 | Move a part | Drag it. Arrow keys nudge one hole at a time. |
+| Add a perfboard | **Add perfboard** in the Workspace panel, then drag it into place |
+| Move / resize a board | Click bare board to select it, then drag, or edit it in the Selection panel |
+| Change the background | Pick a swatch under **Background** in the Workspace panel |
 | Draw a wire | <kbd>W</kbd>, click holes to route, double-click or <kbd>Enter</kbd> to finish. <kbd>Backspace</kbd> removes the last bend. |
 | Flip the board | <kbd>Tab</kbd> |
 | Move a part to the other side | Select it, press <kbd>F</kbd> |
@@ -102,12 +123,12 @@ index.html                  the app shell
 src/
   main.js                   entry point; wires the pieces together
   core/
-    board.js                presets, hole naming, mirroring, extents
+    board.js                workspace + board model, hole naming, mirroring
     geometry.js             placement, rotation, resize, hit-test maths
     store.js                document state + undo/redo
     catalog.js              loads and validates modules/
   render/
-    renderer.js             the board SVG (geometry layer + label layer)
+    renderer.js             the workspace SVG (geometry layer + label layer)
     shapes.js               shape primitives -> SVG
     preview.js              palette / inspector thumbnails
   ui/
@@ -171,7 +192,7 @@ Keep the `$schema` line — VS Code will then autocomplete and validate the file
 as you type.
 
 `--index` is needed because the app loads `modules/catalog.json`, a generated
-bundle of every part, rather than fetching 543 small files at boot. The
+bundle of every part, rather than fetching 579 small files at boot. The
 per-category files stay the source of truth; the validator fails if the bundle
 drifts from them, and the app falls back to per-file fetching if it is missing.
 
@@ -199,8 +220,8 @@ There is no Node dependency, so the tests are HTML pages that import the real ES
 modules and run in a real browser:
 
 ```bash
-python tools/validate_catalog.py       # 543 modules, format + rotation invariant
-python tools/run_browser_tests.py      # 61 unit + 28 integration checks
+python tools/validate_catalog.py       # 579 modules, format + rotation invariant
+python tools/run_browser_tests.py      # 69 unit + 39 integration checks
 ```
 
 The runner finds Chrome, Edge or Chromium automatically; pass `--browser <path>`
@@ -211,7 +232,7 @@ The integration suite is the one that matters most. It loads the real catalog an
 asserts, among other things, that **every part's copper pads land exactly on the
 hole centres they claim — at all four rotations, on both sides of the board**,
 measured from the actual rendered SVG rather than from the maths in isolation.
-It also renders all 543 parts at every rotation, and checks the shipped example
+It also renders all 579 parts at every rotation, and checks the shipped example
 has no electrically dangling wire ends.
 
 ---
@@ -241,6 +262,27 @@ unmirrored layer and computes its absolute position itself.
 years still renders, even if a part was renamed or removed. Definitions from the
 file are only adopted for ids the live catalog does not have, so editing a part
 JSON still propagates to existing designs.
+
+**Why one workspace grid instead of per-board coordinates?** Because a wire from
+an off-board battery to a hole on the perfboard has to be expressible as a single
+polyline. Giving every board its own origin would mean every wire point carried a
+board reference, and a wire that crosses from one board to another would have no
+sensible frame at all. One grid, boards placed on it, everything in the same
+coordinates — the solder-side mirror is then a single transform about the
+workspace rather than a per-board special case.
+
+### File format
+
+Save files are `.pbs.json`, currently **version 2**. A v2 file has a `workspace`
+(the shared grid, with its size and backdrop) and a `boards` array; v1 files had a
+single `board` and no workspace. v1 still opens: a v1 board becomes one board
+pinned at the origin of a workspace of exactly the same size, so every stored
+coordinate keeps meaning the hole it always meant. Saving turns it into v2.
+
+The workspace's `colorId` names one of the background presets. An unrecognised
+one falls back to the default *without* a warning — unlike a board's material,
+it changes nothing about the design, so a file written by a future version with
+more presets still opens cleanly.
 
 ---
 

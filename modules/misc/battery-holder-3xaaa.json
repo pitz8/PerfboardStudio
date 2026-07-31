@@ -1,0 +1,78 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "battery-holder-3xaaa",
+  "name": "AAA holder, 3 cell",
+  "subtitle": "PCB mount, 4.5 V",
+  "category": "misc",
+  "tags": [
+    "battery",
+    "aaa",
+    "holder",
+    "3 cell",
+    "4.5v"
+  ],
+  "designator": "BT",
+  "footprint": {
+    "cols": 18,
+    "rows": 9
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.6,
+    "y": -0.6,
+    "w": 19.2,
+    "h": 10.2,
+    "rx": 0.2,
+    "fill": "#1a1d22",
+    "stroke": "#0b0e12"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": 1,
+      "y": 0.6,
+      "w": 16,
+      "h": 3.4,
+      "fill": "#2f343b",
+      "rx": 1.6,
+      "stroke": "#14171a",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1,
+      "y": 5.2,
+      "w": 16,
+      "h": 3.4,
+      "fill": "#2f343b",
+      "rx": 1.6,
+      "stroke": "#14171a",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "text",
+      "x": 9,
+      "y": 4.4,
+      "text": "3 x AAA",
+      "size": 0.7,
+      "color": "#6b737b",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ]
+}

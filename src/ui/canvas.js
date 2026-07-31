@@ -1,14 +1,14 @@
 /**
- * Pointer and wheel interaction on the board.
+ * Pointer and wheel interaction on the workspace.
  *
  * Drags are kept out of the document until pointer-up so a single move produces
  * exactly one undo entry.
  */
 
 import { on } from '../util/dom.js';
-import { holeName, inBounds } from '../core/board.js';
+import { boardAt, boardCovers, holeName, inBounds, localHoleName } from '../core/board.js';
 import {
-  boundsOf, clampToBoard, distToPolyline, normalizeRotation,
+  boundsOf, clampBoardToArea, clampToArea, distToPolyline, normalizeRotation,
 } from '../core/geometry.js';
 import { makeInstance, makeWire } from '../core/store.js';
 
@@ -71,10 +71,14 @@ export class CanvasController {
     if (node.classList.contains('is-ghost')) return null;
     if (node.classList.contains('pbs-module')) return { kind: 'module', uid };
     if (node.classList.contains('pbs-wire')) return { kind: 'wire', uid };
+    if (node.classList.contains('pbs-board')) return { kind: 'board', uid };
     return null;
   }
 
-  /** Fallback geometric pick, used when the DOM target is the bare board. */
+  /**
+   * Fallback geometric pick, used when the DOM target is the bare desk.
+   * Boards come last: they are the substrate, so anything sitting on one wins.
+   */
   pickAt(gridX, gridY) {
     const { doc, ui } = this.store;
     for (let i = doc.modules.length - 1; i >= 0; i--) {
@@ -94,6 +98,8 @@ export class CanvasController {
         return { kind: 'wire', uid: w.uid };
       }
     }
+    const board = boardAt(doc.boards, Math.round(gridX), Math.round(gridY));
+    if (board) return { kind: 'board', uid: board.uid };
     return null;
   }
 
@@ -137,15 +143,18 @@ export class CanvasController {
     }
     this.store.setUI({ selection: pick });
 
-    if (pick.kind === 'module') {
-      const m = this.store.moduleByUid(pick.uid);
-      if (!m) return;
+    // Modules and boards both drag; wires do not (they are edited point-wise).
+    const item = pick.kind === 'module' ? this.store.moduleByUid(pick.uid)
+      : pick.kind === 'board' ? this.store.boardByUid(pick.uid)
+        : null;
+    if (item) {
       this.drag = {
-        uid: m.uid,
-        offCol: m.col - g.x,
-        offRow: m.row - g.y,
-        origCol: m.col,
-        origRow: m.row,
+        kind: pick.kind,
+        uid: item.uid,
+        offCol: item.col - g.x,
+        offRow: item.row - g.y,
+        origCol: item.col,
+        origRow: item.row,
         moved: false,
       };
       this.r.svg.setPointerCapture?.(e.pointerId);
@@ -171,15 +180,8 @@ export class CanvasController {
 
     if (this.drag) {
       const g = this.r.clientToGrid(e.clientX, e.clientY);
-      const m = this.store.moduleByUid(this.drag.uid);
-      if (!m) return;
-      const def = this.catalog.get(m.moduleId);
-      const want = {
-        ...m,
-        col: Math.round(g.x + this.drag.offCol),
-        row: Math.round(g.y + this.drag.offRow),
-      };
-      const at = def ? clampToBoard(this.store.doc.board, def, want) : want;
+      const at = this.dragTarget(g);
+      if (!at) return;
       if (at.col !== this.drag.col || at.row !== this.drag.row) {
         this.drag.col = at.col;
         this.drag.row = at.row;
@@ -190,6 +192,23 @@ export class CanvasController {
     }
 
     this.setHover(hole);
+  }
+
+  /** Where the dragged item wants to land, clamped inside the workspace. */
+  dragTarget(g) {
+    const { workspace } = this.store.doc;
+    const want = {
+      col: Math.round(g.x + this.drag.offCol),
+      row: Math.round(g.y + this.drag.offRow),
+    };
+    if (this.drag.kind === 'board') {
+      const b = this.store.boardByUid(this.drag.uid);
+      return b ? clampBoardToArea(workspace, { ...b, ...want }) : null;
+    }
+    const m = this.store.moduleByUid(this.drag.uid);
+    if (!m) return null;
+    const def = this.catalog.get(m.moduleId);
+    return def ? clampToArea(workspace, def, { ...m, ...want }) : want;
   }
 
   onPointerUp(e) {
@@ -207,11 +226,13 @@ export class CanvasController {
       this.store.emit('ui');
       return;
     }
-    this.store.commit('Move module', (doc) => {
-      const m = doc.modules.find((x) => x.uid === d.uid);
-      if (!m) return false;
-      m.col = d.col;
-      m.row = d.row;
+    const what = d.kind === 'board' ? 'board' : 'module';
+    this.store.commit(`Move ${what}`, (doc) => {
+      const list = d.kind === 'board' ? doc.boards : doc.modules;
+      const item = list.find((x) => x.uid === d.uid);
+      if (!item) return false;
+      item.col = d.col;
+      item.row = d.row;
     });
   }
 
@@ -248,19 +269,20 @@ export class CanvasController {
       side: ui.side,
       label: this.store.nextDesignator(def),
     });
-    const at = clampToBoard(this.store.doc.board, def, inst);
+    const { workspace } = this.store.doc;
+    const at = clampToArea(workspace, def, inst);
     inst.col = at.col;
     inst.row = at.row;
 
     const b = boundsOf(def, inst);
-    if (b.cols > this.store.doc.board.cols || b.rows > this.store.doc.board.rows) {
-      this.onStatus(`${def.name} is larger than the board`, 'warn');
+    if (b.cols > workspace.cols || b.rows > workspace.rows) {
+      this.onStatus(`${def.name} is larger than the workspace`, 'warn');
       return;
     }
 
     this.store.commit(`Place ${def.name}`, (doc) => { doc.modules.push(inst); });
     this.store.setUI({ selection: { kind: 'module', uid: inst.uid } });
-    this.onStatus(`Placed ${def.name} at ${holeName(inst.col, inst.row)}`);
+    this.onStatus(`Placed ${def.name} at ${this.describeHole(inst.col, inst.row)}`);
   }
 
   extendWire(hole) {
@@ -270,7 +292,7 @@ export class CanvasController {
       this.store.setUI({
         wireDraft: { points: [[hole.col, hole.row]], color: ui.wireColor, gauge: ui.wireGauge },
       });
-      this.onStatus(`Wire from ${holeName(hole.col, hole.row)} — click to add bends, double-click or Enter to finish`);
+      this.onStatus(`Wire from ${this.describeHole(hole.col, hole.row)} — click to add bends, double-click or Enter to finish`);
       return;
     }
     const last = draft.points.at(-1);
@@ -295,8 +317,8 @@ export class CanvasController {
     this.store.setUI({ wireDraft: null }, { silent: true });
     this.store.commit('Add wire', (doc) => { doc.wires.push(wire); });
     this.store.setUI({ selection: { kind: 'wire', uid: wire.uid } });
-    const a = holeName(wire.points[0][0], wire.points[0][1]);
-    const b = holeName(wire.points.at(-1)[0], wire.points.at(-1)[1]);
+    const a = this.describeHole(wire.points[0][0], wire.points[0][1]);
+    const b = this.describeHole(wire.points.at(-1)[0], wire.points.at(-1)[1]);
     this.onStatus(`Wire ${a} → ${b} on the ${wire.side} side`);
   }
 
@@ -324,6 +346,15 @@ export class CanvasController {
         const i = doc.modules.findIndex((x) => x.uid === pick.uid);
         if (i < 0) return false;
         doc.modules.splice(i, 1);
+      });
+    } else if (pick.kind === 'board') {
+      // Deleting a board leaves whatever sat on it in place: the parts and
+      // wiring are still real, they have just lost their substrate.
+      const b = this.store.boardByUid(pick.uid);
+      this.store.commit(`Delete ${b?.label || 'board'}`, (doc) => {
+        const i = doc.boards.findIndex((x) => x.uid === pick.uid);
+        if (i < 0) return false;
+        doc.boards.splice(i, 1);
       });
     } else {
       this.store.commit('Delete wire', (doc) => {
@@ -356,33 +387,40 @@ export class CanvasController {
       const def = this.catalog.get(m.moduleId);
       m.rotation = normalizeRotation(m.rotation + delta);
       if (def) {
-        const at = clampToBoard(doc.board, def, m);
+        const at = clampToArea(doc.workspace, def, m);
         m.col = at.col;
         m.row = at.row;
       }
     });
   }
 
-  /** Move the selected module by whole holes (arrow keys). */
+  /** Move the selected module or board by whole holes (arrow keys). */
   nudgeSelection(dCol, dRow) {
     const sel = this.store.ui.selection;
-    if (!sel || sel.kind !== 'module') return false;
-    return this.store.commit('Move module', (doc) => {
-      const m = doc.modules.find((x) => x.uid === sel.uid);
-      if (!m) return false;
-      const def = this.catalog.get(m.moduleId);
-      const want = { ...m, col: m.col + dCol, row: m.row + dRow };
-      const at = def ? clampToBoard(doc.board, def, want) : want;
-      if (at.col === m.col && at.row === m.row) return false;
-      m.col = at.col;
-      m.row = at.row;
+    if (!sel || sel.kind === 'wire') return false;
+    const what = sel.kind === 'board' ? 'board' : 'module';
+    return this.store.commit(`Move ${what}`, (doc) => {
+      const list = sel.kind === 'board' ? doc.boards : doc.modules;
+      const item = list.find((x) => x.uid === sel.uid);
+      if (!item) return false;
+      const want = { ...item, col: item.col + dCol, row: item.row + dRow };
+      let at;
+      if (sel.kind === 'board') {
+        at = clampBoardToArea(doc.workspace, want);
+      } else {
+        const def = this.catalog.get(item.moduleId);
+        at = def ? clampToArea(doc.workspace, def, want) : want;
+      }
+      if (at.col === item.col && at.row === item.row) return false;
+      item.col = at.col;
+      item.row = at.row;
     });
   }
 
-  /** Send the selected item to the other side of the board. */
+  /** Send the selected item to the other side. Boards have no side. */
   flipSelectionSide() {
     const sel = this.store.ui.selection;
-    if (!sel) return false;
+    if (!sel || sel.kind === 'board') return false;
     return this.store.commit('Change side', (doc) => {
       const list = sel.kind === 'module' ? doc.modules : doc.wires;
       const item = list.find((x) => x.uid === sel.uid);
@@ -391,10 +429,23 @@ export class CanvasController {
     });
   }
 
+  /**
+   * Workspace hole name, plus the board-local one when the hole is on a board —
+   * "AB14 · Board 1 C6". Layouts are addressed globally now, but people read
+   * their own board in its own numbering.
+   */
+  describeHole(col, row) {
+    const global = holeName(col, row);
+    const board = boardAt(this.store.doc.boards, col, row);
+    if (!board) return global;
+    const local = localHoleName(board, col, row);
+    return `${global} · ${board.label || 'board'} ${local}`;
+  }
+
   reportStatus(hole) {
     if (!hole) { this.onStatus('', 'coords'); return; }
     const { doc } = this.store;
-    if (!inBounds(doc.board, hole.col, hole.row)) { this.onStatus('', 'coords'); return; }
-    this.onStatus(holeName(hole.col, hole.row), 'coords');
+    if (!inBounds(doc.workspace, hole.col, hole.row)) { this.onStatus('', 'coords'); return; }
+    this.onStatus(this.describeHole(hole.col, hole.row), 'coords');
   }
 }

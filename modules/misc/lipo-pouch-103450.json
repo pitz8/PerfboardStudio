@@ -1,0 +1,120 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "lipo-pouch-103450",
+  "name": "LiPo pouch 2000 mAh",
+  "subtitle": "3.7 V, JST-PH connector",
+  "category": "misc",
+  "designator": "BT",
+  "tags": [
+    "lipo",
+    "li-poly",
+    "lithium",
+    "rechargeable",
+    "pouch",
+    "jst",
+    "3.7v",
+    "battery",
+    "cell"
+  ],
+  "footprint": {
+    "cols": 14,
+    "rows": 9
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.5,
+    "y": -0.5,
+    "w": 13.0,
+    "h": 9.0,
+    "rx": 0.24,
+    "fill": "#dfe4ea",
+    "stroke": "#a9b0b8"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.3,
+      "y": -0.3,
+      "w": 12.6,
+      "h": 8.6,
+      "fill": "#c9ced6",
+      "rx": 0.2,
+      "stroke": "#8d949c",
+      "strokeWidth": 0.035,
+      "opacity": 0.6
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 1.8,
+      "y2": -1,
+      "stroke": "#d84040",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 8,
+      "x2": 1.8,
+      "y2": 9,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": 1.7,
+      "y": -1.2,
+      "w": 1,
+      "h": 0.7,
+      "fill": "#e9edf1",
+      "rx": 0.06,
+      "stroke": "#a9b0b8",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "text",
+      "x": 6,
+      "y": 3.85,
+      "text": "3.7 V",
+      "size": 0.6,
+      "color": "#5c6269",
+      "anchor": "middle",
+      "weight": 600
+    },
+    {
+      "type": "text",
+      "x": 6,
+      "y": 4.75,
+      "text": "2000 mAh",
+      "size": 0.5,
+      "color": "#5c6269",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ],
+  "label": {
+    "text": "LiPo 2000",
+    "x": 6.0,
+    "y": 8.9,
+    "size": 0.36,
+    "color": "#9fb0c0"
+  }
+}

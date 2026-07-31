@@ -126,19 +126,33 @@ export function boundsOf(def, inst) {
   return { col: inst.col, row: inst.row, cols: w, rows: h };
 }
 
-export function fitsOnBoard(board, def, inst) {
+/**
+ * `area` is any `{cols, rows}` rectangle anchored at (0,0) — in practice the
+ * workspace. Parts are held inside the workspace, never inside an individual
+ * board: sitting a battery pack or a dev board off to the side of the perfboard
+ * is a legitimate layout, not an error.
+ */
+export function fitsInArea(area, def, inst) {
   const b = boundsOf(def, inst);
   return b.col >= 0 && b.row >= 0
-    && b.col + b.cols <= board.cols
-    && b.row + b.rows <= board.rows;
+    && b.col + b.cols <= area.cols
+    && b.row + b.rows <= area.rows;
 }
 
-/** Clamp an instance's anchor so its whole footprint stays on the board. */
-export function clampToBoard(board, def, inst) {
+/** Clamp an instance's anchor so its whole footprint stays inside `area`. */
+export function clampToArea(area, def, inst) {
   const b = boundsOf(def, inst);
   return {
-    col: Math.min(Math.max(0, inst.col), Math.max(0, board.cols - b.cols)),
-    row: Math.min(Math.max(0, inst.row), Math.max(0, board.rows - b.rows)),
+    col: Math.min(Math.max(0, inst.col), Math.max(0, area.cols - b.cols)),
+    row: Math.min(Math.max(0, inst.row), Math.max(0, area.rows - b.rows)),
+  };
+}
+
+/** Clamp a board's anchor so the whole board stays inside `area`. */
+export function clampBoardToArea(area, board) {
+  return {
+    col: Math.min(Math.max(0, board.col), Math.max(0, area.cols - board.cols)),
+    row: Math.min(Math.max(0, board.row), Math.max(0, area.rows - board.rows)),
   };
 }
 

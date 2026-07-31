@@ -1,0 +1,94 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "motor-tt-gearbox",
+  "name": "TT gearmotor",
+  "subtitle": "3–6 V, yellow twin-shaft gearbox",
+  "category": "motor",
+  "tags": [
+    "dc",
+    "gearmotor",
+    "tt",
+    "robot",
+    "chassis",
+    "motor"
+  ],
+  "designator": "M",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.2,
+      "y2": -0.6,
+      "stroke": "#d84040",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.8,
+      "y2": -0.6,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": -3.5,
+      "y": -5.6,
+      "w": 8,
+      "h": 5,
+      "fill": "#8d949c",
+      "rx": 0.5,
+      "stroke": "#5c6269",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": -3.2,
+      "y": -5.3,
+      "w": 7.4,
+      "h": 4.4,
+      "fill": "#a9b0b8",
+      "rx": 0.35
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": -3.1,
+      "r": 1.1,
+      "fill": "#5c6269",
+      "stroke": "#3a4048",
+      "strokeWidth": 0.06
+    }
+  ],
+  "label": {
+    "text": "TT",
+    "x": 0.5,
+    "y": 0.5,
+    "size": 0.3,
+    "color": "#9fb0c0"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "battery-aaa-1.5v",
+  "name": "AAA battery",
+  "subtitle": "1.5 V alkaline, flying leads",
+  "category": "misc",
+  "tags": [
+    "alkaline",
+    "aaa",
+    "primary",
+    "1.5v",
+    "battery",
+    "cell"
+  ],
+  "designator": "BT",
+  "footprint": {
+    "cols": 3,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "-",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "+",
+      "number": 2,
+      "type": "power"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.72,
+      "y2": 0,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 1.28,
+      "y2": 0,
+      "stroke": "#d84040",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": 0.7,
+      "y": -0.35,
+      "w": 0.6,
+      "h": 0.7,
+      "fill": "#e8c72c",
+      "rx": 0.315,
+      "stroke": "#a89020",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.7,
+      "y": -0.35,
+      "w": 0.108,
+      "h": 0.7,
+      "fill": "#8d949c",
+      "rx": 0.05,
+      "stroke": "#a89020",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.192,
+      "y": -0.35,
+      "w": 0.108,
+      "h": 0.7,
+      "fill": "#3a3f47",
+      "rx": 0.05,
+      "stroke": "#a89020",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "1.5 V",
+    "x": 1,
+    "y": -0.63,
+    "size": 0.28,
+    "color": "#9fb0c0"
+  }
+}

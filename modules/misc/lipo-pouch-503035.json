@@ -1,0 +1,120 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "lipo-pouch-503035",
+  "name": "LiPo pouch 500 mAh",
+  "subtitle": "3.7 V, JST-PH connector",
+  "category": "misc",
+  "designator": "BT",
+  "tags": [
+    "lipo",
+    "li-poly",
+    "lithium",
+    "rechargeable",
+    "pouch",
+    "jst",
+    "3.7v",
+    "battery",
+    "cell"
+  ],
+  "footprint": {
+    "cols": 8,
+    "rows": 6
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 5,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "body": {
+    "x": -0.5,
+    "y": -0.5,
+    "w": 7.0,
+    "h": 6.0,
+    "rx": 0.2,
+    "fill": "#dfe4ea",
+    "stroke": "#a9b0b8"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.3,
+      "y": -0.3,
+      "w": 6.6,
+      "h": 5.6,
+      "fill": "#c9ced6",
+      "rx": 0.16,
+      "stroke": "#8d949c",
+      "strokeWidth": 0.035,
+      "opacity": 0.6
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 1.6,
+      "y2": -1,
+      "stroke": "#d84040",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 5,
+      "x2": 1.6,
+      "y2": 6,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": 1.5,
+      "y": -1.2,
+      "w": 1,
+      "h": 0.7,
+      "fill": "#e9edf1",
+      "rx": 0.06,
+      "stroke": "#a9b0b8",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "text",
+      "x": 3,
+      "y": 2.45,
+      "text": "3.7 V",
+      "size": 0.5,
+      "color": "#5c6269",
+      "anchor": "middle",
+      "weight": 600
+    },
+    {
+      "type": "text",
+      "x": 3,
+      "y": 3.15,
+      "text": "500 mAh",
+      "size": 0.42,
+      "color": "#5c6269",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ],
+  "label": {
+    "text": "LiPo 500",
+    "x": 3.0,
+    "y": 5.9,
+    "size": 0.32,
+    "color": "#9fb0c0"
+  }
+}

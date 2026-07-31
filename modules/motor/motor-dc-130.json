@@ -1,0 +1,104 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "motor-dc-130",
+  "name": "DC motor 130",
+  "subtitle": "1.5–6 V toy motor",
+  "category": "motor",
+  "tags": [
+    "dc",
+    "130",
+    "toy",
+    "hobby",
+    "motor"
+  ],
+  "designator": "M",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "+",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "-",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.2,
+      "y2": -0.6,
+      "stroke": "#d84040",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 0.8,
+      "y2": -0.6,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.1,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": -1.7,
+      "y": -4,
+      "w": 4.4,
+      "h": 3.4,
+      "fill": "#8d949c",
+      "rx": 0.5,
+      "stroke": "#5c6269",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": -1.4,
+      "y": -3.7,
+      "w": 3.8,
+      "h": 2.8,
+      "fill": "#a9b0b8",
+      "rx": 0.35
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": -2.3,
+      "r": 0.748,
+      "fill": "#5c6269",
+      "stroke": "#3a4048",
+      "strokeWidth": 0.06
+    },
+    {
+      "type": "rect",
+      "x": 0.34,
+      "y": -5.4,
+      "w": 0.32,
+      "h": 1.4,
+      "fill": "#c9ced6",
+      "rx": 0.1,
+      "stroke": "#8d949c",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "DC",
+    "x": 0.5,
+    "y": 0.5,
+    "size": 0.3,
+    "color": "#9fb0c0"
+  }
+}

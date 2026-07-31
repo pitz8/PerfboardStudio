@@ -1,0 +1,100 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "li-ion-14500",
+  "name": "Li-ion 14500 cell",
+  "subtitle": "3.7 V, AA-sized, flying leads",
+  "category": "misc",
+  "tags": [
+    "li-ion",
+    "14500",
+    "lithium",
+    "rechargeable",
+    "aa-sized",
+    "3.7v",
+    "battery",
+    "cell"
+  ],
+  "designator": "BT",
+  "footprint": {
+    "cols": 4,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "-",
+      "number": 1,
+      "type": "gnd"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "+",
+      "number": 2,
+      "type": "power"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0.72,
+      "y2": 0,
+      "stroke": "#1b1f25",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 3,
+      "y1": 0,
+      "x2": 2.28,
+      "y2": 0,
+      "stroke": "#d84040",
+      "strokeWidth": 0.09,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": 0.7,
+      "y": -0.425,
+      "w": 1.6,
+      "h": 0.85,
+      "fill": "#2f6b4f",
+      "rx": 0.3825,
+      "stroke": "#1d4433",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.7,
+      "y": -0.425,
+      "w": 0.22,
+      "h": 0.85,
+      "fill": "#8d949c",
+      "rx": 0.05,
+      "stroke": "#1d4433",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.08,
+      "y": -0.425,
+      "w": 0.22,
+      "h": 0.85,
+      "fill": "#c9ced6",
+      "rx": 0.05,
+      "stroke": "#1d4433",
+      "strokeWidth": 0.035
+    }
+  ],
+  "label": {
+    "text": "3.7 V",
+    "x": 1.5,
+    "y": -0.705,
+    "size": 0.28,
+    "color": "#9fb0c0"
+  }
+}

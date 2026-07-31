@@ -611,6 +611,44 @@ def led(color_name, hexcol, size_mm=5, span=2):
     }
 
 
+def battery_cell(mid, name, subtitle, *, volts, span=4, diam=0.9, wrap=None,
+                  edge=None, cap_color="#c9ced6", tags=None, category="misc",
+                  designator="BT"):
+    """Loose cylindrical cell (AA, AAA, C, D, 18650, 14500...), side view.
+
+    Drawn with flying leads rather than a holder's spring contacts, since a bare
+    cell is soldered or clipped directly. Pin 1 is the flat negative end, pin 2
+    the button-topped positive end — same convention as a real cell.
+    """
+    wrap = wrap or COL["pcb_black"]
+    edge = edge or _darken(wrap)
+    lead_len = 0.7
+    r = diam / 2
+    bx = lead_len
+    bw = (span - 1) - 2 * lead_len
+    by = -r
+    cap_w = min(0.22, bw * 0.18)
+    return {
+        "id": mid,
+        "name": name,
+        "subtitle": subtitle,
+        "category": category,
+        "tags": (tags or []) + ["battery", "cell"],
+        "designator": designator,
+        "footprint": {"cols": span, "rows": 1},
+        "pins": [pin(0, 0, "-", 1, "gnd"), pin(span - 1, 0, "+", 2, "power")],
+        "shapes": [
+            line(0, 0, bx + 0.02, 0, "#1b1f25", 0.09),
+            line(span - 1, 0, (span - 1) - bx - 0.02, 0, "#d84040", 0.09),
+            rect(bx, by, bw, diam, wrap, edge, rx=r * 0.9),
+            rect(bx, by, cap_w, diam, "#8d949c", edge, rx=0.05),
+            rect((span - 1) - bx - cap_w, by, cap_w, diam, cap_color, edge, rx=0.05),
+        ],
+        "label": {"text": f"{volts} V", "x": r4((span - 1) / 2), "y": r4(-r - 0.28),
+                  "size": 0.28, "color": "#9fb0c0"},
+    }
+
+
 def axial_diode(mid, name, subtitle, band_color="#d8d8d8", body="#2a2f36", span=3, tags=None):
     lead_len = 0.62
     bx = lead_len
@@ -764,6 +802,236 @@ def ic_socket(n, *, wide=False):
         "footprint": {"cols": span + 1, "rows": rows},
         "pins": pins,
         "shapes": shapes,
+    }
+
+
+def squares_path(cells, half):
+    """One path holding a small square at each (x, y) — cheap bulk hole artwork.
+
+    A solderless breadboard has hundreds of holes. Emitting a shape per hole
+    would dwarf every other file in the catalogue, so they collapse into a
+    single path with one subpath per hole.
+    """
+    s = r4(half * 2)
+    parts = []
+    for x, y in cells:
+        parts.append(f"M{r4(x - half)} {r4(y - half)}h{s}v{s}h{-s}z")
+    return "".join(parts)
+
+
+def breadboard(mid, name, subtitle, *, strips, rails=True, tags=None):
+    """Solderless breadboard, drawn from above.
+
+    Deliberately has NO pins: a breadboard is not soldered to anything, it is a
+    surface you push parts into. Modelling it as artwork keeps the file small
+    and stops it claiming holes that belong to whatever is plugged into it.
+
+    Vertical layout, in hole units (matching a real board's 0.3 in channel):
+        0,1     + and - power rails
+        3..7    rows A..E
+        8,9     centre channel
+        10..14  rows F..J
+        16,17   + and - power rails
+    """
+    pad = 1
+    body_rows = 18 if rails else 12
+    cols = strips + 2 * pad
+    rows = body_rows
+
+    top = 0 if rails else -3          # shift when there are no rails to draw
+    a_row, f_row = top + 3, top + 10
+
+    terminal = [(pad + c, r)
+                for c in range(strips)
+                for r in list(range(a_row, a_row + 5)) + list(range(f_row, f_row + 5))]
+
+    shapes = [
+        # plastic body
+        rect(-0.55, -0.55, (cols - 1) + 1.1, (rows - 1) + 1.1, "#e9edf1", "#b8bec6",
+             rx=0.25),
+        # centre channel
+        rect(-0.3, top + 7.5, (cols - 1) + 0.6, 1.0, "#dfe4ea", "#c2c8d0", rx=0.08),
+        {"type": "path", "d": squares_path(terminal, 0.17), "fill": "#5c6269"},
+    ]
+
+    if rails:
+        for r, colr in ((0, "#d84040"), (1, "#1b1f25")):
+            for y, c in ((r, colr), (rows - 2 + r, colr)):
+                shapes.append(line(pad - 0.4, y, cols - pad - 0.6, y, c, 0.07, "butt"))
+        rail_cells = [(pad + c, y)
+                      for c in range(strips) if c % 6 != 5
+                      for y in (0, 1, rows - 2, rows - 1)]
+        shapes.append({"type": "path", "d": squares_path(rail_cells, 0.15),
+                       "fill": "#5c6269"})
+
+    # column numbers every five positions, and the A..J row letters
+    for c in range(4, strips, 5):
+        shapes.append(text(pad + c, a_row - 0.75, str(c + 1), size=0.34, color="#7a828c"))
+    for i, letter in enumerate("ABCDE"):
+        shapes.append(text(pad - 0.75, a_row + i, letter, size=0.32, color="#7a828c"))
+    for i, letter in enumerate("FGHIJ"):
+        shapes.append(text(pad - 0.75, f_row + i, letter, size=0.32, color="#7a828c"))
+
+    return {
+        "id": mid,
+        "name": name,
+        "subtitle": subtitle,
+        "category": "misc",
+        "tags": (tags or []) + ["breadboard", "solderless", "prototyping"],
+        "designator": "BB",
+        "footprint": {"cols": cols, "rows": rows},
+        "pins": [],
+        "shapes": shapes,
+        "label": {"text": name, "x": r4((cols - 1) / 2), "y": r4(top + 8.0),
+                  "size": 0.5, "color": "#8d949c"},
+    }
+
+
+def shield_board(mid, name, subtitle, *, cols, rows, top, bottom, category="mcu",
+                 tags=None, datasheet=None, pcb=None, pcb_edge=None, mark=None,
+                 extra_pins=None, extra_shapes=None):
+    """Arduino-style board: headers along the top and bottom edges.
+
+    `top` and `bottom` are lists of `(col, name)` pairs, so the gaps between
+    header blocks are explicit. Real Arduino headers have a 0.16 in jog between
+    D7 and D8 that no 0.1 in grid can express; these sit on whole holes, which
+    is what you would actually solder a perfboard shield to.
+    """
+    pcb = pcb or COL["pcb_blue"]
+    pcb_edge = pcb_edge or COL["pcb_blue_edge"]
+    top_row, bottom_row = 1, rows - 2
+
+    pins = []
+    n = 1
+    for c, nm in top:
+        pins.append(pin(c, top_row, nm, n, guess_pin_type(nm)))
+        n += 1
+    for c, nm in bottom:
+        pins.append(pin(c, bottom_row, nm, n, guess_pin_type(nm)))
+        n += 1
+    # Blocks that are not on the top or bottom edge, e.g. the Mega's 2x18.
+    for c, r, nm in (extra_pins or []):
+        pins.append(pin(c, r, nm, n, guess_pin_type(nm)))
+        n += 1
+
+    def strip(cells, y):
+        runs = []
+        for c, _ in cells:
+            if runs and c == runs[-1][1] + 1:
+                runs[-1][1] = c
+            else:
+                runs.append([c, c])
+        return [rect(a - 0.32, y - 0.32, (b - a) + 0.64, 0.64,
+                     COL["plastic_black"], COL["ic_edge"], rx=0.08) for a, b in runs]
+
+    shapes = strip(top, top_row) + strip(bottom, bottom_row)
+    shapes += [
+        # USB socket and barrel jack hang off the left edge, as on the real board
+        rect(-1.3, 2.2, 1.9, 3.0, COL["tin"], "#7f868e", rx=0.1),
+        rect(-1.3, rows - 6.4, 1.9, 2.6, COL["plastic_black"], "#3a4048", rx=0.14),
+        rect(cols * 0.32, rows * 0.36, cols * 0.34, rows * 0.28,
+             COL["ic_body"], COL["ic_edge"], rx=0.1),
+    ]
+    if extra_shapes:
+        shapes.extend(extra_shapes)
+
+    return {
+        "id": mid,
+        "name": name,
+        "subtitle": subtitle,
+        "category": category,
+        "tags": (tags or []) + ["board", "shield"],
+        "designator": "U",
+        **({"datasheet": datasheet} if datasheet else {}),
+        "footprint": {"cols": cols, "rows": rows},
+        "pins": pins,
+        "body": {"x": -0.6, "y": -0.6, "w": (cols - 1) + 1.2, "h": (rows - 1) + 1.2,
+                 "rx": 0.5, "fill": pcb, "stroke": pcb_edge},
+        "shapes": shapes,
+        "label": {"text": mark or name, "x": r4((cols - 1) / 2), "y": r4(rows * 0.72),
+                  "size": 0.6, "color": COL["silk"]},
+    }
+
+
+# Standard Raspberry Pi 40-pin GPIO header, odd pins then even pins.
+RPI_ODD = ["3V3", "GPIO2", "GPIO3", "GPIO4", "GND", "GPIO17", "GPIO27", "GPIO22",
+           "3V3", "GPIO10", "GPIO9", "GPIO11", "GND", "ID_SD", "GPIO5", "GPIO6",
+           "GPIO13", "GPIO19", "GPIO26", "GND"]
+RPI_EVEN = ["5V", "5V", "GND", "GPIO14", "GPIO15", "GPIO18", "GND", "GPIO23",
+            "GPIO24", "GND", "GPIO25", "GPIO8", "GPIO7", "ID_SC", "GND", "GPIO12",
+            "GND", "GPIO16", "GPIO20", "GPIO21"]
+
+
+def sbc_board(mid, name, subtitle, *, cols, rows, header_col=2, gpio=40,
+              tags=None, datasheet=None, pcb=None, mark=None, extra_shapes=None):
+    """Raspberry Pi-style single-board computer: a 2×20 GPIO header on one edge.
+
+    Only the GPIO header is electrically modelled — the USB, HDMI and Ethernet
+    connectors are drawn as artwork, because nothing on a perfboard solders to
+    them.
+    """
+    pcb = pcb or COL["pcb_green"]
+    n_pairs = gpio // 2
+
+    pins = []
+    for i in range(n_pairs):
+        pins.append(pin(header_col + i, 0, RPI_ODD[i], 2 * i + 1, guess_pin_type(RPI_ODD[i])))
+        pins.append(pin(header_col + i, 1, RPI_EVEN[i], 2 * i + 2, guess_pin_type(RPI_EVEN[i])))
+
+    shapes = [
+        rect(header_col - 0.35, -0.35, (n_pairs - 1) + 0.7, 1.7,
+             COL["plastic_black"], COL["ic_edge"], rx=0.08),
+        # SoC package, roughly centred
+        rect(cols * 0.34, rows * 0.42, cols * 0.22, rows * 0.22,
+             COL["ic_body"], COL["ic_edge"], rx=0.08),
+    ]
+    if extra_shapes:
+        shapes.extend(extra_shapes)
+
+    return {
+        "id": mid,
+        "name": name,
+        "subtitle": subtitle,
+        "category": "mcu",
+        "tags": (tags or []) + ["raspberry pi", "sbc", "linux", "gpio"],
+        "designator": "U",
+        **({"datasheet": datasheet} if datasheet else {}),
+        "footprint": {"cols": cols, "rows": rows},
+        "pins": pins,
+        "body": {"x": -0.7, "y": -0.7, "w": (cols - 1) + 1.4, "h": (rows - 1) + 1.4,
+                 "rx": 0.9, "fill": pcb, "stroke": COL["pcb_green_edge"]},
+        "shapes": shapes,
+        "label": {"text": mark or name, "x": r4((cols - 1) / 2), "y": r4(rows * 0.78),
+                  "size": 0.7, "color": COL["silk"]},
+    }
+
+
+def dc_motor(mid, name, subtitle, *, span=2, body_w=6.0, body_h=4.0, tags=None,
+             leads=("+", "-"), category="motor", shaft=True):
+    """Two-terminal DC motor seen from the side, terminals at the bottom."""
+    cx = (span - 1) / 2.0
+    bx, by = cx - body_w / 2, -body_h - 0.6
+    shapes = [
+        line(0, 0, cx - 0.3, by + body_h, "#d84040", 0.1),
+        line(span - 1, 0, cx + 0.3, by + body_h, "#1b1f25", 0.1),
+        rect(bx, by, body_w, body_h, "#8d949c", "#5c6269", rx=0.5),
+        rect(bx + 0.3, by + 0.3, body_w - 0.6, body_h - 0.6, "#a9b0b8", None, rx=0.35),
+        circle(cx, by + body_h / 2, min(body_w, body_h) * 0.22, "#5c6269", "#3a4048", sw=0.06),
+    ]
+    if shaft:
+        shapes.append(rect(cx - 0.16, by - 1.4, 0.32, 1.4, "#c9ced6", "#8d949c", rx=0.1))
+    return {
+        "id": mid,
+        "name": name,
+        "subtitle": subtitle,
+        "category": category,
+        "tags": (tags or []) + ["motor"],
+        "designator": "M",
+        "footprint": {"cols": span, "rows": 1},
+        "pins": [pin(0, 0, leads[0], 1, "power"), pin(span - 1, 0, leads[1], 2, "gnd")],
+        "shapes": shapes,
+        "label": {"text": name.split()[0], "x": r4(cx), "y": 0.5, "size": 0.3,
+                  "color": "#9fb0c0"},
     }
 
 

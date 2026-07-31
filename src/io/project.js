@@ -9,12 +9,15 @@
  */
 
 import { normalizeDef } from '../core/catalog.js';
-import { BOARD_COLORS, MAX_DIM, MIN_DIM } from '../core/board.js';
+import {
+  BOARD_COLORS, DESK_COLORS, MAX_DIM, MAX_WORKSPACE, MIN_DIM, MIN_WORKSPACE,
+  makeBoard,
+} from '../core/board.js';
 import { ROTATIONS, normalizeRotation } from '../core/geometry.js';
 import { WIRE_GAUGES } from '../core/store.js';
 
 export const FORMAT = 'perfboard-studio';
-export const FORMAT_VERSION = 1;
+export const FORMAT_VERSION = 2;
 
 /** Serialise the document plus the definitions it depends on. */
 export function serialize(doc, catalog) {
@@ -35,7 +38,8 @@ export function serialize(doc, catalog) {
     generator: 'Perfboard Studio',
     savedAt: new Date().toISOString(),
     name: doc.name || 'Untitled design',
-    board: { ...doc.board },
+    workspace: { ...doc.workspace },
+    boards: doc.boards.map((b) => ({ ...b })),
     modules: doc.modules.map((m) => ({ ...m })),
     wires: doc.wires.map((w) => ({ ...w, points: w.points.map(([c, r]) => [c, r]) })),
     moduleDefs: snapshot,
@@ -84,24 +88,26 @@ export function deserialize(raw, catalog) {
     warnings.push(`${embedded} module definition(s) came from the file, not the catalog.`);
   }
 
-  const board = readBoard(data.board, warnings);
-  const modules = [];
   const seen = new Set();
+  const { workspace, boards } = readLayout(data, warnings, seen);
+
+  const modules = [];
   for (const [i, m] of (Array.isArray(data.modules) ? data.modules : []).entries()) {
-    const inst = readModule(m, i, board, catalog, warnings, seen);
+    const inst = readModule(m, i, workspace, catalog, warnings, seen);
     if (inst) modules.push(inst);
   }
 
   const wires = [];
   for (const [i, w] of (Array.isArray(data.wires) ? data.wires : []).entries()) {
-    const wire = readWire(w, i, board, warnings, seen);
+    const wire = readWire(w, i, workspace, warnings, seen);
     if (wire) wires.push(wire);
   }
 
   return {
     doc: {
       name: typeof data.name === 'string' && data.name.trim() ? data.name : 'Untitled design',
-      board,
+      workspace,
+      boards,
       modules,
       wires,
     },
@@ -109,26 +115,91 @@ export function deserialize(raw, catalog) {
   };
 }
 
-function readBoard(raw, warnings) {
-  const b = raw && typeof raw === 'object' ? raw : {};
-  const cols = clampInt(b.cols, MIN_DIM, MAX_DIM, 18);
-  const rows = clampInt(b.rows, MIN_DIM, MAX_DIM, 24);
-  if (!Number.isFinite(b.cols) || !Number.isFinite(b.rows)) {
-    warnings.push('Board size was missing or invalid; fell back to 18 × 24 holes.');
+/**
+ * Read the workspace and the boards on it.
+ *
+ * v1 files had exactly one board and no workspace: positions were board-local
+ * and (0,0) was the board's corner. Those files still open unchanged, because a
+ * v1 board maps onto a workspace of the same size with the board at the origin —
+ * every stored coordinate then means the same hole it always did.
+ */
+function readLayout(data, warnings, seen) {
+  if (Array.isArray(data.boards) || (data.workspace && typeof data.workspace === 'object')) {
+    const workspace = readWorkspace(data.workspace, warnings);
+    const boards = [];
+    for (const [i, b] of (Array.isArray(data.boards) ? data.boards : []).entries()) {
+      const board = readBoard(b, i, workspace, warnings, seen);
+      if (board) boards.push(board);
+    }
+    return { workspace, boards };
   }
-  const colorId = BOARD_COLORS.some((c) => c.id === b.colorId) ? b.colorId : 'phenolic';
-  if (b.colorId !== undefined && colorId !== b.colorId) {
-    warnings.push(`Unknown board material "${b.colorId}"; used phenolic instead.`);
+
+  const legacy = readBoard(data.board, 0, { cols: MAX_WORKSPACE, rows: MAX_WORKSPACE }, warnings, seen);
+  const pitchMm = Number(data.board?.pitchMm);
+  const workspace = {
+    cols: legacy.cols,
+    rows: legacy.rows,
+    pitchMm: Number.isFinite(pitchMm) && pitchMm > 0 ? pitchMm : 2.54,
+    colorId: DESK_COLORS[0].id,
+  };
+  legacy.col = 0;
+  legacy.row = 0;
+  legacy.label = 'Board 1';
+  warnings.push('Opened a single-board file; it became one board on a workspace '
+    + 'of the same size. Enlarge the workspace to place parts beside it.');
+  return { workspace, boards: [legacy] };
+}
+
+function readWorkspace(raw, warnings) {
+  const w = raw && typeof raw === 'object' ? raw : {};
+  const cols = clampInt(w.cols, MIN_WORKSPACE, MAX_WORKSPACE, 56);
+  const rows = clampInt(w.rows, MIN_WORKSPACE, MAX_WORKSPACE, 40);
+  if (!Number.isFinite(w.cols) || !Number.isFinite(w.rows)) {
+    warnings.push('Workspace size was missing or invalid; fell back to 56 × 40 holes.');
   }
+
+  // An unknown backdrop is cosmetic, so fall back quietly rather than warn.
+  const colorId = DESK_COLORS.some((c) => c.id === w.colorId) ? w.colorId : DESK_COLORS[0].id;
+
   return {
     cols,
     rows,
-    pitchMm: Number.isFinite(b.pitchMm) && b.pitchMm > 0 ? b.pitchMm : 2.54,
+    pitchMm: Number.isFinite(w.pitchMm) && w.pitchMm > 0 ? w.pitchMm : 2.54,
     colorId,
   };
 }
 
-function readModule(raw, i, board, catalog, warnings, seen) {
+function readBoard(raw, i, area, warnings, seen) {
+  const b = raw && typeof raw === 'object' ? raw : {};
+  const who = b.label || `Board #${i + 1}`;
+
+  const cols = clampInt(b.cols, MIN_DIM, MAX_DIM, 18);
+  const rows = clampInt(b.rows, MIN_DIM, MAX_DIM, 24);
+  if (!Number.isFinite(b.cols) || !Number.isFinite(b.rows)) {
+    warnings.push(`${who} had no valid size; fell back to 18 × 24 holes.`);
+  }
+
+  const col = clampInt(b.col, 0, Math.max(0, area.cols - cols), 0);
+  const row = clampInt(b.row, 0, Math.max(0, area.rows - rows), 0);
+  if ((b.col !== undefined && col !== b.col) || (b.row !== undefined && row !== b.row)) {
+    warnings.push(`${who} hung off the workspace and was pulled back to `
+      + `column ${col + 1}, row ${row + 1}.`);
+  }
+
+  const colorId = BOARD_COLORS.some((c) => c.id === b.colorId) ? b.colorId : 'phenolic';
+  if (b.colorId !== undefined && colorId !== b.colorId) {
+    warnings.push(`${who} had unknown material "${b.colorId}"; used phenolic instead.`);
+  }
+
+  // Pitch is a property of the whole workspace, not of one board — everything
+  // shares a single grid. A v1 file's board pitch is lifted out by `readLayout`.
+  const board = makeBoard({ col, row, cols, rows, colorId });
+  board.uid = uniqueUid(b.uid, `b${i}`, seen);
+  board.label = typeof b.label === 'string' ? b.label : null;
+  return board;
+}
+
+function readModule(raw, i, area, catalog, warnings, seen) {
   if (!raw || typeof raw !== 'object') { warnings.push(`Module #${i + 1} is not an object.`); return null; }
   if (!raw.moduleId) { warnings.push(`Module #${i + 1} has no moduleId.`); return null; }
   if (!Number.isFinite(raw.col) || !Number.isFinite(raw.row)) {
@@ -142,10 +213,10 @@ function readModule(raw, i, board, catalog, warnings, seen) {
     warnings.push(`Module "${raw.moduleId}" is not in the catalog; shown as a placeholder.`);
   }
 
-  const col = clampInt(raw.col, 0, board.cols - 1, 0);
-  const row = clampInt(raw.row, 0, board.rows - 1, 0);
+  const col = clampInt(raw.col, 0, area.cols - 1, 0);
+  const row = clampInt(raw.row, 0, area.rows - 1, 0);
   if (col !== raw.col || row !== raw.row) {
-    warnings.push(`${who} sat outside the board and was moved to `
+    warnings.push(`${who} sat outside the workspace and was moved to `
       + `column ${col + 1}, row ${row + 1}.`);
   }
 
@@ -172,7 +243,7 @@ function readModule(raw, i, board, catalog, warnings, seen) {
   return inst;
 }
 
-function readWire(raw, i, board, warnings, seen) {
+function readWire(raw, i, area, warnings, seen) {
   if (!raw || typeof raw !== 'object') { warnings.push(`Wire #${i + 1} is not an object.`); return null; }
   const pts = Array.isArray(raw.points) ? raw.points : [];
   const usable = pts.filter((p) => Array.isArray(p) && Number.isFinite(p[0]) && Number.isFinite(p[1]));
@@ -182,13 +253,13 @@ function readWire(raw, i, board, warnings, seen) {
 
   let moved = 0;
   const points = usable.map((p) => {
-    const c = clampInt(p[0], 0, board.cols - 1, 0);
-    const r = clampInt(p[1], 0, board.rows - 1, 0);
+    const c = clampInt(p[0], 0, area.cols - 1, 0);
+    const r = clampInt(p[1], 0, area.rows - 1, 0);
     if (c !== p[0] || r !== p[1]) moved++;
     return [c, r];
   });
   if (moved) {
-    warnings.push(`Wire #${i + 1} had ${moved} point(s) off the board; pulled to the edge.`);
+    warnings.push(`Wire #${i + 1} had ${moved} point(s) off the workspace; pulled to the edge.`);
   }
   if (points.length < 2) {
     warnings.push(`Wire #${i + 1} has fewer than two valid points and was dropped.`);

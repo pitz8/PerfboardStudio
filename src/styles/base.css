@@ -136,6 +136,8 @@ code {
 }
 .pbs-btn-danger:hover { background: color-mix(in srgb, var(--danger) 20%, var(--surface-3)); }
 
+.pbs-btn-wide { width: 100%; }
+
 .pbs-icon-btn {
   display: grid;
   place-items: center;
@@ -186,6 +188,16 @@ code {
   user-select: none;
 }
 .pbs-toggle:hover { color: var(--text-strong); }
+
+.pbs-range {
+  display: block;
+  width: 100%;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.pbs-range:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* -- swatches -------------------------------------------------------------- */
 
