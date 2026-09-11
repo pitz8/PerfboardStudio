@@ -1,0 +1,89 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "gateron-mx-blue",
+  "name": "Gateron MX Blue",
+  "subtitle": "clicky, pins bent to grid",
+  "category": "connector",
+  "tags": [
+    "switch",
+    "keyboard",
+    "mechanical",
+    "mx",
+    "cherry",
+    "gateron",
+    "blue",
+    "clicky"
+  ],
+  "designator": "SW",
+  "footprint": {
+    "cols": 5,
+    "rows": 5
+  },
+  "pins": [
+    {
+      "col": 1,
+      "row": 1,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    }
+  ],
+  "body": {
+    "x": -1.07,
+    "y": -1.07,
+    "w": 6.14,
+    "h": 6.14,
+    "rx": 0.14,
+    "fill": "#e9edf1",
+    "stroke": "#a9b0b8"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.76,
+      "y": -0.76,
+      "w": 5.51,
+      "h": 5.51,
+      "fill": "#23272e",
+      "rx": 0.12,
+      "stroke": "#0e1116",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.55,
+      "y": 0.55,
+      "w": 2.9,
+      "h": 2.9,
+      "fill": "#14171a",
+      "rx": 0.12,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.215,
+      "y": 1.78,
+      "w": 1.57,
+      "h": 0.44,
+      "fill": "#3b6ed6",
+      "rx": 0.06
+    },
+    {
+      "type": "rect",
+      "x": 1.78,
+      "y": 1.215,
+      "w": 0.44,
+      "h": 1.57,
+      "fill": "#3b6ed6",
+      "rx": 0.06
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "audio-jack-3-5mm-panel",
+  "name": "Audio jack 3.5 mm panel",
+  "subtitle": "stereo TRS, panel mount",
+  "category": "connector",
+  "tags": [
+    "audio",
+    "jack",
+    "3.5mm",
+    "stereo",
+    "trs",
+    "panel"
+  ],
+  "designator": "J",
+  "footprint": {
+    "cols": 3,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "T",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "R",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "S",
+      "number": 3,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0,
+      "y2": -0.55,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.11,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 1,
+      "y2": -0.55,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.11,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 2,
+      "y2": -0.55,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.11,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": -0.3,
+      "y": -1.25,
+      "w": 2.6,
+      "h": 0.7,
+      "fill": "#8d949c",
+      "rx": 0.06,
+      "stroke": "#5c6269",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": -2.9,
+      "r": 1.57,
+      "fill": "#9aa2ab",
+      "stroke": "#6f767e",
+      "strokeWidth": 0.07
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": -2.9,
+      "r": 0.69,
+      "fill": "#3a3f47",
+      "stroke": "#22262c",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 1,
+      "cy": -2.9,
+      "r": 0.26,
+      "fill": "#14171a"
+    }
+  ],
+  "label": {
+    "text": "3.5",
+    "x": 1.0,
+    "y": 0.46,
+    "size": 0.3,
+    "color": "#9fb0c0"
+  }
+}

@@ -24,7 +24,7 @@ Vercel as-is.
   up to 400 × 400 holes. Columns are lettered `A…Z, AA…`, rows numbered from 1,
   so every hole has a workspace name like `F12` — and the status bar also reads
   it in its own board's numbering.
-- **579 parts out of the box** across 11 categories — dev boards (Arduino,
+- **593 parts out of the box** across 11 categories — dev boards (Arduino,
   Raspberry Pi, ESP32, Pico…), solderless breadboards, DIP ICs, regulators,
   sensors, displays, passives (the whole E12 resistor and capacitor series, with
   colour bands computed from the value), discretes, connectors and IC sockets,
@@ -192,7 +192,7 @@ Keep the `$schema` line — VS Code will then autocomplete and validate the file
 as you type.
 
 `--index` is needed because the app loads `modules/catalog.json`, a generated
-bundle of every part, rather than fetching 579 small files at boot. The
+bundle of every part, rather than fetching 593 small files at boot. The
 per-category files stay the source of truth; the validator fails if the bundle
 drifts from them, and the app falls back to per-file fetching if it is missing.
 
@@ -220,7 +220,7 @@ There is no Node dependency, so the tests are HTML pages that import the real ES
 modules and run in a real browser:
 
 ```bash
-python tools/validate_catalog.py       # 579 modules, format + rotation invariant
+python tools/validate_catalog.py       # 593 modules, format + rotation invariant
 python tools/run_browser_tests.py      # 69 unit + 39 integration checks
 ```
 
@@ -232,7 +232,7 @@ The integration suite is the one that matters most. It loads the real catalog an
 asserts, among other things, that **every part's copper pads land exactly on the
 hole centres they claim — at all four rotations, on both sides of the board**,
 measured from the actual rendered SVG rather than from the maths in isolation.
-It also renders all 579 parts at every rotation, and checks the shipped example
+It also renders all 593 parts at every rotation, and checks the shipped example
 has no electrically dangling wire ends.
 
 ---

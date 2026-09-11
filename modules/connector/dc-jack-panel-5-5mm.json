@@ -1,0 +1,103 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "dc-jack-panel-5-5mm",
+  "name": "DC socket 5.5 × 2.1 mm",
+  "subtitle": "panel mount, threaded",
+  "category": "connector",
+  "tags": [
+    "power",
+    "dc",
+    "jack",
+    "socket",
+    "barrel",
+    "5.5mm",
+    "2.1mm",
+    "panel"
+  ],
+  "designator": "J",
+  "footprint": {
+    "cols": 2,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "TIP",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "SLEEVE",
+      "number": 2,
+      "type": "gnd"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0,
+      "y2": -0.55,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.11,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1,
+      "y1": 0,
+      "x2": 1,
+      "y2": -0.55,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.11,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": -0.3,
+      "y": -1.25,
+      "w": 1.6,
+      "h": 0.7,
+      "fill": "#8d949c",
+      "rx": 0.06,
+      "stroke": "#5c6269",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": -3,
+      "r": 1.9,
+      "fill": "#9aa2ab",
+      "stroke": "#6f767e",
+      "strokeWidth": 0.08
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": -3,
+      "r": 1.08,
+      "fill": "#14171a",
+      "stroke": "#3a4048",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": 0.5,
+      "cy": -3,
+      "r": 0.42,
+      "fill": "#8d949c"
+    }
+  ],
+  "label": {
+    "text": "DC",
+    "x": 0.5,
+    "y": 0.46,
+    "size": 0.3,
+    "color": "#9fb0c0"
+  }
+}

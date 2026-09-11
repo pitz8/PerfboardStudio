@@ -1,0 +1,111 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "pot-9mm-b10k",
+  "name": "Potentiometer B10 kΩ",
+  "subtitle": "9 mm, linear, 15 mm D-shaft",
+  "category": "passive",
+  "tags": [
+    "potentiometer",
+    "panel",
+    "variable",
+    "9mm",
+    "d-shaft",
+    "10k",
+    "b10k",
+    "linear"
+  ],
+  "designator": "RV",
+  "footprint": {
+    "cols": 5,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "W",
+      "number": 2,
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "3",
+      "number": 3,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0,
+      "y2": -0.46,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.11,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 2,
+      "y1": 0,
+      "x2": 2,
+      "y2": -0.46,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.11,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 4,
+      "y1": 0,
+      "x2": 4,
+      "y2": -0.46,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.11,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": 0.23,
+      "y": -4,
+      "w": 3.54,
+      "h": 3.54,
+      "fill": "#23272e",
+      "rx": 0.1,
+      "stroke": "#0e1116",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": 2,
+      "cy": -2.23,
+      "r": 1.38,
+      "fill": "#7f868e",
+      "stroke": "#5c6269",
+      "strokeWidth": 0.06
+    },
+    {
+      "type": "path",
+      "d": "M 0.978 -2.82 A 1.18 1.18 0 1 0 3.022 -2.82 Z",
+      "fill": "#c9ced6",
+      "stroke": "#8d949c",
+      "strokeWidth": 0.05
+    }
+  ],
+  "label": {
+    "text": "B10K",
+    "x": 2.0,
+    "y": 0.45,
+    "size": 0.3,
+    "color": "#9fb0c0"
+  }
+}

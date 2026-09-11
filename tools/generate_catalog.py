@@ -595,6 +595,66 @@ def build_ic():
                  mark="PCF8591", label_size=0.5,
                  tags=["adc", "dac", "i2c", "8-bit", "analog"]))
 
+    # -- optocouplers ---------------------------------------------------------
+    add(dip("6n138", "6N138", "Darlington optocoupler",
+            ["NC", "A", "K", "NC"], ["VCC", "VB", "VO", "GND"],
+            mark="6N138",
+            tags=["optocoupler", "isolation", "darlington", "midi", "high-speed"]))
+
+    # -- audio ----------------------------------------------------------------
+    # GY-PCM5102 carrier: the I2S header runs along one long edge, the four
+    # configuration straps along the other, and the analogue output sits beside
+    # the 3.5 mm jack at the far end.  The config pins are the ones vendors
+    # shuffle between revisions — check the silkscreen on the board you bought.
+    add({
+        "id": "pcm5102a-i2s-dac", "name": "PCM5102A",
+        "subtitle": "I2S stereo DAC module",
+        "category": "ic",
+        "tags": ["dac", "i2s", "audio", "pcm5102", "gy-pcm5102", "stereo", "module"],
+        "designator": "U",
+        "footprint": {"cols": 9, "rows": 7},
+        "pins": col_pins(["VIN", "GND", "LCK", "DIN", "BCK", "SCK"], row=0)
+                + col_pins(["FLT", "DEMP", "XSMT", "FMT"], row=6)
+                + [pin(6, 6, "LOUT", None, "analog"), pin(7, 6, "AGND", None, "gnd"),
+                   pin(8, 6, "ROUT", None, "analog")],
+        "body": {"x": -0.45, "y": -0.45, "w": 8.9, "h": 6.9, "rx": 0.18,
+                 "fill": COL["pcb_blue"], "stroke": COL["pcb_blue_edge"]},
+        "shapes": [
+            rect(-0.32, -0.32, 5.64, 0.64, COL["plastic_black"], COL["ic_edge"], rx=0.08),
+            rect(-0.32, 5.68, 3.64, 0.64, COL["plastic_black"], COL["ic_edge"], rx=0.08),
+            rect(5.68, 5.68, 2.64, 0.64, COL["plastic_black"], COL["ic_edge"], rx=0.08),
+            rect(1.6, 2.0, 2.2, 2.0, COL["ic_body"], COL["ic_edge"], rx=0.1),
+            rect(5.9, 1.5, 2.5, 3.0, COL["steel"], "#6f767e", rx=0.12),
+            circle(7.15, 3.0, 0.62, "#14171a", "#3a4048", sw=0.05),
+            circle(-0.02, -0.02, 0.1, "#e8c72c"),
+        ],
+        "label": {"text": "PCM5102A", "x": 2.7, "y": 4.9, "size": 0.42,
+                  "color": COL["silk"]},
+    })
+    add({
+        "id": "tda1308-headphone-amp", "name": "TDA1308",
+        "subtitle": "headphone amp module",
+        "category": "ic",
+        "tags": ["audio", "headphone", "amplifier", "tda1308", "class-ab", "module"],
+        "designator": "U",
+        "footprint": {"cols": 7, "rows": 4},
+        "pins": [pin(0, 0, "VCC", None, "power"), pin(0, 1, "GND", None, "gnd"),
+                 pin(0, 2, "INL", None, "analog"), pin(0, 3, "INR", None, "analog"),
+                 pin(6, 0, "OUTL", None, "analog"), pin(6, 1, "AGND", None, "gnd"),
+                 pin(6, 2, "OUTR", None, "analog")],
+        "body": {"x": -0.45, "y": -0.45, "w": 6.9, "h": 3.9, "rx": 0.18,
+                 "fill": COL["pcb_green"], "stroke": COL["pcb_green_edge"]},
+        "shapes": [
+            rect(-0.32, -0.32, 0.64, 3.64, COL["plastic_black"], COL["ic_edge"], rx=0.08),
+            rect(5.68, -0.32, 0.64, 2.64, COL["plastic_black"], COL["ic_edge"], rx=0.08),
+            rect(2.3, 0.8, 1.7, 1.5, COL["ic_body"], COL["ic_edge"], rx=0.08),
+            circle(2.55, 1.05, 0.09, COL["ic_mark"]),
+            circle(-0.02, -0.02, 0.1, "#e8c72c"),
+        ],
+        "label": {"text": "TDA1308", "x": 3.1, "y": 3.05, "size": 0.38,
+                  "color": COL["silk"]},
+    })
+
 
 # ===========================================================================
 # Power
@@ -1388,6 +1448,37 @@ def build_passive():
             "label": {"text": slug, "x": 2.0, "y": 0.45, "size": 0.3, "color": "#9fb0c0"},
         })
 
+    # 9 mm pots (Alpha RK09 / WH9011 style).  Same 5 mm pin pitch as the 16 mm
+    # panel pot above, but a much smaller body — and the 15 mm D-shaft a knob
+    # keys onto, drawn with its flat so the two are told apart in the palette.
+    for slug, disp, taper in (("b10k", "B10 k", "linear"),
+                              ("a10k", "A10 k", "log taper")):
+        add({
+            "id": f"pot-9mm-{slug}", "name": f"Potentiometer {disp}Ω",
+            "subtitle": f"9 mm, {taper}, 15 mm D-shaft",
+            "category": "passive",
+            "tags": ["potentiometer", "panel", "variable", "9mm", "d-shaft", "10k",
+                     slug, taper],
+            "designator": "RV",
+            "footprint": {"cols": 5, "rows": 1},
+            "pins": [pin(0, 0, "1", 1, "signal"), pin(2, 0, "W", 2, "signal"),
+                     pin(4, 0, "3", 3, "signal")],
+            "shapes": [
+                line(0, 0, 0, -0.46, COL["tin"], 0.11),
+                line(2, 0, 2, -0.46, COL["tin"], 0.11),
+                line(4, 0, 4, -0.46, COL["tin"], 0.11),
+                rect(0.23, -4.0, 3.54, 3.54, COL["plastic_black"], COL["plastic_edge"],
+                     rx=0.1),
+                circle(2.0, -2.23, 1.38, "#7f868e", "#5c6269", sw=0.06),
+                # A 6 mm shaft flatted to 4.5 mm: the flat sits at half the
+                # radius, which is what makes the D read at palette size.
+                path("M 0.978 -2.82 A 1.18 1.18 0 1 0 3.022 -2.82 Z",
+                     fill="#c9ced6", stroke="#8d949c", sw=0.05),
+            ],
+            "label": {"text": slug.upper(), "x": 2.0, "y": 0.45, "size": 0.3,
+                      "color": "#9fb0c0"},
+        })
+
     # Inductors
     for uh, lbl in ((10, "10µH"), (22, "22µH"), (47, "47µH"), (100, "100µH"),
                     (220, "220µH"), (470, "470µH"), (1000, "1mH")):
@@ -1798,8 +1889,11 @@ def build_connector():
                   + [line(3, i, 2.75, i, COL["tin"], 0.1) for i in range(4)],
     })
     add({
-        "id": "rotary-encoder-ec11", "name": "Rotary encoder EC11", "subtitle": "with push switch",
-        "category": "connector", "tags": ["encoder", "rotary", "ec11", "knob"],
+        "id": "rotary-encoder-ec11", "name": "Rotary encoder EC11",
+        "subtitle": "D-shaft, with push switch",
+        "category": "connector",
+        "tags": ["encoder", "rotary", "ec11", "knob", "d-shaft", "push button",
+                 "switch"],
         "designator": "SW",
         "footprint": {"cols": 3, "rows": 6},
         "pins": [pin(0, 0, "A", 1, "signal"), pin(1, 0, "C", 2, "gnd"),
@@ -1974,6 +2068,140 @@ def build_connector():
                    line(0, 0, 0, -0.45, COL["tin"], 0.1),
                    line(1, 0, 1, -0.45, COL["tin"], 0.1)],
     })
+
+    # -- panel-mount sockets --------------------------------------------------
+    # Solder lugs are not on any grid, so these sit on neighbouring holes and
+    # are drawn face-on: what you see from outside the enclosure.
+    add({
+        "id": "jack-6-35mm-mono-panel", "name": "Jack 6.35 mm mono",
+        "subtitle": "1/4 in TS, panel mount",
+        "category": "connector",
+        "tags": ["audio", "jack", "6.35mm", "quarter inch", "mono", "ts", "panel",
+                 "guitar"],
+        "designator": "J",
+        "footprint": {"cols": 3, "rows": 1},
+        "pins": [pin(0, 0, "TIP", 1, "signal"), pin(1, 0, "SLEEVE", 2, "gnd"),
+                 pin(2, 0, "SW", 3, "signal")],
+        "shapes": [
+            line(0, 0, 0, -0.55, COL["tin"], 0.11),
+            line(1, 0, 1, -0.55, COL["tin"], 0.11),
+            line(2, 0, 2, -0.55, COL["tin"], 0.11),
+            rect(-0.35, -1.3, 2.7, 0.75, "#8d949c", "#5c6269", rx=0.06),
+            circle(1.0, -3.6, 2.36, COL["steel"], "#6f767e", sw=0.08),
+            circle(1.0, -3.6, 1.25, "#3a3f47", "#22262c", sw=0.06),
+            circle(1.0, -3.6, 0.45, "#14171a"),
+        ],
+        "label": {"text": "6.35", "x": 1.0, "y": 0.46, "size": 0.3, "color": "#9fb0c0"},
+    })
+    add({
+        "id": "audio-jack-3-5mm-panel", "name": "Audio jack 3.5 mm panel",
+        "subtitle": "stereo TRS, panel mount",
+        "category": "connector",
+        "tags": ["audio", "jack", "3.5mm", "stereo", "trs", "panel"],
+        "designator": "J",
+        "footprint": {"cols": 3, "rows": 1},
+        "pins": [pin(0, 0, "T", 1, "signal"), pin(1, 0, "R", 2, "signal"),
+                 pin(2, 0, "S", 3, "gnd")],
+        "shapes": [
+            line(0, 0, 0, -0.55, COL["tin"], 0.11),
+            line(1, 0, 1, -0.55, COL["tin"], 0.11),
+            line(2, 0, 2, -0.55, COL["tin"], 0.11),
+            rect(-0.3, -1.25, 2.6, 0.7, "#8d949c", "#5c6269", rx=0.06),
+            circle(1.0, -2.9, 1.57, COL["steel"], "#6f767e", sw=0.07),
+            circle(1.0, -2.9, 0.69, "#3a3f47", "#22262c", sw=0.05),
+            circle(1.0, -2.9, 0.26, "#14171a"),
+        ],
+        "label": {"text": "3.5", "x": 1.0, "y": 0.46, "size": 0.3, "color": "#9fb0c0"},
+    })
+    add({
+        "id": "dc-jack-panel-5-5mm", "name": "DC socket 5.5 × 2.1 mm",
+        "subtitle": "panel mount, threaded",
+        "category": "connector",
+        "tags": ["power", "dc", "jack", "socket", "barrel", "5.5mm", "2.1mm", "panel"],
+        "designator": "J",
+        "footprint": {"cols": 2, "rows": 1},
+        "pins": [pin(0, 0, "TIP", 1, "power"), pin(1, 0, "SLEEVE", 2, "gnd")],
+        "shapes": [
+            line(0, 0, 0, -0.55, COL["tin"], 0.11),
+            line(1, 0, 1, -0.55, COL["tin"], 0.11),
+            rect(-0.3, -1.25, 1.6, 0.7, "#8d949c", "#5c6269", rx=0.06),
+            circle(0.5, -3.0, 1.9, COL["steel"], "#6f767e", sw=0.08),
+            circle(0.5, -3.0, 1.08, "#14171a", "#3a4048", sw=0.05),
+            circle(0.5, -3.0, 0.42, "#8d949c"),
+        ],
+        "label": {"text": "DC", "x": 0.5, "y": 0.46, "size": 0.3, "color": "#9fb0c0"},
+    })
+    add({
+        "id": "kcd1-rocker-switch", "name": "Rocker switch KCD1",
+        "subtitle": "SPST, 19 × 13 mm cut-out",
+        "category": "connector",
+        "tags": ["switch", "rocker", "kcd1", "panel", "spst", "mains", "power"],
+        "designator": "SW",
+        "footprint": {"cols": 5, "rows": 1},
+        "pins": [pin(0, 0, "1", 1, "signal"), pin(4, 0, "2", 2, "signal")],
+        "shapes": [
+            line(0, 0, 0, -0.6, COL["tin"], 0.14),
+            line(4, 0, 4, -0.6, COL["tin"], 0.14),
+            rect(-2.15, -6.5, 8.3, 5.9, COL["plastic_black"], COL["plastic_edge"],
+                 rx=0.14),
+            rect(-1.25, -5.75, 6.5, 4.4, "#2a2f36", "#14171a", rx=0.12),
+            rect(-1.25, -5.75, 3.25, 4.4, "#3a4048", None, rx=0.12),
+            text(0.375, -3.35, "I", size=0.6, color=COL["silk"]),
+            text(3.625, -3.35, "O", size=0.6, color=COL["silk"]),
+        ],
+    })
+    add({
+        "id": "usb-c-pigtail", "name": "USB-C male pigtail",
+        "subtitle": "bare-wire cable, 4 core",
+        "category": "connector",
+        "tags": ["usb", "type-c", "cable", "pigtail", "power", "male", "flying lead"],
+        "designator": "J",
+        "footprint": {"cols": 4, "rows": 1},
+        "pins": [pin(0, 0, "VBUS", 1, "power"), pin(1, 0, "GND", 2, "gnd"),
+                 pin(2, 0, "D+", 3, "signal"), pin(3, 0, "D-", 4, "signal")],
+        "shapes": [
+            rect(0.35, -5.3, 2.3, 1.5, "#3a4048", "#22262c", rx=0.62),
+            rect(0.75, -5.0, 1.5, 0.55, COL["tin"], None, rx=0.27),
+            rect(0.1, -4.0, 2.8, 1.5, COL["plastic_black"], COL["plastic_edge"], rx=0.16),
+            line(1.5, -2.5, 1.5, -1.5, "#22262c", 0.5),
+            # Standard USB wire colours, so the drawing matches the cable.
+            line(1.5, -1.5, 0, 0, "#d84040", 0.12),
+            line(1.5, -1.5, 1, 0, "#22262c", 0.12),
+            line(1.5, -1.5, 2, 0, "#2f8f4e", 0.12),
+            line(1.5, -1.5, 3, 0, "#e9edf1", 0.12),
+        ],
+        "label": {"text": "USB-C", "x": 1.5, "y": -3.1, "size": 0.34,
+                  "color": COL["silk"]},
+    })
+
+    # -- keyboard switches ----------------------------------------------------
+    # An MX switch's terminals sit 3.81 mm and 2.54 mm off the switch centre, so
+    # one of them is always half a pitch off a 2.54 mm grid.  Pin 1 is put on the
+    # nearest hole: on perfboard that leg gets bent anyway.  The body is drawn at
+    # its true 15.6 mm, which is wider than the 5 × 5 holes it occupies.
+    for slug, feel, stem in (("red", "linear", "#d64545"),
+                             ("brown", "tactile", "#8a5a3b"),
+                             ("blue", "clicky", "#3b6ed6"),
+                             ("yellow", "linear", "#e0b83a")):
+        add({
+            "id": f"gateron-mx-{slug}", "name": f"Gateron MX {slug.capitalize()}",
+            "subtitle": f"{feel}, pins bent to grid",
+            "category": "connector",
+            "tags": ["switch", "keyboard", "mechanical", "mx", "cherry", "gateron",
+                     slug, feel],
+            "designator": "SW",
+            "footprint": {"cols": 5, "rows": 5},
+            "pins": [pin(1, 1, "1", 1, "signal"), pin(3, 0, "2", 2, "signal")],
+            "body": {"x": -1.07, "y": -1.07, "w": 6.14, "h": 6.14, "rx": 0.14,
+                     "fill": COL["plastic_white"], "stroke": "#a9b0b8"},
+            "shapes": [
+                rect(-0.76, -0.76, 5.51, 5.51, COL["plastic_black"],
+                     COL["plastic_edge"], rx=0.12),
+                rect(0.55, 0.55, 2.9, 2.9, "#14171a", "#0b0e12", rx=0.12),
+                rect(1.215, 1.78, 1.57, 0.44, stem, None, rx=0.06),
+                rect(1.78, 1.215, 0.44, 1.57, stem, None, rx=0.06),
+            ],
+        })
 
 
 # ===========================================================================

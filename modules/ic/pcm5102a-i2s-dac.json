@@ -1,0 +1,190 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "pcm5102a-i2s-dac",
+  "name": "PCM5102A",
+  "subtitle": "I2S stereo DAC module",
+  "category": "ic",
+  "tags": [
+    "dac",
+    "i2s",
+    "audio",
+    "pcm5102",
+    "gy-pcm5102",
+    "stereo",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 9,
+    "rows": 7
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VIN",
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "LCK",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "DIN",
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "BCK",
+      "type": "signal"
+    },
+    {
+      "col": 5,
+      "row": 0,
+      "name": "SCK",
+      "type": "signal"
+    },
+    {
+      "col": 0,
+      "row": 6,
+      "name": "FLT",
+      "type": "signal"
+    },
+    {
+      "col": 1,
+      "row": 6,
+      "name": "DEMP",
+      "type": "signal"
+    },
+    {
+      "col": 2,
+      "row": 6,
+      "name": "XSMT",
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 6,
+      "name": "FMT",
+      "type": "signal"
+    },
+    {
+      "col": 6,
+      "row": 6,
+      "name": "LOUT",
+      "type": "analog"
+    },
+    {
+      "col": 7,
+      "row": 6,
+      "name": "AGND",
+      "type": "gnd"
+    },
+    {
+      "col": 8,
+      "row": 6,
+      "name": "ROUT",
+      "type": "analog"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 8.9,
+    "h": 6.9,
+    "rx": 0.18,
+    "fill": "#123a63",
+    "stroke": "#0a2440"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 5.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": 5.68,
+      "w": 3.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 5.68,
+      "y": 5.68,
+      "w": 2.64,
+      "h": 0.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 1.6,
+      "y": 2,
+      "w": 2.2,
+      "h": 2,
+      "fill": "#1f242b",
+      "rx": 0.1,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 5.9,
+      "y": 1.5,
+      "w": 2.5,
+      "h": 3,
+      "fill": "#9aa2ab",
+      "rx": 0.12,
+      "stroke": "#6f767e",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": 7.15,
+      "cy": 3,
+      "r": 0.62,
+      "fill": "#14171a",
+      "stroke": "#3a4048",
+      "strokeWidth": 0.05
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "PCM5102A",
+    "x": 2.7,
+    "y": 4.9,
+    "size": 0.42,
+    "color": "#e8eef4"
+  }
+}

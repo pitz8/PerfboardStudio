@@ -2,13 +2,16 @@
   "$schema": "../_schema/module.schema.json",
   "id": "rotary-encoder-ec11",
   "name": "Rotary encoder EC11",
-  "subtitle": "with push switch",
+  "subtitle": "D-shaft, with push switch",
   "category": "connector",
   "tags": [
     "encoder",
     "rotary",
     "ec11",
-    "knob"
+    "knob",
+    "d-shaft",
+    "push button",
+    "switch"
   ],
   "designator": "SW",
   "footprint": {

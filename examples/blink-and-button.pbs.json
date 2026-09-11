@@ -2,8 +2,25 @@
   "format": "perfboard-studio",
   "version": 2,
   "generator": "Perfboard Studio",
-  "savedAt": "2026-07-30T09:00:00.000Z",
+  "savedAt": "2026-07-31T14:51:07.574Z",
   "name": "Blink, button and off-board power",
+  "workspace": {
+    "cols": 44,
+    "rows": 34,
+    "pitchMm": 2.54,
+    "colorId": "kraft"
+  },
+  "boards": [
+    {
+      "uid": "b-main",
+      "col": 3,
+      "row": 4,
+      "cols": 18,
+      "rows": 24,
+      "colorId": "fr4-green",
+      "label": "Main board"
+    }
+  ],
   "modules": [
     {
       "uid": "m-power",
@@ -1324,21 +1341,5 @@
         }
       ]
     }
-  },
-  "workspace": {
-    "cols": 44,
-    "rows": 34,
-    "pitchMm": 2.54
-  },
-  "boards": [
-    {
-      "uid": "b-main",
-      "col": 3,
-      "row": 4,
-      "cols": 18,
-      "rows": 24,
-      "colorId": "phenolic",
-      "label": "Main board"
-    }
-  ]
+  }
 }

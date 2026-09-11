@@ -1,0 +1,129 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "tda1308-headphone-amp",
+  "name": "TDA1308",
+  "subtitle": "headphone amp module",
+  "category": "ic",
+  "tags": [
+    "audio",
+    "headphone",
+    "amplifier",
+    "tda1308",
+    "class-ab",
+    "module"
+  ],
+  "designator": "U",
+  "footprint": {
+    "cols": 7,
+    "rows": 4
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VCC",
+      "type": "power"
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "name": "GND",
+      "type": "gnd"
+    },
+    {
+      "col": 0,
+      "row": 2,
+      "name": "INL",
+      "type": "analog"
+    },
+    {
+      "col": 0,
+      "row": 3,
+      "name": "INR",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 0,
+      "name": "OUTL",
+      "type": "analog"
+    },
+    {
+      "col": 6,
+      "row": 1,
+      "name": "AGND",
+      "type": "gnd"
+    },
+    {
+      "col": 6,
+      "row": 2,
+      "name": "OUTR",
+      "type": "analog"
+    }
+  ],
+  "body": {
+    "x": -0.45,
+    "y": -0.45,
+    "w": 6.9,
+    "h": 3.9,
+    "rx": 0.18,
+    "fill": "#12503c",
+    "stroke": "#0a3527"
+  },
+  "shapes": [
+    {
+      "type": "rect",
+      "x": -0.32,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 3.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 5.68,
+      "y": -0.32,
+      "w": 0.64,
+      "h": 2.64,
+      "fill": "#23272e",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 2.3,
+      "y": 0.8,
+      "w": 1.7,
+      "h": 1.5,
+      "fill": "#1f242b",
+      "rx": 0.08,
+      "stroke": "#0b0e12",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "circle",
+      "cx": 2.55,
+      "cy": 1.05,
+      "r": 0.09,
+      "fill": "#c9d2dc"
+    },
+    {
+      "type": "circle",
+      "cx": -0.02,
+      "cy": -0.02,
+      "r": 0.1,
+      "fill": "#e8c72c"
+    }
+  ],
+  "label": {
+    "text": "TDA1308",
+    "x": 3.1,
+    "y": 3.05,
+    "size": 0.38,
+    "color": "#e8eef4"
+  }
+}

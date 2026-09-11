@@ -1,0 +1,110 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "kcd1-rocker-switch",
+  "name": "Rocker switch KCD1",
+  "subtitle": "SPST, 19 × 13 mm cut-out",
+  "category": "connector",
+  "tags": [
+    "switch",
+    "rocker",
+    "kcd1",
+    "panel",
+    "spst",
+    "mains",
+    "power"
+  ],
+  "designator": "SW",
+  "footprint": {
+    "cols": 5,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "1",
+      "number": 1,
+      "type": "signal"
+    },
+    {
+      "col": 4,
+      "row": 0,
+      "name": "2",
+      "number": 2,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "line",
+      "x1": 0,
+      "y1": 0,
+      "x2": 0,
+      "y2": -0.6,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.14,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 4,
+      "y1": 0,
+      "x2": 4,
+      "y2": -0.6,
+      "stroke": "#b9c0c8",
+      "strokeWidth": 0.14,
+      "linecap": "round"
+    },
+    {
+      "type": "rect",
+      "x": -2.15,
+      "y": -6.5,
+      "w": 8.3,
+      "h": 5.9,
+      "fill": "#23272e",
+      "rx": 0.14,
+      "stroke": "#0e1116",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": -1.25,
+      "y": -5.75,
+      "w": 6.5,
+      "h": 4.4,
+      "fill": "#2a2f36",
+      "rx": 0.12,
+      "stroke": "#14171a",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": -1.25,
+      "y": -5.75,
+      "w": 3.25,
+      "h": 4.4,
+      "fill": "#3a4048",
+      "rx": 0.12
+    },
+    {
+      "type": "text",
+      "x": 0.375,
+      "y": -3.35,
+      "text": "I",
+      "size": 0.6,
+      "color": "#e8eef4",
+      "anchor": "middle",
+      "weight": 600
+    },
+    {
+      "type": "text",
+      "x": 3.625,
+      "y": -3.35,
+      "text": "O",
+      "size": 0.6,
+      "color": "#e8eef4",
+      "anchor": "middle",
+      "weight": 600
+    }
+  ]
+}

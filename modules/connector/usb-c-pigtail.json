@@ -1,0 +1,141 @@
+{
+  "$schema": "../_schema/module.schema.json",
+  "id": "usb-c-pigtail",
+  "name": "USB-C male pigtail",
+  "subtitle": "bare-wire cable, 4 core",
+  "category": "connector",
+  "tags": [
+    "usb",
+    "type-c",
+    "cable",
+    "pigtail",
+    "power",
+    "male",
+    "flying lead"
+  ],
+  "designator": "J",
+  "footprint": {
+    "cols": 4,
+    "rows": 1
+  },
+  "pins": [
+    {
+      "col": 0,
+      "row": 0,
+      "name": "VBUS",
+      "number": 1,
+      "type": "power"
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "name": "GND",
+      "number": 2,
+      "type": "gnd"
+    },
+    {
+      "col": 2,
+      "row": 0,
+      "name": "D+",
+      "number": 3,
+      "type": "signal"
+    },
+    {
+      "col": 3,
+      "row": 0,
+      "name": "D-",
+      "number": 4,
+      "type": "signal"
+    }
+  ],
+  "shapes": [
+    {
+      "type": "rect",
+      "x": 0.35,
+      "y": -5.3,
+      "w": 2.3,
+      "h": 1.5,
+      "fill": "#3a4048",
+      "rx": 0.62,
+      "stroke": "#22262c",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "rect",
+      "x": 0.75,
+      "y": -5,
+      "w": 1.5,
+      "h": 0.55,
+      "fill": "#b9c0c8",
+      "rx": 0.27
+    },
+    {
+      "type": "rect",
+      "x": 0.1,
+      "y": -4,
+      "w": 2.8,
+      "h": 1.5,
+      "fill": "#23272e",
+      "rx": 0.16,
+      "stroke": "#0e1116",
+      "strokeWidth": 0.035
+    },
+    {
+      "type": "line",
+      "x1": 1.5,
+      "y1": -2.5,
+      "x2": 1.5,
+      "y2": -1.5,
+      "stroke": "#22262c",
+      "strokeWidth": 0.5,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1.5,
+      "y1": -1.5,
+      "x2": 0,
+      "y2": 0,
+      "stroke": "#d84040",
+      "strokeWidth": 0.12,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1.5,
+      "y1": -1.5,
+      "x2": 1,
+      "y2": 0,
+      "stroke": "#22262c",
+      "strokeWidth": 0.12,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1.5,
+      "y1": -1.5,
+      "x2": 2,
+      "y2": 0,
+      "stroke": "#2f8f4e",
+      "strokeWidth": 0.12,
+      "linecap": "round"
+    },
+    {
+      "type": "line",
+      "x1": 1.5,
+      "y1": -1.5,
+      "x2": 3,
+      "y2": 0,
+      "stroke": "#e9edf1",
+      "strokeWidth": 0.12,
+      "linecap": "round"
+    }
+  ],
+  "label": {
+    "text": "USB-C",
+    "x": 1.5,
+    "y": -3.1,
+    "size": 0.34,
+    "color": "#e8eef4"
+  }
+}
